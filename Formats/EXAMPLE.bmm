@@ -1,0 +1,470 @@
+-- 
+	***********************************************************************************************
+	****                                                                                       ****
+	**** EXAMPLE SCHEMA FOR USE IN DEVELOPING & MAINTAINING .bmm SCHEMAS                       ****
+	****                                                                                       ****
+	**** How to use: when developing a new schema, copy this file, or if you are familiar      ****
+	**** with the format, another schema file that seems useful. If you use a copy of this     ****
+	**** file, DELETE ALL SECTIONS enclosed in '****', like this one.                          ****
+	****                                                                                       ****
+	**** This schema contains boilerplate text (keep them) and placeholder text enclosed       ****
+	**** within ': :'. Replace the latter with your own text, removing the ': :'.              ****
+	****                                                                                       ****
+	**** Remember, a .bmm file is in dADL syntax, so you need to stick to dADL rules.          ****
+	**** See here for syntax:                                                                  ****
+	**** http://www.openehr.org/svn/specification/TRUNK/publishing/architecture/am/adl1.5.pdf  ****
+	****                                                                                       ****
+	**** Comment lines begin with '--'; blank lines are allowed (encouraged).                  ****
+	****                                                                                       ****
+	**** Schemas can be and usually should be nested. See the openEHR Examples, and consider   ****
+	**** reusing existing 'primitive' and 'basic' types schemas. You can reuse and override    ****
+	**** any class with a new definition of the same name.                                     ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a typical header block for use with openEHR and Subversion; you are  ****
+	**** not obliged to use the same format!                                                   ****
+	****                                                                                       ****
+	***********************************************************************************************
+--
+-- 	component:   :openEHR Archetype Project or other project name:
+-- 	description: :Short descrption of the schema file for use in the source control system. Longer
+--               description typically in the 'schema_description' attribute below.:
+-- 	keywords:    :keywords here, e.g. reference model, archetypes, xxxx:
+-- 	author:      :Your Name <your.name@xmail.com>:
+-- 	support:     :Support URL or other contact:
+-- 	copyright:   :Copyright (c) YEAR ORGANISATION:
+-- 	license:     :See end of file:
+-- 
+-- 	file:        $URL: http://www.openehr.org/svn/knowledge2/BRANCHES/P_schema/rm_schemas/EXAMPLE.bmm.txt $
+-- 	revision:    $LastChangedRevision$
+-- 	last_change: $LastChangedDate: 2011-10-25 15:39:46 +0100 (Tue, 25 Oct 2011) $
+-- 
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The bmm_version attribute needs to be the value of the BMM software with which this   ****
+	**** file works; see the following URL to get it.                                          ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+-- Current BMM version can be found as value of 'Bmm_internal_version' in 
+--     http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/adl1.5/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+--
+------------------------------------------------------
+bmm_version = <"2.0">
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following attributes should be self-explanatory. The 'schema_name' attribute is   ****
+	**** normally given the name of a top-level package or 'model' from the publishing org.    ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"openehr">
+schema_name = <"adltest">
+rm_release = <"1.0.2">
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following attributes should be self-explanatory. The 'schema_name' attribute is   ****
+	**** normally given the name of a top-level package or 'model' from the publishing org.    ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"$LastChangedRevision: 26 $">
+schema_lifecycle_state = <"stable">
+schema_description = <"openEHR schema to support test archetypes">
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** This is where you say what schemas are to be included in this one. Construct the      ****
+	**** inclusion hierarchy in the same logical fashion as for XML schema or similar.         ****
+	****                                                                                       ****
+	****		includes = <                                                                   ****
+	****			["1"] = <                                                                  ****
+	****				id = <"some_schema_id">                                                ****
+	****			>                                                                          ****
+	****			["2"] = <                                                                  ****
+	****				id = <"some_other_schema_id">                                          ****
+	****			>                                                                          ****
+	****		>                                                                              ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"openehr_basic_types_1.0.2">
+	>
+>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** Three archetyping related attributes can be set below, but would not usually all      ****
+	**** in the same schema. Only the archetype_rm_closure_packages variable is needed in      ****
+	**** at least one schema, usually the top-most one.                                        ****		
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- archetyping
+-- override archetype parent class from included schema
+------------------------------------------------------
+	***********************************************************************************************
+	****                                                                                       ****
+	**** archetype_parent_class defines a base class from the Reference Model that provides    ****
+	**** archetyping capability in RM data structures. It is optional, and there need be no    ****
+	**** such class in the RM. In the openEHR and 13606 RMs, this class exists, (LOCATABLE,	   ****		
+	**** and RECORD_COMPONENT respectively). Defining it here has the effect in tools that 	   ****		
+	**** the class tree under which archetypes are arranged contains only RM classes inherit-  ****		
+	**** ing from this class, e.g. LOCATABLE classes in the case of openEHR. If nothing is set ****		
+	**** here, all classes in the RM are assumed as candidates for archetypes.                 ****		
+	****                                                                                       ****
+	**** This attribute, if defined, must be defined in the same schema that defines the       ****
+	**** referenced class.                                                                     ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+archetype_parent_class = <"CLASS_NAME">
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** archetype_data_value_parent_class defines a base class from the Reference Model       ****
+	**** whose descendants are considered to be 'logical data types' (i.e. of some higher      ****
+	**** level than the built-in primitive types String, Integer etc). This attribute is   	   ****		
+	**** optional, even if the RM does have such a class, and is only used to help tooling 	   ****		
+	**** provide more intelligent display, e.g. in statistical reports.                        ****		
+	****                                                                                       ****
+	**** This attribute, if defined, must be defined in the same schema that defines the       ****
+	**** referenced class.                                                                     ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+archetype_data_value_parent_class = <"CLASS_NAME">
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** If archetype_parent_class is not set, designate a class whose descendants should be   ****
+	**** made visible in tree and grid renderings of the archetype definition. For openEHR     ****
+	**** and CEN this class is normally the same as the archetype_parent_class, i.e. LOCATABLE ****
+	**** and RECORD_COMPONENT respectively. It is typically set for CEN, because archetype_    ****
+	**** parent_class may not be stated, due to demographic types not inheriting from it.      ****
+	****                                                                                       ****
+	**** The effect of this attribute in visualisation is to generate the most natural tree or ****
+	**** grid-based view of an archetype definition, from the semantic viewpoint.              ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+archetype_visualise_descendants_of = <"CLASS_NAME">
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** archetype_rm_closure_packages defines the package or packages that are considered the ****
+	**** archetyping namespace used in archetype multi-axial ids. For example, in openEHR, an  ****
+	**** archetype is identified by an id of the form:                                         ****
+	****      openEHR-EHR-OBSERVATION.some_obs.vN                                              ****
+	**** The 'EHR' in the above is an 'RM package closure', i.e. the name of an RM package     ****
+	**** whose class closure by reachability provides the set of classes that may be arche-    ****
+	**** typed in the 'EHR' namespace. The reason for this is somewhat subtle: consider that   ****
+	**** if you want archetypes based on classes defined directly within a package P, and you  ****
+	**** also define these archetypes that re-use other archetypes based on more basic types   ****
+	**** like openEHR's CLUSTER or similar (typically not defined in the head package), then   ****
+	**** you will inevitably have archetypes based on CLUSTER only for use with EHR archetypes ****
+	**** e.g. archetypes based on OBSERVATION. However, you may well create archetypes based   ****
+	**** on CLUSTER only for use with e.g. top-level archetypes from the demographic package.  ****
+	**** The archetype_rm_closure_packages setting is used to define the root id namespaces    ****
+	**** for archetypes, allowing low-level archetypes to be designated for use with one or    ****
+	**** other high-level archetype. E.g. openEHR-EHR-CLUSTER.bp_position.v1 would be used     ****
+	**** only with openEHR-EHR-OBSERVATION.bp_measurement.vX, or similar, and most likely not  ****
+	**** with any openEHR-DEMOGRAPHIC-XXXX.yyyy.vN archetype. Note that in openEHR, there is   ****
+	**** nothing to prevent such cross-namespace reuse - it is just a design guideline.        ****
+	****                                                                                       ****
+	**** This attribute, must be defined in the same schema that defines the referenced        ****
+	**** package(s).                                                                           ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+archetype_rm_closure_packages = <"org.openehr.test_pkg", ...>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The packages definition should be self-explanatory: just name the classes and         ****
+	**** packages in a recursive fashion.                                                      ****
+	**** IMPORTANT:                                                                            ****
+	****   1. only top-level package ids can be paths (i.e. contain the '.' character)         ****
+	****   2. only classes defined in the same schema can be referenced in the package section ****
+	****      in that schema.                                                                  ****
+	****   3. make sure that the dADL 'keys' are the same as the 'name' attributes in each     ****
+	****      block, thus:                                                                     ****
+	****        ["org.openehr.test_pkg"] = <                                                   ****
+	****             name = <"org.openehr.test_pkg">                                           ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.openehr.test_pkg"] = <
+		name = <"org.openehr.test_pkg">
+		classes = <"WHOLE", "SOME_TYPE", "BOOK", "CHAPTER", "ENTRY", "CAR", "CAR_BODY">
+	>
+>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** Now come the classes. There are two categories: one called 'prmitive_types', reserved ****
+	**** for defining the minimal semantics of built-in classes. This is typically only used   ****
+	**** in a low-level schema included by all other scheams. The syntax is the same as for    ****
+	**** main class definition section; the 'primitive' distinction is used by tools for       ****
+	**** various display and potentially other purposes.                                       ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- primitive types
+------------------------------------------------------
+
+primitive_types = <
+	["Any"] = <
+		name = <"Any">
+		is_abstract = <True>
+	>
+	["Ordered"] = <
+		name = <"Ordered">
+		is_abstract = <True>
+		ancestors = <"Any", ...>
+	>
+>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** Now come the main class definitions.                                                  ****
+	**** some example classes follow, showing the various specification possibilities.         ****
+	**** NOTES:                                                                                ****
+	**** If you include a class C in this schema, and there is a class C (i.e. same name) in   ****
+	**** an included schema, the one here will override the included defiintion. This is how   ****
+	**** to minimally customise an existing schema.                                            ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	--
+	-- -------------------- classes for validity tests ---------------------
+	--
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The ["ITEM"] below is a dADL key, used to key a Hash of all defined classes. So make  ****
+	**** sure to keep it the same as the Name. Note that keys will always be compared in a     ****
+	**** case-insensitive fashion, but the class name may be in any case you like, and its     ****
+	**** appearance should be preserved by the tools in display & reporting.                   ****
+	****                                                                                       ****
+	**** Possible class-level properties:                                                      ****
+	**** 'ancestors' - defines any classes from which this class inherits.                     ****
+	**** 'is_abstract' - indicates that the class cannot be instantiated directly.             ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** Optionality                                                                           ****
+	**** Below, various types of property definitions are explained. In all property types,    ****
+	**** the 'is_mandatory' attribute can be used to indicate optionality or otherwise.        ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["ITEM"] = <
+		name = <"ITEM">
+		ancestors = <"Any", ...>
+		is_abstract = <True>
+	>
+
+	["CLUSTER"] = <
+		name = <"CLUSTER">
+		ancestors = <"ITEM", ...>
+		properties = <
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a CONTAINER PROPERTY DEFINITION, whose type_def part indicates the   ****
+	**** type of the container (must be known elsewhere in the schema, typically in the primi- ****
+	**** tive types schema.                                                                    ****
+	**** The optional 'cardinality' property indicates cardinality of the container, and is    ****
+	**** expressed as a dADL range. The default is |0..*|                                      ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					container_type = <"List">
+					type = <"ITEM">
+				>
+				cardinality = <|>=1|>
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["ELEMENT"] = <
+		name = <"ELEMENT">
+		ancestors = <"ITEM", ...>
+		properties = <
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a SINGLE PROPERTY DEFINITION, i.e. corresponding to a single-valued  ****
+	**** attribute from a typical UML or other data model.                                     ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"null_flavour">
+				type = <"DV_CODED_TEXT">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"DATA_VALUE">
+			>
+		>
+	>
+
+	["SOME_TYPE"] = <
+		name = <"SOME_TYPE">
+		ancestors = <"Any", ...>
+		properties = <
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a GENERIC PROPERTY DEFINITION, i.e. corresponding to a property      ****
+	**** whose type is a generic class from the reference model. Container classes are the     ****
+	**** most common form of gneeric class by far, and so have their own dedicated definition  ****
+	**** format (above). Non-container generic classes are defined with a 'root_class' and one ****
+	**** or more 'generic_parameters'.                                                         ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+			["qty_interval_attr_1"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"qty_interval_attr_1">
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"DV_QUANTITY">
+				>
+			>
+		>
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a GENERIC CLASS DEFINITION, i.e. a class defined with one or more    ****
+	**** open generic parameters, customarily named 'T', 'U', etc.                             ****
+	**** Each such parameter has its own part in the 'generic_parameter_defs' section, with an ****
+	**** optional 'conforms_to_type' setting indicating that the type is constrained.          ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["REFERENCE_RANGE"] = <
+		name = <"REFERENCE_RANGE">
+		ancestors = <"Any", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"DV_ORDERED">
+			>
+		>
+		properties = <
+			["range"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"range">
+				type = <"DV_INTERVAL">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a GENERIC CLASS DEFINITION with OPEN GENERIC PROPERTIES. Each such   ****
+	**** property indicates which generic parameter type it is i.e. 'T', 'U' etc.              ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["Interval"] = <
+		name = <"Interval">
+		ancestors = <"Any", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Ordered">
+			>
+		>
+		properties = <
+			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"lower">
+				type = <"T">
+			>
+			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"upper">
+				type = <"T">
+			>
+		>
+	>
+>
+
+--|
+--| ***** BEGIN LICENSE BLOCK *****
+--| Version: MPL 1.1/GPL 2.0/LGPL 2.1
+--|
+--| The contents of this file are subject to the Mozilla Public License Version
+--| 1.1 (the 'License'); you may not use this file except in compliance with
+--| the License. You may obtain a copy of the License at
+--| http://www.mozilla.org/MPL/
+--|
+--| Software distributed under the License is distributed on an 'AS IS' basis,
+--| WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+--| for the specific language governing rights and limitations under the
+--| License.
+--|
+--| The Original Code is EXAMPLE.bmm.ex
+--|
+--| The Initial Developer of the Original Code is Thomas Beale.
+--| Portions created by the Initial Developer are Copyright (C) 2009
+--| the Initial Developer. All Rights Reserved.
+--|
+--| Contributor(s):
+--|
+--| Alternatively, the contents of this file may be used under the terms of
+--| either the GNU General Public License Version 2 or later (the 'GPL'), or
+--| the GNU Lesser General Public License Version 2.1 or later (the 'LGPL'),
+--| in which case the provisions of the GPL or the LGPL are applicable instead
+--| of those above. If you wish to allow use of your version of this file only
+--| under the terms of either the GPL or the LGPL, and not to allow others to
+--| use your version of this file under the terms of the MPL, indicate your
+--| decision by deleting the provisions above and replace them with the notice
+--| and other provisions required by the GPL or the LGPL. If you do not delete
+--| the provisions above, a recipient may use your version of this file under
+--| the terms of any one of the MPL, the GPL or the LGPL.
+--|
+--| ***** END LICENSE BLOCK *****
+--|
+

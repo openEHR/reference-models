@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- openEHR Release 1.0.1 XML schema. Ocean Informatics 2007.04.02  -->
+<xs:schema xmlns="http://schemas.openehr.org/v1" xmlns:mstns="http://schemas.openehr.org/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.openehr.org/v1" elementFormDefault="qualified" version="v1.0.1" id="Template.xsd">
+	<xs:element name="Root" type="archetyped"/>
+	<xs:complexType name="content_item" abstract="true">
+		<xs:attribute name="path" type="xs:string"/>
+		<xs:attribute name="max" type="xs:int"/>
+		<xs:attribute name="min" type="xs:int"/>
+	</xs:complexType>
+	<xs:complexType name="archetyped" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="content_item">
+				<xs:attribute name="archetype_id" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="composition">
+		<xs:complexContent>
+			<xs:extension base="archetyped">
+				<xs:sequence>
+					<xs:element name="Item" type="content_item" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="section">
+		<xs:complexContent>
+			<xs:extension base="archetyped">
+				<xs:sequence>
+					<xs:element name="Item" type="content_item" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="sub_section">
+		<xs:complexContent>
+			<xs:extension base="content_item">
+				<xs:sequence>
+					<xs:element name="Item" type="content_item" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="entry" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="archetyped">
+				<xs:sequence>
+					<xs:element name="Rule" type="statement" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="evaluation">
+		<xs:complexContent>
+			<xs:extension base="entry">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="observation">
+		<xs:complexContent>
+			<xs:extension base="entry">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="statement">
+		<xs:attribute name="path" type="xs:string" use="required"/>
+		<xs:attribute name="max" type="xs:int"/>
+		<xs:attribute name="min" type="xs:int"/>
+		<xs:attribute name="exclusive" type="xs:boolean"/>
+		<xs:attribute name="default" type="xs:string"/>
+	</xs:complexType>
+</xs:schema>
