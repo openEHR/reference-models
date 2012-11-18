@@ -442,6 +442,12 @@ class_definitions = <
     ["DV_INTERVAL"] = <
         name = <"DV_INTERVAL">
         ancestors = <"DATA_VALUE", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"DV_ORDERED">
+			>
+		>
         properties = <
             ["upper_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"upper_unbounded">
@@ -463,14 +469,14 @@ class_definitions = <
                 type = <"Boolean">
                 is_mandatory = <True>
             >
-            ["lower"] = (P_BMM_SINGLE_PROPERTY) <
+            ["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
                 name = <"lower">
-                type = <"DV_ORDERED">
+                type = <"T">
                 cardinality = <|>=0|>
             >
-            ["upper"] = (P_BMM_SINGLE_PROPERTY) <
+            ["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
                 name = <"upper">
-                type = <"DV_ORDERED">
+                type = <"T">
                 cardinality = <|>=0|>
             >
         >
