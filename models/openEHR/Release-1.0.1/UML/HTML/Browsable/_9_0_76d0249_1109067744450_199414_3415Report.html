@@ -1,0 +1,63 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class DV_STATE
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109067744450_199414_3415"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109067744450_199414_3415Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109067591791_562382_3151Report.html">basic</a>
+<br>
+<font size="+2">Class&nbsp;<b>DV_STATE</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109067716400_626496_3347Report.html">DATA_VALUE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>DV_STATE</b></font>
+<br>For representing state values which obey a defined state machine, such as a variable representing the states of an instruction or care process.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;is_terminal&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Indicates whether this state is a terminal state, such as &ldquo;aborted&rdquo;, &ldquo;completed&rdquo; etc from which no further transitions are possible.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;value&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068239993_939591_4314Report.html">DV_CODED_TEXT</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The state name. State names are determined by a state/event table defined in archetypes, and coded using openEHR Terminology or local archetype terms, as specified by the archetype.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141495784403_382388_832Report.html">value_exists</a></td><td>inv: value &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141495887972_306341_845Report.html">Is_terminal_exists</a></td><td>inv: is_terminal &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1157727918664_305729_962Report.html">Value_validity</a></td><td>inv: value &lt;&gt; void&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

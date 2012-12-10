@@ -1,0 +1,124 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class Interval
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_2_76d0249_1111658679700_160722_473"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_2_76d0249_1111658679700_160722_473Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#stereotypes">Stereotypes</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#template_parameters">Template
+												Parameters</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_2_76d0249_1111657862795_228173_0Report.html">assumed_types</a>
+<br>
+<font size="+2">Class&nbsp;<b>Interval</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_5_76d0249_1115309699792_819614_294Report.html">Any</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>Interval</b></font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_0_76d0249_1109068037812_961556_3925Report.html">DV_INTERVAL</a>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td><b><font size="+1"><a name="stereotypes">Stereotypes</a></font></b></td>
+</tr>
+<tr>
+<td>&lt;&lt;Interface&gt;&gt;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;lower&nbsp;:&nbsp;<a target="_self" href="_9_0_2_76d0249_1111671650215_351796_2419Report.html">T</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Lower bound.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;lower_included&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>lower boundary value included in range if not lower_unbounded&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;lower_unbounded&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>lower boundary open (i.e. = -infinity)&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;upper&nbsp;:&nbsp;<a target="_self" href="_9_0_2_76d0249_1111671650215_351796_2419Report.html">T</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Upper bound.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;upper_included&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>upper boundary value included in range if not upper_unbounded&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;upper_unbounded&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>upper boundary open (i.e. = +infinity)&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="template_parameters">Template Parameters</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Type</b></td><td><b>Default Value</b></td>
+</tr>
+<tr>
+<td>T&nbsp;</td><td><a target="_self" href="_9_5_1_76d0249_1151925649889_738620_10759Report.html">Ordered</a>&nbsp;</td><td>&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has(e : T)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141571965073_653670_4844Report.html">Limits_comparable</a></td><td>inv: (not upper_unbounded and not lower_unbounded) implies
+lower.strictly_comparable_to(upper)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141571965063_621780_4843Report.html">Limits_consistent</a></td><td>inv: (not upper_unbounded and not lower_unbounded) implies
+lower &lt;= upper
+&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1152549635795_130441_1139Report.html">Lower_included_valid</a></td><td>inv: lower_unbounded implies not lower_included&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1152549635795_827376_1140Report.html">Upper_included_valid</a></td><td>inv: upper_unbounded implies not upper_included&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

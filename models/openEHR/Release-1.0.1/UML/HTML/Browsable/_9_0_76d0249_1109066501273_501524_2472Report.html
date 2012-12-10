@@ -1,0 +1,59 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class MEASUREMENT_SERVICE
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109066501273_501524_2472"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109066501273_501524_2472Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#operations">Operations</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109062300749_828526_1538Report.html">measurement</a>
+<br>
+<font size="+2">Class&nbsp;<b>MEASUREMENT_SERVICE</b></font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_5_76d0249_1113923778001_79143_1685Report.html">EXTERNAL_ENVIRONMENT_ACCESS</a>
+<br>Defines an object providing proxy access to a measurement information service.<br>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_valid_units_string(units : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: units &lt;&gt; Void&nbsp;&nbsp;</td><td>True if the units string &lsquo;units&rsquo; is a valid string according to the HL7 UCUM specification.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;units_equivalent(units1,units2 : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: units1 &lt;&gt; Void and 
+is_valid_units_string(units1)
+pre: units2 &lt;&gt; Void and 
+is_valid_units_string(units2)&nbsp;&nbsp;</td><td>True if two units strings correspond to the same measured property.&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

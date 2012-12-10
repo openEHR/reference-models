@@ -1,0 +1,83 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class PARTICIPATION
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109065975296_193688_2081"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109065975296_193688_2081Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109065853191_678559_1965Report.html">generic</a>
+<br>
+<font size="+2">Class&nbsp;<b>PARTICIPATION</b></font>
+<br>Model of a participation of a Party (any Actor or Role) in an activity.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;function&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068213265_877931_4246Report.html">DV_TEXT</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The function of the Party in this participation (note that a given party might participate in more than one way in a particular activity). This attribute should be coded, but cannot be limited to the HL7v3:ParticipationFunction vocabulary, since it is too limited and hospital-oriented.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;mode&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068239993_939591_4314Report.html">DV_CODED_TEXT</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The mode of the performer / activity interaction, e.g. present, by telephone, by email etc.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;time&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109325517238_179772_771Report.html">DV_INTERVAL&lt;DV_DATE_TIME&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The time interval during which the participation took place, if it is used in an observational context (i.e. recording facts about the past); or the intended time interval of the participation when used in future contexts, such as EHR Instructions.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_0_76d0249_1109325902542_962450_883Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>performer&nbsp;:&nbsp;PARTY_REF</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>
+&nbsp;</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1140170023680_174024_1557Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>performer&nbsp;:&nbsp;PARTY_PROXY</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>The id and possibly demographic system link of the party participating in the activity.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141324248859_636397_9456Report.html">Performer_valid</a></td><td>inv: performer &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141324248859_611227_9458Report.html">Mode_valid</a></td><td>inv: mode &lt;&gt; Void and terminology(Terminology_id_openehr).
+has_code_for_group_id(Group_id_participation_mode, mode.defining_code)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141324248859_16127_9457Report.html">Function_valid</a></td><td>inv: function &lt;&gt; Void and 
+function.generating_type.is_equal('DV_CODED_TEXT') implies
+terminology(Terminology_id_openehr).
+has_code_for_group_id(Group_id_participation_function, function.
+defining_code)&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

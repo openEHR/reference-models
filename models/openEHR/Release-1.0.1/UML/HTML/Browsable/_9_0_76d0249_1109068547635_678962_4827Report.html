@@ -1,0 +1,57 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class CAPABILITY
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109068547635_678962_4827"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109068547635_678962_4827Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109068436856_333419_4561Report.html">demographic</a>
+<br>
+<font size="+2">Class&nbsp;<b>CAPABILITY</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109005682811_985720_309Report.html">LOCATABLE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>CAPABILITY</b></font>
+<br>Capability of a role, such as &ldquo;ehr modifier&rdquo;, &ldquo;health care provider&rdquo;. Capability should be backed up by credentials.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;credentials&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109066824738_487684_2609Report.html">ITEM_STRUCTURE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The qualifications of the performer of the role for this capability. This might include professional qualifications and official identifications such as provider numbers etc.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;time_validity&nbsp;:&nbsp;<a target="_self" href="_9_5_76d0249_1118934054379_785343_6709Report.html">DV_INTERVAL&lt;DV_DATE&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Valid time interval for the credentials of this capability.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141494908974_448018_689Report.html">Credentials_exists</a></td><td>inv: credentials &lt;&gt; Void&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

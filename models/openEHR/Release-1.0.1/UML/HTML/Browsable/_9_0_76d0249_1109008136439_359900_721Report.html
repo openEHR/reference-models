@@ -1,0 +1,300 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class VERSIONED_OBJECT
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109008136439_359900_721"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109008136439_359900_721Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#template_parameters">Template
+												Parameters</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109008077765_174594_675Report.html">change_control</a>
+<br>
+<font size="+2">Class&nbsp;<b>VERSIONED_OBJECT</b></font>
+<br>Version control abstraction, defining semantics for versioning one complex object.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;owner_id&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062455321_683694_1594Report.html">OBJECT_REF</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Reference to object to which this versioned repository belongs, e.g. the id of the containing EHR.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;time_created&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109067920013_713215_3721Report.html">DV_DATE_TIME</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Time of initial creation of this versioned object.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;uid&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062545872_39457_1798Report.html">HIER_OBJECT_ID</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Unique identifier of this version repository.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="template_parameters">Template Parameters</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Type</b></td><td><b>Default Value</b></td>
+</tr>
+<tr>
+<td>T&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;all_version_ids()
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_1_76d0249_1140025729207_132138_6976Report.html">List&lt;OBJECT_VERSION_ID&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Return a list of ids of all versions in this object.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;all_versions(T)
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_76d0249_1118909651773_879148_4055Report.html">List&lt;VERSION&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Return a list of all versions in this object.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;commit_attestation()
+					
+						
+					
+							:
+							&nbsp;</td><td>
+<br>pre: an_attestation &lt;&gt; Void and
+has_version_id(a_ver_id)&nbsp;&nbsp;</td><td>Add a new attestation to a specified original version. Attestations can only be added to Original versions.
+Parameters:
+(an_attestation: ATTESTATION;
+a_ver_id: OBJECT_VERSION_ID;
+signing_key: String)
+require
+Attestation_valid: an_attestation /= Void
+Version_id_valid: has_version_id(a_ver_id)
+and is_original_version(a_ver_id)&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;commit _imported_version()
+					
+						
+					
+							:
+							&nbsp;</td><td>&nbsp;</td><td>Add a new imported version.
+Details of version id etc come from the ORIGINAL_VERSION being committed.
+
+Parameters:
+(a_contribution_id: OBJECT_REF;
+an_audit: AUDIT_DETAILS;
+a_version: ORIGINAL_VERSION)
+require
+Contribution_valid: a_contribution /= Void
+audit_valid: an_audit /= Void
+Version_valid: a_version /= Void&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;commit _original_merged_version()
+					
+						
+					
+							:
+							&nbsp;</td><td>&nbsp;</td><td>Add a new original merged version. This commit function adds a parameter containing the ids of other versions merged into the current one.
+
+Parameters:
+(a_contribution_id: OBJECT_REF;
+a_new_version_uid, a_preceding_version_uid:
+OBJECT_VERSION_ID;
+an_audit: AUDIT_DETAILS;
+a_lifecycle_state: DV_CODED_TEXT;
+a_data: T;
+an_other_input_uids:
+Set<OBJECT_VERSION_ID>;
+signing_key: String)
+
+require
+Contribution_valid: a_contribution /= Void
+New_version_valid: a_new_version_uid /= Void
+Preceding_version_id_valid:
+all_version_ids.has(a_preceding_version_uid) or
+else version_count = 0
+audit_valid: an_audit /= Void
+data_valid: a_version_data /= Void
+lifecycle_state_valid: a_lifecycle_state /= Void
+Merge_input_ids_valid: an_other_input_uids /=
+Void&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;commit_original_version()
+					
+						
+					
+							:
+							&nbsp;</td><td>&nbsp;</td><td>Add a new original version.
+
+Parameters:
+(a_contribution: OBJECT_REF;
+a_new_version_uid, a_preceding_version_uid:
+OBJECT_VERSION_ID;
+an_audit: AUDIT_DETAILS;
+a_lifecycle_state: DV_CODED_TEXT;
+a_data: T;
+signing_key: String)
+
+require
+Contribution_valid: a_contribution /= Void
+New_version_valid: a_new_version_uid /= Void
+Preceding_version_uid_valid:
+all_version_ids.has(a_preceding_version_uid) or
+else version_count = 0
+audit_valid: an_audit /= Void
+data_valid: a_version_data /= Void
+lifecycle_state_valid: a_lifecycle_state /= Void
+&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_version_at_time(a_time : DV_DATE_TIME)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: a_time &lt;&gt; Void&nbsp;&nbsp;</td><td>True if a version for time &lsquo;a_time&rsquo; exists.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_version_id(a_ver_id : OBJECT_VERSION_ID)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: a_ver_id &lt;&gt; Void &nbsp;&nbsp;</td><td>True if a version with a_ver_id exists.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_original_version(a_ver_id : OBJECT_VERSION_ID)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: a_ver_id &lt;&gt; Void and has_version_id(a_ver_id)&nbsp;&nbsp;</td><td>True if version with an id is an ORIGINAL_VERSION.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;latest_trunk_version()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109008179992_69238_795Report.html">VERSION</a>&nbsp;</td><td>&nbsp;</td><td>Return the most recently added trunk version.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;latest_version()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109008179992_69238_795Report.html">VERSION</a>&nbsp;</td><td>&nbsp;</td><td>Return the most recently added version (i.e. on trunk or any branch).&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;lifecycle_state()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109068239993_939591_4314Report.html">DV_CODED_TEXT</a>&nbsp;</td><td>
+<br>post: Result = latest_trunk_version.lifecycle_state
+&nbsp;&nbsp;</td><td>Return the lifecycle state from the latest trunk version.
+Useful for determining if the version container is logically deleted.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;revision_history()
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_1_76d0249_1140014089761_628329_5041Report.html">REVISION_HISTORY</a>&nbsp;</td><td>&nbsp;</td><td>History of all audits and attestations in this versioned repository.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;version_at_time(a_time : DV_DATE_TIME)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109008179992_69238_795Report.html">VERSION</a>&nbsp;</td><td>
+<br>pre: has_version_at_time(a_time)&nbsp;&nbsp;</td><td>Return the version for time &lsquo;a_time&rsquo;.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;version_count()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td>&nbsp;</td><td>Return the total number of versions in this object&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;version_with_id(a_ver_id : OBJECT_VERSION_ID)
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_1_76d0249_1140012887212_287994_4429Report.html">OBJECT_VERSION_ID</a>&nbsp;</td><td>
+<br>pre: has_version_id(a_ver_id)&nbsp;&nbsp;</td><td>Return the version with id &lsquo;a_ver_id&rsquo;.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992974_334459_9755Report.html">owner_id_valid</a></td><td>inv: owner_id &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992984_528912_9759Report.html">all_versions_valid</a></td><td>inv: all_versions &lt;&gt; Void and all_versions.count =
+version_count&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992984_424660_9757Report.html">version_count_valid</a></td><td>inv: version_count &gt;= 1&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992974_235659_9754Report.html">uid_valid</a></td><td>inv: uid &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992984_644279_9760Report.html">latest_version_valid</a></td><td>inv: latest_version &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992984_474962_9758Report.html">all_version_ids_valid</a></td><td>inv: all_version_ids &lt;&gt;Void and  all_version_ids.count =
+version_count&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992984_951637_9761Report.html">revision_history_valid</a></td><td>inv: revision_history &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141376992974_247740_9756Report.html">time_created_valid</a></td><td>inv: time_created &lt;&gt; Void&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

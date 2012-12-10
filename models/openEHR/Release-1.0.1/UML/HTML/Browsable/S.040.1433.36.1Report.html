@@ -1,0 +1,104 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Packageam::archetype Report</title>
+</head>
+<body bgcolor="#FFFFFF">
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="S.040.1433.36.1Report.html">
+									Hide Browser
+								</a>
+| <a target="_top" href="indexLeft.html">Browser on the left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#inner_elements">Inner Elements</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_5_76d0249_1115304716787_787267_1259Report.html">am</a>
+<br>
+<font size="+2">Package&nbsp;<b>am::archetype</b></font>
+<p></p>The model of an archetype  is straightforward at an abstract level, mimicking the structure of an archetype document as defined in the openEHR Archetype Definition Language
+(ADL) document. 
+An archetype is a modelled as a particular kind of AUTHORED_RESOURCE, and as such, includes descriptive meta-data, language information and revision history.
+The ARCHETYPE class adds identifying information, a definition - expressed in terms of constraints on instances of an object model, and an ontology. The archetype definition, the &lsquo;main&rsquo; part of an archetype, is an instance of a C_COMPLEX_OBJECT, which is to say, the root of the constraint structure of an archetype always takes the form of a constraint on a non-primitive object type. 
+The last section of an archetype, the ontology, is represented by its own class, and is what allows the archetypes to be natural language-and terminology-neutral.
+A utility class, VALIDITY_KIND is also included in the Archetype package. This class contains one integer attribute and three constant definitions, and is intended to be used as the type of any attribute in this constraint model whose value is logically &lsquo;mandatory&rsquo;, &lsquo;optional&rsquo;, or &lsquo;disallowed&rsquo;. It is used in this model in the classes C_Date, C_Time and C_Date_Time.<p></p>
+<br>
+<table width="100%" border="1" cellspacing="0">
+<tr bgcolor="#CCCCFF">
+<td colspan="2"><b><font size="+1"><a name="inner_elements">Inner Elements</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Type</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.2Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.2Report.html">ARCHETYPE</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1173193024082_778445_115Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1173193024082_778445_115Report.html">VALIDITY_KIND</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.84Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/packagenode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.84Report.html">assertion</a></td><td>Package</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.140Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/packagenode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.140Report.html">constraint_model</a></td><td>Package</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.174Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/packagenode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.174Report.html">ontology</a></td><td>Package</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113294645216_371784_487Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113294645216_371784_487Report.html">archetype_id_validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1158177961237_400613_355Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1158177961237_400613_355Report.html">concept_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113294983362_31778_513Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113294983362_31778_513Report.html">definition_exists</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113294880083_133859_500Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113294880083_133859_500Report.html">description_exists</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1117621886336_186333_415Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1117621886336_186333_415Report.html">has_parent</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1141680634978_784991_107Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1141680634978_784991_107Report.html">invariants_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1158215740305_579885_590Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1158215740305_579885_590Report.html">month_validity_optional</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113294983362_886355_514Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113294983362_886355_514Report.html">ontology_exists</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113809928871_932420_61Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113809928871_932420_61Report.html">original_language_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113294522769_782701_474Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113294522769_782701_474Report.html">revision_history_validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1158177961237_153_356Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1158177961237_153_356Report.html">Specialisation_validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113295187305_613696_539Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113295187305_613696_539Report.html">uid_validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1173193448943_231827_242Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1173193448943_231827_242Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1158178025400_910632_387Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1158178025400_910632_387Report.html">Validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1173193108073_444275_161Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1173193108073_444275_161Report.html">Validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113903779785_500161_87Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113903779785_500161_87Report.html">validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1117621664247_733281_338Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1117621664247_733281_338Report.html">version_validity</a></td><td>Constraint</td>
+</tr>
+</table>
+</body>
+</html>

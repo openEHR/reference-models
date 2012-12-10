@@ -1,0 +1,232 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class ARCHETYPE
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="S.040.1433.36.2"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="S.040.1433.36.2Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="S.040.1433.36.1Report.html">archetype</a>
+<br>
+<font size="+2">Class&nbsp;<b>ARCHETYPE</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_5_1_76d0249_1140014022474_605493_4967Report.html">AUTHORED_RESOURCE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>ARCHETYPE</b></font>
+<br>Archetype equivalent to ARCHETYPED class in Common reference model.
+Defines semantics of identfication, lifecycle, versioning, composition and specialisation.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;adl_version&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;archetype_id&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062528887_536418_1764Report.html">ARCHETYPE_ID</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Multi-axial identifier of this archetype in archetype space.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;concept&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The normative meaning of the archetype as a whole, expressed as a local archetype code,
+typically &ldquo;at0000&rdquo;.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;parent_archetype_id&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062528887_536418_1764Report.html">ARCHETYPE_ID</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Identifier of the specialisation parent of this archetype.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;uid&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062545872_39457_1798Report.html">HIER_OBJECT_ID</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>OID identifier of this archetype.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1118381322101_337704_616Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>definition&nbsp;:&nbsp;C_COMPLEX_OBJECT</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>Root node of this archetype&nbsp;</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1118381751248_254290_746Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>ontology&nbsp;:&nbsp;ARCHETYPE_ONTOLOGY</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>The ontology of the archetype.&nbsp;</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1140957745752_639972_6330Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>invariants&nbsp;:&nbsp;Set&lt;ASSERTION&gt;</td><td align="center">0..1&nbsp;</td><td align="center">*&nbsp;</td><td>
+&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;concept_name(a_lang : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>&nbsp;</td><td>The concept name of the archetype in language.
+a_lang; corresponds to the term definition of the concept_code attribute in the archetype tology.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;constraint_references_valid()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if every CONSTRAINT_REF.reference found on a C_OBJECT node in the archetype definition is found in ontology. constraint_codes.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;internal_references_valid()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if every ARCHETYPE_INTERNAL_REF. target_path refers to a legitimate node in the archetype definition.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_specialised()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if this archetype is a specialisation of another.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_valid()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if the archetype is valid overall; various tests should be used, including checks on node_ids, internal references, and constraint references.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;logical_paths(a_lang : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_2_76d0249_1111666602167_416210_1527Report.html">Set&lt;String&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Set of language-dependent paths extracted from archetype. Paths obey the same syntax as physical_paths, but with node_ids replaced by their meanings from the ontology.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;node_ids_valid()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if every node_id found on a C_OBJECT node is found in ontology.term_codes.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;physical_paths()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_2_76d0249_1111666602167_416210_1527Report.html">Set&lt;String&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Set of language-independent paths extracted from archetype. Paths obey Xpath-like syntax and are formed from alternations of C_OBJECT.node_id and C_ATTRIBUTE.rm_attribute_name values.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;previous_version()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>&nbsp;</td><td>Version of predecessor archetype of this archetype,
+if any.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;short_concept_name()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>&nbsp;</td><td>The short concept name of the archetype extracted from the archetype_id.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;specialisation_depth()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td>&nbsp;</td><td>Specialisation depth of this archetype; larger than 0 if this archetype has a parent. 
+Derived from ontology.specialisation_depth.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;version()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>&nbsp;</td><td>Version of this archetype, extracted from id.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113294522769_782701_474Report.html">revision_history_validity</a></td><td>inv:  is_controlled implies (revision_history &lt;&gt; Void 
+and revision_history.is_empty)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113294645216_371784_487Report.html">archetype_id_validity</a></td><td>inv: archetype_id &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113294880083_133859_500Report.html">description_exists</a></td><td>inv: description &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113294983362_886355_514Report.html">ontology_exists</a></td><td>inv: ontology &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113294983362_31778_513Report.html">definition_exists</a></td><td>inv: definition &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113295187305_613696_539Report.html">uid_validity</a></td><td>inv: uid &lt;&gt; Void implies not uid.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1113809928871_932420_61Report.html">original_language_valid</a></td><td>inv: original_language &lt;&gt;void and
+language &lt;&gt; Void
+and code_set(Code_set_id_languages).has_code(original_language)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1117621664247_733281_338Report.html">version_validity</a></td><td>inv:version &lt;&gt; Void  and 
+version.is_equal(archetype_id.version_id)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_76d0249_1117621886336_186333_415Report.html">has_parent</a></td><td>post: is_specialised implies parent_archetype_id &lt;&gt;Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141680634978_784991_107Report.html">invariants_valid</a></td><td>inv: invariants &lt;&gt; Void implies not invariants.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1158177961237_400613_355Report.html">concept_valid</a></td><td>inv: ontology.has_term_code(concept_code)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1158177961237_153_356Report.html">Specialisation_validity</a></td><td>inv: is_specialised implies specialisation_depth &gt; 0&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

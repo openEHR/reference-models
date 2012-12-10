@@ -1,0 +1,66 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class FOLDER
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1140536664817_406467_7226"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1140536664817_406467_7226Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_5_1_76d0249_1140005157597_425517_108Report.html">directory</a>
+<br>
+<font size="+2">Class&nbsp;<b>FOLDER</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109005682811_985720_309Report.html">LOCATABLE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>FOLDER</b></font>
+<br>The concept of a named folder.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;items&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1140539574060_21484_584Report.html">List&lt;OBJECT_REF&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The list of references to other (usually) versioned objects logically in this folder.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1140539858299_285597_810Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141374680789_168170_9643Report.html">Folders_valid</a></td><td>inv: folders &lt;&gt; Void implies not folders.empty&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

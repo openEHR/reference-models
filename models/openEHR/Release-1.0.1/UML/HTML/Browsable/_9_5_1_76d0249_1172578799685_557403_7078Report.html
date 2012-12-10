@@ -1,0 +1,71 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class UID_BASED_ID
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1172578799685_557403_7078"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1172578799685_557403_7078Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#relations">Relations</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109062315160_584365_1566Report.html">identification</a>
+<br>
+<font size="+2">Class&nbsp;<b>UID_BASED_ID</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109062467208_372029_1628Report.html">OBJECT_ID</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>UID_BASED_ID</b></font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_5_1_76d0249_1140012887212_287994_4429Report.html">OBJECT_VERSION_ID</a>, <a target="_self" href="_9_0_76d0249_1109062545872_39457_1798Report.html">HIER_OBJECT_ID</a>
+<br>Abstract model of UID-based identifiers consisting of a root part and an optional
+extension; lexical form:
+root &lsquo;::&rsquo; extension<br>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;extension()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>&nbsp;</td><td>Optional local identifier of the object within the context of the root identifier.
+Returns the part to the left of the first &lsquo;::&rsquo; separator if any, or else any empty String.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_extension()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if there is an extension part.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;root()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109062479636_342811_1662Report.html">UID</a>&nbsp;</td><td>&nbsp;</td><td>The identifier of the conceptual namespace in which the object exists, within the identification
+scheme.
+Returns the part to the left of the first &lsquo;::&rsquo; separator, if any, or else the whole string.&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

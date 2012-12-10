@@ -1,0 +1,93 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class PATHABLE
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1173552886122_624116_18"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1173552886122_624116_18Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#operations">Operations</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109005524093_410631_254Report.html">archetyped</a>
+<br>
+<font size="+2">Class&nbsp;<b>PATHABLE</b>{Abstract}</font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_0_76d0249_1109008474105_169050_1154Report.html">EVENT_CONTEXT</a>, <a target="_self" href="_9_5_1_76d0249_1140522919753_202657_2593Report.html">ISM_TRANSITION</a>, <a target="_self" href="_9_0_76d0249_1109005682811_985720_309Report.html">LOCATABLE</a>, <a target="_self" href="_9_5_1_76d0249_1140522939000_890284_2645Report.html">INSTRUCTION_DETAILS</a>
+<br>Abstract parent of all classes whose instances are reachable by paths, and which know how to locate child object by paths. The parent feature may be implemented as a function or attribute.<br>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;item_at_path(a_path : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_1_76d0249_1151910398300_47175_10483Report.html">Any</a>&nbsp;</td><td>
+<br>post: Result &lt;&gt; Void&nbsp;pre: path &lt;&gt;Void and
+valid_path(a_path)&nbsp;&nbsp;</td><td>The item at a path (relative to this item); only valid for unique paths, i.e. paths that resolve to a single item.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;items_at_path(a_path : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_1_76d0249_1173599708430_622597_579Report.html">List&lt;Any&gt;</a>&nbsp;</td><td>
+<br>pre: path &lt;&gt;Void and not
+path_unique(a_path)&nbsp;post: Result &lt;&gt; Void&nbsp;&nbsp;</td><td>List of items corresponding to a non-unique path
+path.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;parent()
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_1_76d0249_1173552886122_624116_18Report.html">PATHABLE</a>&nbsp;</td><td>&nbsp;</td><td>Parent of this node in compositional hierarchy.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;path_exists(a_path : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if the path exists in the data with respect to the current item.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;path_of_item(a_loc : PATHABLE)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>
+<br>pre: an_item &lt;&gt; Void&nbsp;&nbsp;</td><td>The path to an item relative to the root of this archetyped structure.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;path_unique(a_path : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: a_path &lt;&gt; Void and path_exists(a_path)&nbsp;&nbsp;</td><td>True if the path corresponds to a single item in the data.&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

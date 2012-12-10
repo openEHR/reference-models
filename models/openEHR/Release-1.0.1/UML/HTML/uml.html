@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+  <link rel="stylesheet" href="http://www.openehr.org/styles/oe.css" type="text/css">
+  <title>openEHR UML models</title>
+</head>
+<body>
+<h1><span style="font-style: italic;">open</span>EHR Release 1.0.1 UML Models</h1>
+<hr style="width: 100%; height: 2px;">
+<h2>Introduction</h2>
+<p>This page provides access to a tool-based UML expression of the <span style="font-style: italic;">open</span>EHR Release 1.0.1 models. Two variants are available:</p>
+<ul>
+  <li>
+    <p><a target="_blank" href="http://www.openehr.org/releases/1.0.1/reference-models/UML/HTML">Browsable</a> -&nbsp;good for online browsing and printing of single diagrams, classes etc.</p>
+  </li>
+  <li>
+    <p><a target="_blank" href="./Printable/Printable.html">Printable</a> - good for printing the entire model (including diagrams), browsing in a serial fashion, and locating classes by name.</p>
+  </li>
+</ul>
+<p>The <a href="./Browsable/Dictionary.html#">Dictionary view</a> from the browsable form provides text definitions of all classes and attributes.</p>
+<p>The model is expressed in MagicDraw 9.5, and is available <a href="http://www.openehr.org/releases/1.0.1/reference-models/UML/XMI">here</a> in the standard zipped XML form used by MagicDraw. An XMI 1.0 file output from the tool is also available.</p>
+<h2>Status</h2>
+<h3>Summary</h3>
+<p>The models shown here are are <span style="font-style: italic;">derived from</span> the official <span style="font-style: italic;">open</span>EHR Release-1.0.1 architecture. The PDF specifications should always be treated as being correct.  The current status of the UML published here is <span style="font-weight: bold;">draft</span>. Various sources of difference from the official specifications exist:</p>
+<ul>
+  <li>
+    <p>they contain some shortcomings due to using a UML 1.4 tool</p>
+  </li>
+  <li>
+    <p>limitations in UML itself to correctly represent object-oriented semantics occasionally affect the models</p>
+  </li>
+  <li>may contain human errors</li>
+</ul>
+<p>Please report errors in these models with respect to the online specifications to the <span style="font-style: italic;">open</span>EHR <a href="mailto:Webmaster@openehr.org">webmaster</a>.</p>
+<h3>Detail</h3>
+<p>The UML models available from this page are derived from the official online PDF documentation (available <a target="_blank" href="http://www.openehr.org/releases/1.0.1">here</a>). Although the UML models here are tool-produced there are a number of <span style="font-weight: bold;">limitations of the tool</span> (and these seem to be common with most tools on the market today) that have affected the fidelity of the representation in various small ways:</p>
+<ol>
+  <li>
+    <p>List&lt;T&gt;, Set&lt;T&gt;, Array&lt;T&gt;, Hash&lt;T,K&gt;, Interval&lt;T&gt; were all explicitly modelled, since they are not directly supported in UML.&nbsp; All uses of these "assumed types" were made though new Primitive types in MD such as List&lt;String&gt;, employing Binding Dependencies.</p>
+  </li>
+  <li>
+    <p>Associations are shown with far-end role names and Navigation arrows.</p>
+  </li>
+  <li>
+    <p>Constraint statements are syntactically very similar to the syntax used in the specifications, and nearly always pass OCL syntax checks. Differences are :
+    <br>
+    </p>
+  </li>
+</ol>
+<ul style="margin-left: 40px;">
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class constraints use the Inv: keyword followed by an OCL-compliant expression
+  </li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Function constraints use Pre: instead of require and Post: instead of ensure, or Inv:
+  </li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Double quotes are changed to single quotes
+  </li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Embedded spaces inside quoted strings used as parameters are changed to underscore
+  </li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Multiple clauses inside one Constraint statement are supported using separate Inv: or Pre: or Post: keywords
+  </li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Class constraints have names, Function constraints often do not.</li>
+</ul>
+<p>In addition, there are imperfections in the model due to the fact that we have used version 9.5 MagicDraw, which <span style="font-weight: bold;">does not support UML 2.0</span>.  The XMI output of the current tool is at version 1.0. Version 10 of the tool does support UML 2.0 and XMI 2, but upgrading is a non-trivial exercise, both of the model itself (semantics of UML 2 are quite different in some places) and of the publishing process we use to generate the online documentation.</p>
+<p>Lastly, the data entry work of putting the specifications into the tool of course carries the possibility of error.</p>
+<h2>Future</h2>
+<p>In the medium term, the following things will probably happen:</p>
+<ul>
+  <li>the models will be migrated fom MagicDraw 9.5 to MagicDraw 10</li>
+  <li>the publishing scripts (currently XSLT) will be migrated to MagicDraw 10 (Python)</li>
+  <li>due to this migration, an XMI 2 expression of the model will become available</li>
+</ul>
+
+<h2>Acknowledgements</h2>
+<p>This Herculean task&nbsp;has been carried out by David Lloyd, from CHIME, UCL in London, for the openEHR Foundation.</p>
+<hr style="width: 100%; height: 2px;"> <span class="footer">$LastChangedDate: 2010-03-20 09:51:53 +0000 (Sat, 20 Mar 2010) $&nbsp;&nbsp; $LastChangedRevision: 366 $ </span><br>
+</body>
+</html>

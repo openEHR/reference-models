@@ -1,0 +1,120 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class ENTRY
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109066119163_537311_2210"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109066119163_537311_2210Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109062794339_242057_1918Report.html">entry</a>
+<br>
+<font size="+2">Class&nbsp;<b>ENTRY</b>{Abstract}</font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109090665319_369668_8812Report.html">CONTENT_ITEM</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>ENTRY</b></font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_5_1_76d0249_1140195129500_899336_2187Report.html">CARE_ENTRY</a>, <a target="_self" href="_9_0_76d0249_1109066140264_360802_2278Report.html">EVALUATION</a>, <a target="_self" href="_9_0_76d0249_1109066151350_840651_2312Report.html">INSTRUCTION</a>, <a target="_self" href="_9_5_1_76d0249_1140195118084_104781_2135Report.html">ADMIN_ENTRY</a>
+<br>The abstract parent of all ENTRY subtypes. An ENTRY is the root of a logical item of &ldquo;hard&rdquo; clinical information created in the &ldquo;clinical statement&rdquo; context, within a clinical session. There can be numerous such contexts in a clinical session. Observations and other Entry types only ever document information captured/created in the event documented by the enclosing Composition.
+
+An ENTRY is also the minimal unit of information any query should return, since a whole ENTRY (including subparts) records spatial structure, timing information, and contextual information, as well as the subject and generator of the information.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;encoding&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Name of character set in which text values in this Entry are encoded. Coded from openEHR Code Set &ldquo;character sets&rdquo;.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;language&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Mandatory indicator of the localised language in which this Entry is written. Coded from
+openEHR Code Set &ldquo;languages&rdquo;.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;other_participations&nbsp;:&nbsp;<a target="_self" href="_9_5_76d0249_1118914287896_171737_4134Report.html">List&lt;PARTICIPATION&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Other participations at ENTRY level.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;provider&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1140168970576_76635_91Report.html">PARTY_PROXY</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Optional identification of provider of the informatoin in this ENTRY, which might be:
+&bull; the patient
+&bull; a patient agent, e.g. parent, guardian
+&bull; the clinician
+&bull; a device or software
+Generally only used when the recorder needs to make it explicit. Otherwise, Composition
+composer and other participants are assumed.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;subject&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1140168970576_76635_91Report.html">PARTY_PROXY</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Id of human subject of this ENTRY, e.g.:
+&bull; organ donor
+&bull; foetus
+&bull; a family member
+&bull; another clinically relevant person.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;workflow_id&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062455321_683694_1594Report.html">OBJECT_REF</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Identifier of externally held workflow engine data for this workflow execution, for this subject of care.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;subject_is_self()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>Returns True if this Entry is about the subject of the EHR, in which case the subject attribute
+is of type PARTY_SELF.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141078324677_947749_8608Report.html">Subject_validity</a></td><td>inv: subject_is_self implies subject.generating_type =
+'PARTY_SELF'&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141078324677_535227_8610Report.html">Archetype_root_point</a></td><td>inv: is_archetype_root&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141078324677_756499_8609Report.html">Other_participations_valid</a></td><td>inv: other_participations &lt;&gt; Void implies not
+other_participations.is_empty
+&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141078324677_377729_8606Report.html">Language_valid</a></td><td>inv: language &lt;&gt; Void and code_set(Code_set_id_languages).has_code(language)
+&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141078324677_584176_8607Report.html">Encoding_valid</a></td><td>inv: encoding &lt;&gt; Void and  code_set(Code_set_id_character_sets).has_code(encoding)
+&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

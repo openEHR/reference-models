@@ -1,0 +1,62 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class TRANSLATION_DETAILS
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1140013989006_972489_4893"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1140013989006_972489_4893Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_5_1_76d0249_1140005212336_696456_184Report.html">resource</a>
+<br>
+<font size="+2">Class&nbsp;<b>TRANSLATION_DETAILS</b></font>
+<br>Class providing details of a natural language translation.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;accreditation&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Accreditation of translator, usually a national translator&rsquo;s association id&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;author&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1108470009170_630396_833Report.html">Hash&lt;String,String&gt;</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Translator name and other demographic details&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;language&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Language of translation&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;other_details&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1108470009170_630396_833Report.html">Hash&lt;String,String&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Any other meta-data&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141389007760_588302_10404Report.html">Author_valid</a></td><td>inv: author &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141389007760_61369_10403Report.html">Language_valid</a></td><td>inv: language &lt;&gt; Void and code_set('languages').has(language)&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

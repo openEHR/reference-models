@@ -1,0 +1,122 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class COMPOSITION
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109008461847_296386_1117"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109008461847_296386_1117Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109005072243_448526_217Report.html">composition</a>
+<br>
+<font size="+2">Class&nbsp;<b>COMPOSITION</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109005682811_985720_309Report.html">LOCATABLE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>COMPOSITION</b></font>
+<br>One version in a VERSIONED_COMPOSITION. A composition is considered the unit of modification of the record, the unit of transmission in record extracts, and the unit of attestation by authorising clinicians. In this latter sense, it may be considered equivalent to a signed document.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;category&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068239993_939591_4314Report.html">DV_CODED_TEXT</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Indicates what broad category this Composition is belogs to, e.g. &ldquo;persistent&rdquo; - of longitudinal validity, &ldquo;event&rdquo;, &ldquo;process&rdquo; etc.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;language&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Mandatory indicator of the localised language in which this Entry is written. Coded from
+openEHR Code Set &ldquo;languages&rdquo;.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;territory&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Name of territory in which this Composition was written. Coded from openEHR &ldquo;countries&rdquo; code set, which is an expression of the ISO 3166 standard.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_0_76d0249_1109090492651_411833_8625Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>context&nbsp;:&nbsp;EVENT_CONTEXT</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>The clinical session context of this Composition, i.e. the contextual attributes of the clinical session.&nbsp;</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_0_76d0249_1109090759935_242494_8959Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>content&nbsp;:&nbsp;Set&lt;CONTENT_ITEM&gt;</td><td align="center">0..1&nbsp;</td><td align="center">0..*&nbsp;</td><td>The content of this Composition.&nbsp;</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1140529225610_568844_3898Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>composer&nbsp;:&nbsp;PARTY_PROXY</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_persistent()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if category is a &ldquo;persistent&rdquo; type, False otherwise. Useful for finding Compositions in an EHR which are guaranteed to be of interest to most users.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_718662_8232Report.html">Is_archetype_root</a></td><td>inv: is_archetype_root&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_216753_8234Report.html">Content_valid</a></td><td>inv: content &lt;&gt; Void implies not content.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_376716_8233Report.html">Composer_valid</a></td><td>inv: composer &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_519429_8237Report.html">Territory_valid</a></td><td>inv: territory &lt;&gt; Void and
+code_set(Code_set_id_countries).has_code(territory)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_770434_8238Report.html">No_parent</a></td><td>inv: parent = Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_616855_8236Report.html">Is_persistent_validity</a></td><td>inv: is_persistent implies context = Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141076065057_917268_8235Report.html">Category_validity</a></td><td>inv: category &lt;&gt; Void and 
+terminology(Terminology_id_openehr).
+has_code_for_group_id(Group_id_composition_category, category.
+defining_code)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1155658328017_541523_8021Report.html">language_valid</a></td><td>inv: language &lt;&gt; Void and code_set(Code_set_id_languages).has_code(language)
+&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

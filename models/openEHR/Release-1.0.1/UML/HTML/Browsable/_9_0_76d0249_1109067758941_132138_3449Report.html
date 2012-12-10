@@ -1,0 +1,72 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class DV_IDENTIFIER
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109067758941_132138_3449"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109067758941_132138_3449Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109067591791_562382_3151Report.html">basic</a>
+<br>
+<font size="+2">Class&nbsp;<b>DV_IDENTIFIER</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109067716400_626496_3347Report.html">DATA_VALUE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>DV_IDENTIFIER</b></font>
+<br>Type for representing identifiers of real-world entities. Typical identifiers include drivers licence number, social security number, vertans affairs number, prescription id, order id, and so on.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;assigner&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Organisation that assigned the id to the item being identified.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;id&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The identifier value. Often structured, according to the definition of the issuing authority&rsquo;s rules.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;issuer&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Authority which issues the kind of id used in the id field of this object.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;type&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>The identifier type, such as &ldquo;prescription&rdquo;, or &ldquo;SSN&rdquo;. One day a controlled vocabulary might be possible for this.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141496185540_806239_858Report.html">issuer_valid</a></td><td>inv: issuer &lt;&gt; Void and  not issuer.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141496185540_86193_860Report.html">id_valid</a></td><td>inv: id &lt;&gt; Void and  not id.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141496185550_708218_861Report.html">type_valid</a></td><td>inv: type &lt;&gt; Void and  not type.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141496185540_367700_859Report.html">assigner_valid</a></td><td>inv: issuer &lt;&gt; Void and  not assigner.is_e&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

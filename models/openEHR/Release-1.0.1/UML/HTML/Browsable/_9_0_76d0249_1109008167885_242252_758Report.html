@@ -1,0 +1,74 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class CONTRIBUTION
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109008167885_242252_758"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109008167885_242252_758Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109008077765_174594_675Report.html">change_control</a>
+<br>
+<font size="+2">Class&nbsp;<b>CONTRIBUTION</b></font>
+<br>Documents a contribution of one or more versions added to a change-controlled repository.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;uid&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062545872_39457_1798Report.html">HIER_OBJECT_ID</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Unique identifier for this contribution.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;versions&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1140539574060_21484_584Report.html">List&lt;OBJECT_REF&gt;</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Set of references to versions causing changes to this EHR. Each contribution contains a list of versions, which may include paths pointing to any number of VERSIONABLE items, i.e. items of type COMPOSITION and FOLDER.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_0_76d0249_1109329213824_113129_1826Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>audit&nbsp;:&nbsp;AUDIT_DETAILS</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>Audit trail corresponding to the committal of this Contribution.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141387969467_708612_10256Report.html">Versions_valid</a></td><td>inv: versions &lt;&gt; Void and not versions.is_empty&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141387969467_579060_10257Report.html">Description_valid</a></td><td>inv: audit.description &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141387969467_203633_10255Report.html">audit_validmed2</a></td><td>inv: audit &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141387969457_251669_10254Report.html">uid_valid</a></td><td>inv: uid &lt;&gt; Void&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

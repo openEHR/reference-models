@@ -1,0 +1,152 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class DV_MULTIMEDIA
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109067811717_939588_3517"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109067811717_939588_3517Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109067683393_942315_3319Report.html">encapsulated</a>
+<br>
+<font size="+2">Class&nbsp;<b>DV_MULTIMEDIA</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109067784598_944676_3483Report.html">DV_ENCAPSULATED</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>DV_MULTIMEDIA</b></font>
+<br>A specialisation of DV_ENCAPSULATED for audiovisual and biosignal types.
+Includes further metadata relating to multimedia types which are not applicable t other subtypes of DV_ENCAPSULATED.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;alternate_text&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Text to display in lieu of multimedia display/replay&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;compression_algorithm&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>compression type, a coded value from the openEHR &ldquo;Integrity check&rdquo; code set. Void means no compression.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;data&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1172583601550_752771_7757Report.html">Array&lt;Octet&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>the actual data found at 'uri', if supplied inline&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;integrity_check&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1172583601550_752771_7757Report.html">Array&lt;Octet&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>binary cryptographic integrity checksum&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;integrity_check_algorithm&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>type of integrity check, a coded value from the openEHR &ldquo;Integrity check&rdquo; code set.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;media_type&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Data media type coded from the IANA MIME types code set. See:
+http://www.iana.org/assignments/mediatypes/&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;size&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;uri&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068346736_56077_4493Report.html">DV_URI</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_0_76d0249_1109700104060_655265_6851Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_integrity_check()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: integrity_check_algorithm &lt;&gt; Void implies Result&nbsp;&nbsp;</td><td>Computed from the value of the integrity_check_algorithm attribute: True if an integrity check has been computed.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_compressed()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: compression_algorithm &lt;&gt; Void implies Result&nbsp;&nbsp;</td><td>Computed from the value of the compression_algorithm attribute: True if the data is stored in compressed form.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_external()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: uri &lt;&gt; Void implies Result&nbsp;&nbsp;</td><td>Computed from the value of the uri attribute: True if the data is stored externally to the record, as indicated by `uri'. A copy may also be stored internally, in which case `is_expanded' is also true.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_inline()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: data &lt;&gt; Void implies Result&nbsp;&nbsp;</td><td>Computed from the value of the data attribute: True if the data is stored in expanded form, ie within the EHR itself.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141576624002_942431_5347Report.html">Integrity_check_algorithm_validity</a></td><td>inv: integrity_check_algorithm &lt;&gt; Void implies
+code_set('integrity_check algorithm').has(integrity_check_algorithm)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141576624002_567552_5346Report.html">Integrity_check_validity</a></td><td>inv: integrity_check_algorithm &lt;&gt; Void implies
+code_set(Code_set_id_integrity_check_algorithms).
+has_code(integrity_check_algorithm)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141576624002_57333_5344Report.html">Media_type_validity</a></td><td>inv: media_type &lt;&gt; Void and
+code_set(Code_set_id_media_types).has_code(media_type)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141576624002_898810_5345Report.html">Compression_algorithm_validity</a></td><td>inv: compression_algorithm &lt;&gt; Void implies
+code_set(Code_set_id_compression_algorithms).
+has_code(compression_algorithm)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141576624002_229208_5343Report.html">Not_empty</a></td><td>inv: is_inline or is_external&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

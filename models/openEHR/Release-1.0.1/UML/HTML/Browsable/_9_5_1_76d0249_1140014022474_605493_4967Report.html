@@ -1,0 +1,118 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class AUTHORED_RESOURCE
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1140014022474_605493_4967"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1140014022474_605493_4967Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_5_1_76d0249_1140005212336_696456_184Report.html">resource</a>
+<br>
+<font size="+2">Class&nbsp;<b>AUTHORED_RESOURCE</b>{Abstract}</font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="S.040.1433.36.2Report.html">ARCHETYPE</a>
+<br>Abstract idea of an online resource created by a human author.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;is_controlled&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>True if this resource is under any kind of change control (even file copying), in which case revision history is created.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;original_language&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109068253492_817483_4348Report.html">CODE_PHRASE</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Language in which this resource was initially authored. Although there is no language primacy
+of resources overall, the language of original authoring is required to ensure natural language translations can preserve quality. Language is relevant in both the description and ontology sections.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;translations&nbsp;:&nbsp;<a target="_self" href="_9_5_1_76d0249_1173469233359_584090_1702Report.html">Hash&lt;TRANSLATION_DETAILS, String&gt;</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>List of details for each natural translation made of this resource, keyed by language. For each translation listed here, there must be corresponding sections in all language-dependent parts of the resource. The original_language does not appear in this list.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1140016098219_77092_5689Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>revision_history&nbsp;:&nbsp;REVISION_HISTORY</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>The revision history of the resource. Only required if is_controlled = True (avoids large revision histories for informal or private editing situations).&nbsp;</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1140016372213_937457_5773Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>description&nbsp;:&nbsp;RESOURCE_DESCRIPTION</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>Description and lifecycle information of the resource.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;current_revision()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109584138349_959314_1900Report.html">String</a>&nbsp;</td><td>
+<br>post: Result = revision_history.most_recent_version&nbsp;&nbsp;</td><td>Most recent revision in revision_history if is_controlled else &ldquo;(uncontrolled)&rdquo;.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;languages_available()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_2_76d0249_1111666602167_416210_1527Report.html">Set&lt;String&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Total set of languages available in this resource, derived from original_language and translations.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141388754777_302487_10353Report.html">Revision_history_valid</a></td><td>inv: is_controlled xor revision_history = Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141388754777_602809_10354Report.html">Current_revision_valid</a></td><td>inv: current_revision &lt;&gt; Void and not is_controlled implies current_revision.is_equal('(uncontrolled)')&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141388754767_707634_10351Report.html">Original_language_valid</a></td><td>inv: original_language &lt;&gt; void and
+code_set(Code_set_id_languages).has_code(original_language.as_string)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141388754777_583568_10352Report.html">Languages_available_valid</a></td><td>inv: languages_available &lt;&gt; Void and
+languages_available.has(original_language)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1155403213155_54904_161Report.html">Translations_valid</a></td><td>inv: translations &lt;&gt; Void implies (not translations.is_empty and not translations.has(orginal_language.code_string))&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1155403516591_473548_168Report.html">Description_valid</a></td><td>inv: translations &lt;&gt; Void implies (description.details.for_all(d | translations.has_key(d.language.code_string)))&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

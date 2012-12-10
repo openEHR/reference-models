@@ -1,0 +1,109 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class DV_PROPORTION
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1165056533529_900819_18"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1165056533529_900819_18Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109067649274_722906_3263Report.html">quantity</a>
+<br>
+<font size="+2">Class&nbsp;<b>DV_PROPORTION</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_5_1_76d0249_1172425260348_674729_9101Report.html">DV_AMOUNT</a>, <a target="_self" href="_9_5_1_76d0249_1165056768888_842670_120Report.html">PROPORTION_KIND</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>DV_PROPORTION</b></font>
+<br>Models a ratio of values, i.e. where the numerator and denominator are both pure numbers.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;denominator&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109607780056_382844_2880Report.html">Real</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>denominator of ratio&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;numerator&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109607780056_382844_2880Report.html">Real</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>numerator of ratio&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;precision&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Precision to which the numerator and denominator values of the proportion are expressed, in terms of number of decimal places. The value 0 implies an integral quantity.
+The value -1 implies no limit, i.e. any number of decimal places.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;type&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Indicates semantic type of proportion, including percent, unitary.
+Codes are given in PROPORTION_KIND class.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;is_strictly_comparable_to(other : DV_PROPORTION)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: other.type implies result&nbsp;&nbsp;</td><td>True if type is the same.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;magnitude()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109607780056_382844_2880Report.html">Real</a>&nbsp;</td><td>
+<br>post: Result = numerator/denominator&nbsp;&nbsp;</td><td>Effective magnitude represented by ratio.&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1165058513246_10207_319Report.html">Is_integral_validity</a></td><td>inv: is_integral implies (numerator.floor = numerator and
+denominator.floor = denominator)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1165058513246_486979_318Report.html">Type_validity</a></td><td>inv: valid_proportion_kind(type)&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1165058513246_18641_320Report.html">Fraction_validity</a></td><td>inv: (type = pk_fraction or type = pk_integer_fraction) implies
+is_integral&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1165058513246_629917_321Report.html">Unitary_validity</a></td><td>inv: type = pk_unitary implies denominator = 1&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1165058513246_118942_322Report.html">Percent_validity</a></td><td>inv: type = pk_percent implies denominator = 100&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1172424968067_249923_9061Report.html">Precision_validity</a></td><td>inv: precision = 0 implies is_integral&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Packageam::archetype::constraint_model Report</title>
+</head>
+<body bgcolor="#FFFFFF">
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="S.040.1433.36.140Report.html">
+									Hide Browser
+								</a>
+| <a target="_top" href="indexLeft.html">Browser on the left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#inner_elements">Inner Elements</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="S.040.1433.36.1Report.html">archetype</a>
+<br>
+<font size="+2">Package&nbsp;<b>am::archetype::constraint_model</b></font>
+<p></p>The following statements summarise the main features of this package.
+Any archetype definition is an instance of a C_COMPLEX_OBJECT, which can be thought of as expressing constraints on a object that is of some particular type (recorded in the attribute rm_type_name ) in a reference model, and which is larger than a simple instance of a primitive type such as String or Integer.
+A C_COMPLEX_OBJECT consists of attributes of type C_ATTRIBUTE, which are constraints on the attributes (i.e. any property, including relationships) of the reference model type. Accordingly, each C_ATTRIBUTE records the name of the constrained attribute (in rm_attr_name), the existence and cardinality expressed by the constraint (depending on whether the attribute it constrains is a multiple or single relationship), and the constraint on the object to which this C_ATTRIBUTE refers via its children attribute (according to its reference model) in the form of further C_OBJECTs.
+The key subtypes of C_OBJECT, are C_COMPLEX_OBJECT (described above) C_PRIMITIVE_OBJECT (constraints on instances of primitive types such as String, Integer, Boolean and Date).
+The other subtypes of C_OBJECT, namely, ARCHETYPE_SLOT, ARCHETYPE_INTERNAL_REF and CONSTRAINT_REF are used to express, respectively, a `slot' where further archetypes can be used to continue describing constraints; a reference to a part of the current archetype that expresses exactly the same constraints needed at another point; and a reference to a constraint on a constraint defined in the archetype ontology, which in turn points to an external knowledge resource, such as a terminology.
+All nodes in an archetype constraint structure are instances of the supertype ARCHETYPE_CONSTRAINT, which provides a number of important common features to all nodes.
+<p></p>
+<br>
+<table width="100%" border="1" cellspacing="0">
+<tr bgcolor="#CCCCFF">
+<td colspan="2"><b><font size="+1"><a name="inner_elements">Inner Elements</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Type</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.141Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.141Report.html">ARCHETYPE_CONSTRAINT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.165Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.165Report.html">ARCHETYPE_INTERNAL_REF</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.167Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.167Report.html">ARCHETYPE_SLOT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.147Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.147Report.html">C_ATTRIBUTE</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.161Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.161Report.html">C_COMPLEX_OBJECT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1172311443327_360808_105Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1172311443327_360808_105Report.html">C_DEFINED_OBJECT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.172Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.172Report.html">C_DOMAIN_TYPE</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.170Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.170Report.html">C_MULTIPLE_ATTRIBUTE</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.150Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.150Report.html">C_OBJECT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.162Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.162Report.html">C_PRIMITIVE_OBJECT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1172311491196_725105_154Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1172311491196_725105_154Report.html">C_REFERENCE_OBJECT</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.168Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.168Report.html">C_SINGLE_ATTRIBUTE</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.154Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.154Report.html">CARDINALITY</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.163Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/classnode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.163Report.html">CONSTRAINT_REF</a></td><td>Class</td>
+</tr>
+<tr>
+<td><a target="_self" href="S.040.1433.36.32Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/packagenode.gif"></a>&nbsp;<a target="_self" href="S.040.1433.36.32Report.html">primitive</a></td><td>Package</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992252203_88052_780Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992252203_88052_780Report.html">alternatives_exists</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1141561819805_604920_4627Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1141561819805_604920_4627Report.html">Assumed_value_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1141562364738_91740_4686Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1141562364738_91740_4686Report.html">Assumed_value_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1172336777265_432677_595Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1172336777265_432677_595Report.html">Assumed_value_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1142230161711_724131_3022Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1142230161711_724131_3022Report.html">attributes_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992682421_87513_909Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992682421_87513_909Report.html">cardinality_validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992320721_197410_799Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992320721_197410_799Report.html">children_validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994952015_423781_1791Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994952015_423781_1791Report.html">Consistency</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994697369_529892_1662Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994697369_529892_1662Report.html">consistency</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994470272_448670_1560Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994470272_448670_1560Report.html">excludes_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992136537_18558_682Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992136537_18558_682Report.html">existence_set</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994470272_705970_1559Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994470272_705970_1559Report.html">includes_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113995070375_276996_1904Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113995070375_276996_1904Report.html">item_exists</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992682431_522307_910Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992682431_522307_910Report.html">members_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113993933691_466200_1303Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113993933691_466200_1303Report.html">node_id_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113990993363_883624_179Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113990993363_883624_179Report.html">path_exists</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994952015_71534_1792Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994952015_71534_1792Report.html">reference_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992136537_57483_681Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992136537_57483_681Report.html">rm_attribute_name_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113993482542_920897_1284Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113993482542_920897_1284Report.html">rm_type_name_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994815258_806571_1681Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994815258_806571_1681Report.html">target_path_valid</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113387365630_477007_46Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113387365630_477007_46Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113991127846_792882_198Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113991127846_792882_198Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113993012967_634742_1107Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113993012967_634742_1107Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113993087714_300278_1126Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113993087714_300278_1126Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113993171014_312149_1145Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113993171014_312149_1145Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1141561708134_711641_4611Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1141561708134_711641_4611Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1172336395196_133169_577Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1172336395196_133169_577Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_1_76d0249_1173254209458_445407_255Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_1_76d0249_1173254209458_445407_255Report.html">unnamed1</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113992818547_10801_1088Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113992818547_10801_1088Report.html">validity</a></td><td>Constraint</td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_5_76d0249_1113994546021_619082_1597Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/constraintnode.gif"></a>&nbsp;<a target="_self" href="_9_5_76d0249_1113994546021_619082_1597Report.html">validity</a></td><td>Constraint</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class CARE_ENTRY
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1140195129500_899336_2187"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1140195129500_899336_2187Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109062794339_242057_1918Report.html">entry</a>
+<br>
+<font size="+2">Class&nbsp;<b>CARE_ENTRY</b>{Abstract}</font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109066119163_537311_2210Report.html">ENTRY</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>CARE_ENTRY</b></font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_0_76d0249_1109066151350_840651_2312Report.html">INSTRUCTION</a>, <a target="_self" href="_9_5_1_76d0249_1140195698328_962539_2370Report.html">ACTION</a>, <a target="_self" href="_9_0_76d0249_1109066126764_414607_2244Report.html">OBSERVATION</a>, <a target="_self" href="_9_0_76d0249_1109066140264_360802_2278Report.html">EVALUATION</a>
+<br>The abstract parent of all clinical ENTRY subtypes. A CARE_ENTRY defines protocol and guideline attributes for all clinical Entry subtypes.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;guideline_id&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109062455321_683694_1594Report.html">OBJECT_REF</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Optional external identifier of guideline creating this action if relevant&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;protocol&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109066824738_487684_2609Report.html">ITEM_STRUCTURE</a>&nbsp;</td><td align="center">0..1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>Description of the method (i.e. how) the information in this entry was arrived at. For OBSERVATIONs, this is a description of the method or instrument used. For EVALUATIONs,
+how the evaluation was arrived at. For INSTRUCTIONs, how to execute the Instruction.
+This may take the form of references to guidelines, including manually followed and
+executable; knowledge references such as a paper in Medline; clinical reasons within a largercare process.&nbsp;</td>
+</tr>
+</table>
+<br>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class ITEM_TABLE
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_0_76d0249_1109066880218_460204_2745"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_0_76d0249_1109066880218_460204_2745Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#operations">Operations</a> | <a target="_self" href="#relations">Relations</a> | <a target="_self" href="#constraints">Constraints</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_76d0249_1109066734708_494981_2553Report.html">item_structure</a>
+<br>
+<font size="+2">Class&nbsp;<b>ITEM_TABLE</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_0_76d0249_1109066824738_487684_2609Report.html">ITEM_STRUCTURE</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>ITEM_TABLE</b></font>
+<br>Logical relational database style table data structure, in which columns are named and ordered with respect to each other.
+Implemented using Cluster-per-row encoding. Each row Cluster must have an identical number of Elements, each of which in turn must have identical names and value types in the corresponding postions in each row.
+Some columns may be designated &lsquo;key&rsquo; columns, containing key data for each row, in the manner of relational tables. This allows row-naming, where each row represents a body site, a blood antigen etc. All values in a column have the same data type.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="5"><b><font size="+1"><a name="relations">Attributes from Associations</a></font></b></td>
+</tr>
+<tr>
+<td> </td><td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><a target="_self" href="_9_0_76d0249_1109347184775_275063_4290Report.html"><img width="16" height="16" align="absmiddle" border="0" src="images/associationendnode.gif"></a>&nbsp;</td><td>rows&nbsp;:&nbsp;List&lt;CLUSTER&gt;</td><td align="center">0..1&nbsp;</td><td align="center">*&nbsp;ordered</td><td>Physical representation of the table as a list of CLUSTERs, each containing the data of one row of the table.&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;as_hierarchy()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109066927546_392384_2813Report.html">CLUSTER</a>&nbsp;</td><td>&nbsp;</td><td>Generate a CEN EN13606-compatible hierarchy consisting of a single CLUSTER containing the CLUSTERs representing the columns of this table.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;column_count()
+					
+						
+					
+							:
+							<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td>&nbsp;</td><td>Return the number of columns&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;column_names()
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_76d0249_1118909568363_852552_3993Report.html">List&lt;DV_TEXT&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Return the column names&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;element_at_cell_ij(i : Integer,&nbsp;j : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109066943469_864510_2847Report.html">ELEMENT</a>&nbsp;</td><td>
+<br>pre: i &gt;= 1 and i &lt;= column_count
+pre:  j &gt;= 1 and j &lt;= row_count&nbsp;&nbsp;</td><td>Return the element at the column i, row j.&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;element_at_named_cell(row_key : String,&nbsp;col_key : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109066943469_864510_2847Report.html">ELEMENT</a>&nbsp;</td><td>
+<br>pre: has_row_with_name(row_key)  
+pre: has_column_with_name(column_key)&nbsp;&nbsp;</td><td>Return the element at the row whose first column has the name &lsquo;row_key&rsquo; and column has the name &lsquo;col_key&rsquo;&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_column_with_name(a_key : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: a_key &lt;&gt; Void and  not a_key.empty&nbsp;&nbsp;</td><td>True if there is a column with name &lsquo;a_key&rsquo;&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_row_with_key(keys : Set&lt;String&gt;)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>True if there is a row whose first n columns have the names in &lsquo;keys&rsquo;&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;has_row_with_name(a_key : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>pre: a_key &lt;&gt; Void and  not a_key.empty&nbsp;&nbsp;</td><td>True if there is a row whose first column has the name &lsquo;a_key&rsquo;&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;ith_row(i : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109066927546_392384_2813Report.html">CLUSTER</a>&nbsp;</td><td>
+<br>pre: i &gt;0 and i &lt; row_count&nbsp;&nbsp;</td><td>Return the i-th row&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;named_row(a_key : String)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109066927546_392384_2813Report.html">CLUSTER</a>&nbsp;</td><td>
+<br>pre: has_row_with_name(a_key)&nbsp;&nbsp;</td><td>Return the row whose first column has the name &lsquo;a_key&rsquo;&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;row_count()
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td>&nbsp;</td><td>Return the number of rows&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;row_names()
+					
+						
+					
+							:
+							<a target="_self" href="_9_5_76d0249_1118909568363_852552_3993Report.html">List&lt;DV_TEXT&gt;</a>&nbsp;</td><td>&nbsp;</td><td>Return the row names&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;row_with_key(key_vals : Set&lt;String&gt;)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109066927546_392384_2813Report.html">CLUSTER</a>&nbsp;</td><td>
+<br>pre: has_row_with_key(key_vals)&nbsp;&nbsp;</td><td>Return the row whose first n columns have names equal to the values in &lsquo;keys&rsquo;&nbsp;</td>
+</tr>
+</table>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="constraints">Constraints</a></font></b></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Expression</b></td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141456580751_167596_51Report.html">Column_names_valid</a></td><td>inv: column_names &lt;&gt; Void&nbsp;</td>
+</tr>
+<tr valign="top" align="left">
+<td><a target="_self" href="_9_5_1_76d0249_1141456580741_901994_49Report.html">Valid_structure</a></td><td>inv:  rows.forall(items.forall(instance_of('ELEMENT')))
+&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

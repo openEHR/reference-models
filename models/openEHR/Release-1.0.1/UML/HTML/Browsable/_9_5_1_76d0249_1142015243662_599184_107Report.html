@@ -1,0 +1,147 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Class TIME_DEFINITIONS
+							Report </title>
+</head>
+<body bgcolor="#FFFFFF">
+<a name="_9_5_1_76d0249_1142015243662_599184_107"></a>
+<table bgcolor="#EEEEFF" border="0" width="100%">
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>View:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_top" href="_9_5_1_76d0249_1142015243662_599184_107Report.html"> Hide Browser
+										</a> | <a target="_top" href="indexLeft.html">Browser on the
+											left</a> | <a target="_top" href="indexRight.html">Browser on the right</a> | <a target="_self" href="Dictionary.html">Dictionary</a></font></td>
+</tr>
+<tr>
+<td bgcolor="#EEEEFF" width="1"><font size="-1" face="Courier New, Courier, mono"><b>Report:</b></font></td><td bgcolor="#EEEEFF"><font size="-1"><a target="_self" href="#general">General Info</a> | <a target="_self" href="#attributes">Attributes</a> | <a target="_self" href="#operations">Operations</a></font></td>
+</tr>
+</table>
+<hr size="1" noshade="">
+<p></p>Parent Package: <a target="_self" href="_9_0_2_76d0249_1111657862795_228173_0Report.html">assumed_types</a>
+<br>
+<font size="+2">Class&nbsp;<b>TIME_DEFINITIONS</b></font><font face="Courier New, Courier, mono" size="-1">
+<p></p>
+<br>
+<a target="_self" href="_9_5_76d0249_1115309699792_819614_294Report.html">Any</a>
+<br>&nbsp;&nbsp;&nbsp;|<br>&nbsp;&nbsp;&nbsp;+--<b>TIME_DEFINITIONS</b></font>
+<p></p>
+<font size="-1"><b>Direct Subclassifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_5_1_76d0249_1151939136962_148959_13289Report.html">ISO8601_DATE</a>, <a target="_self" href="_9_5_1_76d0249_1151939223356_592103_13469Report.html">ISO8601_DURATION</a>, <a target="_self" href="_9_5_1_76d0249_1151939187174_317325_13399Report.html">ISO8601_DATE_TIME</a>, <a target="_self" href="_9_5_1_76d0249_1152516839486_638285_200Report.html">ISO8601_TIMEZONE</a>, <a target="_self" href="_9_5_1_76d0249_1151939158453_740489_13329Report.html">ISO8601_TIME</a>
+<p></p>
+<font size="-1"><b>Implementing         Classifiers:</b></font>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_self" href="_9_0_76d0249_1109067888748_889929_3619Report.html">DV_DURATION</a>
+<br>Definitions for date/time classes. Note that the timezone limits are set by where
+the international dateline is. Thus, time in New Zealand is quoted using +12:00,
+not -12:00.<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="4"><b><font size="+1"><a name="attributes">Attributes</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td align="center"><b>Optionality</b></td><td align="center"><b>Multiplicity</b></td><td align="center"><b>Constant</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Days_in_leap_year&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>366&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Days_in_week&nbsp;:&nbsp;<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>7&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Days_in_year&nbsp;:&nbsp;<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>365&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Hours_in_day&nbsp;:&nbsp;<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>24&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Max_days_in_month&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>31&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Max_days_in_year&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109608410413_100946_3213Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>366&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Max_timezone&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109067888748_889929_3619Report.html">DV_DURATION</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Min_timezone&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109067888748_889929_3619Report.html">DV_DURATION</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Minutes_in_hour&nbsp;:&nbsp;<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>60&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Months_in_year&nbsp;:&nbsp;<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>12&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Nominal_days_in_month&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109607780056_382844_2880Report.html">Real</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>30.42&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Nominal_days_in_year&nbsp;:&nbsp;<a target="_self" href="_9_0_76d0249_1109607780056_382844_2880Report.html">Real</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>365.24&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/attributenode.gif">&nbsp;Seconds_in_minute&nbsp;:&nbsp;<a target="_self" href="donce_1051693917650_319078_0Report.html">Integer</a>&nbsp;</td><td align="center">1&nbsp;</td><td align="center">  --  </td><td>60&nbsp;</td><td>&nbsp;</td>
+</tr>
+</table>
+<br>
+<br>
+<table cellspacing="0" border="1" width="100%">
+<tr bgcolor="#CCCCFF">
+<td colspan="3"><b><font size="+1"><a name="operations">Operations</a></font></b></td>
+</tr>
+<tr>
+<td><b>Signature</b></td><td><b>Constraints</b></td><td><b>Documentation</b></td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;valid_day(y,m,d : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: Result = (d&gt;=1 and d&lt;= Days_in_month(m,y))&nbsp;&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;valid_hour(h,m,s : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: Result=(h&gt;=0 and h&lt;Hours_in_day) or (h=Hours_in_day and m=0 and s=0)&nbsp;&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;valid_minute(m : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: Result = (m&gt;=0 and m&lt;Minutes_in_hour)&nbsp;&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;valid_month(m : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;valid_second(s : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><img width="16" height="16" align="absmiddle" border="0" src="images/methodnode.gif">&nbsp;valid_year(y : Integer)
+					
+						
+					
+							:
+							<a target="_self" href="_9_0_76d0249_1109591809632_177487_0Report.html">Boolean</a>&nbsp;</td><td>
+<br>post: Result=(y&gt;=0)&nbsp;&nbsp;</td><td>True if v>=0&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>
