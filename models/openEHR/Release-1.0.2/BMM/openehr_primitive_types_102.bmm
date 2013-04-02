@@ -9,16 +9,12 @@
 -- 	copyright:   Copyright (c) 2010 openEHR Foundation
 -- 	license:     See end of file
 -- 
--- 	file:        $URL: http://www.openehr.org/svn/knowledge2/TRUNK/rm_schemas/openehr_primitive_types_102.bmm $
--- 	revision:    $LastChangedRevision: 26 $
--- 	last_change: $LastChangedDate: 2012-07-27 16:59:21 +0100 (Fri, 27 Jul 2012) $
--- 
 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
 -- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/adl1.5/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+--     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
 bmm_version = <"2.0">
