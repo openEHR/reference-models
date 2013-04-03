@@ -1121,9 +1121,9 @@ class_definitions = <
         is_abstract = <"True">
     >
 
---     ["MatchEnum"] = <
---         name = <"MatchEnum">
---         properties = <
+     ["MatchEnum"] = <
+         name = <"MatchEnum">
+         properties = <
 --             [">"] = (P_BMM_SINGLE_PROPERTY) <
 --                 name = <">">
 --                 type = <"">
@@ -1144,12 +1144,12 @@ class_definitions = <
 --                 type = <"">
 --                 is_mandatory = <True>
 --             >
---         >
---     >
--- 
---     ["QuantifiedValueStatusEnum"] = <
---         name = <"QuantifiedValueStatusEnum">
---         properties = <
+         >
+     >
+
+     ["QuantifiedValueStatusEnum"] = <
+         name = <"QuantifiedValueStatusEnum">
+         properties = <
 --             ["="] = (P_BMM_SINGLE_PROPERTY) <
 --                 name = <"=">
 --                 type = <"">
@@ -1180,7 +1180,7 @@ class_definitions = <
 --                 type = <"">
 --                 is_mandatory = <True>
 --             >
---         >
+         >
     >
 
 >
