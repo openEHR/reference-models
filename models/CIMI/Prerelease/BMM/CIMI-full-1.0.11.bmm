@@ -7,14 +7,14 @@ bmm_version = <"2.0">
 ------------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"full">
-rm_release = <"1.0.11a">
+rm_release = <"1.0.11b">
 
 ------------------------------------
 -- schema documentation
 ------------------------------------
-schema_revision = <"woensdag 3 april 2013">
+schema_revision = <"donderdag 4 april 2013">
 schema_lifecycle_state = <"experimental">
-schema_description = <"CIMI Reference Model v1.0.11a schema generated from the UML source">
+schema_description = <"CIMI Reference Model v1.0.11b schema generated from the UML source">
 
 ------------------------------------
 -- inclusions
@@ -45,7 +45,7 @@ packages = <
             >
             ["Data_Value_Types"] = <
                 name = <"Data_Value_Types">
-                classes = <"AMOUNT", "CODED_TEXT", "TERMINOLOGY_ID", "COUNT", "DATA_VALUE", "DATE", "DATE_TIME", "DURATION", "EHR_URI", "ENCAPSULATED", "IDENTIFIER", "INTERVAL_VALUE", "MULTIMEDIA", "ORDERED_VALUE", "ORDINAL", "PARSABLE", "PLAIN_TEXT", "PROPORTION", "QUANTIFIED", "QuantifiedValueStatusEnum", "QUANTITY", "STRING_VALUE", "TERM_MAPPING", "TermMappingMatchEnum", "TEXT", "TIME", "URI", "YESNO">
+                classes = <"AMOUNT", "CODED_TEXT", "COUNT", "DATA_VALUE", "DATE", "DATE_TIME", "DURATION", "EHR_URI", "ENCAPSULATED", "IDENTIFIER", "INTERVAL_VALUE", "MULTIMEDIA", "ORDERED_VALUE", "ORDINAL", "PARSABLE", "PLAIN_TEXT", "PROPORTION", "QUANTIFIED", "QUANTITY", "STRING_VALUE", "TERM_MAPPING", "TEXT", "TIME", "URI", "YESNO">
             >
             ["Participation"] = <
                 name = <"Participation">
@@ -307,11 +307,6 @@ class_definitions = <
         >
     >
 
-    ["TERMINOLOGY_ID"] = <
-        name = <"TERMINOLOGY_ID">
-        ancestors = <"Any", ...>
-    >
-
     ["CODED_TEXT"] = <
         name = <"CODED_TEXT">
         ancestors = <"TEXT", ...>
@@ -323,7 +318,7 @@ class_definitions = <
             >
             ["terminology_id"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"terminology_id">
-                type = <"TERMINOLOGY_ID">
+                type = <"String">
                 is_mandatory = <True>
             >
             ["terminology_version"] = (P_BMM_SINGLE_PROPERTY) <
@@ -427,10 +422,11 @@ class_definitions = <
         name = <"INTERVAL_VALUE">
         ancestors = <"DATA_VALUE", ...>
         generic_parameter_defs = <
-			["T"] = <
-				name = <"T">
-			>
-		>
+            ["T"] = <
+                name = <"T">
+                conforms_to_type = <"ORDERED_VALUE">
+            >
+        >
         properties = <
             ["upper_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"upper_unbounded">
@@ -578,42 +574,6 @@ class_definitions = <
         >
     >
 
-    ["QuantifiedValueStatusEnum"] = <
-        name = <"QuantifiedValueStatusEnum">
-        properties = <
---            ["="] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"=">
---                type = <"">
---                is_mandatory = <True>
---            >
---            ["<"] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"<">
---                type = <"">
---                is_mandatory = <True>
---            >
---            [">"] = (P_BMM_SINGLE_PROPERTY) <
---                name = <">">
---                type = <"">
---                is_mandatory = <True>
---            >
---            ["<="] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"<=">
---                type = <"">
---                is_mandatory = <True>
---            >
---            [">="] = (P_BMM_SINGLE_PROPERTY) <
---                name = <">=">
---                type = <"">
---                is_mandatory = <True>
---            >
---            ["~"] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"~">
---                type = <"">
---                is_mandatory = <True>
---            >
-        >
-    >
-
     ["QUANTITY"] = <
         name = <"QUANTITY">
         ancestors = <"AMOUNT", ...>
@@ -667,32 +627,6 @@ class_definitions = <
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-        >
-    >
-
-    ["TermMappingMatchEnum"] = <
-        name = <"TermMappingMatchEnum">
-        properties = <
---            [">"] = (P_BMM_SINGLE_PROPERTY) <
---                name = <">">
---                type = <"">
---                is_mandatory = <True>
---            >
---            ["="] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"=">
---                type = <"">
---                is_mandatory = <True>
---            >
---            ["<"] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"<">
---                type = <"">
---                is_mandatory = <True>
---            >
---            ["?"] = (P_BMM_SINGLE_PROPERTY) <
---                name = <"?">
---                type = <"">
---                is_mandatory = <True>
---            >
         >
     >
 
