@@ -45,7 +45,7 @@ packages = <
             >
             ["Data_Value_Types"] = <
                 name = <"Data_Value_Types">
-                classes = <"AMOUNT", "CODED_TEXT", "COUNT", "DATA_VALUE", "DATE", "DATE_TIME", "DURATION", "EHR_URI", "ENCAPSULATED", "IDENTIFIER", "INTERVAL_VALUE", "MULTIMEDIA", "ORDERED_VALUE", "ORDINAL", "PARSABLE", "PLAIN_TEXT", "PROPORTION", "QUANTIFIED", "QuantifiedValueStatusEnum", "QUANTITY", "STRING_VALUE", "TERM_MAPPING", "TermMappingMatchEnum", "TEXT", "TIME", "URI", "YESNO">
+                classes = <"AMOUNT", "CODED_TEXT", "TERMINOLOGY_ID", "COUNT", "DATA_VALUE", "DATE", "DATE_TIME", "DURATION", "EHR_URI", "ENCAPSULATED", "IDENTIFIER", "INTERVAL_VALUE", "MULTIMEDIA", "ORDERED_VALUE", "ORDINAL", "PARSABLE", "PLAIN_TEXT", "PROPORTION", "QUANTIFIED", "QuantifiedValueStatusEnum", "QUANTITY", "STRING_VALUE", "TERM_MAPPING", "TermMappingMatchEnum", "TEXT", "TIME", "URI", "YESNO">
             >
             ["Participation"] = <
                 name = <"Participation">
