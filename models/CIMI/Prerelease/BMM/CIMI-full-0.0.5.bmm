@@ -7,14 +7,14 @@ bmm_version = <"2.0">
 ------------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"full">
-rm_release = <"1.0.5">
+rm_release = <"0.0.5">
 
 ------------------------------------
 -- schema documentation
 ------------------------------------
 schema_revision = <"vrijdag 14 september 2012">
 schema_lifecycle_state = <"experimental">
-schema_description = <"CIMI Release 1.0.5 full schema generated from UML">
+schema_description = <"CIMI Release 0.0.5 full schema generated from UML">
 
 ------------------------------------
 -- inclusions

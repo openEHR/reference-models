@@ -7,14 +7,14 @@ bmm_version = <"2.0">
 ------------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"full">
-rm_release = <"1.0.7">
+rm_release = <"1.0.0-dstu.4">
 
 ------------------------------------
 -- schema documentation
 ------------------------------------
-schema_revision = <"woensdag 27 februari 2013">
+schema_revision = <"donderdag 6 juni 2013">
 schema_lifecycle_state = <"experimental">
-schema_description = <"CIMI Reference Model v1.0.x schema generated from UML (which is the source of truth for the CRM)">
+schema_description = <"CIMI Reference Model v1.0.0-dstu.4 schema generated from the UML source">
 
 ------------------------------------
 -- inclusions
@@ -28,7 +28,6 @@ includes = <
 ------------------------------------
 -- archetyping
 ------------------------------------
-archetype_parent_class = <"LOCATABLE">
 archetype_rm_closure_packages = <"CIMI_Reference_Model.RM", ...>
 
 ------------------------------------
@@ -38,27 +37,18 @@ archetype_rm_closure_packages = <"CIMI_Reference_Model.RM", ...>
 packages = <
     ["CIMI_Reference_Model"] = <
         name = <"CIMI_Reference_Model">
-        classes = <"ActorTypeRefSet", "CompositionCategoryRefSet", "ElementNullFlavorRefSet", "EntryLanguageRefSet", "MappingPurposeRefSet"> --, "MatchEnum", "QuantifiedValueStatusEnum">
         packages = <
             ["RM"] = <
                 name = <"RM">
                 classes = <"ARCHETYPED", "CLUSTER", "COMPOSITION", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
             >
-            ["Data_Value_Type"] = <
-                name = <"Data_Value_Type">
-                classes = <"ABSOLUTE_QUANTITY", "AMOUNT", "CODED_TEXT", "COUNT", "DATA_VALUE", "DATE", "DATE_TIME", "DURATION", "EHR_URI", "ENCAPSULATED", "IDENTIFIER", "INTERVAL_VALUE", "MULTIMEDIA", "ORDERED_VALUE", "ORDINAL", "PARSABLE", "PLAIN_TEXT", "PROPORTION", "QUANTIFIED", "QUANTITY", "TEMPORAL", "TERM_MAPPING", "TEXT", "TIME", "URI", "YESNO">
+            ["Data_Value_Types"] = <
+                name = <"Data_Value_Types">
+                classes = <"AMOUNT", "CODED_TEXT", "COUNT", "DATA_VALUE", "DATE", "DATE_TIME", "DURATION", "EHR_URI", "ENCAPSULATED", "IDENTIFIER", "INTERVAL_VALUE", "MULTIMEDIA", "ORDERED_VALUE", "ORDINAL", "PARSABLE", "PLAIN_TEXT", "PROPORTION", "QUANTIFIED", "QUANTITY", "STRING_VALUE", "TERM_MAPPING", "TEXT", "TIME", "URI", "YESNO">
             >
-            ["Participation"] = <
-                name = <"Participation">
-                classes = <"ACTOR", "ADDRESS", "AGENT", "CAPABILITY", "CONTACT", "GROUP", "ORGANISATION", "PARTY", "PARTY_IDENTITY", "PARTY_RELATIONSHIP", "PERSON", "ROLE">
-            >
-            ["Supporting_Class"] = <
-                name = <"Supporting_Class">
-                classes = <"HIER_OBJECT_ID", "LOCATABLE_REF", "OBJECT_ID", "OBJECT_REF", "PARTY_IDENTIFIED", "PARTY_PROXY", "PARTY_REF", "PARTY_RELATED", "TERMINOLOGY_ID", "UID_BASED_ID">
-            >
-            ["Identifiers"] = <
-                name = <"Identifiers">
-                classes = <"INTERNET_ID", "ISO_OID", "UID", "UUID">
+            ["Party"] = <
+                name = <"Party">
+                classes = <"ACTOR", "PARTY", "PARTY_RELATIONSHIP", "ROLE">
             >
         >
     >
@@ -79,12 +69,6 @@ class_definitions = <
         properties = <
             ["archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"archetype_id">
-                type = <"String">
-                is_mandatory = <True>
-                is_im_infrastructure = <True>
-            >
-            ["template_id"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"template_id">
                 type = <"String">
                 is_mandatory = <True>
                 is_im_infrastructure = <True>
@@ -133,8 +117,8 @@ class_definitions = <
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-            ["territory"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"territory">
+            ["jurisdiction"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"jurisdiction">
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
@@ -223,9 +207,14 @@ class_definitions = <
                 type = <"TEXT">
                 is_mandatory = <True>
             >
+            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"details">
+                type = <"ITEM">
+                cardinality = <|>=0|>
+            >
             ["target"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"target">
-                type = <"EHR_URI">
+                type = <"LOCATABLE">
                 is_mandatory = <True>
             >
         >
@@ -277,15 +266,6 @@ class_definitions = <
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-            ["time"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"time">
-                type_def = <
-                    root_type = <"INTERVAL_VALUE">
-                    generic_parameters = <"DATE_TIME">
-                >
-                is_mandatory = <True>
-                is_im_runtime = <True>
-            >
             ["details"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"details">
                 type = <"ITEM">
@@ -293,7 +273,7 @@ class_definitions = <
             >
             ["party"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"party">
-                type = <"PARTY_PROXY">
+                type = <"PARTY">
                 is_mandatory = <True>
             >
         >
@@ -316,13 +296,8 @@ class_definitions = <
 
 
     ------------------------------------
-    -- Data_Value_Type
+    -- Data_Value_Types
     ------------------------------------
-
-    ["ABSOLUTE_QUANTITY"] = <
-        name = <"ABSOLUTE_QUANTITY">
-        is_abstract = <"True">
-    >
 
     ["AMOUNT"] = <
         name = <"AMOUNT">
@@ -353,7 +328,7 @@ class_definitions = <
             >
             ["terminology_id"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"terminology_id">
-                type = <"TERMINOLOGY_ID">
+                type = <"String">
                 is_mandatory = <True>
             >
             ["terminology_version"] = (P_BMM_SINGLE_PROPERTY) <
@@ -393,19 +368,12 @@ class_definitions = <
 
     ["DATE"] = <
         name = <"DATE">
-        ancestors = <"TEMPORAL", ...>
-        properties = <
-            ["value"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"value">
-                type = <"String">
-                is_mandatory = <True>
-            >
-        >
+        ancestors = <"DATE_TIME", ...>
     >
 
     ["DATE_TIME"] = <
         name = <"DATE_TIME">
-        ancestors = <"TEMPORAL", ...>
+        ancestors = <"QUANTIFIED", ...>
         properties = <
             ["value"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value">
@@ -464,10 +432,10 @@ class_definitions = <
         name = <"INTERVAL_VALUE">
         ancestors = <"DATA_VALUE", ...>
         generic_parameter_defs = <
-			["T"] = <
-				name = <"T">
-			>
-		>
+            ["T"] = <
+                name = <"T">
+            >
+        >
         properties = <
             ["upper_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"upper_unbounded">
@@ -516,16 +484,6 @@ class_definitions = <
                     type = <"Byte">
                 >
                 cardinality = <|>=0|>
-                is_im_runtime = <True>
-            >
-            ["integrity_check"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"integrity_check">
-                type_def = <
-                    container_type = <"Array">
-                    type = <"Byte">
-                >
-                cardinality = <|>=0|>
-                is_im_runtime = <True>
             >
             ["media_type"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"media_type">
@@ -557,7 +515,7 @@ class_definitions = <
             >
             ["value"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value">
-                type = <"Integer">
+                type = <"Real">
                 is_mandatory = <True>
             >
         >
@@ -631,7 +589,7 @@ class_definitions = <
         properties = <
             ["value"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value">
-                type = <"Double">
+                type = <"Real">
                 is_mandatory = <True>
             >
             ["units"] = (P_BMM_SINGLE_PROPERTY) <
@@ -647,10 +605,17 @@ class_definitions = <
         >
     >
 
-    ["TEMPORAL"] = <
-        name = <"TEMPORAL">
-        ancestors = <"QUANTIFIED", ...>
+    ["STRING_VALUE"] = <
+        name = <"STRING_VALUE">
+        ancestors = <"DATA_VALUE", ...>
         is_abstract = <"True">
+        properties = <
+            ["value"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"value">
+                type = <"String">
+                is_mandatory = <True>
+            >
+        >
     >
 
     ["TERM_MAPPING"] = <
@@ -676,14 +641,9 @@ class_definitions = <
 
     ["TEXT"] = <
         name = <"TEXT">
-        ancestors = <"DATA_VALUE", ...>
+        ancestors = <"STRING_VALUE", ...>
         is_abstract = <"True">
         properties = <
-            ["value"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"value">
-                type = <"String">
-                is_mandatory = <True>
-            >
             ["language"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"language">
                 type = <"CODED_TEXT">
@@ -702,26 +662,12 @@ class_definitions = <
 
     ["TIME"] = <
         name = <"TIME">
-        ancestors = <"TEMPORAL", ...>
-        properties = <
-            ["value"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"value">
-                type = <"String">
-                is_mandatory = <True>
-            >
-        >
+        ancestors = <"DATE_TIME", ...>
     >
 
     ["URI"] = <
         name = <"URI">
-        ancestors = <"DATA_VALUE", ...>
-        properties = <
-            ["value"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"value">
-                type = <"String">
-                is_mandatory = <True>
-            >
-        >
+        ancestors = <"STRING_VALUE", ...>
     >
 
     ["YESNO"] = <
@@ -738,95 +684,27 @@ class_definitions = <
 
 
     ------------------------------------
-    -- Participation
+    -- Party
     ------------------------------------
 
     ["ACTOR"] = <
         name = <"ACTOR">
         ancestors = <"PARTY", ...>
         properties = <
-            ["actor_type"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"actor_type">
+            ["type"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"type">
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-            ["role"] = (P_BMM_SINGLE_PROPERTY) <
+            ["role"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"role">
-                type = <"PARTY_REF">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ROLE">
+                >
                 cardinality = <|>=0|>
             >
         >
-    >
-
-    ["ADDRESS"] = <
-        name = <"ADDRESS">
-        ancestors = <"LOCATABLE", ...>
-        properties = <
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"details">
-                type = <"ITEM">
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["AGENT"] = <
-        name = <"AGENT">
-        ancestors = <"ACTOR", ...>
-    >
-
-    ["CAPABILITY"] = <
-        name = <"CAPABILITY">
-        ancestors = <"LOCATABLE", ...>
-        properties = <
-            ["credentials"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"credentials">
-                type = <"ITEM">
-                is_mandatory = <True>
-            >
-            ["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"time_validity">
-                type_def = <
-                    root_type = <"INTERVAL_VALUE">
-                    generic_parameters = <"DATE">
-                >
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["CONTACT"] = <
-        name = <"CONTACT">
-        ancestors = <"LOCATABLE", ...>
-        properties = <
-            ["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"time_validity">
-                type_def = <
-                    root_type = <"INTERVAL_VALUE">
-                    generic_parameters = <"DATE">
-                >
-                is_mandatory = <True>
-            >
-            ["address"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"address">
-                type_def = <
-                    container_type = <"List">
-                    type = <"ADDRESS">
-                >
-                cardinality = <|>=1|>
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["GROUP"] = <
-        name = <"GROUP">
-        ancestors = <"ACTOR", ...>
-    >
-
-    ["ORGANISATION"] = <
-        name = <"ORGANISATION">
-        ancestors = <"ACTOR", ...>
     >
 
     ["PARTY"] = <
@@ -847,35 +725,6 @@ class_definitions = <
                 >
                 cardinality = <|>=0|>
             >
-            ["contact"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"contact">
-                type_def = <
-                    container_type = <"List">
-                    type = <"CONTACT">
-                >
-                cardinality = <|>=0|>
-            >
-            ["identity"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"identity">
-                type_def = <
-                    container_type = <"List">
-                    type = <"PARTY_IDENTITY">
-                >
-                cardinality = <|>=1|>
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["PARTY_IDENTITY"] = <
-        name = <"PARTY_IDENTITY">
-        ancestors = <"LOCATABLE", ...>
-        properties = <
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"details">
-                type = <"ITEM">
-                is_mandatory = <True>
-            >
         >
     >
 
@@ -883,23 +732,15 @@ class_definitions = <
         name = <"PARTY_RELATIONSHIP">
         ancestors = <"LOCATABLE", ...>
         properties = <
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"details">
-                type = <"ITEM">
-                cardinality = <|>=0|>
-            >
             ["type"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"type">
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-            ["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"time_validity">
-                type_def = <
-                    root_type = <"INTERVAL_VALUE">
-                    generic_parameters = <"DATE">
-                >
-                is_mandatory = <True>
+            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"details">
+                type = <"ITEM">
+                cardinality = <|>=0|>
             >
             ["target"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"target">
@@ -909,278 +750,16 @@ class_definitions = <
         >
     >
 
-    ["PERSON"] = <
-        name = <"PERSON">
-        ancestors = <"ACTOR", ...>
-    >
-
     ["ROLE"] = <
         name = <"ROLE">
         ancestors = <"PARTY", ...>
         properties = <
-            ["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"time_validity">
-                type_def = <
-                    root_type = <"INTERVAL_VALUE">
-                    generic_parameters = <"DATE">
-                >
-                is_mandatory = <True>
-            >
-            ["role_type"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"role_type">
-                type = <"CODED_TEXT">
-                is_mandatory = <True>
-            >
-            ["capabilities"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"capabilities">
-                type_def = <
-                    container_type = <"List">
-                    type = <"CAPABILITY">
-                >
-                cardinality = <|>=0|>
-            >
-        >
-    >
-
-
-    ------------------------------------
-    -- Supporting_Class
-    ------------------------------------
-
-    ["HIER_OBJECT_ID"] = <
-        name = <"HIER_OBJECT_ID">
-        ancestors = <"UID_BASED_ID", ...>
-    >
-
-    ["LOCATABLE_REF"] = <
-        name = <"LOCATABLE_REF">
-        ancestors = <"OBJECT_REF", ...>
-        properties = <
-            ["path"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"path">
-                type = <"String">
-                is_mandatory = <True>
-            >
-            ["id"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"id">
-                type = <"UID_BASED_ID">
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["OBJECT_ID"] = <
-        name = <"OBJECT_ID">
-        is_abstract = <"True">
-        properties = <
-            ["value"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"value">
-                type = <"String">
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["OBJECT_REF"] = <
-        name = <"OBJECT_REF">
-        properties = <
-            ["id_namespace"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"id_namespace">
-                type = <"String">
-                is_mandatory = <True>
-            >
             ["type"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"type">
-                type = <"String">
-                is_mandatory = <True>
-            >
-            ["id"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"id">
-                type = <"OBJECT_ID">
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["PARTY_IDENTIFIED"] = <
-        name = <"PARTY_IDENTIFIED">
-        ancestors = <"PARTY_PROXY", ...>
-        properties = <
-            ["name"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"name">
-                type = <"String">
-                is_mandatory = <True>
-            >
-            ["identifiers"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"identifiers">
-                type = <"IDENTIFIER">
-                cardinality = <|>=0|>
-                is_im_runtime = <True>
-            >
-        >
-    >
-
-    ["PARTY_PROXY"] = <
-        name = <"PARTY_PROXY">
-        is_abstract = <"True">
-        properties = <
-            ["external_ref"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"external_ref">
-                type = <"PARTY_REF">
-            >
-        >
-    >
-
-    ["PARTY_REF"] = <
-        name = <"PARTY_REF">
-        ancestors = <"OBJECT_REF", ...>
-    >
-
-    ["PARTY_RELATED"] = <
-        name = <"PARTY_RELATED">
-        ancestors = <"PARTY_IDENTIFIED", ...>
-        properties = <
-            ["relationship"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"relationship">
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
         >
-    >
-
-    ["TERMINOLOGY_ID"] = <
-        name = <"TERMINOLOGY_ID">
-        ancestors = <"OBJECT_ID", ...>
-    >
-
-    ["UID_BASED_ID"] = <
-        name = <"UID_BASED_ID">
-        ancestors = <"OBJECT_ID", ...>
-        is_abstract = <"True">
-    >
-
-
-    ------------------------------------
-    -- Identifiers
-    ------------------------------------
-
-    ["INTERNET_ID"] = <
-        name = <"INTERNET_ID">
-        ancestors = <"UID", ...>
-    >
-
-    ["ISO_OID"] = <
-        name = <"ISO_OID">
-        ancestors = <"UID", ...>
-    >
-
-    ["UID"] = <
-        name = <"UID">
-        is_abstract = <"True">
-        properties = <
-            ["value"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"value">
-                type = <"String">
-                is_mandatory = <True>
-            >
-        >
-    >
-
-    ["UUID"] = <
-        name = <"UUID">
-        ancestors = <"UID", ...>
-    >
-
-
-    ------------------------------------
-    -- CIMI_Reference_Model
-    ------------------------------------
-
-    ["ActorTypeRefSet"] = <
-        name = <"ActorTypeRefSet">
-        is_abstract = <"True">
-    >
-
-    ["CompositionCategoryRefSet"] = <
-        name = <"CompositionCategoryRefSet">
-        is_abstract = <"True">
-    >
-
-    ["ElementNullFlavorRefSet"] = <
-        name = <"ElementNullFlavorRefSet">
-        is_abstract = <"True">
-    >
-
-    ["EntryLanguageRefSet"] = <
-        name = <"EntryLanguageRefSet">
-        is_abstract = <"True">
-    >
-
-    ["MappingPurposeRefSet"] = <
-        name = <"MappingPurposeRefSet">
-        is_abstract = <"True">
-    >
-
-     ["MatchEnum"] = <
-         name = <"MatchEnum">
-         properties = <
---             [">"] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <">">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             ["="] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"=">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             ["<"] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"<">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             ["?"] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"?">
---                 type = <"">
---                 is_mandatory = <True>
---             >
-         >
-     >
-
-     ["QuantifiedValueStatusEnum"] = <
-         name = <"QuantifiedValueStatusEnum">
-         properties = <
---             ["="] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"=">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             ["<"] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"<">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             [">"] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <">">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             ["<="] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"<=">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             [">="] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <">=">
---                 type = <"">
---                 is_mandatory = <True>
---             >
---             ["~"] = (P_BMM_SINGLE_PROPERTY) <
---                 name = <"~">
---                 type = <"">
---                 is_mandatory = <True>
---             >
-         >
     >
 
 >
