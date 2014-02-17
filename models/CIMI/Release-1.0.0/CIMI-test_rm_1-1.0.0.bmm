@@ -6,15 +6,15 @@ bmm_version = <"2.0">
 -- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
 ------------------------------------
 rm_publisher = <"CIMI">
-schema_name = <"full">
-rm_release = <"1.0.0-dstu.4">
+schema_name = <"test_rm_1">
+rm_release = <"0.0.1">
 
 ------------------------------------
 -- schema documentation
 ------------------------------------
-schema_revision = <"donderdag 6 juni 2013">
+schema_revision = <"0.1">
 schema_lifecycle_state = <"experimental">
-schema_description = <"CIMI Reference Model v1.0.0-dstu.4 schema generated from the UML source">
+schema_description = <"Research reference model to solve panel-in-panel problem">
 
 ------------------------------------
 -- inclusions
@@ -28,7 +28,9 @@ includes = <
 ------------------------------------
 -- archetyping
 ------------------------------------
-archetype_rm_closure_packages = <"CIMI_Reference_Model.CORE", ...>
+archetype_rm_closure_packages = <"CIMI_Reference_Model.Core", ...>
+
+archetype_parent_class = <"LOCATABLE">
 
 ------------------------------------
 -- packages
@@ -38,9 +40,9 @@ packages = <
     ["CIMI_Reference_Model"] = <
         name = <"CIMI_Reference_Model">
         packages = <
-            ["CORE"] = <
-                name = <"CORE">
-                classes = <"ARCHETYPED", "CLUSTER", "COMPOSITION", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
+            ["Core"] = <
+                name = <"Core">
+                classes = <"ARCHETYPED", "CLUSTER", "COMPLEX_STATEMENT", "COMPOSITION", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
             >
             ["Data_Value_Types"] = <
                 name = <"Data_Value_Types">
@@ -61,7 +63,7 @@ packages = <
 class_definitions = <
 
     ------------------------------------
-    -- RM
+    -- Core
     ------------------------------------
 
     ["ARCHETYPED"] = <
@@ -136,13 +138,13 @@ class_definitions = <
     ["CONTENT_ITEM"] = <
         name = <"CONTENT_ITEM">
         ancestors = <"CORE_LOCATABLE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
     >
 
     ["CORE_LOCATABLE"] = <
         name = <"CORE_LOCATABLE">
         ancestors = <"LOCATABLE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
             ["participation"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"participation">
@@ -181,8 +183,52 @@ class_definitions = <
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
+ 			["subject"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"subject">
+				type = <"PARTY">
+				is_mandatory = <True>
+			>
             ["data"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"data">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
+                cardinality = <|>=1|>
+                is_mandatory = <True>
+            >
+			["workflow"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"workflow">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
+                cardinality = <|>=0|>
+			>
+		>
+    >
+
+    ["ITEM"] = <
+        name = <"ITEM">
+        ancestors = <"CORE_LOCATABLE", ...>
+        is_abstract = <True>
+    >
+
+    ["COMPLEX_STATEMENT"] = <
+        name = <"COMPLEX_STATEMENT">
+        ancestors = <"CLUSTER", ...>
+        properties = <
+            ["state"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"state">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
+                cardinality = <|>=1|>
+                is_mandatory = <True>
+            >
+            ["protocol"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"protocol">
                 type_def = <
                     container_type = <"List">
                     type = <"ITEM">
@@ -193,12 +239,6 @@ class_definitions = <
         >
     >
 
-    ["ITEM"] = <
-        name = <"ITEM">
-        ancestors = <"CORE_LOCATABLE", ...>
-        is_abstract = <"True">
-    >
-
     ["LINK"] = <
         name = <"LINK">
         properties = <
@@ -207,9 +247,12 @@ class_definitions = <
                 type = <"TEXT">
                 is_mandatory = <True>
             >
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+            ["details"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"details">
-                type = <"ITEM">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
                 cardinality = <|>=0|>
             >
             ["target"] = (P_BMM_SINGLE_PROPERTY) <
@@ -222,7 +265,7 @@ class_definitions = <
 
     ["LOCATABLE"] = <
         name = <"LOCATABLE">
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
             ["archetype_node_id"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"archetype_node_id">
@@ -266,9 +309,12 @@ class_definitions = <
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+            ["details"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"details">
-                type = <"ITEM">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
                 cardinality = <|>=0|>
             >
             ["party"] = (P_BMM_SINGLE_PROPERTY) <
@@ -302,7 +348,7 @@ class_definitions = <
     ["AMOUNT"] = <
         name = <"AMOUNT">
         ancestors = <"QUANTIFIED", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
             ["accuracy"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"accuracy">
@@ -363,7 +409,7 @@ class_definitions = <
 
     ["DATA_VALUE"] = <
         name = <"DATA_VALUE">
-        is_abstract = <"True">
+        is_abstract = <True>
     >
 
     ["DATE"] = <
@@ -403,7 +449,7 @@ class_definitions = <
     ["ENCAPSULATED"] = <
         name = <"ENCAPSULATED">
         ancestors = <"DATA_VALUE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
     >
 
     ["IDENTIFIER"] = <
@@ -501,7 +547,7 @@ class_definitions = <
     ["ORDERED_VALUE"] = <
         name = <"ORDERED_VALUE">
         ancestors = <"DATA_VALUE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
     >
 
     ["ORDINAL"] = <
@@ -573,7 +619,7 @@ class_definitions = <
     ["QUANTIFIED"] = <
         name = <"QUANTIFIED">
         ancestors = <"ORDERED_VALUE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
             ["value_status"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value_status">
@@ -608,7 +654,7 @@ class_definitions = <
     ["STRING_VALUE"] = <
         name = <"STRING_VALUE">
         ancestors = <"DATA_VALUE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
             ["value"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value">
@@ -642,7 +688,7 @@ class_definitions = <
     ["TEXT"] = <
         name = <"TEXT">
         ancestors = <"STRING_VALUE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
             ["language"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"language">
@@ -710,11 +756,14 @@ class_definitions = <
     ["PARTY"] = <
         name = <"PARTY">
         ancestors = <"LOCATABLE", ...>
-        is_abstract = <"True">
+        is_abstract = <True>
         properties = <
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+            ["details"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"details">
-                type = <"ITEM">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
                 cardinality = <|>=0|>
             >
             ["relationship"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -737,9 +786,12 @@ class_definitions = <
                 type = <"CODED_TEXT">
                 is_mandatory = <True>
             >
-            ["details"] = (P_BMM_SINGLE_PROPERTY) <
+            ["details"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"details">
-                type = <"ITEM">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
                 cardinality = <|>=0|>
             >
             ["target"] = (P_BMM_SINGLE_PROPERTY) <
