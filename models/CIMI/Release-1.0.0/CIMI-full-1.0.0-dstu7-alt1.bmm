@@ -7,14 +7,14 @@ bmm_version = <"2.0">
 ------------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"full">
-rm_release = <"1.0.0-dstu.7">
+rm_release = <"1.0.0-dstu-alt1.7">
 
 ------------------------------------
 -- schema documentation
 ------------------------------------
 schema_revision = <"Wednesday, January 22, 2014">
 schema_lifecycle_state = <"experimental">
-schema_description = <"CIMI Reference Model v1.0.0-dstu.7 schema generated from the UML source">
+schema_description = <"CIMI Reference Model v1.0.0-dstu.7 schema generated from the UML source with addition of INDIVISIBLE_ENTRY and COMPOUND_ENTRY">
 
 ------------------------------------
 -- inclusions
@@ -40,7 +40,7 @@ packages = <
         packages = <
             ["Core"] = <
                 name = <"Core">
-                classes = <"ARCHETYPED", "CLUSTER", "COMPOSITION", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
+                classes = <"ARCHETYPED", "CLUSTER", "COMPOSITION", "COMPOUND_ENTRY", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "INDIVISIBLE_ENTRY", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
             >
             ["Data_Value_Types"] = <
                 name = <"Data_Value_Types">
@@ -133,6 +133,22 @@ class_definitions = <
         >
     >
 
+    ["COMPOUND_ENTRY"] = <
+        name = <"COMPOUND_ENTRY">
+        ancestors = <"ENTRY", ...>
+        properties = <
+            ["parts"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"parts">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ENTRY">
+                >
+                cardinality = <|>=1|>
+                is_mandatory = <True>
+            >
+        >
+    >
+
     ["CONTENT_ITEM"] = <
         name = <"CONTENT_ITEM">
         ancestors = <"CORE_LOCATABLE", ...>
@@ -191,6 +207,11 @@ class_definitions = <
                 is_mandatory = <True>
             >
         >
+    >
+
+    ["INDIVISIBLE_ENTRY"] = <
+        name = <"INDIVISIBLE_ENTRY">
+        ancestors = <"ENTRY", ...>
     >
 
     ["ITEM"] = <

@@ -7,7 +7,7 @@ bmm_version = <"2.0">
 ------------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"full">
-rm_release = <"1.0.0-dstu.7">
+rm_release = <"1.0.0-dstu-alt2.7">
 
 ------------------------------------
 -- schema documentation
@@ -40,7 +40,7 @@ packages = <
         packages = <
             ["Core"] = <
                 name = <"Core">
-                classes = <"ARCHETYPED", "CLUSTER", "COMPOSITION", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
+                classes = <"ARCHETYPED", "CLUSTER", "CLINICAL_DATA_GROUP", "COMPOSITION", "CONTENT_ITEM", "CORE_LOCATABLE", "ELEMENT", "ENTRY", "ENTRY_CONTENT", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION", "SECTION">
             >
             ["Data_Value_Types"] = <
                 name = <"Data_Value_Types">
@@ -82,6 +82,22 @@ class_definitions = <
         >
     >
 
+    ["CLINICAL_DATA_GROUP"] = <
+        name = <"CLINICAL_DATA_GROUP">
+        ancestors = <"ENTRY_CONTENT", ...>
+        properties = <
+            ["item"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"item">
+                type_def = <
+                    container_type = <"List">
+                    type = <"ITEM">
+                >
+                cardinality = <|>=1|>
+                is_mandatory = <True>
+            >
+        >
+    >
+
     ["CLUSTER"] = <
         name = <"CLUSTER">
         ancestors = <"ITEM", ...>
@@ -95,7 +111,7 @@ class_definitions = <
                 name = <"item">
                 type_def = <
                     container_type = <"List">
-                    type = <"ITEM">
+                    type = <"ENTRY_CONTENT">
                 >
                 cardinality = <|>=1|>
                 is_mandatory = <True>
@@ -172,6 +188,12 @@ class_definitions = <
         >
     >
 
+    ["ENTRY_CONTENT"] = <
+        name = <"ENTRY_CONTENT">
+        ancestors = <"CORE_LOCATABLE", ...>
+        is_abstract = <True>
+    >
+
     ["ENTRY"] = <
         name = <"ENTRY">
         ancestors = <"CONTENT_ITEM", ...>
@@ -185,7 +207,7 @@ class_definitions = <
                 name = <"data">
                 type_def = <
                     container_type = <"List">
-                    type = <"ITEM">
+                    type = <"ENTRY_CONTENT">
                 >
                 cardinality = <|>=1|>
                 is_mandatory = <True>
@@ -195,7 +217,7 @@ class_definitions = <
 
     ["ITEM"] = <
         name = <"ITEM">
-        ancestors = <"CORE_LOCATABLE", ...>
+        ancestors = <"ENTRY_CONTENT", ...>
         is_abstract = <True>
     >
 
