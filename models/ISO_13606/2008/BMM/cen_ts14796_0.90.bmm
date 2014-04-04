@@ -62,11 +62,11 @@ packages = <
 			>
 			["Quantity"] = <
 				name = <"Quantity">
-				classes = <"RTO", "ORD", "PQ", "QUANTITY", "QUANTITY_RANGE", "DURATION">
+				classes = <"INT", "RTO", "ORD", "PQ", "QUANTITY", "QUANTITY_RANGE", "DURATION", "IVLPQ">
 			>
 			["Time"] = <
 				name = <"Time">
-				classes = <"TS", "DATE", "EIVL", "PIVL">
+				classes = <"TS", "DATE", "EIVL", "PIVL", "IVLTS">
 			>
 		>
 	>
@@ -167,32 +167,26 @@ class_definitions = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
 				type = <"String">
-				is_mandatory = <True>
 			>
 			["scheme"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"scheme">
 				type = <"String">
-				is_mandatory = <True>
 			>
 			["path"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"path">
 				type = <"String">
-				is_mandatory = <True>
 			>
 			["fragment_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"fragment_id">
 				type = <"String">
-				is_mandatory = <True>
 			>
 			["uri_query"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uri_query">
 				type = <"String">
-				is_mandatory = <True>
 			>
 			["literal"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"literal">
 				type = <"String">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -359,7 +353,6 @@ class_definitions = <
 			["codedValue"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"codedValue">
 				type = <"CD">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -385,6 +378,17 @@ class_definitions = <
 			["denominator"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"denominator">
 				type = <"PQ">
+			>
+		>
+	>
+
+	["INT"] = <
+		name = <"INT">
+		ancestors = <"DATA_VALUE", ...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Integer">
 			>
 		>
 	>
@@ -439,12 +443,16 @@ class_definitions = <
 				name = <"hours">
 				type = <"Integer">
 			>
+			["minutes"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"minutes">
+				type = <"Integer">
+			>
 			["seconds"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"seconds">
 				type = <"Integer">
 			>
-			["fractional_sec"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"fractionalSec">
+			["fractional_second"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"fractional_second">
 				type = <"Double">
 			>
 			["sign"] = (P_BMM_SINGLE_PROPERTY) <
@@ -464,6 +472,46 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"PQ">
 				>	
+			>
+		>
+	>
+
+	--
+	-- replacement for IVT<PQ>; synonym type for QUANTITY_RANGE
+	--
+	["IVLPQ"] = <
+		name = <"IVLPQ">
+		ancestors = <"IVL", ...>
+		properties = <		
+			["low"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"low">
+				type = <"PQ">
+			>
+			["high"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"high">
+				type = <"PQ">
+			>
+		>
+	>
+
+	--
+	-- replacement for IVL_<TS>
+	--
+	["IVLTS"] = <
+		name = <"IVLTS">
+		ancestors = <"IVL", ...>
+		properties = <		
+			["low"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"low">
+				type = <"TS">
+			>
+			["high"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"high">
+				type = <"TS">
+			>
+			["width"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"width">
+				type = <"DURATION">
 			>
 		>
 	>
