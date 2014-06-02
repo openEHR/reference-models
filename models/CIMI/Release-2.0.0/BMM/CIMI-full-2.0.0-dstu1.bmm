@@ -40,7 +40,7 @@ packages = <
         packages = <
             ["Core"] = <
                 name = <"Core">
-                classes = <"ARCHETYPED", "CLUSTER", "ELEMENT", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION">
+                classes = <"ARCHETYPED", "ITEM_GROUP", "ELEMENT", "ITEM", "LINK", "LOCATABLE", "PARTICIPATION">
             >
             ["Data_Value_Types"] = <
                 name = <"Data_Value_Types">
@@ -82,8 +82,8 @@ class_definitions = <
         >
     >
 
-    ["CLUSTER"] = <
-        name = <"CLUSTER">
+    ["ITEM_GROUP"] = <
+        name = <"ITEM_GROUP">
         ancestors = <"ITEM", ...>
         properties = <
             ["structure_type"] = (P_BMM_SINGLE_PROPERTY) <
