@@ -16,7 +16,7 @@
 --     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 ------------------------------------------------------
 -- schema identification
@@ -69,7 +69,7 @@ packages = <
 			>
 			["quantity"] = <
 				name = <"quantity">
-				classes = <"DV_INTERVAL", "REFERENCE_RANGE", "DV_ORDERED", "DV_QUANTIFIED", "DV_QUANTITY", "DV_PROPORTION", "DV_AMOUNT", "DV_ABSOLUTE_QUANTITY", "DV_COUNT", "DV_ORDINAL">
+				classes = <"DV_INTERVAL", "REFERENCE_RANGE", "DV_ORDERED", "DV_QUANTIFIED", "DV_QUANTITY", "DV_PROPORTION", "PROPORTION_KIND", "DV_AMOUNT", "DV_ABSOLUTE_QUANTITY", "DV_COUNT", "DV_ORDINAL">
 				packages = <
 					["date_time"] = <
 						name = <"date_time">
@@ -560,7 +560,7 @@ class_definitions = <
 			>
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
-				type = <"Integer">
+				type = <"PROPORTION_KIND">
 				is_mandatory = <True>
 			>
 			["precision"] = (P_BMM_SINGLE_PROPERTY) <
@@ -573,6 +573,12 @@ class_definitions = <
 				is_computed = <True>
 			>
 		>
+	>
+
+	["PROPORTION_KIND"] = (P_BMM_ENUMERATION_INTEGER) <
+		name = <"PROPORTION_KIND">
+		ancestors = <"Integer", ...>
+		item_names = <"pk_ratio", "pk_unitary", "pk_percent", "pk_fraction", "pk_integer_fraction">
 	>
 
 	--

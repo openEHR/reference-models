@@ -10,9 +10,9 @@
 	**** This schema contains boilerplate text (keep them) and placeholder text enclosed       ****
 	**** within ': :'. Replace the latter with your own text, removing the ': :'.              ****
 	****                                                                                       ****
-	**** Remember, a .bmm file is in dADL syntax, so you need to stick to dADL rules.          ****
+	**** Remember, a .bmm file is in ODIN syntax, so you need to stick to ODIN rules.          ****
 	**** See here for syntax:                                                                  ****
-	**** http://www.openehr.org/svn/specification/TRUNK/publishing/architecture/am/adl1.5.pdf  ****
+	**** https://github.com/openEHR/odin                                                       ****
 	****                                                                                       ****
 	**** Comment lines begin with '--'; blank lines are allowed (encouraged).                  ****
 	****                                                                                       ****
@@ -24,8 +24,8 @@
 
 	***********************************************************************************************
 	****                                                                                       ****
-	**** The following is a typical header block for use with openEHR and Subversion; you are  ****
-	**** not obliged to use the same format!                                                   ****
+	**** The following is a typical header block for use with openEHR and Subversion & Git.    ****
+	**** You are not obliged to use the same format.                                           ****
 	****                                                                                       ****
 	***********************************************************************************************
 --
@@ -38,10 +38,6 @@
 -- 	copyright:   :Copyright (c) YEAR ORGANISATION:
 -- 	license:     :See end of file:
 -- 
--- 	file:        $URL: http://www.openehr.org/svn/knowledge2/BRANCHES/P_schema/rm_schemas/EXAMPLE.bmm.txt $
--- 	revision:    $LastChangedRevision$
--- 	last_change: $LastChangedDate: 2011-10-25 15:39:46 +0100 (Tue, 25 Oct 2011) $
--- 
 
 	***********************************************************************************************
 	****                                                                                       ****
@@ -53,10 +49,10 @@
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
 -- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/adl1.5/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+--     https://github.com/wolandscat/EOMF/blob/master/library/bmm/core/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 	***********************************************************************************************
 	****                                                                                       ****
@@ -208,7 +204,7 @@ archetype_rm_closure_packages = <"org.openehr.test_pkg", ...>
 	****   1. only top-level package ids can be paths (i.e. contain the '.' character)         ****
 	****   2. only classes defined in the same schema can be referenced in the package section ****
 	****      in that schema.                                                                  ****
-	****   3. make sure that the dADL 'keys' are the same as the 'name' attributes in each     ****
+	****   3. make sure that the ODIN 'keys' are the same as the 'name' attributes in each     ****
 	****      block, thus:                                                                     ****
 	****        ["org.openehr.test_pkg"] = <                                                   ****
 	****             name = <"org.openehr.test_pkg">                                           ****
@@ -274,7 +270,7 @@ class_definitions = <
 
 	***********************************************************************************************
 	****                                                                                       ****
-	**** The ["ITEM"] below is a dADL key, used to key a Hash of all defined classes. So make  ****
+	**** The ["ITEM"] below is a ODIN key, used to key a Hash of all defined classes. So make  ****
 	**** sure to keep it the same as the Name. Note that keys will always be compared in a     ****
 	**** case-insensitive fashion, but the class name may be in any case you like, and its     ****
 	**** appearance should be preserved by the tools in display & reporting.                   ****
@@ -310,7 +306,7 @@ class_definitions = <
 	**** type of the container (must be known elsewhere in the schema, typically in the primi- ****
 	**** tive types schema.                                                                    ****
 	**** The optional 'cardinality' property indicates cardinality of the container, and is    ****
-	**** expressed as a dADL range. The default is |0..*|                                      ****
+	**** expressed as a ODIN range. The default is |0..*|                                      ****
 	****                                                                                       ****
 	***********************************************************************************************
 
@@ -429,6 +425,49 @@ class_definitions = <
 			>
 		>
 	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is an enumerated class based on the underlying String type. The names   ****
+	**** and values are defined in separate lists whose lengths must match.                    ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["MAGNITUDE_STATUS"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"MAGNITUDE_STATUS">
+		ancestors = <"String", ...>
+		item_names = <"le", "ge", "eq", "approx_eq">
+		item_values = <"<=", ">=", "=", "~">
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is an enumerated class based on the underlying Integer type. The names  ****
+	**** are defined, but no values, because for the Integer based enumeration type, numbers   ****
+	**** from 0, 1, 2, etc are assigned if no integer values are given.                        ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["PROPORTION_KIND"] = (P_BMM_ENUMERATION_INTEGER) <
+		name = <"PROPORTION_KIND">
+		ancestors = <"Integer", ...>
+		item_names = <"pk_ratio", "pk_unitary", "pk_percent", "pk_fraction", "pk_integer_fraction">
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is an enumerated class based on the underlying Integer type. The names  ****
+	**** and values are fully defined in this case.                                            ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["PROPORTION_KIND_2"] = (P_BMM_ENUMERATION_INTEGER) <
+		name = <"PROPORTION_KIND">
+		ancestors = <"Integer", ...>
+		item_names = <"pk_ratio", "pk_unitary", "pk_percent", "pk_fraction", "pk_integer_fraction">
+		item_values = <0, 1001, 1002, 1003>
+	>
+
 >
 
 --|
