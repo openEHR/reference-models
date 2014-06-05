@@ -442,6 +442,19 @@ class_definitions = <
 
 	***********************************************************************************************
 	****                                                                                       ****
+	**** The following is an enumerated class based on the underlying String type. The names   ****
+	**** are defined, but not values - the values default to the name strings.                 ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["NAME_PART"] = (P_BMM_ENUMERATION_STRING) <
+		name = <"NAME_PART">
+		ancestors = <"String", ...>
+		item_names = <"FIRST", "MIDDLE", "LAST">
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
 	**** The following is an enumerated class based on the underlying Integer type. The names  ****
 	**** are defined, but no values, because for the Integer based enumeration type, numbers   ****
 	**** from 0, 1, 2, etc are assigned if no integer values are given.                        ****
