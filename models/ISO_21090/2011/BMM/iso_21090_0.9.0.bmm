@@ -825,7 +825,7 @@ class_definitions = <
 	>
 
 	["ADXP"] = <
-		name = <"ENXP">
+		name = <"ADXP">
 		ancestors = <"Any", ...>
 		properties = <		
 			["qualifier"] = (P_BMM_CONTAINER_PROPERTY) <

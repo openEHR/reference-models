@@ -42,8 +42,8 @@ packages = <
                 name = <"Core">
                 classes = <"BiologicEntity", "BiologicEntityIdentifier", "Person", "Subject", "SubjectIdentifier", "Organization", "OrganizationIdentifier", 
 							"Product", "StudySite", "StudySubject", "StudySubjectProtocolVersionRelationship", "StudySiteProtocolVersionRelationship", "StudyAgent", 
-							"StudyProtocolVersion", "DefinedActivity", "DefinedObservation", "PerformedActivity", "PerformedObservation", "StudyActivity",
-							"PlannedActivity">
+							"StudyProtocolVersion", "DefinedActivity", "DefinedObservation", "PerformedActivity", "PerformedObservation", "PerformedObservationResult",
+							"StudyActivity", "PlannedActivity">
             >
         >
     >
@@ -714,6 +714,20 @@ class_definitions = <
                 name = <"subCategoryCode">
                 type = <"CD">
             >
+            ["instantiatingPerformedActivity"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"instantiatingPerformedActivity">
+                type_def = <
+                    container_type = <"List">
+                    type = <"PerformedActivity">
+                >
+            >
+            ["focusedDefinedObservation"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"focusedDefinedObservation">
+                type_def = <
+                    container_type = <"List">
+                    type = <"DefinedObservation">
+                >
+            >
 		>
 	>
 	
@@ -817,6 +831,21 @@ class_definitions = <
                 name = <"instantiatedPlannedActivity">
                 type = <"PlannedActivity">
             >
+            ["instantiatedDefinedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"instantiatedDefinedActivity">
+                type = <"DefinedActivity">
+            >
+            ["versionStudyProtocolVersion"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"versionStudyProtocolVersion">
+                type = <"StudyProtocolVersion">
+            >
+            ["commentingPerformedObservation"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"commentingPerformedObservation">
+                type_def = <
+                    container_type = <"List">
+                    type = <"PerformedObservation">
+                >
+            >
 		>
 	>
 	
@@ -857,9 +886,81 @@ class_definitions = <
                 name = <"targetAnatomicSiteCode">
                 type = <"CD">
             >
+            ["resultedPerformedObservationResult"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"resultedPerformedObservationResult">
+                type_def = <
+                    container_type = <"List">
+                    type = <"PerformedObservationResult">
+                >
+            >
+            ["commentedPerformedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"commentedPerformedActivity">
+                type = <"PerformedActivity">
+            >
 		>
 	>
 	
+	["PerformedObservationResult"] = <
+		name = <"PerformedObservationResult">
+		ancestors = <"Any", ...>
+        properties = <
+            ["baselineIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"baselineIndicator">
+                type = <"BL">
+            >
+            ["comment"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"comment">
+                type = <"ST">
+            >
+            ["confidentialityCode"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"confidentialityCode">
+                type = <"CD">
+            >
+            ["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"identifier">
+                type = <"II">
+            >
+            ["reportedDate"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"reportedDate">
+                type = <"DATETIME">
+            >
+            ["resultClassificationCode"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"resultClassificationCode">
+                type_def = <
+                    container_type = <"DSET">
+                    type = <"CD">
+                >
+            >
+            ["typeCode"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"typeCode">
+                type = <"CD">
+            >
+            ["uncertaintyCode"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"uncertaintyCode">
+                type = <"CD">
+            >
+            ["value"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"value">
+                type = <"21090_ANY">
+            >
+            ["valueCodeModifiedText"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"valueCodeModifiedText">
+                type = <"ST">
+            >
+            ["valueNullFlavorReason"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"NullFlavorReason">
+                type = <"ST">
+            >
+            ["inferredPerformedObservationResult"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"inferredPerformedObservationResult">
+                type_def = <
+                    container_type = <"List">
+                    type = <"PerformedObservationResult">
+                >
+            >
+		>
+	>
+
 	["StudyActivity"] = <
 		name = <"StudyActivity">
         properties = <
@@ -870,6 +971,12 @@ class_definitions = <
             ["usedDefinedActivity"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"usedDefinedActivity">
                 type = <"DefinedActivity">
+                is_mandatory = <True>
+            >
+            ["usingStudyProtocolVersion"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"usingStudyProtocolVersion">
+                type = <"StudyProtocolVersion">
+                is_mandatory = <True>
             >
 		>
 	>
@@ -913,6 +1020,11 @@ class_definitions = <
 					generic_parameters = <"NONNEG">
 				>	
 			>
+            ["usedStudyActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"usedStudyActivity">
+                type = <"StudyActivity">
+                is_mandatory = <True>
+            >
 		>
 	>
 
