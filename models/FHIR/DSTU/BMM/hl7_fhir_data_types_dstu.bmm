@@ -1,0 +1,1275 @@
+-- 
+-- 	component:   openEHR Archetype Project
+-- 	description: FHIR basic types expressed as an Basic Meta-Model (BMM) file
+--               the BMM object meta-model classes found at https://github.com/wolandscat/EOMF/tree/master/library/bmm
+--               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale
+-- 	support:     Ocean Informatics <support@OceanInformatics.com>
+-- 	copyright:   Copyright (c) 2014 openEHR Foundation
+-- 	license:     Apache 2.0
+-- 
+
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+-- Current BMM version can be found as value of 'Bmm_internal_version' in 
+--     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+--
+------------------------------------------------------
+bmm_version = <"2.0">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"hl7">
+schema_name = <"fhir_data_types">
+rm_release = <"dstu">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.9.0">
+schema_lifecycle_state = <"dstu">
+schema_description = <"HL7 FHIR data types"> 
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.hl7.fhir"] = <
+		name = <"org.hl7.fhir">
+		packages = <
+			["data_types"] = <
+				name = <"data_types">
+				packages = <
+					["primitive"] = <
+						name = <"primitive">
+						classes = <"Any", "Element", "Base64Binary", "Boolean", "Integer", "Decimal", "String", "Code", "Id", "List", "Array", "Set", "Interval", "Ordered", "Aggregate", "Date", "DateTime", "Instant", "Uri", "Oid", "Uuid", "Xhtml">
+					>
+					["complex"] = <
+						name = <"complex">
+						classes = <"Ratio", "Period", "Range", "Attachment", "Identifier", "HumanName", "Address", "Contact", "SampledData", "Quantity", "Money", "Count", "Duration", "Distance", "Age", "CodeableConcept", "Coding", "Schedule", "Repeat">
+					>
+					["other"] = <
+						name = <"other">
+						classes = <"Narrative", "Extension", "ResourceReference">
+					>
+				>
+			>
+			["support"] = <
+				name = <"support">
+				classes = <"Resource", "ValueSet">
+			>
+			["administrative"] = <
+				name = <"administrative">
+				packages = <
+					["attribution"] = <
+						name = <"attribution">
+						classes = <"Party", "Person", "Practitioner", "Qualification", "Organization", "Patient", "Link", "Animal">
+					>
+					["entities"] = <
+						name = <"entities">
+						classes = <"Device", "Location", "Substance", "Instance", "Ingredient", "Group", "Characteristic">
+					>
+				>
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- primitive types
+------------------------------------------------------
+
+primitive_types = <
+	["Any"] = <
+		name = <"Any">
+		is_abstract = <True>
+	>
+	["Element"] = <
+		name = <"Element">
+		is_abstract = <True>
+		ancestors = <"Any", ...>
+	>
+	["Base64Binary"] = <
+		name = <"Base64Binary">
+		ancestors = <"Element", ...>
+	>
+	["Boolean"] = <
+		name = <"Boolean">
+		ancestors = <"Element", ...>
+	>
+	["Integer"] = <
+		name = <"Integer">
+		ancestors = <"Element", ...>
+	>
+	["Decimal"] = <
+		name = <"Decimal">
+		ancestors = <"Element", ...>
+	>
+
+	["String"] = <
+		name = <"String">
+		ancestors = <"Element", ...>
+	>
+	["Id"] = <
+		name = <"Id">
+		ancestors = <"String", ...>
+	>
+	["Code"] = <
+		name = <"Code">
+		ancestors = <"String", ...>
+	>
+	["Xhtml"] = <
+		name = <"Xhtml">
+		ancestors = <"String", ...>
+	>
+
+	["Uri"] = <
+		name = <"Uri">
+		ancestors = <"Element", ...>
+	>
+	["Oid"] = <
+		name = <"Oid">
+		ancestors = <"Uri", ...>
+	>
+	["Uuid"] = <
+		name = <"Uuid">
+		ancestors = <"Uri", ...>
+	>
+
+	["Instant"] = <
+		name = <"Instant">
+		ancestors = <"Element", ...>
+	>
+	["Date"] = <
+		name = <"Date">
+		ancestors = <"Element", ...>
+	>
+	["DateTime"] = <
+		name = <"DateTime">
+		ancestors = <"Element", ...>
+	>
+
+	["List"] = <
+		name = <"List">
+		ancestors = <"Element", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+	["Array"] = <
+		name = <"Array">
+		ancestors = <"Element", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+	["Set"] = <
+		name = <"Set">
+		ancestors = <"Element", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+	["Interval"] = <
+		name = <"Interval">
+		ancestors = <"Element", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Ordered">
+			>
+		>
+		properties = <
+			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"lower">
+				type = <"T">
+			>
+			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"upper">
+				type = <"T">
+			>
+			["lowerUnbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lowerUnbounded">
+				type = <"Boolean">
+			>
+			["upperUnbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upperUnbounded">
+				type = <"Boolean">
+			>
+			["lowerIncluded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lowerIncluded">
+				type = <"Boolean">
+			>
+			["upperIncluded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upperIncluded">
+				type = <"Boolean">
+			>
+		>
+	>
+	["Ordered"] = <
+		name = <"Ordered">
+		is_abstract = <True>
+		ancestors = <"Element", ...>
+	>
+
+	["Aggregate"] = <
+		name = <"Aggregate">
+		ancestors = <"Element", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+>
+
+class_definitions = <
+
+	--
+	---------------- Data types: Complex types -------------------
+	--
+
+	["Quantity"] = <
+		name = <"Quantity">
+		ancestors = <"Element", ...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Decimal">
+			>
+			["comparator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comparator">
+				type = <"Code">
+			>
+			["units"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"units">
+				type = <"String">
+			>
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Uri">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"Code">
+			>
+		>
+	>
+
+	["Age"] = <
+		name = <"Age">
+		ancestors = <"Quantity", ...>
+	>
+
+	["Distance"] = <
+		name = <"Distance">
+		ancestors = <"Quantity", ...>
+	>
+
+	["Duration"] = <
+		name = <"Duration">
+		ancestors = <"Quantity", ...>
+	>
+
+	["Count"] = <
+		name = <"Count">
+		ancestors = <"Quantity", ...>
+	>
+
+	["Money"] = <
+		name = <"Money">
+		ancestors = <"Quantity", ...>
+	>
+
+	["Ratio"] = <
+		name = <"Ratio">
+		ancestors = <"Element", ...>
+		properties = <
+			["numerator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"numerator">
+				type = <"Quantity">
+			>
+			["denominator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"denominator">
+				type = <"Quantity">
+			>
+		>
+	>
+
+	["Range"] = <
+		name = <"Range">
+		ancestors = <"Element", ...>
+		properties = <
+			["low"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"low">
+				type = <"Quantity">
+			>
+			["high"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"high">
+				type = <"Quantity">
+			>
+		>
+	>
+
+	["SampledData"] = <
+		name = <"SampledData">
+		ancestors = <"Element", ...>
+		properties = <
+			["origin"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"origin">
+				type = <"Quantity">
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
+			["factor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"factor">
+				type = <"Decimal">
+			>
+			["lowerLimit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lowerLimit">
+				type = <"Decimal">
+			>
+			["upperLimit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upperLimit">
+				type = <"Decimal">
+			>
+		>
+	>
+
+	["Period"] = <
+		name = <"Period">
+		ancestors = <"Element", ...>
+		properties = <
+			["start"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start">
+				type = <"DateTime">
+			>
+			["end"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end">
+				type = <"DateTime">
+			>
+		>
+	>
+
+	["Identifier"] = <
+		name = <"Identifier">
+		ancestors = <"Element", ...>
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"Code">
+			>
+			["label"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"label">
+				type = <"String">
+			>
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Uri">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["assigner"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"assigner">
+				type = <"Organization">
+			>
+		>
+	>
+
+	["Attachment"] = <
+		name = <"Attachment">
+		ancestors = <"Element", ...>
+		properties = <
+			["contentType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"contentType">
+				type = <"Code">
+				is_mandatory = <True>
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"Code">
+			>
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+			>
+			["data"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"data">
+				type = <"Base64Binary">
+			>
+			["hash"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"hash">
+				type = <"Base64Binary">
+			>
+			["size"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"size">
+				type = <"Integer">
+			>
+			["title"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"title">
+				type = <"String">
+			>
+		>
+	>
+
+	["CodeableConcept"] = <
+		name = <"CodeableConcept">
+		ancestors = <"Element", ...>
+		properties = <
+			["coding"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"coding">
+				type_def = <
+					container_type = <"List">
+					type = <"Coding">
+				>
+				cardinality = <|>=0|>
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+		>
+	>
+
+	["Coding"] = <
+		name = <"Coding">
+		ancestors = <"Element", ...>
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Uri">
+			>
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version">
+				type = <"String">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"Code">
+			>
+			["display"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"display">
+				type = <"String">
+			>
+			["primary"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"primary">
+				type = <"Boolean">
+			>
+			["valueSet"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"valueSet">
+				type = <"ValueSet">
+			>
+		>
+	>
+
+	["HumanName"] = <
+		name = <"HumanName">
+		ancestors = <"Element", ...>
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"Code">
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+			["family"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"family">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["given"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"given">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["prefix"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"prefix">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["suffix"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"suffix">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	["Address"] = <
+		name = <"Address">
+		ancestors = <"Element", ...>
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"Code">
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+			["line"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"line">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["city"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"city">
+				type = <"String">
+			>
+			["state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"state">
+				type = <"String">
+			>
+			["zip"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"zip">
+				type = <"String">
+			>
+			["country"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"country">
+				type = <"String">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	["Schedule"] = <
+		name = <"Schedule">
+		ancestors = <"Element", ...>
+		properties = <
+			["event"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"event">
+				type_def = <
+					container_type = <"List">
+					type = <"Period">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Repeat"] = <
+		name = <"Repeat">
+		ancestors = <"Schedule", ...>
+		properties = <
+			["frequency"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"frequency">
+				type = <"Integer">
+			>
+			["when"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"when">
+				type = <"Code">
+			>
+			["duration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"duration">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
+			["units"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"units">
+				type = <"Code">
+				is_mandatory = <True>
+			>
+			["count"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"count">
+				type = <"Integer">
+			>
+			["end"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end">
+				type = <"DateTime">
+			>
+		>
+	>
+
+	["Contact"] = <
+		name = <"Contact">
+		ancestors = <"Element", ...>
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Code">
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+			>
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"Code">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	--
+	---------------- Data types: Other types -------------------
+	--
+
+	["Narrative"] = <
+		name = <"Narrative">
+		ancestors = <"Element", ...>
+		properties = <
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"Code">
+				is_mandatory = <True>
+			>
+			["div"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"div">
+				type = <"Xhtml">
+			>
+		>
+	>
+
+	["ResourceReference"] = <
+		name = <"ResourceReference">
+		ancestors = <"Element", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Resource">
+			>
+		>
+		properties = <
+			["reference"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"reference">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["resolvesTo"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"resolvesTo">
+				type = <"T">
+				is_computed = <True>
+			>
+			["display"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"display">
+				type = <"String">
+			>
+		>
+	>
+
+	["Extension"] = <
+		name = <"Extension">
+		ancestors = <"Element", ...>
+		properties = <
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"value">
+				type_def = <
+					container_type = <"List">
+					type = <"Element">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	--
+	---------------- Support -------------------
+	--
+
+	["Resource"] = <
+		name = <"Resource">
+		is_abstract = <True>
+		ancestors = <"Element", ...>
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["extension"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"extension">
+				type_def = <
+					container_type = <"List">
+					type = <"Extension">
+				>
+				cardinality = <|>=0|>
+			>
+			["modifierExtension"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"modifierExtension">
+				type_def = <
+					container_type = <"List">
+					type = <"Extension">
+				>
+				cardinality = <|>=0|>
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"Code">
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"string">
+			>
+			["contained"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contained">
+				type_def = <
+					container_type = <"List">
+					type = <"Resource">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["ValueSet"] = <
+		name = <"ValueSet">
+		ancestors = <"Resource", ...>
+		properties = <
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version">
+				type = <"String">
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["publisher"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"publisher">
+				type = <"String">
+			>
+			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"telecom">
+				type_def = <
+					container_type = <"List">
+					type = <"Contact">
+				>
+				cardinality = <|>=0|>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"copyright">
+				type = <"string">
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"Code">
+				is_mandatory = <True>
+			>
+			["experimental"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"experimental">
+				type = <"Boolean">
+			>
+			["date"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"date">
+				type = <"dateTime">
+			>
+		>
+	>
+
+	["Party"] = <
+		name = <"Party">
+		ancestors = <"Resource", ...>
+		is_abstract = <True>
+		properties = <
+			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"telecom">
+				type_def = <
+					container_type = <"List">
+					type = <"Contact">
+				>
+				cardinality = <|>=0|>
+			>
+			["address"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"address">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Person"] = <
+		name = <"Person">
+		is_abstract = <True>
+		ancestors = <"Party", ...>
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"HumanName">
+			>
+			["gender"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"gender">
+				type = <"CodeableConcept">
+			>
+			["birthDate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"birthDate">
+				type = <"dateTime">
+			>
+			["photo"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"photo">
+				type = <"Attachment">
+			>
+			["communication"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"communication">
+				type_def = <
+					container_type = <"List">
+					type = <"CodeableConcept">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Practitioner"] = <
+		name = <"Practitioner">
+		ancestors = <"Person", ...>
+		properties = <
+			["organization"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"organization">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["role"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"role">
+				type = <"CodeableConcept">
+			>
+			["specialty"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"specialty">
+				type = <"CodeableConcept">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["qualification"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"qualification">
+				type_def = <
+					container_type = <"List">
+					type = <"Qualification">
+				>
+				cardinality = <|>=0|>
+			>
+			["location"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"location">
+				type_def = <
+					container_type = <"List">
+					type = <"Location">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Patient"] = <
+		name = <"Patient">
+		ancestors = <"Person", ...>
+		properties = <
+			["deceased"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"deceased">
+				type = <"Boolean">
+			>
+			["maritalStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"maritalStatus">
+				type = <"CodeableConcept">
+			>
+			["multipleBirth"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"multipleBirth">
+				type = <"Boolean">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["careProvider"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"careProvider">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"ResourceReference">
+						generic_parameters = <"Party">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"managingOrganization">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["active"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"active">
+				type = <"Boolean">
+			>
+			["link"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"link">
+				type_def = <
+					container_type = <"List">
+					type = <"Link">
+				>
+				cardinality = <|>=0|>
+			>
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"Contact">
+				>
+				cardinality = <|>=0|>
+			>
+			["animal"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"animal">
+				type = <"Animal">
+			>
+		>
+	>
+
+	["Link"] = <
+		name = <"Link">
+		ancestors = <"Element", ...>
+		properties = <
+			["other"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"other">
+				type = <"Patient">
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"code">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Animal"] = <
+		name = <"Animal">
+		ancestors = <"Element", ...>
+		properties = <
+			["species"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"species">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["breed"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"breed">
+				type = <"CodeableConcept">
+			>
+			["genderStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"genderStatus">
+				type = <"CodeableConcept">
+			>
+		>
+	>
+
+	["Qualification"] = <
+		name = <"Qualification">
+		ancestors = <"Element", ...>
+		properties = <
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["issuer"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"issuer">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Organization">
+				>
+			>
+		>
+	>
+
+	["Organization"] = <
+		name = <"Organization">
+		ancestors = <"Party", ...>
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+			>
+			["partOf"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"partOf">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["active"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"active">
+				type = <"Boolean">
+			>
+			["location"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"location">
+				type_def = <
+					container_type = <"List">
+					type = <"Location">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Location"] = <
+		name = <"Location">
+		ancestors = <"Resource", ...>
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+		>
+	>
+
+	["Substance"] = <
+		name = <"Substance">
+		ancestors = <"Resource", ...>
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+			["ingredient"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"ingredient">
+				type_def = <
+					container_type = <"List">
+					type = <"Ingredient">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Instance"] = <
+		name = <"Instance">
+		ancestors = <"Element", ...>
+		properties = <
+			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"identifier">
+				type = <"Identifier">
+			>
+			["expiry"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"expiry">
+				type = <"dateTime">
+			>
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"Quantity">
+			>
+		>
+	>
+
+	["Ingredient"] = <
+		name = <"Ingredient">
+		ancestors = <"Element", ...>
+		properties = <
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"Ratio">
+			>
+			["substance"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"substance">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Substance">
+				>
+			>
+		>
+	>
+
+	["Group"] = <
+		name = <"Group">
+		ancestors = <"Resource", ...>
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"Code">
+				is_mandatory = <True>
+			>
+			["actual"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"actual">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"CodeableConcept">
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"Integer">
+			>
+			["member"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"member">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"ResourceReference">
+						generic_parameters = <"Resource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Characteristic"] = <
+		name = <"Characteristic">
+		ancestors = <"Element", ...>
+		properties = <
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["exclude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"exclude">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Device"] = <
+		name = <"Device">
+		ancestors = <"Resource", ...>
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["manufacturer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"manufacturer">
+				type = <"String">
+			>
+			["model"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"model">
+				type = <"String">
+			>
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version">
+				type = <"String">
+			>
+			["expiry"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"expiry">
+				type = <"Date">
+			>
+			["udi"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"udi">
+				type = <"String">
+			>
+			["lotnumber"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lotnumber">
+				type = <"String">
+			>
+			["url"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"url">
+				type = <"Uri">
+			>
+			["owner"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"owner">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["location"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"location">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Location">
+				>
+			>
+			["patient"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"patient">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"Patient">
+				>
+			>
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"Contact">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+>
+
