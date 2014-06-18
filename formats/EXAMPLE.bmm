@@ -295,6 +295,30 @@ class_definitions = <
 		is_abstract = <True>
 	>
 
+	["ELEMENT"] = <
+		name = <"ELEMENT">
+		ancestors = <"ITEM", ...>
+		properties = <
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a SINGLE PROPERTY DEFINITION, i.e. corresponding to a single-valued  ****
+	**** attribute from a typical UML or other data model.                                     ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"null_flavour">
+				type = <"DV_CODED_TEXT">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"DATA_VALUE">
+			>
+		>
+	>
+
 	["CLUSTER"] = <
 		name = <"CLUSTER">
 		ancestors = <"ITEM", ...>
@@ -322,26 +346,50 @@ class_definitions = <
 		>
 	>
 
-	["ELEMENT"] = <
-		name = <"ELEMENT">
-		ancestors = <"ITEM", ...>
-		properties = <
-
 	***********************************************************************************************
 	****                                                                                       ****
-	**** The following is a SINGLE PROPERTY DEFINITION, i.e. corresponding to a single-valued  ****
-	**** attribute from a typical UML or other data model.                                     ****
+	**** The following is a GENERIC CLASS DEFINITION with OPEN GENERIC PROPERTIES. Each such   ****
+	**** property indicates which generic parameter type it is i.e. 'T', 'U' etc.              ****
+	**** Each such parameter has its own part in the 'generic_parameter_defs' section, with an ****
+	**** optional 'conforms_to_type' setting indicating that the type is constrained.          ****
 	****                                                                                       ****
 	***********************************************************************************************
 
-			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"null_flavour">
-				type = <"DV_CODED_TEXT">
-				is_mandatory = <True>
+	["Interval"] = <
+		name = <"Interval">
+		ancestors = <"Any", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Ordered">
 			>
-			["value"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"value">
-				type = <"DATA_VALUE">
+		>
+		properties = <
+			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"lower">
+				type = <"T">
+			>
+			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"upper">
+				type = <"T">
+			>
+		>
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** Another GENERIC CLASS DEFINITION, this time inheriting its main definition from a     ****
+	**** parent class, here Interval.                                                          ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["DV_INTERVAL"] = <
+		name = <"DV_INTERVAL">
+		ancestors = <"Interval", "DATA_VALUE">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"DV_ORDERED">
 			>
 		>
 	>
@@ -368,15 +416,36 @@ class_definitions = <
 					generic_parameters = <"DV_QUANTITY">
 				>
 			>
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following is a nested CONTAINER PROPERTY DEFINITION, i.e. corresponding to a      ****
+	**** whose type is a container class (here, List) where the contained type paremeter is    ****
+	**** itself generic, and conforms to some other generic class defined in the same model.   ****
+	****                                                                                       ****
+	**** Since the contained type is generic, it is expressed as a structure, and introduced   ****
+	**** with 'type_def' instead of just 'type'. The general rule is 'type' is used for a      ****
+	**** simeple string type name, and 'type_def' for a structured type reference.             ****
+	****                                                                                       ****
+	***********************************************************************************************
+			["careProvider"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"careProvider">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"ResourceReference">
+						generic_parameters = <"Party">
+					>
+				>
+				cardinality = <|>=0|>
+			>
 		>
 	>
 
 	***********************************************************************************************
 	****                                                                                       ****
-	**** The following is a GENERIC CLASS DEFINITION, i.e. a class defined with one or more    ****
-	**** open generic parameters, customarily named 'T', 'U', etc.                             ****
-	**** Each such parameter has its own part in the 'generic_parameter_defs' section, with an ****
-	**** optional 'conforms_to_type' setting indicating that the type is constrained.          ****
+	**** The following is a GENERIC CLASS DEFINITION, where a property type is of another      ****
+	**** generic type, here DV_INTERVAL. In the following type, there is a property whose type ****
+	**** is a nested generic types based on the type REFERENCE_RANGE.                          ****
 	****                                                                                       ****
 	***********************************************************************************************
 
@@ -398,30 +467,29 @@ class_definitions = <
 		>
 	>
 
+	["RANGE_OF_INTERVAL_OF_QUANTITY"] = <
+		name = <"RANGE_OF_INTERVAL_OF_QUANTITY">
+		ancestors = <"Any", ...>
+		properties = <
+
 	***********************************************************************************************
 	****                                                                                       ****
-	**** The following is a GENERIC CLASS DEFINITION with OPEN GENERIC PROPERTIES. Each such   ****
-	**** property indicates which generic parameter type it is i.e. 'T', 'U' etc.              ****
+	**** The following property definition is based on the above class REFERENCE_RANGE, and in ****
+	**** this case, has a generic parameter type that is another generic type. Thus, the type  ****
+	**** is nested, and instead of 'generic_parameters', we use 'generic_parameter_defs' to    ****
+	**** specify a type structure, following the same pattern as for 'type' and 'type_def'.    ****
 	****                                                                                       ****
 	***********************************************************************************************
 
-	["Interval"] = <
-		name = <"Interval">
-		ancestors = <"Any", ...>
-		generic_parameter_defs = <
-			["T"] = <
-				name = <"T">
-				conforms_to_type = <"Ordered">
-			>
-		>
-		properties = <
-			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
-				name = <"lower">
-				type = <"T">
-			>
-			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
-				name = <"upper">
-				type = <"T">
+			["range"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"range">
+				type_def = <
+					root_type = <"REFERENCE_RANGE">
+					generic_parameter_defs = (P_BMM_GENERIC_TYPE) <
+						root_type = <"DV_INTERVAL">
+						generic_parameters = <"DV_QUANTITY">
+					>
+				>
 			>
 		>
 	>
