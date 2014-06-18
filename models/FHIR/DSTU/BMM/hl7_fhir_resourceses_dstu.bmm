@@ -1,6 +1,6 @@
 -- 
 -- 	component:   openEHR Archetype Project
--- 	description: FHIR basic types expressed as an Basic Meta-Model (BMM) file
+-- 	description: FHIR Resources expressed as an Basic Meta-Model (BMM) file
 --               the BMM object meta-model classes found at https://github.com/wolandscat/EOMF/tree/master/library/bmm
 --               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
 -- 	keywords:    reference model, meta-model, archetypes
@@ -17,14 +17,14 @@
 --     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 ------------------------------------------------------
 -- schema identification
 -- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
 ------------------------------------------------------
 rm_publisher = <"hl7">
-schema_name = <"fhir_data_types">
+schema_name = <"fhir_resources">
 rm_release = <"dstu">
 
 ------------------------------------------------------
@@ -32,7 +32,7 @@ rm_release = <"dstu">
 ------------------------------------------------------
 schema_revision = <"0.9.0">
 schema_lifecycle_state = <"dstu">
-schema_description = <"HL7 FHIR data types"> 
+schema_description = <"HL7 FHIR resources"> 
 
 ------------------------------------------------------
 -- packages
@@ -62,16 +62,21 @@ packages = <
 				name = <"support">
 				classes = <"Resource", "ValueSet">
 			>
-			["administrative"] = <
-				name = <"administrative">
+			["resources"] = <
+				name = <"resources">
 				packages = <
-					["attribution"] = <
-						name = <"attribution">
-						classes = <"Party", "Person", "Practitioner", "Qualification", "Organization", "Patient", "Link", "Animal">
-					>
-					["entities"] = <
-						name = <"entities">
-						classes = <"Device", "Location", "Substance", "Instance", "Ingredient", "Group", "Characteristic">
+					["administrative"] = <
+						name = <"administrative">
+						packages = <
+							["attribution"] = <
+								name = <"attribution">
+								classes = <"Party", "Person", "Practitioner", "Qualification", "Organization", "Patient", "Link", "Animal">
+							>
+							["entities"] = <
+								name = <"entities">
+								classes = <"Device", "Location", "Substance", "Instance", "Ingredient", "Group", "Characteristic">
+							>
+						>
 					>
 				>
 			>
@@ -471,9 +476,12 @@ class_definitions = <
 				name = <"primary">
 				type = <"Boolean">
 			>
-			["valueSet"] = (P_BMM_SINGLE_PROPERTY) <
+			["valueSet"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"valueSet">
-				type = <"ValueSet">
+				type_def = <
+					root_type = <"ResourceReference">
+					generic_parameters = <"ValueSet">
+				>
 			>
 		>
 	>
