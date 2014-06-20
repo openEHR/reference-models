@@ -88,14 +88,14 @@ schema_description = <"openEHR schema to support test archetypes">
 	**** This is where you say what schemas are to be included in this one. Construct the      ****
 	**** inclusion hierarchy in the same logical fashion as for XML schema or similar.         ****
 	****                                                                                       ****
-	****		includes = <                                                                   ****
-	****			["1"] = <                                                                  ****
-	****				id = <"some_schema_id">                                                ****
-	****			>                                                                          ****
-	****			["2"] = <                                                                  ****
-	****				id = <"some_other_schema_id">                                          ****
-	****			>                                                                          ****
-	****		>                                                                              ****
+	****        includes = <                                                                   ****
+	****            ["1"] = <                                                                  ****
+	****                id = <"some_schema_id">                                                ****
+	****            >                                                                          ****
+	****            ["2"] = <                                                                  ****
+	****                id = <"some_other_schema_id">                                          ****
+	****            >                                                                          ****
+	****        >                                                                              ****
 	****                                                                                       ****
 	***********************************************************************************************
 
@@ -112,7 +112,7 @@ includes = <
 	****                                                                                       ****
 	**** Three archetyping related attributes can be set below, but would not usually all      ****
 	**** in the same schema. Only the archetype_rm_closure_packages variable is needed in      ****
-	**** at least one schema, usually the top-most one.                                        ****		
+	**** at least one schema, usually the top-most one.                                        ****
 	****                                                                                       ****
 	***********************************************************************************************
 
@@ -124,11 +124,11 @@ includes = <
 	****                                                                                       ****
 	**** archetype_parent_class defines a base class from the Reference Model that provides    ****
 	**** archetyping capability in RM data structures. It is optional, and there need be no    ****
-	**** such class in the RM. In the openEHR and 13606 RMs, this class exists, (LOCATABLE,	   ****		
-	**** and RECORD_COMPONENT respectively). Defining it here has the effect in tools that 	   ****		
-	**** the class tree under which archetypes are arranged contains only RM classes inherit-  ****		
-	**** ing from this class, e.g. LOCATABLE classes in the case of openEHR. If nothing is set ****		
-	**** here, all classes in the RM are assumed as candidates for archetypes.                 ****		
+	**** such class in the RM. In the openEHR and 13606 RMs, this class exists, (LOCATABLE,    ****
+	**** and RECORD_COMPONENT respectively). Defining it here has the effect in tools that     ****
+	**** the class tree under which archetypes are arranged contains only RM classes inherit-  ****
+	**** ing from this class, e.g. LOCATABLE classes in the case of openEHR. If nothing is set ****
+	**** here, all classes in the RM are assumed as candidates for archetypes.                 ****
 	****                                                                                       ****
 	**** This attribute, if defined, must be defined in the same schema that defines the       ****
 	**** referenced class.                                                                     ****
@@ -141,9 +141,9 @@ archetype_parent_class = <"CLASS_NAME">
 	****                                                                                       ****
 	**** archetype_data_value_parent_class defines a base class from the Reference Model       ****
 	**** whose descendants are considered to be 'logical data types' (i.e. of some higher      ****
-	**** level than the built-in primitive types String, Integer etc). This attribute is   	   ****		
-	**** optional, even if the RM does have such a class, and is only used to help tooling 	   ****		
-	**** provide more intelligent display, e.g. in statistical reports.                        ****		
+	**** level than the built-in primitive types String, Integer etc). This attribute is       ****
+	**** optional, even if the RM does have such a class, and is only used to help tooling     ****
+	**** provide more intelligent display, e.g. in statistical reports.                        ****
 	****                                                                                       ****
 	**** This attribute, if defined, must be defined in the same schema that defines the       ****
 	**** referenced class.                                                                     ****
@@ -475,9 +475,15 @@ class_definitions = <
 	***********************************************************************************************
 	****                                                                                       ****
 	**** The following property definition is based on the above class REFERENCE_RANGE, and in ****
-	**** this case, has a generic parameter type that is another generic type. Thus, the type  ****
-	**** is nested, and instead of 'generic_parameters', we use 'generic_parameter_defs' to    ****
-	**** specify a type structure, following the same pattern as for 'type' and 'type_def'.    ****
+	**** this case, has a generic parameter type that is another generic type: DV_INTERVAL<    ****
+	**** DV_QUANTITY>. To express this, we use 'generic_parameter_defs' instead of             ****
+	**** just 'generic_parameters' to specify a type structure, rather than just a string type ****
+	**** name. Note that 'generic_parameter_defs' is a logical list in general, since there    ****
+	**** can always be more than one generic parameter, i.e. 'T', 'U' etc, even though it is   ****
+	**** most commonly just one. Accordingly, the usual ODIN hash/list structure is used       ****
+	**** with each member being keyed by a generic parameter name, below ["T"]. Additionally,  ****
+	**** Since each member of the list could be any descendant of the type 'P_BMM_TYPE',       ****
+	**** the usual type marker needs to be included.                                           ****
 	****                                                                                       ****
 	***********************************************************************************************
 
@@ -485,9 +491,56 @@ class_definitions = <
 				name = <"range">
 				type_def = <
 					root_type = <"REFERENCE_RANGE">
-					generic_parameter_defs = (P_BMM_GENERIC_TYPE) <
-						root_type = <"DV_INTERVAL">
-						generic_parameters = <"DV_QUANTITY">
+					generic_parameter_defs = <
+						["T"] = (P_BMM_GENERIC_TYPE) <
+							root_type = <"DV_INTERVAL">
+							generic_parameters = <"DV_QUANTITY">
+						>
+					>
+				>
+			>
+		>
+	>
+
+	***********************************************************************************************
+	****                                                                                       ****
+	**** The following example just does the same as the one above, but shows an (unrealistic) ****
+	**** but legal extreme case of multiple, mixed, nested generic parameters.                 ****
+	****                                                                                       ****
+	**** The general rule for expressing types is clearly illustrated:                         ****
+	****    - use 'type' for simple string type refs; use 'type_def' for structure types       ****
+	****    - within P_BMM_GENERIC_TYPE, use 'generic_parameters' for a list of string types   ****
+	****      and 'generic_parameter_defs' for a list of complex type references.              ****
+	****                                                                                       ****
+	***********************************************************************************************
+
+	["MIXED_GENERIC_PARAM_TYPE"] = <
+		name = <"MIXED_GENERIC_PARAM_TYPE">
+		ancestors = <"Any", ...>
+		properties = <
+			["range"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"range">
+				type_def = <
+					root_type = <"REFERENCE_RANGE">
+					generic_parameter_defs = <
+						["T"] = (P_BMM_GENERIC_TYPE) <
+							root_type = <"DV_INTERVAL">
+							generic_parameters = <"DV_QUANTITY">
+						>
+						["U"] = (P_BMM_SIMPLE_TYPE) <
+							type = <"Integer">
+						>
+						["V"] = (P_BMM_CONTAINER_TYPE) <
+							type = <"DV_QUANTITY">
+							container_type = <"List">
+						>
+						["W"] = (P_BMM_CONTAINER_TYPE) <
+							type_def = (P_BMM_GENERIC_TYPE) <
+								root_type = <"DV_INTERVAL">
+								generic_parameters = <"DV_QUANTITY">
+							>
+							container_type = <"List">
+						>
 					>
 				>
 			>
