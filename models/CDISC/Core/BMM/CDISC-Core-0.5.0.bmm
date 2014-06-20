@@ -43,7 +43,7 @@ packages = <
                 classes = <"BiologicEntity", "BiologicEntityIdentifier", "Person", "Subject", "SubjectIdentifier", "Organization", "OrganizationIdentifier", 
 							"Product", "StudySite", "StudySubject", "StudySubjectProtocolVersionRelationship", "StudySiteProtocolVersionRelationship", "StudyAgent", 
 							"StudyProtocolVersion", "DefinedActivity", "DefinedObservation", "PerformedActivity", "PerformedObservation", "PerformedObservationResult",
-							"StudyActivity", "PlannedActivity">
+							"Activity", "PlannedSubjectActivityGroup", "StudyActivity", "PlannedActivity", "PlannedCompositionRelationship">
             >
         >
     >
@@ -74,26 +74,32 @@ class_definitions = <
             ["birthCountryCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"birthCountryCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["birthDate"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"birthDate">
                 type = <"DATETIME">
+				is_im_runtime = <True>
             >
             ["birthOrder"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"birthOrder">
                 type = <"INT">
+				is_im_runtime = <True>
             >
             ["deathDate"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"deathDate">
                 type = <"DATETIME">
+				is_im_runtime = <True>
             >
             ["deathDateEstimatedIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"deathDateEstimatedIndicator">
                 type = <"BL">
+				is_im_runtime = <True>
             >
             ["deathIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"deathIndicator">
                 type = <"BL">
+				is_im_runtime = <True>
             >
             ["name"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"name">
@@ -108,6 +114,7 @@ class_definitions = <
                     container_type = <"Set">
                     type = <"BiologicEntityIdentifier">
                 >
+				is_im_runtime = <True>
             >
         >
     >
@@ -119,6 +126,7 @@ class_definitions = <
             ["educationLevelCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"educationLevelCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["educationGroupCode"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"educationGroupCode">
@@ -126,14 +134,17 @@ class_definitions = <
                     container_type = <"DSET">
                     type = <"CD">
                 >
+				is_im_runtime = <True>
             >
             ["initials"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"initials">
                 type = <"ST">
+				is_im_runtime = <True>
             >
             ["maritalStatusCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"maritalStatusCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
 			["occupationDateRange"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"occupationDateRange">
@@ -141,14 +152,17 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATE">
 				>	
+				is_im_runtime = <True>
 			>
             ["postalAddress"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"postalAddress">
                 type = <"AD">
+				is_im_runtime = <True>
             >
             ["primaryOccupationCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"primaryOccupationCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["raceCode"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"raceCode">
@@ -156,6 +170,7 @@ class_definitions = <
                     container_type = <"DSET">
                     type = <"CD">
                 >
+				is_im_runtime = <True>
             >
             ["telecomAddress"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"telecomAddress">
@@ -163,6 +178,7 @@ class_definitions = <
                     container_type = <"Bag">
                     type = <"TEL">
                 >
+				is_im_runtime = <True>
             >
 		>
 	>
@@ -174,10 +190,12 @@ class_definitions = <
                 name = <"identifier">
                 type = <"II">
                 is_mandatory = <True>
+				is_im_runtime = <True>
             >
             ["missingIdentifierReasonCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"missingIdentifierReasonCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["typeCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"typeCode">
@@ -189,6 +207,7 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
 		>
 	>
@@ -211,6 +230,7 @@ class_definitions = <
                     container_type = <"Set">
                     type = <"BiologicEntityIdentifier">
                 >
+				is_im_runtime = <True>
             >
 		>
 	>
@@ -222,6 +242,7 @@ class_definitions = <
                 name = <"identifier">
                 type = <"II">
                 is_mandatory = <True>
+				is_im_runtime = <True>
             >
 			["effectiveDateRange"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"effectiveDateRange">
@@ -229,6 +250,7 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
             ["primaryIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"primaryIndicator">
@@ -241,6 +263,7 @@ class_definitions = <
             ["assigningOrganization"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"assigningOrganization">
                 type = <"Organization">
+				is_im_runtime = <True>
             >
 		>
 	>
@@ -259,6 +282,7 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
             ["name"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"name">
@@ -266,14 +290,17 @@ class_definitions = <
                     container_type = <"DSET">
                     type = <"ON">
                 >
+				is_im_runtime = <True>
             >
             ["description"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"description">
                 type = <"ST">
+				is_im_runtime = <True>
             >
             ["postalAddress"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"postalAddress">
                 type = <"AD">
+				is_im_runtime = <True>
             >
             ["identifyingOrganizationIdentifier"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"identifyingOrganizationIdentifier">
@@ -281,6 +308,7 @@ class_definitions = <
                     container_type = <"Set">
                     type = <"OrganizationIdentifier">
                 >
+				is_im_runtime = <True>
             >
             ["assignedOrganizationIdentifier"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"assignedOrganizationIdentifier">
@@ -288,6 +316,7 @@ class_definitions = <
                     container_type = <"Set">
                     type = <"OrganizationIdentifier">
                 >
+				is_im_runtime = <True>
             >
             ["telecomAddress"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"telecomAddress">
@@ -295,6 +324,7 @@ class_definitions = <
                     container_type = <"Bag">
                     type = <"TEL">
                 >
+				is_im_runtime = <True>
             >
             ["typeCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"typeCode">
@@ -310,6 +340,7 @@ class_definitions = <
                 name = <"identifier">
                 type = <"II">
                 is_mandatory = <True>
+				is_im_runtime = <True>
             >
             ["primaryIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"primaryIndicator">
@@ -322,6 +353,7 @@ class_definitions = <
             ["assigner"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"assigner">
                 type = <"Organization">
+				is_im_runtime = <True>
             >
 		>
 	>
@@ -339,10 +371,12 @@ class_definitions = <
             ["expirationDate"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"expirationDate">
                 type = <"DATE">
+				is_im_runtime = <True>
             >
             ["lotNumberText"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"lotNumberText">
                 type = <"SIMPLE">
+				is_im_runtime = <True>
             >
             ["pre1938Indicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"pre1938Indicator">
@@ -361,6 +395,7 @@ class_definitions = <
             ["identifier"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"identifier">
                 type = <"II">
+				is_im_runtime = <True>
             >
 			["dateRange"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"dateRange">
@@ -368,6 +403,7 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
             ["leadIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"leadIndicator">
@@ -453,6 +489,7 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
 		>
 	>
@@ -466,6 +503,7 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
 		>
 	>
@@ -476,6 +514,7 @@ class_definitions = <
             ["blindedName"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"blindedName">
                 type = <"ST">
+				is_im_runtime = <True>
             >
             ["characteristicModifiedIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"characteristicModifiedIndicator">
@@ -511,6 +550,7 @@ class_definitions = <
             ["statusDate"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"statusDate">
                 type = <"DATETIME">
+				is_im_runtime = <True>
             >
             ["substitutionAllowedIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"substitutionAllowedIndicator">
@@ -770,34 +810,41 @@ class_definitions = <
 					root_type = <"IVL">
 					generic_parameters = <"DATETIME">
 				>	
+				is_im_runtime = <True>
 			>
             ["dateRangeValidationCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"dateRangeValidationCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["delayDuration"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"delayDuration">
                 type = <"TIME">
 				is_computed = <True>
+				is_im_runtime = <True>
             >
             ["duration"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"duration">
                 type = <"TIME">
 				is_computed = <True>
+				is_im_runtime = <True>
             >
             ["fastingStatusIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"fastingStatusIndicator">
                 type = <"BL">
 				is_computed = <True>
+				is_im_runtime = <True>
             >
             ["medicalHistoryIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"medicalHistoryIndicator">
                 type = <"BL">
 				is_computed = <True>
+				is_im_runtime = <True>
             >
             ["negationIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"negationIndicator">
                 type = <"BL">
+				is_im_runtime = <True>
             >
             ["negationReason"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"negationReason">
@@ -805,11 +852,13 @@ class_definitions = <
                     container_type = <"DSET">
                     type = <"SC">
                 >
+				is_im_runtime = <True>
             >
             ["repetitionNumber"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"repetitionNumber">
                 type = <"POS">
 				is_computed = <True>
+				is_im_runtime = <True>
             >
             ["statusCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"statusCode">
@@ -818,6 +867,7 @@ class_definitions = <
             ["statusDate"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"statusDate">
                 type = <"DATETIME">
+				is_im_runtime = <True>
             >
 			["studyDayRange"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"studyDayRange">
@@ -826,6 +876,7 @@ class_definitions = <
 					generic_parameters = <"INT">
 				>	
 				is_computed = <True>
+				is_im_runtime = <True>
 			>
             ["instantiatedPlannedActivity"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"instantiatedPlannedActivity">
@@ -872,11 +923,13 @@ class_definitions = <
 					generic_parameters = <"DATETIME">
 				>	
 				is_computed = <True>
+				is_im_runtime = <True>
 			>
             ["focalDuration"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"focalDuration">
                 type = <"TIME">
 				is_computed = <True>
+				is_im_runtime = <True>
             >
             ["methodCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"methodCode">
@@ -907,22 +960,27 @@ class_definitions = <
             ["baselineIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"baselineIndicator">
                 type = <"BL">
+				is_im_runtime = <True>
             >
             ["comment"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"comment">
                 type = <"ST">
+				is_im_runtime = <True>
             >
             ["confidentialityCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"confidentialityCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["identifier"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"identifier">
                 type = <"II">
+				is_im_runtime = <True>
             >
             ["reportedDate"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"reportedDate">
                 type = <"DATETIME">
+				is_im_runtime = <True>
             >
             ["resultClassificationCode"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"resultClassificationCode">
@@ -938,18 +996,22 @@ class_definitions = <
             ["uncertaintyCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"uncertaintyCode">
                 type = <"CD">
+				is_im_runtime = <True>
             >
             ["value"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value">
                 type = <"21090_ANY">
+				is_im_runtime = <True>
             >
             ["valueCodeModifiedText"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"valueCodeModifiedText">
                 type = <"ST">
+				is_im_runtime = <True>
             >
             ["valueNullFlavorReason"] = (P_BMM_SINGLE_PROPERTY) <
-                name = <"NullFlavorReason">
+                name = <"valueNullFlavorReason">
                 type = <"ST">
+				is_im_runtime = <True>
             >
             ["inferredPerformedObservationResult"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"inferredPerformedObservationResult">
@@ -961,8 +1023,31 @@ class_definitions = <
 		>
 	>
 
+	["Activity"] = <
+		name = <"Activity">
+		ancestors = <"Any", ...>
+        properties = <
+            ["comment"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"comment">
+                type = <"ST">
+            >
+            ["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"identifier">
+                type = <"II">
+            >
+            ["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"reasonCode">
+                type_def = <
+                    container_type = <"DSET">
+                    type = <"CD">
+                >
+            >
+		>
+	>
+
 	["StudyActivity"] = <
 		name = <"StudyActivity">
+		ancestors = <"PlannedActivity", ...>
         properties = <
             ["studyFocusIndicator"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"studyFocusIndicator">
@@ -983,6 +1068,7 @@ class_definitions = <
 
 	["PlannedActivity"] = <
 		name = <"PlannedActivity">
+		ancestors = <"Activity", ...>
         properties = <
             ["blindedDescription"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"blindedDescription">
@@ -1024,6 +1110,67 @@ class_definitions = <
                 name = <"usedStudyActivity">
                 type = <"StudyActivity">
                 is_mandatory = <True>
+            >
+            ["componentPlannedCompositionRelationship"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"componentPlannedCompositionRelationship">
+                type_def = <
+                    container_type = <"List">
+                    type = <"PlannedCompositionRelationship">
+                >
+            >
+            ["compositePlannedCompositionRelationship"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"compositePlannedCompositionRelationship">
+                type_def = <
+                    container_type = <"List">
+                    type = <"PlannedCompositionRelationship">
+                >
+            >
+		>
+	>
+
+	["PlannedSubjectActivityGroup"] = <
+		name = <"PlannedSubjectActivityGroup">
+		ancestors = <"PlannedActivity", ...>
+        properties = <
+            ["sequenceNumber"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"sequenceNumber">
+                type = <"NONNEG">
+				is_computed = <True>
+            >
+			["targetAccrualNumberRange"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"targetAccrualNumberRange">
+				type_def = <
+					root_type = <"IVL">
+					generic_parameters = <"NONNEG">
+				>	
+			>
+		>
+	>
+
+	["PlannedCompositionRelationship"] = <
+		name = <"PlannedCompositionRelationship">
+		ancestors = <"Any", ...>
+        properties = <
+            ["componentPlannedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"componentPlannedActivity">
+                type = <"PlannedActivity">
+                is_mandatory = <True>
+            >
+            ["compositePlannedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"compositePlannedActivity">
+                type = <"PlannedActivity">
+                is_mandatory = <True>
+            >
+			["pauseQuantity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"pauseQuantity">
+				type_def = <
+					root_type = <"IVL">
+					generic_parameters = <"TIME">
+				>	
+			>
+            ["sequenceNumber"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"sequenceNumber">
+                type = <"NONNEG">
             >
 		>
 	>
