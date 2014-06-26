@@ -28,22 +28,30 @@ includes = <
 ------------------------------------
 -- archetyping
 ------------------------------------
-archetype_rm_closure_packages = <"org.cdisc.Core", ...>
+archetype_rm_closure_packages = <"org.cdisc.Bridg", ...>
 
 ------------------------------------
 -- packages
 ------------------------------------
 
 packages = <
-    ["org.cdisc"] = <
-        name = <"org.cdisc">
+    ["org.cdisc.bridg"] = <
+        name = <"org.cdisc.bridg">
         packages = <
-            ["Core"] = <
-                name = <"Core">
-                classes = <"BiologicEntity", "BiologicEntityIdentifier", "Person", "Subject", "SubjectIdentifier", "Organization", "OrganizationIdentifier", 
-							"Product", "StudySite", "StudySubject", "StudySubjectProtocolVersionRelationship", "StudySiteProtocolVersionRelationship", "StudyAgent", 
-							"StudyProtocolVersion", "DefinedActivity", "DefinedObservation", "PerformedActivity", "PerformedObservation", "PerformedObservationResult",
-							"Activity", "PlannedSubjectActivityGroup", "StudyActivity", "PlannedActivity", "PlannedCompositionRelationship">
+            ["Common"] = <
+                name = <"Common">
+                classes = <"BiologicEntity", "BiologicEntityIdentifier", "Person", "Subject", "SubjectIdentifier", "Organization", "OrganizationIdentifier",
+                	"Product", "Activity", "Performer">
+            >
+            ["ProtocolRepresentation"] = <
+                name = <"ProtocolRepresentation">
+                classes = <"StudyProtocolVersion", "DefinedActivity", "DefinedObservation", "PlannedSubjectActivityGroup", "StudyActivity", "PlannedActivity", 
+					"StudyAgent", "PlannedCompositionRelationship", "DefinedCompositionRelationship">
+            >
+            ["StudyConduct"] = <
+                name = <"StudyConduct">
+                classes = <"StudySite", "StudySubject", "StudySubjectProtocolVersionRelationship", "StudySiteProtocolVersionRelationship", 
+							"PerformedActivity", "PerformedObservation", "PerformedObservationResult", "PerformedCompositionRelationship">
             >
         >
     >
@@ -494,6 +502,42 @@ class_definitions = <
 		>
 	>
 	
+	["Performer"] = <
+		name = <"Performer">
+        properties = <
+            ["postalAddress"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"postalAddress">
+                type = <"AD">
+				is_im_runtime = <True>
+            >
+            ["telecomAddress"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"telecomAddress">
+                type_def = <
+                    container_type = <"Bag">
+                    type = <"TEL">
+                >
+				is_im_runtime = <True>
+            >
+            ["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"identifier">
+                type = <"II">
+				is_im_runtime = <True>
+            >
+			["effectiveDateRange"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"effectiveDateRange">
+				type_def = <
+					root_type = <"IVL">
+					generic_parameters = <"DATETIME">
+				>	
+				is_im_runtime = <True>
+			>
+            ["typeCode"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"typeCode">
+                type = <"CD">
+            >
+		>
+	>
+	
 	["StudySiteProtocolVersionRelationship"] = <
 		name = <"StudySiteProtocolVersionRelationship">
         properties = <
@@ -713,6 +757,7 @@ class_definitions = <
 	
 	["DefinedActivity"] = <
 		name = <"DefinedActivity">
+		ancestors = <"Activity", ...>
         properties = <
             ["nameCode"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"nameCode">
@@ -768,9 +813,44 @@ class_definitions = <
                     type = <"DefinedObservation">
                 >
             >
+            ["componentDefinedCompositionRelationship"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"componentDefinedCompositionRelationship">
+                type_def = <
+                    container_type = <"List">
+                    type = <"DefinedCompositionRelationship">
+                >
+            >
 		>
 	>
 	
+	["DefinedCompositionRelationship"] = <
+		name = <"DefinedCompositionRelationship">
+		ancestors = <"Any", ...>
+        properties = <
+            ["componentDefinedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"componentDefinedActivity">
+                type = <"DefinedActivity">
+                is_mandatory = <True>
+            >
+            ["compositeDefinedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"compositeDefinedActivity">
+                type = <"DefinedActivity">
+                is_mandatory = <True>
+            >
+			["pauseQuantity"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"pauseQuantity">
+				type_def = <
+					root_type = <"IVL">
+					generic_parameters = <"TIME">
+				>	
+			>
+            ["sequenceNumber"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"sequenceNumber">
+                type = <"NONNEG">
+            >
+		>
+	>
+
 	["DefinedObservation"] = <
 		name = <"DefinedObservation">
 		ancestors = <"DefinedActivity", ...>
@@ -803,6 +883,7 @@ class_definitions = <
 	
 	["PerformedActivity"] = <
 		name = <"PerformedActivity">
+		ancestors = <"Activity", ...>
         properties = <
 			["dateRange"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"dateRange">
@@ -890,16 +971,28 @@ class_definitions = <
                 name = <"versionStudyProtocolVersion">
                 type = <"StudyProtocolVersion">
             >
-            ["commentingPerformedObservation"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"commentingPerformedObservation">
+            ["componentPerformedCompositionRelationship"] = (P_BMM_CONTAINER_PROPERTY) <
+                name = <"componentPerformedCompositionRelationship">
                 type_def = <
                     container_type = <"List">
-                    type = <"PerformedObservation">
+                    type = <"PerformedCompositionRelationship">
                 >
             >
 		>
 	>
 	
+	["PerformedCompositionRelationship"] = <
+		name = <"PerformedCompositionRelationship">
+		ancestors = <"Any", ...>
+        properties = <
+            ["componentPerformedActivity"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"componentPerformedActivity">
+                type = <"PerformedActivity">
+                is_mandatory = <True>
+            >
+		>
+	>
+
 	["PerformedObservation"] = <
 		name = <"PerformedObservation">
 		ancestors = <"PerformedActivity", ...>
@@ -1001,12 +1094,10 @@ class_definitions = <
             ["value"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"value">
                 type = <"21090_ANY">
-				is_im_runtime = <True>
             >
             ["valueCodeModifiedText"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"valueCodeModifiedText">
                 type = <"ST">
-				is_im_runtime = <True>
             >
             ["valueNullFlavorReason"] = (P_BMM_SINGLE_PROPERTY) <
                 name = <"valueNullFlavorReason">
@@ -1041,6 +1132,14 @@ class_definitions = <
                     container_type = <"DSET">
                     type = <"CD">
                 >
+            >
+            ["performingPerformer"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"performingPerformer">
+                type = <"Performer">
+            >
+            ["involvedSubject"] = (P_BMM_SINGLE_PROPERTY) <
+                name = <"involvedSubject">
+                type = <"Subject">
             >
 		>
 	>
@@ -1113,13 +1212,6 @@ class_definitions = <
             >
             ["componentPlannedCompositionRelationship"] = (P_BMM_CONTAINER_PROPERTY) <
                 name = <"componentPlannedCompositionRelationship">
-                type_def = <
-                    container_type = <"List">
-                    type = <"PlannedCompositionRelationship">
-                >
-            >
-            ["compositePlannedCompositionRelationship"] = (P_BMM_CONTAINER_PROPERTY) <
-                name = <"compositePlannedCompositionRelationship">
                 type_def = <
                     container_type = <"List">
                     type = <"PlannedCompositionRelationship">
