@@ -59,7 +59,7 @@ archetype_rm_closure_packages = <"org.openehr.test_pkg", ...>
 packages = <
 	["org.openehr.test_pkg"] = <
 		name = <"org.openehr.test_pkg">
-		classes = <"WHOLE", "SOME_TYPE", "BOOK", "CHAPTER", "ENTRY", "CAR", "CAR_BODY", "CAR_BODY_PART", "WHEEL", "RIM", "ENGINE_PART", "ENGINE_PART_ITEM", "ITEM", "CLUSTER", "ELEMENT">
+		classes = <"WHOLE", "SOME_TYPE", "BOOK", "CHAPTER", "ENTRY", "CAR", "CAR_BODY", "CAR_BODY_PART", "WHEEL", "RIM", "ENGINE_PART", "ENGINE_PART_ITEM", "ITEM", "CLUSTER", "ELEMENT", "MULTIPLICITY_OBJECT">
 	>
 >
 
@@ -849,6 +849,29 @@ class_definitions = <
 			["hubcap"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"hubcap">
 				type = <"String">
+			>
+		>
+	>
+
+	["MULTIPLICITY_OBJECT"] = <
+		name = <"MULTIPLICITY_OBJECT">
+		ancestors = <"Any", ...>
+		properties = <
+			["integer_list"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"integer_list">
+				type_def = <
+					container_type = <"List">
+					type = <"Integer">
+				>
+				cardinality = <|>=0|>
+			>
+			["string_list"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"string_list">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
 			>
 		>
 	>
