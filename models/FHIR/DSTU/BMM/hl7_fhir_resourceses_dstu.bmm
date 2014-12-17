@@ -25,7 +25,7 @@ bmm_version = <"2.1">
 ------------------------------------------------------
 rm_publisher = <"hl7">
 schema_name = <"fhir">
-rm_release = <"dstu">
+rm_release = <"0.8.3">
 
 ------------------------------------------------------
 -- schema documentation
