@@ -7,20 +7,19 @@ bmm_version = <"2.0">
 ------------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"RM">
-rm_release = <"3.0.0">
+rm_release = <"3.0.1">
 
 ------------------------------------
 -- schema documentation
 ------------------------------------
-schema_revision = <"Tuesday, December 23, 2014">
+schema_revision = <"Sunday, December 28, 2014">
 schema_lifecycle_state = <"dstu">
-schema_description = <"CIMI_Reference_Model v3.0.0 schema generated from UML">
+schema_description = <"CIMI_Reference_Model v3.0.1 schema generated from UML">
 
 ------------------------------------
 -- archetyping
 ------------------------------------
 archetype_rm_closure_packages = <"CIMI_Reference_Model.Core", ...>
-archetype_parent_class = <"LOCATABLE">
 
 ------------------------------------
 -- packages
