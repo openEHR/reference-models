@@ -20,6 +20,7 @@ schema_description = <"CIMI_Reference_Model v3.0.1 schema generated from UML">
 -- archetyping
 ------------------------------------
 archetype_rm_closure_packages = <"CIMI_Reference_Model.Core", ...>
+archetype_parent_class = <"LOCATABLE">
 
 ------------------------------------
 -- packages
