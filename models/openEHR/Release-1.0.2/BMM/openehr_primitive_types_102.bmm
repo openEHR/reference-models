@@ -56,16 +56,19 @@ primitive_types = <
 	["Ordered"] = <
 		name = <"Ordered">
 		is_abstract = <True>
+		documentation = <"Ancestor of types with total order relation defined, i.e. '<' and '='.">
 		ancestors = <"Any", ...>
 	>
 	["Numeric"] = <
 		name = <"Numeric">
 		is_abstract = <True>
+		documentation = <"Ancestor of numeric types.">
 		ancestors = <"Any", ...>
 	>
 	["Ordered_Numeric"] = <
 		name = <"Ordered_Numeric">
 		is_abstract = <True>
+		documentation = <"Ancestor of ordered numeric types.">
 		ancestors = <"Numeric", "Ordered">
 	>
 	["Byte"] = <
@@ -129,6 +132,7 @@ primitive_types = <
 	>
 	["Interval"] = <
 		name = <"Interval">
+		documentation = <"Type defining an interval of any ordered type.">
 		ancestors = <"Any", ...>
 		generic_parameter_defs = <
 			["T"] = <
@@ -165,13 +169,14 @@ primitive_types = <
 	>
 	["Hash"] = <
 		name = <"Hash">
+		documentation = <"Type defining Hash table / hash map structure, whose type parameters V and K represent a value type and an Ordered key type respectively.">
 		ancestors = <"Any", ...>
 		generic_parameter_defs = <
-			["T"] = <
-				name = <"T">
+			["V"] = <
+				name = <"V">
 			>
-			["U"] = <
-				name = <"U">
+			["K"] = <
+				name = <"K">
 				conforms_to_type = <"Ordered">
 			>
 		>
@@ -189,21 +194,25 @@ primitive_types = <
 
 	["ISO8601_DATE"] = <
 		name = <"ISO8601_DATE">
+		documentation = <"Date type based on IS8601 representation.">
 		ancestors = <"Any", ...>
 	>
 
 	["ISO8601_TIME"] = <
 		name = <"ISO8601_TIME">
+		documentation = <"Time type based on IS8601 representation.">
 		ancestors = <"Any", ...>
 	>
 
 	["ISO8601_DATE_TIME"] = <
 		name = <"ISO8601_DATE_TIME">
+		documentation = <"Date Time type based on IS8601 representation.">
 		ancestors = <"Any", ...>
 	>
 
 	["ISO8601_DURATION"] = <
 		name = <"ISO8601_DURATION">
+		documentation = <"Duration type based on IS8601 representation.">
 		ancestors = <"Any", ...>
 	>
 
