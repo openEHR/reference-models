@@ -1,0 +1,590 @@
+-- 
+-- 	component:   openEHR Reference Model (RM)
+-- 	description: openEHR Reference Model schema. This file format is based on the BMM specification
+--  				http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale
+-- 	support:     https://openehr.atlassian.net/projects/SPECPR
+-- 	copyright:   Copyright (c) 2016 openEHR Foundation
+-- 	license:     CC-BY-ND <https://creativecommons.org/licenses/by-nd/3.0/>
+-- 
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+------------------------------------------------------
+bmm_version = <"2.1">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"openehr">
+schema_name = <"ehr_extract">
+rm_release = <"1.0.3">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+
+schema_revision = <"1.0.3.1">
+schema_lifecycle_state = <"experimental">
+schema_description = <"openEHR experimental EHR Extract information model">
+schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"openehr_ehr_1.0.3">
+	>
+	["2"] = <
+		id = <"openehr_demographic_1.0.3">
+	>
+>
+
+
+------------------------------------------------------------------------------
+-- archetype top-level packages - the semantic concept used in archetype ids
+------------------------------------------------------------------------------
+archetype_rm_closure_packages = <"org.openehr.rm.ehr_extract", ...>
+
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+
+packages = <
+	["org.openehr.rm.ehr_extract"] = <
+		name = <"org.openehr.rm.ehr_extract">
+		classes = <"EXTRACT", "EXTRACT_SPEC", "EXTRACT_ITEM", "GENERIC_CONTENT_ITEM", "OPENEHR_CONTENT_ITEM", "EXTRACT_REQUEST", 
+			"EXTRACT_UPDATE_SPEC", "EXTRACT_ACTION_REQUEST",
+			"EXTRACT_CONTENT_ITEM", "EXTRACT_FOLDER", "EXTRACT_VERSION_SPEC", "EXTRACT_CHAPTER", "EXTRACT_ENTITY_CHAPTER", 
+			-- following not yet supported in BMM
+			-- "X_VERSIONED_PARTY", "X_VERSIONED_EHR_ACCESS", "X_VERSIONED_EHR_STATUS", "X_VERSIONED_COMPOSITION", "X_VERSIONED_FOLDER",
+			"EXTRACT_MANIFEST", "EXTRACT_ENTITY_MANIFEST", "EXTRACT_PARTICIPATION", "X_VERSIONED_OBJECT"
+		>
+	>
+>
+
+------------------------------------------------------
+-- classes
+------------------------------------------------------
+
+class_definitions = <
+
+	------------------------------------------------------------
+	----------------------- rm.ehr_extract --------------------
+	------------------------------------------------------------
+
+	["EXTRACT"] = <
+		name = <"EXTRACT">
+		ancestors = <"LOCATABLE", ...>
+		properties = <
+			["request_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"request_id">
+				type = <"HIER_OBJECT_ID">
+				is_im_runtime = <True>
+			>
+			["time_created"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time_created">
+				type = <"DV_DATE_TIME">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system_id">
+				type = <"HIER_OBJECT_ID">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["sequence_nr"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"sequence_nr">
+				type = <"Integer">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["specification"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"specification">
+				type = <"EXTRACT_SPEC">
+			>
+			["chapters"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"chapters">
+				type_def = <
+					type = <"EXTRACT_CHAPTER">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+			["participations"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"participations">
+				type_def = <
+					type = <"EXTRACT_PARTICIPATION">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["EXTRACT_SPEC"] = <
+		name = <"EXTRACT_SPEC">
+		ancestors = <"Any", ...>
+		properties = <
+			["extract_type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"extract_type">
+				type = <"DV_CODED_TEXT">
+				is_mandatory = <True>
+			>
+			["include_multimedia"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"include_multimedia">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["priority"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"priority">
+				type = <"Integer">
+				is_mandatory = <True>
+			>
+			["link_depth"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"link_depth">
+				type = <"Integer">
+				is_mandatory = <True>
+			>
+			["criteria"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"criteria">
+				type_def = <
+					type = <"DV_PARSABLE">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+			["manifest"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"manifest">
+				type = <"EXTRACT_MANIFEST">
+				is_mandatory = <True>
+			>
+			["version_spec"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version_spec">
+				type = <"EXTRACT_VERSION_SPEC">
+			>
+		>
+	>
+
+	["EXTRACT_MANIFEST"] = <
+		name = <"EXTRACT_MANIFEST">
+		ancestors = <"Any", ...>
+		properties = <
+			["entities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"entities">
+				type_def = <
+					type = <"EXTRACT_ENTITY_MANIFEST">
+					container_type = <"List">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["EXTRACT_ENTITY_MANIFEST"] = <
+		name = <"EXTRACT_ENTITY_MANIFEST">
+		ancestors = <"Any", ...>
+		properties = <
+			["extract_id_key"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"extract_id_key">
+				type = <"String">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["ehr_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"ehr_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["subject_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"subject_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["other_ids"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_ids">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_im_runtime = <True>
+			>
+			["item_list"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"item_list">
+				type_def = <
+					type = <"OBJECT_REF">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["EXTRACT_VERSION_SPEC"] = <
+		name = <"EXTRACT_VERSION_SPEC">
+		ancestors = <"Any", ...>
+		properties = <
+			["include_all_versions"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"include_all_versions">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["commit_time_interval"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"commit_time_interval">
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"DV_DATE_TIME">
+				>
+			>
+			["include_revision_history"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"include_revision_history">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["include_data"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"include_data">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["EXTRACT_CHAPTER"] = <
+		name = <"EXTRACT_CHAPTER">
+		ancestors = <"LOCATABLE", ...>
+		properties = <
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					type = <"EXTRACT_ITEM">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["EXTRACT_ENTITY_CHAPTER"] = <
+		name = <"EXTRACT_ENTITY_CHAPTER">
+		ancestors = <"EXTRACT_CHAPTER", ...>
+		properties = <
+			["extract_id_key"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"extract_id_key">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+   
+	["EXTRACT_ITEM"] = <
+		name = <"EXTRACT_ITEM">
+		ancestors = <"LOCATABLE", ...>
+		is_abstract = <True>
+	>
+   
+	["EXTRACT_FOLDER"] = <
+		name = <"EXTRACT_FOLDER">
+		ancestors = <"EXTRACT_ITEM", ...>
+		properties = <
+			["items"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"items">
+				type_def = <
+					type = <"EXTRACT_ITEM">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["EXTRACT_CONTENT_ITEM"] = <
+		name = <"EXTRACT_CONTENT_ITEM">
+		ancestors = <"EXTRACT_ITEM", ...>
+		is_abstract = <True>
+		properties = <
+			["is_primary"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_primary">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["is_changed"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_changed">
+				type = <"Boolean">
+				is_im_runtime = <True>
+			>
+			["is_masked"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_masked">
+				type = <"Boolean">
+			>
+			["item"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"item">
+				type = <"Any">
+			>
+		>
+	>
+
+	["EXTRACT_REQUEST"] = <
+		name = <"EXTRACT_REQUEST">
+		ancestors = <"LOCATABLE", ...>
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"HIER_OBJECT_ID">
+				is_mandatory = <True>
+			>
+			["update_spec"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"update_spec">
+				type = <"EXTRACT_UPDATE_SPEC">
+			>
+		>
+	>
+
+	["EXTRACT_UPDATE_SPEC"] = <
+		name = <"EXTRACT_UPDATE_SPEC">
+		ancestors = <"Any", ...>
+		properties = <
+			["persist_in_server"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"persist_in_server">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["trigger_events"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"trigger_events">
+				type_def = <
+					type = <"DV_CODED_TEXT">
+					container_type = <"List">
+				>
+			>
+			["repeat_period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"repeat_period">
+				type = <"DV_DURATION">
+			>
+			["update_method"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"update_method">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["EXTRACT_ACTION_REQUEST"] = <
+		name = <"EXTRACT_ACTION_REQUEST">
+		ancestors = <"LOCATABLE", ...>
+		properties = <
+			["request_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"request_id">
+				type = <"OBJECT_REF">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"HIER_OBJECT_ID">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["action"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"action">
+				type = <"DV_CODED_TEXT">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+	["GENERIC_CONTENT_ITEM"] = <
+		name = <"GENERIC_CONTENT_ITEM">
+		ancestors = <"EXTRACT_CONTENT_ITEM", ...>
+		properties = <
+			["item_type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"item_type">
+				type = <"DV_CODED_TEXT">
+			>
+			["item_type_version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"item_type_version">
+				type = <"String">
+			>
+			["author"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"author">
+				type = <"String">
+			>
+			["creation_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"creation_time">
+				type = <"ISO8601_DATE_TIME">
+				is_im_runtime = <True>
+			>
+			["authoriser"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"authoriser">
+				type = <"String">
+			>
+			["authorisation_time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"authorisation_time">
+				type = <"ISO8601_DATE_TIME">
+				is_im_runtime = <True>
+			>
+			["item_status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"item_status">
+				type = <"DV_CODED_TEXT">
+			>
+			["version_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["version_set_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version_set_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system_id">
+				type = <"String">
+				is_im_runtime = <True>
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["item"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"item">
+				type = <"LOCATABLE">
+			>
+		>
+	>
+
+	["OPENEHR_CONTENT_ITEM"] = <
+		name = <"OPENEHR_CONTENT_ITEM">
+		ancestors = <"EXTRACT_CONTENT_ITEM", ...>
+		properties = <
+			["item"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"item">
+				type_def = <
+					root_type = <"X_VERSIONED_OBJECT">
+					generic_parameters = <"LOCATABLE">
+				>
+			>
+		>
+	>
+
+	["X_VERSIONED_OBJECT"] = <
+		name = <"X_VERSIONED_OBJECT">
+		ancestors = <"Any", ...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"LOCATABLE">
+			>
+		>
+		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"HIER_OBJECT_ID">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
+			["owner_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"owner_id">
+				type = <"OBJECT_REF">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["time_created"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time_created">
+				type = <"DV_DATE_TIME">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["total_version_count"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"total_version_count">
+				type = <"Integer">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["extract_version_count"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"extract_version_count">
+				type = <"Integer">
+				is_mandatory = <True>
+				is_im_runtime = <True>
+			>
+			["revision_history"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"revision_history">
+				type = <"REVISION_HISTORY">
+				is_im_infrastructure = <True>
+			>
+			["versions"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"versions">
+				type_def = <
+					type = <"ORIGINAL_VERSION">
+					container_type = <"List">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["EXTRACT_PARTICIPATION"] = <
+		name = <"EXTRACT_PARTICIPATION">
+		ancestors = <"Any", ...>
+		properties = <
+			["performer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"performer">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["function"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"function">
+				type = <"DV_TEXT">
+				is_mandatory = <True>
+			>
+			["mode"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"mode">
+				type = <"DV_CODED_TEXT">
+			>
+			["time"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"time">
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"DV_DATE_TIME">
+				>
+				is_im_runtime = <True>
+			>
+		>
+	>
+
+----------------------------------------------------
+-- the following not yet supported by BMM
+----------------------------------------------------
+-- 	["X_VERSIONED_EHR_ACCESS"] = <
+-- 		name = <"X_VERSIONED_EHR_ACCESS">
+-- 		ancestors = <"X_VERSIONED_OBJECT<EHR_ACCESS>", ...>
+-- 	>
+-- 
+-- 	["X_VERSIONED_EHR_STATUS"] = <
+-- 		name = <"X_VERSIONED_EHR_STATUS">
+-- 		ancestors = <"X_VERSIONED_OBJECT<EHR_STATUS>", ...>
+-- 	>
+-- 
+-- 	["X_VERSIONED_COMPOSITION"] = <
+-- 		name = <"X_VERSIONED_COMPOSITION">
+-- 		ancestors = <"X_VERSIONED_OBJECT<COMPOSITION>", ...>
+-- 	>
+-- 
+-- 	["X_VERSIONED_FOLDER"] = <
+-- 		name = <"X_VERSIONED_FOLDER">
+-- 		ancestors = <"X_VERSIONED_OBJECT<FOLDER>", ...>
+-- 	>
+-- 
+-- 	["X_VERSIONED_PARTY"] = <
+-- 		name = <"X_VERSIONED_PARTY">
+-- 		ancestors = <"X_VERSIONED_OBJECT<PARTY>", ...>
+-- 	>
+
+>
