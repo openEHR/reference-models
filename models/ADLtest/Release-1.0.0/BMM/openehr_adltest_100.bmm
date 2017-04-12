@@ -75,13 +75,13 @@ class_definitions = <
 
 	["ITEM"] = <
 		name = <"ITEM">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		is_abstract = <True>
 	>
 
 	["CLUSTER"] = <
 		name = <"CLUSTER">
-		ancestors = <"ITEM", ...>
+		ancestors = <"ITEM">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -97,7 +97,7 @@ class_definitions = <
 
 	["ELEMENT"] = <
 		name = <"ELEMENT">
-		ancestors = <"ITEM", ...>
+		ancestors = <"ITEM">
 		properties = <
 			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"null_flavour">
@@ -113,7 +113,7 @@ class_definitions = <
 
 	["ENTRY"] = <
 		name = <"ENTRY">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
