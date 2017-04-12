@@ -277,7 +277,6 @@ class_definitions = <
 			["other_context"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"other_context">
 				type = <"ITEM_STRUCTURE">
-				is_mandatory = <True>
 			>
 		>
 	>
