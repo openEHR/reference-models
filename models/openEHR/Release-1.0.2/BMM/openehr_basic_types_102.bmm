@@ -411,10 +411,12 @@ class_definitions = <
 			>
 		>
 		properties = <
-			["range"] = (P_BMM_SINGLE_PROPERTY) <
+			["range"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"range">
-				type = <"DV_INTERVAL">
-				is_mandatory = <True>
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"T">
+				>
 			>
 		>
 	>
