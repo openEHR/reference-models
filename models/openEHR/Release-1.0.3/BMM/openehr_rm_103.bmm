@@ -35,11 +35,7 @@ schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 ------------------------------------------------------
 includes = <
 	["1"] = <
-		id = <"openehr_ehr_1.0.3">
-	>
-	["2"] = <
-		id = <"openehr_demographic_1.0.3">
+		id = <"openehr_ehr_extract_1.0.3">
 	>
 >
-
 
