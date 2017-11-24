@@ -403,6 +403,7 @@ class_definitions = <
 			["execution_history"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"execution_history">
 				type = <"TASK_PLAN_EXECUTION_HISTORY">
+				is_im_runtime = <True>
 			>
 		>
 	>
@@ -551,11 +552,17 @@ class_definitions = <
 	["TASK"] = <
 		name = <"TASK">
 		ancestors = <"PLAN_ITEM">
-		is_abstract = <True>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"TASK_ACTION">
+				is_mandatory = <True>
+			>
+		>
 		properties = <
-			["instruction_activity_ref"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"instruction_activity_ref">
-				type = <"String">
+			["action"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"action">
+				type = <"T">
 			>
 		>
 	>
@@ -677,7 +684,7 @@ class_definitions = <
 
 	["EXTERNAL_REQUEST"] = <
 		name = <"EXTERNAL_REQUEST">
-		ancestors = <"TASK", "DISPATCHABLE_ACTION">
+		ancestors = <"DISPATCHABLE_ACTION">
 		properties = <
 			["organisation_name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"organisation_name">
@@ -698,7 +705,7 @@ class_definitions = <
 
 	["DEFINED_ACTION"] = <
 		name = <"DEFINED_ACTION">
-		ancestors = <"TASK">
+		ancestors = <"PERFORMABLE_ACTION">
 		properties = <
 			["prototype"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"prototype">
@@ -717,7 +724,7 @@ class_definitions = <
 
 	["SYSTEM_REQUEST"] = <
 		name = <"SYSTEM_REQUEST">
-		ancestors = <"TASK", "DISPATCHABLE_ACTION">
+		ancestors = <"DISPATCHABLE_ACTION">
 		properties = <
 			["system_call"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_call">
