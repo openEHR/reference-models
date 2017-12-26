@@ -37,6 +37,9 @@ includes = <
 	["1"] = <
 		id = <"openehr_rm_ehr_1.0.4">
 	>
+	["2"] = <
+		id = <"openehr_rm_demographic_1.0.4">
+	>
 >
 
 
@@ -61,7 +64,7 @@ packages = <
 				name = <"definition">
 				classes = <"WORK_PLAN", "TASK_PLAN", "TASK_PARTICIPATION", "PLAN_ITEM", "TASK_GROUP", "TASK", 
 
-					"PLAN_DATA_CONTEXT", "CONTEXT_VALUE", "CONTEXT_EXPRESSION", "CONTEXT_VARIABLE", "BOOLEAN_CONTEXT_EXPRESSION",
+					"PLAN_DATA_CONTEXT", "CONTEXT_VALUE", "CONTEXT_EXPRESSION", "CONTEXT_VARIABLE",
 					"EVENT_VARIABLE", "STATE_VARIABLE", "CONTINUOUS_EVENT_VARIABLE", "TASK_REPEAT",
 
 					"PLAN_CALENDAR", "PLAN_TIMELINE", "CALENDAR_ENTRY",
@@ -220,11 +223,6 @@ class_definitions = <
 				is_mandatory = <True>
 			>
 		>
-	>
-
-	["BOOLEAN_CONTEXT_EXPRESSION"] = <
-		name = <"BOOLEAN_CONTEXT_EXPRESSION">
-		ancestors = <"CONTEXT_EXPRESSION">
 	>
 
 	["STATE_VARIABLE"] = <
@@ -675,9 +673,12 @@ class_definitions = <
 				type = <"DV_TEXT">
 				is_mandatory = <True>
 			>
-			["expression"] = (P_BMM_SINGLE_PROPERTY) <
+			["expression"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"expression">
-				type = <"BOOLEAN_CONTEXT_EXPRESSION">
+				type_def = <
+					root_type = <"CONTEXT_EXPRESSION">
+					generic_parameters = <"TYPE_DEF_BOOLEAN">
+				>
 			>
 		>
 	>
@@ -809,9 +810,12 @@ class_definitions = <
 		name = <"CONDITION_BRANCH">
 		ancestors = <"TASK_GROUP">
 		properties = <
-			["test"] = (P_BMM_SINGLE_PROPERTY) <
+			["test"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"test">
-				type = <"BOOLEAN_CONTEXT_EXPRESSION">
+				type_def = <
+					root_type = <"CONTEXT_EXPRESSION">
+					generic_parameters = <"TYPE_DEF_BOOLEAN">
+				>
 				is_mandatory = <True>
 			>
 		>
@@ -821,9 +825,12 @@ class_definitions = <
 		name = <"DECISION_GROUP">
 		ancestors = <"TASK_GROUP">
 		properties = <
-			["test"] = (P_BMM_SINGLE_PROPERTY) <
+			["test"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"test">
-				type = <"CONTEXT_EXPRESSION">
+				type_def = <
+					root_type = <"CONTEXT_EXPRESSION">
+					generic_parameters = <"EXPR_TYPE_DEF">
+				>
 				is_mandatory = <True>
 			>
 			["members"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -841,9 +848,12 @@ class_definitions = <
 		name = <"DECISION_BRANCH">
 		ancestors = <"TASK_GROUP">
 		properties = <
-			["value_constraint"] = (P_BMM_SINGLE_PROPERTY) <
+			["value_constraint"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"value_constraint">
-				type = <"Any">
+				type_def = <
+					root_type = <"CONTEXT_EXPRESSION">
+					generic_parameters = <"TYPE_DEF_BOOLEAN">
+				>
 				is_mandatory = <True>
 			>
 		>
@@ -1022,9 +1032,12 @@ class_definitions = <
 		name = <"STATE_TRIGGER">
 		ancestors = <"PLAN_EVENT">
 		properties = <
-			["expression"] = (P_BMM_SINGLE_PROPERTY) <
+			["expression"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"expression">
-				type = <"BOOLEAN_CONTEXT_EXPRESSION">
+				type_def = <
+					root_type = <"CONTEXT_EXPRESSION">
+					generic_parameters = <"TYPE_DEF_BOOLEAN">
+				>
 				is_mandatory = <True>
 			>
 		>

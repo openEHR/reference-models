@@ -40,7 +40,7 @@ packages = <
 			["base_types"] = <
 				name = <"base_types">
 				classes = <"Any", "Ordered", "Numeric", "Ordered_Numeric", "Octet", "Byte", "Boolean", "Integer", 
-					"Integer64", "Real", "Double", "Character", "String"
+					"Integer64", "Real", "Double", "Character", "String", "Uri", "Terminology_code", "Terminology_term"
 				>
 			>
 			["structures"] = <
@@ -87,7 +87,11 @@ packages = <
 		packages = <
 			["types"] = <
 				name = <"types">
-				classes = <"EXPR_TYPE_DEF">
+				classes = <"EXPR_TYPE_DEF", 
+					"TYPE_DEF_BOOLEAN",
+					"TYPE_DEF_INTEGER", "TYPE_DEF_REAL", 
+					"TYPE_DEF_DATE", "TYPE_DEF_DATE_TIME", "TYPE_DEF_TIME", "TYPE_DEF_DURATION", 
+					"TYPE_DEF_STRING", "TYPE_DEF_URI", "TYPE_DEF_TERMINOLOGY_CODE">
 			>
 		>
 	>
@@ -155,6 +159,10 @@ primitive_types = <
 	["String"] = <
 		name = <"String">
 		ancestors = <"Any", ...>
+	>
+	["Uri"] = <
+		name = <"Uri">
+		ancestors = <"String", ...>
 	>
 	["List"] = <
 		name = <"List">
@@ -353,6 +361,48 @@ primitive_types = <
 		ancestors = <"IDuration", "ISO8601_TYPE">
 	>
 
+	["Terminology_term"] = <
+		name = <"Terminology_term">
+		ancestors = <"Any">
+		properties = <
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["concept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"concept">
+				type = <"Terminology_code">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Terminology_code"] = <
+		name = <"Terminology_code">
+		ancestors = <"Any">
+		properties = <
+			["terminology_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"terminology_id">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["terminology_version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"terminology_version">
+				type = <"String">
+			>
+			["code_string"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code_string">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+				is_mandatory = <True>
+			>
+		>
+	>
 >
 
 ------------------------------------------------------
@@ -511,6 +561,126 @@ class_definitions = <
 			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type_anchor">
 				type = <"Any">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_BOOLEAN"] = <
+		name = <"TYPE_DEF_BOOLEAN">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_INTEGER"] = <
+		name = <"TYPE_DEF_INTEGER">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Integer">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_REAL"] = <
+		name = <"TYPE_DEF_REAL">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Real">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_DATE"] = <
+		name = <"TYPE_DEF_DATE">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Date">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_DATE_TIME"] = <
+		name = <"TYPE_DEF_DATE_TIME">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Date_time">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_TIME"] = <
+		name = <"TYPE_DEF_TIME">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Time">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_DURATION"] = <
+		name = <"TYPE_DEF_DURATION">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Duration">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_STRING"] = <
+		name = <"TYPE_DEF_STRING">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_URI"] = <
+		name = <"TYPE_DEF_URI">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Uri">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["TYPE_DEF_TERMINOLOGY_CODE"] = <
+		name = <"TYPE_DEF_TERMINOLOGY_CODE">
+		ancestors = <"EXPR_TYPE_DEF">
+		properties = <
+			["type_anchor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type_anchor">
+				type = <"Terminology_code">
 				is_mandatory = <True>
 			>
 		>
