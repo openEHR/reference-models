@@ -42,7 +42,7 @@ schema_description = <"openEHR schema to support test archetypes">
 ------------------------------------------------------
 includes = <
 	["1"] = <
-		id = <"openehr_basic_types_1.0.2">
+		id = <"openehr_rm_data_types_1.0.4">
 	>
 >
 
@@ -637,6 +637,27 @@ class_definitions = <
 			["duration_attr36"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr36">
 				type = <"ISO8601_DURATION">
+			>
+
+			["any_attr_1"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"any_attr_1">
+				type = <"Any">
+			>
+			["any_attr_2"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"any_attr_2">
+				type = <"Any">
+			>
+			["any_attr_3"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"any_attr_3">
+				type = <"Any">
+			>
+			["any_attr_4"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"any_attr_4">
+				type = <"Any">
+			>
+			["any_attr_5"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"any_attr_5">
+				type = <"Any">
 			>
 		>
 	>
