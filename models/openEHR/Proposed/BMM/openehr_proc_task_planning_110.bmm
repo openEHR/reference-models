@@ -25,9 +25,9 @@ rm_release = <"1.0.0">
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"1.0.0.1">
+schema_revision = <"1.1.0.1">
 schema_lifecycle_state = <"development">
-schema_description = <"openEHR Release 1.0.0 Task Management schema">
+schema_description = <"openEHR Release 1.1.0 Task Management schema">
 schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 
 ------------------------------------------------------
@@ -56,13 +56,15 @@ archetype_rm_closure_packages = <"org.openehr.proc.task_planning", ...>
 packages = <
 	["org.openehr.proc.task_planning"] = <
 		name = <"org.openehr.proc.task_planning">
-		classes = <"SYSTEM_CALL", "TASK_LIFECYCLE", "TIME_SPECIFIER", "CLOCK_TIME", "CALENDAR_TIME", "CUSTOMARY_TIME",  
+		classes = <"SYSTEM_CALL", "PARAMETER_MAPPING", "PARAMETER_DEF", "QUERY_CALL", "API_CALL",
+			"TASK_LIFECYCLE", "TIME_SPECIFIER", "CLOCK_TIME", "CALENDAR_TIME", "CUSTOMARY_TIME",  
 			"TEMPORAL_RELATION", "RESUME_TYPE"
 		>
 		packages = <
 			["definition"] = <
 				name = <"definition">
 				classes = <"WORK_PLAN", "TASK_PLAN", "TASK_PARTICIPATION", "PLAN_ITEM", "TASK_GROUP", "TASK", 
+					"DISPATCHABLE_TASK", "PERFORMABLE_TASK",
 
 					"PLAN_DATA_CONTEXT", "CONTEXT_VALUE", "CONTEXT_EXPRESSION", "CONTEXT_VARIABLE",
 					"EVENT_VARIABLE", "STATE_VARIABLE", "CONTINUOUS_EVENT_VARIABLE", "TASK_REPEAT",
@@ -73,6 +75,7 @@ packages = <
 					"DEFINED_ACTION", "SYSTEM_REQUEST", "EXTERNAL_REQUEST", "LINKED_PLAN", "HAND_OFF", "SUB_PLAN", 
 					"DATASET_SPEC", "EVENT_ACTION", "RESOURCE_PARTICIPATION",
 
+					"CHOICE_GROUP", "CHOICE_BRANCH", "ADHOC_GROUP", "ADHOC_BRANCH", "OVERRIDE_TYPE",
 					"CONDITION_GROUP", "CONDITION_BRANCH", "DECISION_GROUP", "DECISION_BRANCH", "EVENT_GROUP", "EVENT_BRANCH", 
 
 					"SUBJECT_PRECONDITION", "TASK_COSTING", "EXECUTION_TYPE",
@@ -121,6 +124,7 @@ class_definitions = <
 
 	["SYSTEM_CALL"] = <
 		name = <"SYSTEM_CALL">
+		is_abstract = <True>		
 		properties = <
 			["call_name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"call_name">
@@ -129,19 +133,83 @@ class_definitions = <
 			>
 			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_id">
-				type = <"UID_BASED_ID">
+				type = <"String">
 				is_mandatory = <True>
 			>
-			["parameters"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"parameters">
+			["parameter_map"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"parameter_map">
 				type_def = <
-					root_type = <"Hash">
-					generic_parameters = <"String", "String">
+					container_type = <"List">
+					type = <"PARAMETER_MAPPING">
+				>
+			>
+			["bound_parameters"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"bound_parameters">
+				type_def = <
+					container_type = <"List">
+					type = <"PARAMETER_DEF">
 				>
 			>
 		>
 	>
 
+	["PARAMETER_DEF"] = <
+		name = <"PARAMETER_DEF">
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"EXPR_TYPE_DEF">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Any">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["PARAMETER_MAPPING"] = <
+		name = <"PARAMETER_MAPPING">
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["context_name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"context_name">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	
+	["QUERY_CALL"] = <
+		name = <"QUERY_CALL">
+		ancestors = <"SYSTEM_CALL">
+		properties = <
+			["query_id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"query_id">
+				type = <"String">
+			>
+			["query_text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"query_text">
+				type = <"String">
+			>
+		>
+	>
+	
+	["API_CALL"] = <
+		name = <"API_CALL">
+		ancestors = <"SYSTEM_CALL">
+	>
+	
 	--
 	--------------------- Plan Context ------------------
 	--
@@ -249,12 +317,6 @@ class_definitions = <
 			["T"] = <
 				name = <"T">
 				conforms_to_type = <"EXPR_TYPE_DEF">
-			>
-		>
-		properties = <
-			["required_currency"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"required_currency">
-				type = <"IDuration">
 			>
 		>
 	>
@@ -498,6 +560,14 @@ class_definitions = <
 				name = <"wait_spec">
 				type = <"TASK_WAIT">
 			>
+			["review_dataset"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"review_dataset">
+				type_def = <
+					container_type = <"List">
+					type = <"DATASET_SPEC">
+				>
+				cardinality = <|>=0|>
+			>
 		>
 	>
 
@@ -550,6 +620,7 @@ class_definitions = <
 	["TASK"] = <
 		name = <"TASK">
 		ancestors = <"PLAN_ITEM">
+		is_abstract = <True>
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -565,6 +636,51 @@ class_definitions = <
 		>
 	>
 
+	["DISPATCHABLE_TASK"] = <
+		name = <"DISPATCHABLE_TASK">
+		ancestors = <"TASK">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"DISPATCHABLE_ACTION">
+				is_mandatory = <True>
+			>
+		>
+		properties = <
+			["wait"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"wait">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["callback"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"callback">
+				type = <"CALLBACK_WAIT">
+			>
+		>
+	>
+
+	["PERFORMABLE_TASK"] = <
+		name = <"PERFORMABLE_TASK">
+		ancestors = <"TASK">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"PERFORMABLE_ACTION">
+				is_mandatory = <True>
+			>
+		>
+		properties = <
+			["capture_dataset"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"capture_dataset">
+				type_def = <
+					container_type = <"List">
+					type = <"DATASET_SPEC">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
 	--
 	--------------------- Actions ------------------
 	--
@@ -574,14 +690,6 @@ class_definitions = <
 		ancestors = <"LOCATABLE">
 		is_abstract = <True>
 		properties = <
-			["review_dataset"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"review_dataset">
-				type_def = <
-					container_type = <"List">
-					type = <"DATASET_SPEC">
-				>
-				cardinality = <|>=0|>
-			>
 			["subject_preconditions"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"subject_preconditions">
 				type_def = <
@@ -605,17 +713,6 @@ class_definitions = <
 		name = <"DISPATCHABLE_ACTION">
 		ancestors = <"TASK_ACTION">
 		is_abstract = <True>
-		properties = <
-			["wait"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"wait">
-				type = <"Boolean">
-				is_mandatory = <True>
-			>
-			["callback"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"callback">
-				type = <"CALLBACK_WAIT">
-			>
-		>
 	>
 
 	["PERFORMABLE_ACTION"] = <
@@ -636,14 +733,6 @@ class_definitions = <
 				type_def = <
 					container_type = <"List">
 					type = <"RESOURCE_PARTICIPATION">
-				>
-				cardinality = <|>=0|>
-			>
-			["capture_dataset"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"capture_dataset">
-				type_def = <
-					container_type = <"List">
-					type = <"DATASET_SPEC">
 				>
 				cardinality = <|>=0|>
 			>
@@ -791,9 +880,49 @@ class_definitions = <
 	--------------------- Conditionals ------------------
 	--
 	
+	["CHOICE_GROUP"] = <
+		name = <"CHOICE_GROUP">
+		ancestors = <"TASK_GROUP">
+		properties = <
+			["override_type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"override_type">
+				type = <"OVERRIDE_TYPE">
+			>
+			["members"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"members">
+				type_def = <
+					container_type = <"List">
+					type = <"CHOICE_BRANCH">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["OVERRIDE_TYPE"] = (P_BMM_ENUMERATION_INTEGER) <
+		name = <"OVERRIDE_TYPE">
+		ancestors = <"Integer">
+		item_names = <"allowed", "allowed_with_reason", "prohibited">
+	>
+
+	["CHOICE_BRANCH"] = <
+		name = <"CHOICE_BRANCH">
+		ancestors = <"TASK_GROUP">
+	>
+
+	["ADHOC_GROUP"] = <
+		name = <"ADHOC_GROUP">
+		ancestors = <"CHOICE_GROUP">
+	>
+
+	["ADHOC_BRANCH"] = <
+		name = <"ADHOC_BRANCH">
+		ancestors = <"CHOICE_BRANCH">
+	>
+
 	["CONDITION_GROUP"] = <
 		name = <"CONDITION_GROUP">
-		ancestors = <"TASK_GROUP">
+		ancestors = <"CHOICE_GROUP">
 		properties = <
 			["members"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"members">
@@ -808,7 +937,7 @@ class_definitions = <
 
 	["CONDITION_BRANCH"] = <
 		name = <"CONDITION_BRANCH">
-		ancestors = <"TASK_GROUP">
+		ancestors = <"CHOICE_BRANCH">
 		properties = <
 			["test"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"test">
@@ -823,7 +952,7 @@ class_definitions = <
 
 	["DECISION_GROUP"] = <
 		name = <"DECISION_GROUP">
-		ancestors = <"TASK_GROUP">
+		ancestors = <"CHOICE_GROUP">
 		properties = <
 			["test"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"test">
@@ -846,7 +975,7 @@ class_definitions = <
 
 	["DECISION_BRANCH"] = <
 		name = <"DECISION_BRANCH">
-		ancestors = <"TASK_GROUP">
+		ancestors = <"CHOICE_BRANCH">
 		properties = <
 			["value_constraint"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"value_constraint">
@@ -861,7 +990,7 @@ class_definitions = <
 
 	["EVENT_GROUP"] = <
 		name = <"EVENT_GROUP">
-		ancestors = <"TASK_GROUP">
+		ancestors = <"CHOICE_GROUP">
 		properties = <
 			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"timeout">
@@ -880,7 +1009,7 @@ class_definitions = <
 
 	["EVENT_BRANCH"] = <
 		name = <"EVENT_BRANCH">
-		ancestors = <"TASK_GROUP">
+		ancestors = <"CHOICE_BRANCH">
 	>
 
 	--
