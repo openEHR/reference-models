@@ -247,6 +247,11 @@ class_definitions = <
 			>
 		>
 		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"string">
+				is_mandatory = <True>
+			>
 			["type"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
 				name = <"type">
 				type = <"T">
@@ -266,11 +271,6 @@ class_definitions = <
 			>
 		>
 		properties = <
-			["name"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"name">
-				type = <"string">
-				is_mandatory = <True>
-			>
 			["populating_request"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"populating_request">
 				type = <"SYSTEM_CALL">
