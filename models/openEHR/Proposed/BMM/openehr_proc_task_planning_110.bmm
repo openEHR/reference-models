@@ -58,12 +58,13 @@ packages = <
 		name = <"org.openehr.proc.task_planning">
 		classes = <"SYSTEM_CALL", "PARAMETER_MAPPING", "PARAMETER_DEF", "QUERY_CALL", "API_CALL",
 			"TASK_LIFECYCLE", "TIME_SPECIFIER", "CLOCK_TIME", "CALENDAR_TIME", "CUSTOMARY_TIME",  
-			"TEMPORAL_RELATION", "RESUME_TYPE"
-		>
-		packages = <
-			["definition"] = <
-				name = <"definition">
-				classes = <"WORK_PLAN", "TASK_PLAN", "TASK_PARTICIPATION", "PLAN_ITEM", "TASK_GROUP", "TASK", 
+			"TEMPORAL_RELATION", "RESUME_TYPE",
+--		>
+--		packages = <
+--			["definition"] = <
+--				name = <"definition">
+--				classes = <
+					"WORK_PLAN", "TASK_PLAN", "TASK_PARTICIPATION", "PLAN_ITEM", "TASK_GROUP", "TASK", 
 					"DISPATCHABLE_TASK", "PERFORMABLE_TASK",
 
 					"PLAN_DATA_CONTEXT", "CONTEXT_VALUE", "CONTEXT_EXPRESSION", "CONTEXT_VARIABLE",
@@ -83,13 +84,15 @@ packages = <
 
 					"TASK_WAIT", "TIMELINE_MOMENT", "MANUAL_NOTIFICATION", "SYSTEM_NOTIFICATION", "TASK_TRANSITION",
 					"PLAN_EVENT", "TIMER_EVENT", "CALENDAR_EVENT", "DELAY_EVENT", "STATE_TRIGGER",
-					"REMINDER", "TIMER_WAIT", "EVENT_WAIT", "EVENT_ACTION", "RESUME_ACTION", "CALLBACK_WAIT", "CALLBACK_NOTIFICATION"
-				> 
-			>
-			["history"] = <
-				name = <"history">
-				classes = <"TASK_PLAN_EXECUTION_HISTORY"> 
-			>
+					"REMINDER", "TIMER_WAIT", "EVENT_WAIT", "EVENT_ACTION", "RESUME_ACTION", "CALLBACK_WAIT", "CALLBACK_NOTIFICATION",
+--				> 
+--			>
+--			["history"] = <
+--				name = <"history">
+--				classes = <
+					"TASK_PLAN_EXECUTION_HISTORY"
+--				>
+--			>
 		> 
 	>
 >
@@ -828,13 +831,6 @@ class_definitions = <
 		name = <"DATASET_SPEC">
 		ancestors = <"LOCATABLE">
 		properties = <
-			["prototype"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"prototype">
-				type_def = <
-					container_type = <"List">
-					type = <"ENTRY">
-				>
-			>
 			["other_details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"other_details">
 				type = <"ITEM_STRUCTURE">
