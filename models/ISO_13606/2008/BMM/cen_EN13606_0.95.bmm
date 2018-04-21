@@ -13,11 +13,9 @@
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/adl1.5/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.3">
 
 ------------------------------------------------------
 -- schema identification
@@ -26,15 +24,16 @@ bmm_version = <"2.0">
 rm_publisher = <"CEN">
 schema_name = <"EN13606">
 rm_release = <"0.95">
+model_namespace = <"EN13606">
 
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"$LastChangedRevision: 26 $">
+schema_revision = <"26">
 schema_lifecycle_state = <"experimental">
 schema_description = <"ISO 13606 Release 2008 draft reference model, expressed in openEHR 'basic meta-model' format">
 schema_author = <"christoph.rinner@meduniwien.ac.at">
-schema_contributors = <"thomas.beale@oceaninformatics.com", ...>
+schema_contributors = <"thomas.beale@openehr.org", ...>
 
 ------------------------------------------------------
 -- inclusions
@@ -45,14 +44,6 @@ includes = <
 	>
 >
 
-------------------------------------------------------
--- archetyping
-------------------------------------------------------
--- NOTE - 13606 does not use RECORD_COMPONENT as parent of any demographic types, so for now, to allow
--- archetyping of those, we don't mention an archetype parent class
--- archetype_parent_class = <"RECORD_COMPONENT">
-archetype_visualise_descendants_of = <"RECORD_COMPONENT">
-archetype_rm_closure_packages = <"org.cen.en13606", ...>
 
 
 ------------------------------------------------------

@@ -12,7 +12,7 @@
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
 ------------------------------------------------------
-bmm_version = <"2.1">
+bmm_version = <"2.3">
 
 ------------------------------------------------------
 -- schema identification
@@ -21,6 +21,7 @@ bmm_version = <"2.1">
 rm_publisher = <"openehr">
 schema_name = <"proc_task_planning">
 rm_release = <"1.0.0">
+model_name = <"TASK_PLANNING">
 
 ------------------------------------------------------
 -- schema documentation
@@ -41,12 +42,6 @@ includes = <
 		id = <"openehr_rm_demographic_1.0.4">
 	>
 >
-
-
-------------------------------------------------------
--- archetyping
-------------------------------------------------------
-archetype_rm_closure_packages = <"org.openehr.proc.task_planning", ...>
 
 
 ------------------------------------------------------
@@ -249,7 +244,7 @@ class_definitions = <
 		properties = <
 			["name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"name">
-				type = <"string">
+				type = <"String">
 				is_mandatory = <True>
 			>
 			["type"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
@@ -290,7 +285,7 @@ class_definitions = <
 		properties = <
 			["expression"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"expression">
-				type = <"string">
+				type = <"String">
 				is_mandatory = <True>
 			>
 		>
@@ -1137,9 +1132,34 @@ class_definitions = <
 		>
 	>
 
+	["EVENT_WAIT"] = <
+		name = <"EVENT_WAIT">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"PLAN_EVENT">
+			>
+		>
+		properties = <
+			["event"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"event">
+				type = <"T">
+				is_mandatory = <True>
+			>
+			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeout">
+				type = <"TIMER_WAIT">
+			>
+			["success_action"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"success_action">
+				type = <"EVENT_ACTION">
+			>
+		>
+	>
+
 	["DELAY_EVENT"] = <
 		name = <"DELAY_EVENT">
-		ancestors = <"LOCATABLE">
+		ancestors = <"PLAN_EVENT">
 		properties = <
 			["delay"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"delay">
@@ -1191,25 +1211,23 @@ class_definitions = <
 
 	["TIMER_WAIT"] = <
 		name = <"TIMER_WAIT">
-		ancestors = <"EVENT_WAIT">
-		properties = <
-			["event"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"event">
-				type = <"TIMER_EVENT">
-				is_mandatory = <True>
+		ancestor_defs = <
+			["EVENT_WAIT<TIMER_EVENT>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"EVENT_WAIT">
+				generic_parameters = <"TIMER_EVENT">
 			>
 		>
 	>
 
 	["CALLBACK_WAIT"] = <
 		name = <"CALLBACK_WAIT">
-		ancestors = <"EVENT_WAIT">
-		properties = <
-			["event"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"event">
-				type = <"CALLBACK_NOTIFICATION">
-				is_mandatory = <True>
+		ancestor_defs = <
+			["EVENT_WAIT<CALLBACK_NOTIFICATION>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"EVENT_WAIT">
+				generic_parameters = <"CALLBACK_NOTIFICATION">
 			>
+		>
+		properties = <
 			["fail_action"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"fail_action">
 				type = <"EVENT_ACTION">
@@ -1235,31 +1253,6 @@ class_definitions = <
 			["message"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"message">
 				type = <"DV_TEXT">
-			>
-		>
-	>
-
-	["EVENT_WAIT"] = <
-		name = <"EVENT_WAIT">
-		generic_parameter_defs = <
-			["T"] = <
-				name = <"T">
-				conforms_to_type = <"PLAN_EVENT">
-			>
-		>
-		properties = <
-			["event"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
-				name = <"event">
-				type = <"T">
-				is_mandatory = <True>
-			>
-			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"timeout">
-				type = <"TIMER_WAIT">
-			>
-			["success_action"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"success_action">
-				type = <"EVENT_ACTION">
 			>
 		>
 	>

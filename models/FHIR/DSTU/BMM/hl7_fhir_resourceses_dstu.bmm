@@ -17,7 +17,7 @@
 --     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.1">
+bmm_version = <"2.3">
 
 ------------------------------------------------------
 -- schema identification
@@ -26,6 +26,7 @@ bmm_version = <"2.1">
 rm_publisher = <"hl7">
 schema_name = <"fhir">
 rm_release = <"0.8.3">
+model_name = <"FHIR">
 
 ------------------------------------------------------
 -- schema documentation
@@ -34,10 +35,6 @@ schema_revision = <"0.9.0">
 schema_lifecycle_state = <"dstu">
 schema_description = <"HL7 FHIR resources"> 
 
-------------------------------------
--- archetyping
-------------------------------------
-archetype_rm_closure_packages = <"org.hl7.fhir", ...>
 
 ------------------------------------------------------
 -- packages
@@ -774,7 +771,7 @@ class_definitions = <
 			>
 			["text"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"text">
-				type = <"string">
+				type = <"String">
 			>
 			["contained"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"contained">
@@ -902,7 +899,7 @@ class_definitions = <
 			>
 			["birthDate"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"birthDate">
-				type = <"dateTime">
+				type = <"DateTime">
 			>
 			["photo"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"photo">
@@ -1169,7 +1166,7 @@ class_definitions = <
 			>
 			["expiry"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"expiry">
-				type = <"dateTime">
+				type = <"DateTime">
 			>
 			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"quantity">
@@ -1485,7 +1482,7 @@ class_definitions = <
 			>
 			["receivedTime"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"receivedTime">
-				type = <"dateTime">
+				type = <"DateTime">
 			>
 			["treatment"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"treatment">

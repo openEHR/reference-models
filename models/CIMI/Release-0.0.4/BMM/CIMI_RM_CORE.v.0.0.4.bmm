@@ -1,0 +1,572 @@
+-- Basic Metamodel Syntax Version
+bmm_version = <"2.1">
+
+-- ----------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+-- ----------------------------------
+rm_publisher = <"CIMI">
+schema_name = <"RM_CORE">
+rm_release = <"0.0.4">
+
+-- ----------------------------------
+-- schema documentation
+-- ----------------------------------
+schema_revision = <"Thu Dec 14 17:20:59 PST 2017">
+schema_lifecycle_state = <"Informative">
+schema_description = <"CIMI_RM_CORE.v0.0.4.mdzip - Schema generated from UML">
+
+packages = <
+	["CIMI_Reference_Model"] = <
+		name = <"CIMI_Reference_Model">
+		packages = <
+			["Core"] = <
+				name = <"Core">
+				classes = <"Archetyped", "Locatable">
+			>
+			["DataTypes"] = <
+				name = <"DataTypes">
+				classes = <"NumericalValue", "CodedText", "IntegerType", "DataType", "Date", "TemporalValue", "Duration", "EmbeddedContent", "IntervalValue", "Multimedia", "OrdinalConcept", "ParsableContent", "PlainText", "OrderedValue", "Quantity", "TermMapping", "Text", "Time", "UriType", "Instant", "PositiveInteger", "UnsignedInteger", "Ratio", "Concept", "CodeSystem", "GpsLocation", "DateTime", "Decimal">
+			>
+			["PrimitiveTypes"] = <
+				name = <"PrimitiveTypes">
+				classes = <"Any", "Array", "List", "Boolean", "Byte", "Character", "Integer", "Real", "String", "Uri", "TerminologyCode">
+			>
+		>
+	>
+>
+class_definitions = <
+	["Archetyped"] = <
+		documentation = <"Archetypes act as the configuration basis for the particular structures of instances defined by the reference model. To enable archetypes to be used to create valid data, key classes in the reference model act as root points for archetyping; accordingly, these classes have the archetype_details attribute set.
+
+An instance of the class ARCHETYPED contains the relevant archetype identification information, allowing generating archetypes to be matched up with data instances.">
+		name = <"Archetyped">
+		properties = <
+			["archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Globally unique archetype identifier.">
+				name = <"archetype_id">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["rm_version"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Version of the CIMI reference model used to create this object. Expressed in terms of the release version string, e.g. 1.0 , 1.2.4 .">
+				name = <"rm_version">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["Locatable"] = <
+		documentation = <"Most classes in the CIMI reference model inherit from the Locatable class, which defines the idea of 'locatability in an archetyped structure'. Locatable defines a runtime name and an archetype_node_id. The archetype_node_id is the standardised semantic code for a node and comes from the corresponding node in the archetype used to create the data. The only exception is at archetype root points in data, where archetype_node_id carries the archetype identifier in string form rather than an interior node id from an archetype. Locatable also provides the attribute archetype_details, which is non-Void for archetype root points in data, and carries meta-data relevant to root points. The name attribute carries a name created at runtime. The 'meaning' of any node is derived formally from the archetype by obtaining the text value for the archetype_node_id code from the archetype ontology section, in the language required.">
+		name = <"Locatable">
+		properties = <
+			["archetype_node_id"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The standardised semantic code for a node, which comes from the corresponding node in the archetype used to create the data. For archetype root points, the archetype_node_id carries the archetype identifier in string form rather than an interior node id from an archetype. ">
+				name = <"archetype_node_id">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A name created at runtime">
+				name = <"name">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["archetype_details"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Archetype_details carries meta-data relevant to root points. It is null for non-root points in data.">
+				name = <"archetype_details">
+				type = <"Archetyped">
+			>
+		>
+	>
+	["NumericalValue"] = <
+		documentation = <"Abstract class defining quantified amounts. ">
+		name = <"NumericalValue">
+		ancestors = <"OrderedValue",...>
+		properties = <
+			["precision"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The accuracy of the value, in terms of number of significant figures. For example, a number like 12,345.67 might be declared as accurate to 3 significant digits, meaning digits in the 10's place, 1's place, or to the right of the decimal represent false precision. ">
+				name = <"precision">
+				type = <"Integer">
+			>
+		>
+	>
+	["CodedText"] = <
+		documentation = <"A Text in a human language whose meaning is captured as concept in a formal terminology. Since CodedText is a subtype of Text, it can be used in place of it, effectively allowing the type Text to mean a text that may optionally be coded. A common use is to record the coded version of a verbatim text (a text originally selected or entered by a human). ">
+		name = <"CodedText">
+		ancestors = <"Text",...>
+		properties = <
+			["concept"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A concept from a formal terminology that is equivalent to the semantics of  CodedText.value.">
+				name = <"concept">
+				type = <"Concept">
+			>
+			["mapping"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"Modified the definition further as follows: A concept, usually drawn from an alternative code system, that is related to CodedText.concept. Mapping may be used, for instance, when the originator uses a local terminology but also supplies one or more equivalents from standard terminologies (e.g. LOINC).">
+				name = <"mapping">
+				type_def = <
+					container_type = <"List">
+					type = <"TermMapping">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["IntegerType"] = <
+		documentation = <"A countable quantity, used for values such as number of pregnancies or number of cigarettes smoked in a day. Not to be used for amounts that have units.">
+		name = <"IntegerType">
+		ancestors = <"NumericalValue",...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The integer count value.">
+				name = <"value">
+				type = <"Integer">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["DataType"] = <
+		documentation = <"Serves as a common ancestor of all CIMI simple and complex data types.">
+		name = <"DataType">
+	>
+	["Date"] = <
+		documentation = <"Represents one day in time, as measured on the Gregorian calendar, used for recording time when the exact time is unknown or excessive precision is undesired, such as birth dates. Date uses the semantics defined by ISO 8601.">
+		name = <"Date">
+		ancestors = <"TemporalValue",...>
+	>
+	["TemporalValue"] = <
+		documentation = <"An abstract class representing a point in time to some accuracy, following the semantics of ISO 8601.">
+		name = <"TemporalValue">
+		ancestors = <"OrderedValue",...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A date&#47;time string following the semantics of ISO8601.">
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["Duration"] = <
+		documentation = <"Represents a length of time, independent of any specific point time. Duration is expressed in customary format, i.e. days, hours, minutes, etc. Note that durations cannot be used to represent points or intervals in time.">
+		name = <"Duration">
+		ancestors = <"Quantity",...>
+		properties = <
+			["durationText"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"An string expressed in terms of days, hours, minutes, seconds, whose semantics follow ISO8601.">
+				name = <"durationText">
+				type = <"String">
+			>
+		>
+	>
+	["EmbeddedContent"] = <
+		documentation = <"Abstract parent class for all types of encapsulated data, such as media files.">
+		name = <"EmbeddedContent">
+		ancestors = <"DataType",...>
+	>
+	["IntervalValue"] = <
+		documentation = <"A generic class defining an interval (i.e. range) of any ordered value type. The type T must be a descendant of the type OrderedValue.">
+		name = <"IntervalValue">
+		ancestors = <"DataType",...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"OrderedValue">
+			>
+		>
+		properties = <
+			["lowerIncluded"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A flag, when true, indicates the specified lower bound is part of the interval. If the interval is lower unbounded, this flag is ignored.">
+				name = <"lowerIncluded">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["lowerUnbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A flag indicating the interval does not have a lower bound. If true, a lower bound may not be specified.">
+				name = <"lowerUnbounded">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["upperIncluded"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A flag, when true, indicates the specified upper bound is part of the interval. If the interval is upper unbounded, this flag is ignored.">
+				name = <"upperIncluded">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["upperUnbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A flag indicating the interval does not have an upper bound. If true, an upper bound may not be specified">
+				name = <"upperUnbounded">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				documentation = <"The lower bound of the interval. Values below the lower bound lie outside the interval.">
+				name = <"lower">
+				type = <"T">
+			>
+			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				documentation = <"The upper bound of the interval. Values above the upper bound lie outside the interval.">
+				name = <"upper">
+				type = <"T">
+			>
+		>
+	>
+	["Multimedia"] = <
+		documentation = <"A representation of media files, such as audio, visual, biosignal, and similar types.">
+		name = <"Multimedia">
+		ancestors = <"EmbeddedContent",...>
+		properties = <
+			["alternateText"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Text to display in lieu of multimedia display&#47;replay.">
+				name = <"alternateText">
+				type = <"Byte">
+			>
+			["data"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The actual data found at uri, if supplied inline.">
+				name = <"data">
+				type_def = <
+					container_type = <"List">
+					type = <"Byte">
+				>
+				cardinality = <|>=0|>
+			>
+			["mediaType"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Data media type representing the mime type of the content.">
+				name = <"mediaType">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["resourceIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"URI reference to electronic information stored outside the record as a file, database entry etc, if supplied as a reference.">
+				name = <"resourceIdentifier">
+				type = <"UriType">
+			>
+		>
+	>
+	["OrdinalConcept"] = <
+		documentation = <"Represents rankings and scores, e.g. pain, Apgar values, etc, where there is a) an implied ordering, b) no implication that the distance between each value is constant, and c) the total number of values is finite. This class can be used for recording symbolic values, e.g., the results on a urinalysis strip {neg, trace, moderate, ...} or numbers like Agar values {0, 1, 2, 3, ...}.
+Note that although the term &quot;ordinal&quot; in mathematics means natural numbers only, here any integer is allowed, since negative and zero values are often used by medical professionals for values around a neutral point, for example {-3, -2, -1, 0, 1, 2, 3} for reflex response values.
+">
+		name = <"OrdinalConcept">
+		ancestors = <"Concept",...>
+		properties = <
+			["positionInSet"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The rank order in the enumeration of values, used for sorting. While any integer value can be used, the values need to reflect the order in the set. For example, ordering as {1, 2, 3, ...} has the same effect as ordering as {0, 1, 2, ...}">
+				name = <"positionInSet">
+				type = <"Integer">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["ParsableContent"] = <
+		documentation = <"Encapsulated data expressed as a parsable text. The internal syntax of the data item is not described, but must follow the given formalism.">
+		name = <"ParsableContent">
+		ancestors = <"EmbeddedContent",...>
+		properties = <
+			["formalism"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Name of the formalism, e.g. GLIF 1.0 , Proforma etc.">
+				name = <"formalism">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The string, which may validly be empty in some syntaxes.">
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["PlainText"] = <
+		documentation = <"A text with optional human language. While the attributes of PlainText and Text are the same, the PlainText class should be used when the text will not be coded (since CodedText is a child of Text but not PlainText).  ">
+		name = <"PlainText">
+		ancestors = <"Text",...>
+	>
+	["OrderedValue"] = <
+		documentation = <"Abstract class defining a value on a number line or time line, whose location (magnitude) may be given precisely, or bounded by another value. ">
+		name = <"OrderedValue">
+		ancestors = <"DataType",...>
+	>
+	["Quantity"] = <
+		documentation = <"Quantified type representing scientific quantities, i.e. quantities expressed as a magnitude and units of measure. Quantities can also be used for time durations, where it is more convenient to treat these as simply a number of seconds rather than days, months, years.">
+		name = <"Quantity">
+		ancestors = <"NumericalValue",...>
+		properties = <
+			["units"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Units, expressed expressed as codes (generally UCUM), e.g. &quot;kg&#47;m2&quot;, &quot;mm[Hg]&quot;, &quot;ms-1&quot;, &quot;km&#47;h&quot;. Implemented accordingly in subtypes.">
+				name = <"units">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Numeric magnitude of the quantity.
+
+">
+				name = <"value">
+				type = <"Real">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["TermMapping"] = <
+		documentation = <"Represents an alternative (&quot;mapped&quot;) Concept associated with a source concept (i.e., CodedText.concept or the textual value of the CodedText when no equivalent concept has been defined), and the relative match of the mapped Concept with respect to the source Concept. Mappings may be used to add classification terms (e.g. adding ICD classifiers to SNOMED descriptive terms), for computational convenience, or to provide equivalents in other terminologies (e.g. across nursing vocabularies).">
+		name = <"TermMapping">
+		properties = <
+			["match"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The relative match of the mapped concept to the original (target) concept. Examples include broader (i.e., the mapped term is more general than the original), equivalent, narrower (e.g. mapped concept is &quot;atypical diabetes mellitus&quot; and the original term is &quot;diabetes mellitus&quot;), or unknown. ">
+				name = <"match">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The purpose of the mapping, e.g., automated data mining, billing, or interoperability.">
+				name = <"purpose">
+				type = <"Concept">
+			>
+			["target"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The target concept of the mapping, i.e., the original concept that has been mapped. ">
+				name = <"target">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["Text"] = <
+		documentation = <"Abstract parent for plain textual and coded text items, which may contain any amount of legal characters arranged as e.g. words, sentences etc (i.e. one Text may be more than one word). Visual formatting and hyperlinks may be included.">
+		name = <"Text">
+		ancestors = <"DataType",...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The text itself, which may contain any amount of legal characters arranged as e.g. words, sentences etc. Visual formatting and hyperlinks may be included.">
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The text's language.">
+				name = <"language">
+				type = <"Concept">
+			>
+		>
+	>
+	["Time"] = <
+		documentation = <"Represents a point in time from an origin usually interpreted as meaning the start of the current day. Used for recording a time of (any) day, not an absolute point in time. Typically used for times of events such as substance administrations.">
+		name = <"Time">
+		ancestors = <"TemporalValue",...>
+	>
+	["UriType"] = <
+		documentation = <"A reference to an object which conforms to the Universal Resource Identifier (URI) standard. See &quot;Universal Resource Identifiers in WWW&quot; by Tim Berners-Lee at http:&#47;&#47;www.ietf.org&#47;rfc&#47;rfc3986.txt.">
+		name = <"UriType">
+		ancestors = <"DataType",...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Value of URI">
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["Instant"] = <
+		documentation = <"An instant in time - known at least to the second and always includes a time zone. Note: This is intended for precisely observed times (typically system logs etc.), and not human-reported times - for them, use date and dateTime. instant is a more constrained dateTime">
+		name = <"Instant">
+		ancestors = <"DateTime",...>
+	>
+	["PositiveInteger"] = <
+		documentation = <"An integer whose value is greater than zero.">
+		name = <"PositiveInteger">
+		ancestors = <"UnsignedInteger",...>
+	>
+	["UnsignedInteger"] = <
+		documentation = <"An integer whose value is greater or equal to zero.">
+		name = <"UnsignedInteger">
+		ancestors = <"IntegerType",...>
+	>
+	["Ratio"] = <
+		documentation = <"A parameterizable ratio, where the numerator and denominator should not be reduced to a decimal, such as 3 tablets&#47;day. ">
+		name = <"Ratio">
+		ancestors = <"DataType",...>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"NumericalValue">
+			>
+		>
+		properties = <
+			["denominator"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				documentation = <"The denominator of the ratio.">
+				name = <"denominator">
+				type = <"T">
+			>
+			["numerator"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				documentation = <"The numerator of the ratio.">
+				name = <"numerator">
+				type = <"T">
+			>
+		>
+	>
+	["Concept"] = <
+		documentation = <"The representation of a conceptual idea represented by an ontology or controlled vocabulary. ">
+		name = <"Concept">
+		ancestors = <"DataType">
+		properties = <			
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"TerminologyCode">
+				is_mandatory = <True>
+			>
+			["display"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The preferred language-specific textual rendition of the code attribute, preferably as specified by the code system.">
+				name = <"display">
+				type = <"String">
+			>
+		>
+	>
+	
+	["CodeSystem"] = <
+		documentation = <"A formal terminology system.">
+		name = <"CodeSystem">
+		ancestors = <"DataType",...>
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The human-readable designation of the code system, for example, LOINC or SNOMED-CT.">
+				name = <"name">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The version of the vocabulary being used, if applicable.">
+				name = <"version">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The URI formally identifying the code system in a version-independent manner.  ">
+				name = <"uri">
+				type = <"UriType">
+			>
+		>
+	>
+	["GpsLocation"] = <
+		documentation = <"A location on the surface of the Earth, described by a latitude and longitude (and optional altitude).">
+		name = <"GpsLocation">
+		ancestors = <"DataType",...>
+		properties = <
+			["longitude"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Longitude with WGS84 datum">
+				name = <"longitude">
+				type = <"Real">
+				is_mandatory = <True>
+			>
+			["latitude"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Latitude with WGS84 datum">
+				name = <"latitude">
+				type = <"Real">
+				is_mandatory = <True>
+			>
+			["altitude"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Altitude with WGS84 datum">
+				name = <"altitude">
+				type = <"Real">
+			>
+		>
+	>
+	["DateTime"] = <
+		documentation = <"A date, date and time or partial date (e.g. just year or year + month) as used in human communication. If hours and minutes are specified, a time zone SHALL be populated. Seconds must be provided due to schema type constraints but may be zero-filled and may be ignored. Dates SHALL be valid dates. The time &quot;24:00&quot; is not allowed.">
+		name = <"DateTime">
+		ancestors = <"TemporalValue",...>
+	>
+	["Decimal"] = <
+		documentation = <"Rational numbers that have a decimal representation. Decimals may not use exponents, and leading 0 digits are not allowed.">
+		name = <"Decimal">
+		ancestors = <"NumericalValue",...>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The value of the decimal number.">
+				name = <"value">
+				type = <"Real">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["Any"] = <
+		documentation = <"Abstract supertype. Usually maps to a type like &quot;Any&quot; or &quot;Object&quot; in an object system. Defined here to provide the value and reference equality semantics.">
+		name = <"Any">
+	>
+	["Array"] = <
+		documentation = <"A collection of ordered items that may be are indexed by number.">
+		name = <"Array">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Any">
+			>
+		>
+	>
+	["List"] = <
+		documentation = <"An ordered collection of items with non-unique membership.">
+		name = <"List">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Any">
+			>
+		>
+	>
+	["Boolean"] = <
+		documentation = <"logical True&#47;False values; usually physically represented as an integer, but need not be">
+		name = <"Boolean">
+	>
+	["Byte"] = <
+		documentation = <"a type whose value is an 8-bit value.">
+		name = <"Byte">
+	>
+	["Character"] = <
+		documentation = <"a type whose value is a member of an 8-bit character-set (ISO: &quot;repertoire&quot;).">
+		name = <"Character">
+	>
+	["Integer"] = <
+		documentation = <"An integer type">
+		name = <"Integer">
+	>
+	["Real"] = <
+		documentation = <"32-bit real numbers in any interoperable representation, including single-width IEEE floating point">
+		name = <"Real">
+	>
+	["String"] = <
+		documentation = <"represents unicode-enabled strings">
+		name = <"String">
+	>
+	["Uri"] = <
+		documentation = <"A URI">
+		name = <"Uri">
+	>
+	["TerminologyCode"] = <
+		name = <"TerminologyCode">
+		ancestors = <"Any">
+		properties = <
+			["terminologyId"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"terminologyId">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["terminologyVersion"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"terminologyVersion">
+				type = <"String">
+			>
+			["codeString"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"codeString">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+
+>
+

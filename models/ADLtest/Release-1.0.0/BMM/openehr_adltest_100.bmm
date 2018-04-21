@@ -4,23 +4,17 @@
 --               the BMM object meta-model classes found at 
 --               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     Ocean Informatics <support@OceanInformatics.com>
--- 	copyright:   Copyright (c) 2009 openEHR Foundation
--- 	license:     See end of file
--- 
--- 	file:        $URL: http://www.openehr.org/svn/knowledge2/TRUNK/rm_schemas/openehr_adltest_100.bmm $
--- 	revision:    $LastChangedRevision: 26 $
--- 	last_change: $LastChangedDate: 2011-10-28 00:38:52 +0100 (Fri, 28 Oct 2011) $
+--	author:      Thomas Beale <thomas.beale@openehr.org>
+--	support:     http://www.openehr.org/issues/browse/AWB
+--	copyright:   Copyright (c) 2009- The openEHR Foundation <http://www.openEHR.org>
+-- 	license:     Apache 2.0 License <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/adl1.5/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.3">
 
 ------------------------------------------------------
 -- schema identification
@@ -29,11 +23,12 @@ bmm_version = <"2.0">
 rm_publisher = <"openehr">
 schema_name = <"adltest">
 rm_release = <"1.0.2">
+model_name = <"TEST_PKG">
 
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"$LastChangedRevision: 26 $">
+schema_revision = <"21">
 schema_lifecycle_state = <"stable">
 schema_description = <"openEHR schema to support test archetypes">
 
@@ -47,19 +42,15 @@ includes = <
 >
 
 ------------------------------------------------------
--- archetyping
--- override archetype parent class from included schema
-------------------------------------------------------
-archetype_rm_closure_packages = <"org.openehr.test_pkg", ...>
-
-------------------------------------------------------
-------------------------------------------------------
 -- packages
 ------------------------------------------------------
 packages = <
 	["org.openehr.test_pkg"] = <
 		name = <"org.openehr.test_pkg">
-		classes = <"WHOLE", "SOME_TYPE", "BOOK", "CHAPTER", "ENTRY", "CAR", "CAR_BODY", "CAR_BODY_PART", "WHEEL", "RIM", "ENGINE_PART", "ENGINE_PART_ITEM", "ITEM", "CLUSTER", "ELEMENT", "MULTIPLICITY_OBJECT">
+		classes = <"WHOLE", "SOME_TYPE", "BOOK", "CHAPTER", "ENTRY", "CAR", "CAR_BODY", "CAR_BODY_PART", "WHEEL", "RIM", "ENGINE_PART", "ENGINE_PART_ITEM", 
+			"ITEM", "CLUSTER", "ELEMENT", "MULTIPLICITY_OBJECT",
+			"GENERIC_PARENT", "SUPPLIER", "SUPPLIER_A", "SUPPLIER_B", "GENERIC_CHILD_OPEN_T", "GENERIC_CHILD_OPEN_U", "GENERIC_CHILD_CLOSED"
+		>
 	>
 >
 
@@ -896,42 +887,139 @@ class_definitions = <
 			>
 		>
 	>
->
 
---|
---| ***** BEGIN LICENSE BLOCK *****
---| Version: MPL 1.1/GPL 2.0/LGPL 2.1
---|
---| The contents of this file are subject to the Mozilla Public License Version
---| 1.1 (the 'License'); you may not use this file except in compliance with
---| the License. You may obtain a copy of the License at
---| http://www.mozilla.org/MPL/
---|
---| Software distributed under the License is distributed on an 'AS IS' basis,
---| WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
---| for the specific language governing rights and limitations under the
---| License.
---|
---| The Original Code is openehr_adltest_1.0.0.dadl
---|
---| The Initial Developer of the Original Code is Thomas Beale.
---| Portions created by the Initial Developer are Copyright (C) 2009
---| the Initial Developer. All Rights Reserved.
---|
---| Contributor(s):
---|
---| Alternatively, the contents of this file may be used under the terms of
---| either the GNU General Public License Version 2 or later (the 'GPL'), or
---| the GNU Lesser General Public License Version 2.1 or later (the 'LGPL'),
---| in which case the provisions of the GPL or the LGPL are applicable instead
---| of those above. If you wish to allow use of your version of this file only
---| under the terms of either the GPL or the LGPL, and not to allow others to
---| use your version of this file under the terms of the MPL, indicate your
---| decision by deleting the provisions above and replace them with the notice
---| and other provisions required by the GPL or the LGPL. If you do not delete
---| the provisions above, a recipient may use your version of this file under
---| the terms of any one of the MPL, the GPL or the LGPL.
---|
---| ***** END LICENSE BLOCK *****
---|
+	--
+	--------------------- generic inheritance types ------------------
+	--
+
+	
+	["GENERIC_PARENT"] = <
+		name = <"GENERIC_PARENT">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"SUPPLIER">
+			>
+			["U"] = <
+				name = <"U">
+				conforms_to_type = <"SUPPLIER">
+			>
+		>
+		properties = <
+			["property_a"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"property_a">
+				type = <"T">
+			>
+			["property_b"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"property_b">
+				type = <"U">
+			>
+		>
+	>
+
+	["SUPPLIER"] = <
+		name = <"SUPPLIER">
+		is_abstract = <True>
+		properties = <
+			["abstract_prop"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"abstract_prop">
+				type = <"String">
+			>
+		>
+	>
+
+	["SUPPLIER_A"] = <
+		name = <"SUPPLIER_A">
+		ancestors = <"SUPPLIER">
+		properties = <
+			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"magnitude">
+				type = <"Double">
+				is_mandatory = <True>
+			>
+			["units"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"units">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["SUPPLIER_B"] = <
+		name = <"SUPPLIER_B">
+		ancestors = <"SUPPLIER">
+		properties = <
+			["property"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"property">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["precision"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"precision">
+				type = <"Integer">
+			>
+		>
+	>
+
+	["GENERIC_CHILD_OPEN_T"] = <
+		name = <"GENERIC_CHILD_OPEN_T">
+		ancestor_defs = <
+			["GENERIC_PARENT<T,SUPPLIER_B>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"GENERIC_PARENT">
+				generic_parameters = <"T", "SUPPLIER_B">
+			>
+		>
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"SUPPLIER">
+			>
+		>
+		properties = <
+			["gen_child_open_t_prop"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"gen_child_open_t_prop">
+				type = <"String">
+			>
+		>
+	>
+
+	["GENERIC_CHILD_OPEN_U"] = <
+		name = <"GENERIC_CHILD_OPEN_U">
+		ancestor_defs = <
+			["GENERIC_PARENT<SUPPLIER_A,U>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"GENERIC_PARENT">
+				generic_parameters = <"SUPPLIER_A", "U">
+			>
+		>
+		generic_parameter_defs = <
+			["U"] = <
+				name = <"U">
+				conforms_to_type = <"SUPPLIER">
+			>
+		>
+		properties = <
+			["gen_child_open_u_prop"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"gen_child_open_u_prop">
+				type = <"String">
+			>
+		>
+	>
+
+	["GENERIC_CHILD_CLOSED"] = <
+		name = <"GENERIC_CHILD_CLOSED">
+		ancestor_defs = <
+			["GENERIC_PARENT<SUPPLIER_A,SUPPLIER_B>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"GENERIC_PARENT">
+				generic_parameters = <"SUPPLIER_A", "SUPPLIER_B">
+			>
+		>
+		properties = <
+			["gen_child_closed_prop"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"gen_child_closed_prop">
+				type = <"String">
+			>
+		>
+	>
+
+>
 

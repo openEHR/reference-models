@@ -1,5 +1,5 @@
 -- xxx
-bmm_version = <"2.1">
+bmm_version = <"2.3">
 
 ------------------------------------
 -- schema identification
@@ -8,6 +8,7 @@ bmm_version = <"2.1">
 rm_publisher = <"CDISC">
 schema_name = <"core">
 rm_release = <"0.5.0">
+model_name = <"CDISC">
 
 ------------------------------------
 -- schema documentation
@@ -25,10 +26,6 @@ includes = <
     >
 >
 
-------------------------------------
--- archetyping
-------------------------------------
-archetype_rm_closure_packages = <"org.cdisc.Bridg", ...>
 
 ------------------------------------
 -- packages

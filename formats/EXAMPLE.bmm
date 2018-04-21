@@ -52,7 +52,7 @@
 --     https://github.com/wolandscat/EOMF/blob/master/library/bmm/core/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.1">
+bmm_version = <"2.3">
 
 	***********************************************************************************************
 	****                                                                                       ****
@@ -110,91 +110,16 @@ includes = <
 
 	***********************************************************************************************
 	****                                                                                       ****
-	**** Three archetyping related attributes can be set below, but would not usually all      ****
-	**** in the same schema. Only the archetype_rm_closure_packages variable is needed in      ****
-	**** at least one schema, usually the top-most one.                                        ****
+	**** One archetyping related attribute can be set below, but would not usually all         ****
+	**** in the same schema.                                                                   ****
 	****                                                                                       ****
 	***********************************************************************************************
 
 ------------------------------------------------------
 -- archetyping
--- override archetype parent class from included schema
 ------------------------------------------------------
-	***********************************************************************************************
-	****                                                                                       ****
-	**** archetype_parent_class defines a base class from the Reference Model that provides    ****
-	**** archetyping capability in RM data structures. It is optional, and there need be no    ****
-	**** such class in the RM. In the openEHR and 13606 RMs, this class exists, (LOCATABLE,    ****
-	**** and RECORD_COMPONENT respectively). Defining it here has the effect in tools that     ****
-	**** the class tree under which archetypes are arranged contains only RM classes inherit-  ****
-	**** ing from this class, e.g. LOCATABLE classes in the case of openEHR. If nothing is set ****
-	**** here, all classes in the RM are assumed as candidates for archetypes.                 ****
-	****                                                                                       ****
-	**** This attribute, if defined, must be defined in the same schema that defines the       ****
-	**** referenced class.                                                                     ****
-	****                                                                                       ****
-	***********************************************************************************************
+archetype_namespace = <"TEST_PKG">
 
-archetype_parent_class = <"CLASS_NAME">
-
-	***********************************************************************************************
-	****                                                                                       ****
-	**** archetype_data_value_parent_class defines a base class from the Reference Model       ****
-	**** whose descendants are considered to be 'logical data types' (i.e. of some higher      ****
-	**** level than the built-in primitive types String, Integer etc). This attribute is       ****
-	**** optional, even if the RM does have such a class, and is only used to help tooling     ****
-	**** provide more intelligent display, e.g. in statistical reports.                        ****
-	****                                                                                       ****
-	**** This attribute, if defined, must be defined in the same schema that defines the       ****
-	**** referenced class.                                                                     ****
-	****                                                                                       ****
-	***********************************************************************************************
-
-archetype_data_value_parent_class = <"CLASS_NAME">
-
-	***********************************************************************************************
-	****                                                                                       ****
-	**** If archetype_parent_class is not set, designate a class whose descendants should be   ****
-	**** made visible in tree and grid renderings of the archetype definition. For openEHR     ****
-	**** and CEN this class is normally the same as the archetype_parent_class, i.e. LOCATABLE ****
-	**** and RECORD_COMPONENT respectively. It is typically set for CEN, because archetype_    ****
-	**** parent_class may not be stated, due to demographic types not inheriting from it.      ****
-	****                                                                                       ****
-	**** The effect of this attribute in visualisation is to generate the most natural tree or ****
-	**** grid-based view of an archetype definition, from the semantic viewpoint.              ****
-	****                                                                                       ****
-	***********************************************************************************************
-
-archetype_visualise_descendants_of = <"CLASS_NAME">
-
-	***********************************************************************************************
-	****                                                                                       ****
-	**** archetype_rm_closure_packages defines the package or packages that are considered the ****
-	**** archetyping namespace used in archetype multi-axial ids. For example, in openEHR, an  ****
-	**** archetype is identified by an id of the form:                                         ****
-	****      openEHR-EHR-OBSERVATION.some_obs.vN                                              ****
-	**** The 'EHR' in the above is an 'RM package closure', i.e. the name of an RM package     ****
-	**** whose class closure by reachability provides the set of classes that may be arche-    ****
-	**** typed in the 'EHR' namespace. The reason for this is somewhat subtle: consider that   ****
-	**** if you want archetypes based on classes defined directly within a package P, and you  ****
-	**** also define these archetypes that re-use other archetypes based on more basic types   ****
-	**** like openEHR's CLUSTER or similar (typically not defined in the head package), then   ****
-	**** you will inevitably have archetypes based on CLUSTER only for use with EHR archetypes ****
-	**** e.g. archetypes based on OBSERVATION. However, you may well create archetypes based   ****
-	**** on CLUSTER only for use with e.g. top-level archetypes from the demographic package.  ****
-	**** The archetype_rm_closure_packages setting is used to define the root id namespaces    ****
-	**** for archetypes, allowing low-level archetypes to be designated for use with one or    ****
-	**** other high-level archetype. E.g. openEHR-EHR-CLUSTER.bp_position.v1 would be used     ****
-	**** only with openEHR-EHR-OBSERVATION.bp_measurement.vX, or similar, and most likely not  ****
-	**** with any openEHR-DEMOGRAPHIC-XXXX.yyyy.vN archetype. Note that in openEHR, there is   ****
-	**** nothing to prevent such cross-namespace reuse - it is just a design guideline.        ****
-	****                                                                                       ****
-	**** This attribute, must be defined in the same schema that defines the referenced        ****
-	**** package(s).                                                                           ****
-	****                                                                                       ****
-	***********************************************************************************************
-
-archetype_rm_closure_packages = <"org.openehr.test_pkg", ...>
 
 	***********************************************************************************************
 	****                                                                                       ****

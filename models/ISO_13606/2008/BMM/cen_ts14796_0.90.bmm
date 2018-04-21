@@ -13,7 +13,7 @@
 --     http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/adl1.5/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.3">
 
 ------------------------------------------------------
 -- schema identification
@@ -26,7 +26,7 @@ rm_release = <"0.90">
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"$LastChangedRevision: 93 $">
+schema_revision = <"93">
 schema_lifecycle_state = <"experimental">
 schema_description = <"CEN data types according to CEN/TS 14796:2004">
 schema_author = <"thomas.beale@oceaninformatics.com">
@@ -39,11 +39,6 @@ includes = <
 		id = <"openehr_primitive_types_1.0.2">
 	>
 >
-
-------------------------------------------------------
--- archetyping
-------------------------------------------------------
-archetype_data_value_parent_class = <"DATA_VALUE">
 
 ------------------------------------------------------
 -- packages

@@ -1,5 +1,5 @@
 -- Basic Metamodel Syntax Version
-bmm_version = <"2.1">
+bmm_version = <"2.3">
 
 -- ----------------------------------
 -- schema identification
@@ -17,10 +17,6 @@ schema_lifecycle_state = <"dstu">
 schema_description = <"CIMI_RM_CORE.v0.0.3.mdzip - Schema generated from UML">
 
 
--- ----------------------------------
--- archetyping
--- ----------------------------------
-archetype_rm_closure_packages = <"CIMI_Reference_Model.Core", "CIMI_Reference_Model.Data_Value_Types", "CIMI_Reference_Model.Primitive_Types">
 packages = <
 	["CIMI_Reference_Model"] = <
 		name = <"CIMI_Reference_Model">

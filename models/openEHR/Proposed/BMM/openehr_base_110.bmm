@@ -110,13 +110,13 @@ primitive_types = <
 		name = <"Ordered">
 		is_abstract = <True>
 		documentation = <"Ancestor of types with total order relation defined, i.e. '<' and '='.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Numeric"] = <
 		name = <"Numeric">
 		is_abstract = <True>
 		documentation = <"Ancestor of numeric types.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Ordered_Numeric"] = <
 		name = <"Ordered_Numeric">
@@ -126,75 +126,79 @@ primitive_types = <
 	>
 	["Byte"] = <
 		name = <"Byte">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Octet"] = <
 		name = <"Octet">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Boolean"] = <
 		name = <"Boolean">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Integer"] = <
 		name = <"Integer">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Integer64"] = <
 		name = <"Integer64">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Real"] = <
 		name = <"Real">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Double"] = <
 		name = <"Double">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Character"] = <
 		name = <"Character">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["String"] = <
 		name = <"String">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Uri"] = <
 		name = <"Uri">
-		ancestors = <"String", ...>
+		ancestors = <"String">
 	>
+
 	["List"] = <
 		name = <"List">
-		ancestors = <"Any", ...>
+		ancestors = <"Aggregate">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
 			>
 		>
 	>
+
 	["Array"] = <
 		name = <"Array">
-		ancestors = <"Any", ...>
+		ancestors = <"Aggregate">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
 			>
 		>
 	>
+
 	["Set"] = <
 		name = <"Set">
-		ancestors = <"Any", ...>
+		ancestors = <"Aggregate">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
 			>
 		>
 	>
+
 	["Interval"] = <
 		name = <"Interval">
 		documentation = <"Type defining an interval of any ordered type.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -228,10 +232,11 @@ primitive_types = <
 			>
 		>
 	>
+
 	["Hash"] = <
 		name = <"Hash">
 		documentation = <"Type defining Hash table / hash map structure, whose type parameters V and K represent a value type and an Ordered key type respectively.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["V"] = <
 				name = <"V">
@@ -245,36 +250,41 @@ primitive_types = <
 
 	["Aggregate"] = <
 		name = <"Aggregate">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
 			>
 		>
+		is_abstract = <True>
 	>
 
 	["IDate"] = <
 		name = <"IDate">
 		documentation = <"Standard interface for Date concept.">
 		ancestors = <"Any">
+		is_abstract = <True>
 	>
 
 	["ITime"] = <
 		name = <"ITime">
 		documentation = <"Standard interface for Time concept.">
 		ancestors = <"Any">
+		is_abstract = <True>
 	>
 
 	["IDate_time"] = <
 		name = <"IDate_time">
 		documentation = <"Standard interface for Date_time concept.">
 		ancestors = <"Any">
+		is_abstract = <True>
 	>
 
 	["IDuration"] = <
 		name = <"IDuration">
 		documentation = <"Standard interface for Duration concept.">
 		ancestors = <"Any">
+		is_abstract = <True>
 	>
 
 	["Date"] = <
@@ -417,7 +427,7 @@ class_definitions = <
 
 	["OBJECT_REF"] = <
 		name = <"OBJECT_REF">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"id">
@@ -439,7 +449,7 @@ class_definitions = <
 
 	["LOCATABLE_REF"] = <
 		name = <"LOCATABLE_REF">
-		ancestors = <"OBJECT_REF", ...>
+		ancestors = <"OBJECT_REF">
 		properties = <
 			["path"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"path">
@@ -451,13 +461,13 @@ class_definitions = <
 
 	["PARTY_REF"] = <
 		name = <"PARTY_REF">
-		ancestors = <"OBJECT_REF", ...>
+		ancestors = <"OBJECT_REF">
 	>
 
 	["OBJECT_ID"] = <
 		name = <"OBJECT_ID">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -469,69 +479,69 @@ class_definitions = <
 
 	["TERMINOLOGY_ID"] = <
 		name = <"TERMINOLOGY_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["UID_BASED_ID"] = <
 		name = <"UID_BASED_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 		is_abstract = <True>
 	>
 	
 	["GENERIC_ID"] = <
 		name = <"GENERIC_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["ARCHETYPE_ID"] = <
 		name = <"ARCHETYPE_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["ARCHETYPE_HRID"] = <
 		name = <"ARCHETYPE_HRID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["TEMPLATE_ID"] = <
 		name = <"TEMPLATE_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["OBJECT_VERSION_ID"] = <
 		name = <"OBJECT_VERSION_ID">
-		ancestors = <"UID_BASED_ID", ...>
+		ancestors = <"UID_BASED_ID">
 	>
 	
 	["HIER_OBJECT_ID"] = <
 		name = <"HIER_OBJECT_ID">
-		ancestors = <"UID_BASED_ID", ...>
+		ancestors = <"UID_BASED_ID">
 	>
 	
 	["VERSION_TREE_ID"] = <
 		name = <"VERSION_TREE_ID">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	
 	["UID"] = <
 		name = <"UID">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	
 	["INTERNET_ID"] = <
 		name = <"INTERNET_ID">
-		ancestors = <"UID", ...>
+		ancestors = <"UID">
 	>
 	
 	["UUID"] = <
 		name = <"UUID">
-		ancestors = <"UID", ...>
+		ancestors = <"UID">
 	>
 	
 	["ISO_OID"] = <
 		name = <"ISO_OID">
-		ancestors = <"UID", ...>
+		ancestors = <"UID">
 	>
 	
 	--
