@@ -1,0 +1,1829 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<UNKNOWN_DOCUMENT_TYPE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <packages id="ORG.OPENEHR.RM.DEMOGRAPHIC">
+  <name>org.openehr.rm.demographic</name>
+  <classes>PARTY</classes>
+  <classes>ROLE</classes>
+  <classes>ACTOR</classes>
+  <classes>PERSON</classes>
+  <classes>ORGANISATION</classes>
+  <classes>AGENT</classes>
+  <classes>GROUP</classes>
+  <classes>PARTY_RELATIONSHIP</classes>
+  <classes>CAPABILITY</classes>
+  <classes>CONTACT</classes>
+  <classes>ADDRESS</classes>
+  <classes>PARTY_IDENTITY</classes>
+ </packages>
+ <rm_publisher>openehr</rm_publisher>
+ <schema_name>demographic</schema_name>
+ <rm_release>1.0.2</rm_release>
+ <schema_revision>$LastChangedRevision: 26 $</schema_revision>
+ <schema_lifecycle_state>stable</schema_lifecycle_state>
+ <schema_author>Unknown</schema_author>
+ <schema_description>openEHR Release 1.0.demographic model schema</schema_description>
+ <bmm_version>2.0</bmm_version>
+ <includes>
+  <id>openehr_structures_1.0.2</id>
+ </includes>
+ <primitive_types id="Any">
+  <name>Any</name>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2230</uid>
+ </primitive_types>
+ <primitive_types id="Ordered">
+  <documentation>Ancestor of types with total order relation defined, i.e. &apos;&lt;&apos; and &apos;=&apos;.</documentation>
+  <name>Ordered</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2231</uid>
+ </primitive_types>
+ <primitive_types id="Numeric">
+  <documentation>Ancestor of numeric types.</documentation>
+  <name>Numeric</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2232</uid>
+ </primitive_types>
+ <primitive_types id="Ordered_Numeric">
+  <documentation>Ancestor of ordered numeric types.</documentation>
+  <name>Ordered_Numeric</name>
+  <ancestors>Numeric</ancestors>
+  <ancestors>Ordered</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2233</uid>
+ </primitive_types>
+ <primitive_types id="Byte">
+  <name>Byte</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2234</uid>
+ </primitive_types>
+ <primitive_types id="Octet">
+  <name>Octet</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2235</uid>
+ </primitive_types>
+ <primitive_types id="Boolean">
+  <name>Boolean</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2236</uid>
+ </primitive_types>
+ <primitive_types id="Integer">
+  <name>Integer</name>
+  <ancestors>Ordered_Numeric</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2237</uid>
+ </primitive_types>
+ <primitive_types id="Real">
+  <name>Real</name>
+  <ancestors>Ordered_Numeric</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2238</uid>
+ </primitive_types>
+ <primitive_types id="Double">
+  <name>Double</name>
+  <ancestors>Ordered_Numeric</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2239</uid>
+ </primitive_types>
+ <primitive_types id="Character">
+  <name>Character</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2240</uid>
+ </primitive_types>
+ <primitive_types id="String">
+  <name>String</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2241</uid>
+ </primitive_types>
+ <primitive_types id="List">
+  <name>List</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2242</uid>
+ </primitive_types>
+ <primitive_types id="Array">
+  <name>Array</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2243</uid>
+ </primitive_types>
+ <primitive_types id="Set">
+  <name>Set</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2244</uid>
+ </primitive_types>
+ <primitive_types id="Interval">
+  <documentation>Type defining an interval of any ordered type.</documentation>
+  <name>Interval</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+   <conforms_to_type>Ordered</conforms_to_type>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <properties id="lower">
+   <name>lower</name>
+   <type>T</type>
+  </properties>
+  <properties id="upper">
+   <name>upper</name>
+   <type>T</type>
+  </properties>
+  <properties id="lower_unbounded">
+   <name>lower_unbounded</name>
+   <type>Boolean</type>
+  </properties>
+  <properties id="upper_unbounded">
+   <name>upper_unbounded</name>
+   <type>Boolean</type>
+  </properties>
+  <properties id="lower_included">
+   <name>lower_included</name>
+   <type>Boolean</type>
+  </properties>
+  <properties id="upper_included">
+   <name>upper_included</name>
+   <type>Boolean</type>
+  </properties>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2245</uid>
+ </primitive_types>
+ <primitive_types id="Hash">
+  <documentation>Type defining Hash table / hash map structure, whose type parameters V and K represent a value type and an Ordered key type respectively.</documentation>
+  <name>Hash</name>
+  <generic_parameter_defs id="V">
+   <name>V</name>
+  </generic_parameter_defs>
+  <generic_parameter_defs id="K">
+   <name>K</name>
+   <conforms_to_type>Ordered</conforms_to_type>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2246</uid>
+ </primitive_types>
+ <primitive_types id="Aggregate">
+  <name>Aggregate</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2247</uid>
+ </primitive_types>
+ <primitive_types id="ISO8601_DATE">
+  <documentation>Date type based on IS8601 representation.</documentation>
+  <name>ISO8601_DATE</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2248</uid>
+ </primitive_types>
+ <primitive_types id="ISO8601_TIME">
+  <documentation>Time type based on IS8601 representation.</documentation>
+  <name>ISO8601_TIME</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2249</uid>
+ </primitive_types>
+ <primitive_types id="ISO8601_DATE_TIME">
+  <documentation>Date Time type based on IS8601 representation.</documentation>
+  <name>ISO8601_DATE_TIME</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2250</uid>
+ </primitive_types>
+ <primitive_types id="ISO8601_DURATION">
+  <documentation>Duration type based on IS8601 representation.</documentation>
+  <name>ISO8601_DURATION</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_primitive_types_1.0.2</source_schema_id>
+  <uid>2251</uid>
+ </primitive_types>
+ <class_definitions id="PARTY">
+  <name>PARTY</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="details">
+   <name>details</name>
+   <type>ITEM_STRUCTURE</type>
+  </properties>
+  <properties id="identities">
+   <name>identities</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>PARTY_IDENTITY</type>
+    <container_type>Set</container_type>
+   </type_def>
+  </properties>
+  <properties id="contacts">
+   <name>contacts</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>CONTACT</type>
+    <container_type>Set</container_type>
+   </type_def>
+  </properties>
+  <properties id="relationships">
+   <name>relationships</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>PARTY_RELATIONSHIP</type>
+    <container_type>Set</container_type>
+   </type_def>
+  </properties>
+  <properties id="reverse_relationships">
+   <name>reverse_relationships</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>LOCATABLE_REF</type>
+    <container_type>Set</container_type>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="type">
+   <name>type</name>
+   <type>DV_TEXT</type>
+   <is_computed>true</is_computed>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2199</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_IDENTITY">
+  <name>PARTY_IDENTITY</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="details">
+   <name>details</name>
+   <type>ITEM_STRUCTURE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="purpose">
+   <name>purpose</name>
+   <type>DV_TEXT</type>
+   <is_computed>true</is_computed>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2200</uid>
+ </class_definitions>
+ <class_definitions id="CONTACT">
+  <name>CONTACT</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="time_validity">
+   <name>time_validity</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>DV_DATE</generic_parameters>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="addresses">
+   <name>addresses</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>ADDRESS</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <properties id="purpose">
+   <name>purpose</name>
+   <type>DV_TEXT</type>
+   <is_computed>true</is_computed>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2201</uid>
+ </class_definitions>
+ <class_definitions id="ADDRESS">
+  <name>ADDRESS</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="details">
+   <name>details</name>
+   <type>ITEM_STRUCTURE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="type">
+   <name>type</name>
+   <type>DV_TEXT</type>
+   <is_computed>true</is_computed>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2202</uid>
+ </class_definitions>
+ <class_definitions id="ACTOR">
+  <name>ACTOR</name>
+  <ancestors>PARTY</ancestors>
+  <properties id="roles">
+   <name>roles</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>PARTY_REF</type>
+    <container_type>Set</container_type>
+   </type_def>
+  </properties>
+  <properties id="languages">
+   <name>languages</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>DV_TEXT</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2203</uid>
+ </class_definitions>
+ <class_definitions id="PERSON">
+  <name>PERSON</name>
+  <ancestors>ACTOR</ancestors>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2204</uid>
+ </class_definitions>
+ <class_definitions id="ORGANISATION">
+  <name>ORGANISATION</name>
+  <ancestors>ACTOR</ancestors>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2205</uid>
+ </class_definitions>
+ <class_definitions id="GROUP">
+  <name>GROUP</name>
+  <ancestors>ACTOR</ancestors>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2206</uid>
+ </class_definitions>
+ <class_definitions id="AGENT">
+  <name>AGENT</name>
+  <ancestors>ACTOR</ancestors>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2207</uid>
+ </class_definitions>
+ <class_definitions id="ROLE">
+  <name>ROLE</name>
+  <ancestors>PARTY</ancestors>
+  <properties id="performer">
+   <name>performer</name>
+   <type>PARTY_REF</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="capabilities">
+   <name>capabilities</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>CAPABILITY</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <properties id="time_validity">
+   <name>time_validity</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>DV_DATE</generic_parameters>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2208</uid>
+ </class_definitions>
+ <class_definitions id="CAPABILITY">
+  <name>CAPABILITY</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="credentials">
+   <name>credentials</name>
+   <type>ITEM_STRUCTURE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="time_validity">
+   <name>time_validity</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>DV_DATE</generic_parameters>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2209</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_RELATIONSHIP">
+  <name>PARTY_RELATIONSHIP</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="source">
+   <name>source</name>
+   <type>PARTY_REF</type>
+  </properties>
+  <properties id="target">
+   <name>target</name>
+   <type>PARTY_REF</type>
+  </properties>
+  <properties id="details">
+   <name>details</name>
+   <type>ITEM_STRUCTURE</type>
+  </properties>
+  <properties id="time_validity">
+   <name>time_validity</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>DV_DATE</generic_parameters>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_demographic_1.0.2</source_schema_id>
+  <uid>2210</uid>
+ </class_definitions>
+ <class_definitions id="DATA_STRUCTURE">
+  <name>DATA_STRUCTURE</name>
+  <ancestors>LOCATABLE</ancestors>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2252</uid>
+ </class_definitions>
+ <class_definitions id="ITEM_STRUCTURE">
+  <name>ITEM_STRUCTURE</name>
+  <ancestors>DATA_STRUCTURE</ancestors>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2253</uid>
+ </class_definitions>
+ <class_definitions id="ITEM_SINGLE">
+  <name>ITEM_SINGLE</name>
+  <ancestors>ITEM_STRUCTURE</ancestors>
+  <properties id="item">
+   <name>item</name>
+   <type>ELEMENT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2254</uid>
+ </class_definitions>
+ <class_definitions id="ITEM_LIST">
+  <name>ITEM_LIST</name>
+  <ancestors>ITEM_STRUCTURE</ancestors>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>ELEMENT</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2255</uid>
+ </class_definitions>
+ <class_definitions id="ITEM_TABLE">
+  <name>ITEM_TABLE</name>
+  <ancestors>ITEM_STRUCTURE</ancestors>
+  <properties id="rows">
+   <name>rows</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>CLUSTER</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2256</uid>
+ </class_definitions>
+ <class_definitions id="ITEM_TREE">
+  <name>ITEM_TREE</name>
+  <ancestors>ITEM_STRUCTURE</ancestors>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>ITEM</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2257</uid>
+ </class_definitions>
+ <class_definitions id="ITEM">
+  <name>ITEM</name>
+  <ancestors>LOCATABLE</ancestors>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2258</uid>
+ </class_definitions>
+ <class_definitions id="CLUSTER">
+  <name>CLUSTER</name>
+  <ancestors>ITEM</ancestors>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>ITEM</type>
+    <container_type>List</container_type>
+   </type_def>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2259</uid>
+ </class_definitions>
+ <class_definitions id="ELEMENT">
+  <name>ELEMENT</name>
+  <ancestors>ITEM</ancestors>
+  <properties id="null_flavour">
+   <name>null_flavour</name>
+   <type>DV_CODED_TEXT</type>
+  </properties>
+  <properties id="value">
+   <name>value</name>
+   <type>DATA_VALUE</type>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2260</uid>
+ </class_definitions>
+ <class_definitions id="HISTORY">
+  <name>HISTORY</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+   <conforms_to_type>ITEM_STRUCTURE</conforms_to_type>
+  </generic_parameter_defs>
+  <ancestors>DATA_STRUCTURE</ancestors>
+  <properties id="origin">
+   <name>origin</name>
+   <type>DV_DATE_TIME</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="period">
+   <name>period</name>
+   <type>DV_DURATION</type>
+  </properties>
+  <properties id="duration">
+   <name>duration</name>
+   <type>DV_DURATION</type>
+  </properties>
+  <properties id="summary">
+   <name>summary</name>
+   <type>ITEM_STRUCTURE</type>
+  </properties>
+  <properties id="events">
+   <name>events</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>EVENT</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2261</uid>
+ </class_definitions>
+ <class_definitions id="EVENT">
+  <name>EVENT</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+   <conforms_to_type>ITEM_STRUCTURE</conforms_to_type>
+  </generic_parameter_defs>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="time">
+   <name>time</name>
+   <type>DV_DATE_TIME</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="state">
+   <name>state</name>
+   <type>ITEM_STRUCTURE</type>
+  </properties>
+  <properties id="data">
+   <name>data</name>
+   <type>T</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="offset">
+   <name>offset</name>
+   <type>DV_DURATION</type>
+   <is_computed>true</is_computed>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2262</uid>
+ </class_definitions>
+ <class_definitions id="POINT_EVENT">
+  <name>POINT_EVENT</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>EVENT</ancestors>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2263</uid>
+ </class_definitions>
+ <class_definitions id="INTERVAL_EVENT">
+  <name>INTERVAL_EVENT</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>EVENT</ancestors>
+  <properties id="width">
+   <name>width</name>
+   <type>DV_DURATION</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="sample_count">
+   <name>sample_count</name>
+   <type>Integer</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="math_function">
+   <name>math_function</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2264</uid>
+ </class_definitions>
+ <class_definitions id="REVISION_HISTORY">
+  <name>REVISION_HISTORY</name>
+  <ancestors>Any</ancestors>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>REVISION_HISTORY_ITEM</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2265</uid>
+ </class_definitions>
+ <class_definitions id="REVISION_HISTORY_ITEM">
+  <name>REVISION_HISTORY_ITEM</name>
+  <ancestors>Any</ancestors>
+  <properties id="version_id">
+   <name>version_id</name>
+   <type>OBJECT_VERSION_ID</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="audits">
+   <name>audits</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>AUDIT_DETAILS</type>
+    <container_type>List</container_type>
+   </type_def>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2266</uid>
+ </class_definitions>
+ <class_definitions id="AUDIT_DETAILS">
+  <name>AUDIT_DETAILS</name>
+  <ancestors>Any</ancestors>
+  <properties id="system_id">
+   <name>system_id</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="time_committed">
+   <name>time_committed</name>
+   <type>DV_DATE_TIME</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="change_type">
+   <name>change_type</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="description">
+   <name>description</name>
+   <type>DV_TEXT</type>
+  </properties>
+  <properties id="committer">
+   <name>committer</name>
+   <type>PARTY_PROXY</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2267</uid>
+ </class_definitions>
+ <class_definitions id="ATTESTATION">
+  <name>ATTESTATION</name>
+  <ancestors>AUDIT_DETAILS</ancestors>
+  <properties id="attested_view">
+   <name>attested_view</name>
+   <type>DV_MULTIMEDIA</type>
+  </properties>
+  <properties id="proof">
+   <name>proof</name>
+   <type>String</type>
+  </properties>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>DV_EHR_URI</type>
+    <container_type>Set</container_type>
+   </type_def>
+  </properties>
+  <properties id="reason">
+   <name>reason</name>
+   <type>DV_TEXT</type>
+  </properties>
+  <properties id="is_pending">
+   <name>is_pending</name>
+   <type>Boolean</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2268</uid>
+ </class_definitions>
+ <class_definitions id="PARTICIPATION">
+  <name>PARTICIPATION</name>
+  <ancestors>Any</ancestors>
+  <properties id="function">
+   <name>function</name>
+   <type>DV_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="time">
+   <name>time</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>DV_DATE_TIME</generic_parameters>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="mode">
+   <name>mode</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="performer">
+   <name>performer</name>
+   <type>PARTY_PROXY</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2269</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_PROXY">
+  <name>PARTY_PROXY</name>
+  <ancestors>Any</ancestors>
+  <properties id="external_ref">
+   <name>external_ref</name>
+   <type>PARTY_REF</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2270</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_IDENTIFIED">
+  <name>PARTY_IDENTIFIED</name>
+  <ancestors>PARTY_PROXY</ancestors>
+  <properties id="name">
+   <name>name</name>
+   <type>String</type>
+  </properties>
+  <properties id="identifiers">
+   <name>identifiers</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>DV_IDENTIFIER</type>
+    <container_type>List</container_type>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2271</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_RELATED">
+  <name>PARTY_RELATED</name>
+  <ancestors>PARTY_IDENTIFIED</ancestors>
+  <properties id="relationship">
+   <name>relationship</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2272</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_SELF">
+  <name>PARTY_SELF</name>
+  <ancestors>PARTY_PROXY</ancestors>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2273</uid>
+ </class_definitions>
+ <class_definitions id="PATHABLE">
+  <name>PATHABLE</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2274</uid>
+ </class_definitions>
+ <class_definitions id="LOCATABLE">
+  <name>LOCATABLE</name>
+  <ancestors>PATHABLE</ancestors>
+  <properties id="uid">
+   <name>uid</name>
+   <type>UID_BASED_ID</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="archetype_node_id">
+   <name>archetype_node_id</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="name">
+   <name>name</name>
+   <type>DV_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="archetype_details">
+   <name>archetype_details</name>
+   <type>ARCHETYPED</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="feeder_audit">
+   <name>feeder_audit</name>
+   <type>FEEDER_AUDIT</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="links">
+   <name>links</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>LINK</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2275</uid>
+ </class_definitions>
+ <class_definitions id="LINK">
+  <name>LINK</name>
+  <ancestors>Any</ancestors>
+  <properties id="meaning">
+   <name>meaning</name>
+   <type>DV_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="type">
+   <name>type</name>
+   <type>DV_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="target">
+   <name>target</name>
+   <type>DV_EHR_URI</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2276</uid>
+ </class_definitions>
+ <class_definitions id="ARCHETYPED">
+  <name>ARCHETYPED</name>
+  <ancestors>Any</ancestors>
+  <properties id="archetype_id">
+   <name>archetype_id</name>
+   <type>ARCHETYPE_ID</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="template_id">
+   <name>template_id</name>
+   <type>TEMPLATE_ID</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="rm_version">
+   <name>rm_version</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2277</uid>
+ </class_definitions>
+ <class_definitions id="FEEDER_AUDIT">
+  <name>FEEDER_AUDIT</name>
+  <ancestors>Any</ancestors>
+  <properties id="originating_system_ids">
+   <name>originating_system_ids</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>DV_IDENTIFIER</type>
+    <container_type>List</container_type>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="feeder_system_item_ids">
+   <name>feeder_system_item_ids</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>DV_IDENTIFIER</type>
+    <container_type>List</container_type>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="original_content">
+   <name>original_content</name>
+   <type>DV_ENCAPSULATED</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="originating_system_audit">
+   <name>originating_system_audit</name>
+   <type>FEEDER_AUDIT_DETAILS</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="feeder_system_audit">
+   <name>feeder_system_audit</name>
+   <type>FEEDER_AUDIT_DETAILS</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2278</uid>
+ </class_definitions>
+ <class_definitions id="FEEDER_AUDIT_DETAILS">
+  <name>FEEDER_AUDIT_DETAILS</name>
+  <ancestors>Any</ancestors>
+  <properties id="system_id">
+   <name>system_id</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="location">
+   <name>location</name>
+   <type>PARTY_IDENTIFIED</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="provider">
+   <name>provider</name>
+   <type>PARTY_IDENTIFIED</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="subject">
+   <name>subject</name>
+   <type>PARTY_PROXY</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="time">
+   <name>time</name>
+   <type>DV_DATE_TIME</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="version_id">
+   <name>version_id</name>
+   <type>String</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2279</uid>
+ </class_definitions>
+ <class_definitions id="FOLDER">
+  <name>FOLDER</name>
+  <ancestors>LOCATABLE</ancestors>
+  <properties id="folders">
+   <name>folders</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>FOLDER</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>OBJECT_REF</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2280</uid>
+ </class_definitions>
+ <class_definitions id="CONTRIBUTION">
+  <name>CONTRIBUTION</name>
+  <ancestors>Any</ancestors>
+  <properties id="uid">
+   <name>uid</name>
+   <type>HIER_OBJECT_ID</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="audit">
+   <name>audit</name>
+   <type>AUDIT_DETAILS</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="versions">
+   <name>versions</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>OBJECT_REF</type>
+    <container_type>Set</container_type>
+   </type_def>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2281</uid>
+ </class_definitions>
+ <class_definitions id="VERSIONED_OBJECT">
+  <name>VERSIONED_OBJECT</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <properties id="uid">
+   <name>uid</name>
+   <type>HIER_OBJECT_ID</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="owner_id">
+   <name>owner_id</name>
+   <type>OBJECT_REF</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="time_created">
+   <name>time_created</name>
+   <type>DV_DATE_TIME</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2282</uid>
+ </class_definitions>
+ <class_definitions id="VERSION">
+  <name>VERSION</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <properties id="contribution">
+   <name>contribution</name>
+   <type>OBJECT_REF</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="commit_audit">
+   <name>commit_audit</name>
+   <type>AUDIT_DETAILS</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="signature">
+   <name>signature</name>
+   <type>String</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2283</uid>
+ </class_definitions>
+ <class_definitions id="ORIGINAL_VERSION">
+  <name>ORIGINAL_VERSION</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>VERSION</ancestors>
+  <properties id="uid">
+   <name>uid</name>
+   <type>OBJECT_VERSION_ID</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="preceding_version_uid">
+   <name>preceding_version_uid</name>
+   <type>OBJECT_VERSION_ID</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="other_input_version_uids">
+   <name>other_input_version_uids</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>OBJECT_VERSION_ID</type>
+    <container_type>Set</container_type>
+   </type_def>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="attestations">
+   <name>attestations</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>ATTESTATION</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <properties id="lifecycle_state">
+   <name>lifecycle_state</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="data">
+   <name>data</name>
+   <type>T</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2284</uid>
+ </class_definitions>
+ <class_definitions id="IMPORTED_VERSION">
+  <name>IMPORTED_VERSION</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+  </generic_parameter_defs>
+  <ancestors>VERSION</ancestors>
+  <properties id="item">
+   <name>item</name>
+   <type_def>
+    <root_type>ORIGINAL_VERSION</root_type>
+    <generic_parameters>T</generic_parameters>
+   </type_def>
+   <is_mandatory>true</is_mandatory>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_structures_1.0.2</source_schema_id>
+  <uid>2285</uid>
+ </class_definitions>
+ <class_definitions id="OBJECT_REF">
+  <name>OBJECT_REF</name>
+  <ancestors>Any</ancestors>
+  <properties id="id">
+   <name>id</name>
+   <type>OBJECT_ID</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="namespace">
+   <name>namespace</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="type">
+   <name>type</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2150</uid>
+ </class_definitions>
+ <class_definitions id="LOCATABLE_REF">
+  <name>LOCATABLE_REF</name>
+  <ancestors>OBJECT_REF</ancestors>
+  <properties id="path">
+   <name>path</name>
+   <type>String</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2151</uid>
+ </class_definitions>
+ <class_definitions id="PARTY_REF">
+  <name>PARTY_REF</name>
+  <ancestors>OBJECT_REF</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2152</uid>
+ </class_definitions>
+ <class_definitions id="OBJECT_ID">
+  <name>OBJECT_ID</name>
+  <ancestors>Any</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2153</uid>
+ </class_definitions>
+ <class_definitions id="TERMINOLOGY_ID">
+  <name>TERMINOLOGY_ID</name>
+  <ancestors>OBJECT_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2154</uid>
+ </class_definitions>
+ <class_definitions id="UID_BASED_ID">
+  <name>UID_BASED_ID</name>
+  <ancestors>OBJECT_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2155</uid>
+ </class_definitions>
+ <class_definitions id="GENERIC_ID">
+  <name>GENERIC_ID</name>
+  <ancestors>OBJECT_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2156</uid>
+ </class_definitions>
+ <class_definitions id="ARCHETYPE_ID">
+  <name>ARCHETYPE_ID</name>
+  <ancestors>OBJECT_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2157</uid>
+ </class_definitions>
+ <class_definitions id="TEMPLATE_ID">
+  <name>TEMPLATE_ID</name>
+  <ancestors>OBJECT_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2158</uid>
+ </class_definitions>
+ <class_definitions id="OBJECT_VERSION_ID">
+  <name>OBJECT_VERSION_ID</name>
+  <ancestors>UID_BASED_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2159</uid>
+ </class_definitions>
+ <class_definitions id="HIER_OBJECT_ID">
+  <name>HIER_OBJECT_ID</name>
+  <ancestors>UID_BASED_ID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2160</uid>
+ </class_definitions>
+ <class_definitions id="VERSION_TREE_ID">
+  <name>VERSION_TREE_ID</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2161</uid>
+ </class_definitions>
+ <class_definitions id="UID">
+  <name>UID</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2162</uid>
+ </class_definitions>
+ <class_definitions id="INTERNET_ID">
+  <name>INTERNET_ID</name>
+  <ancestors>UID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2163</uid>
+ </class_definitions>
+ <class_definitions id="UUID">
+  <name>UUID</name>
+  <ancestors>UID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2164</uid>
+ </class_definitions>
+ <class_definitions id="ISO_OID">
+  <name>ISO_OID</name>
+  <ancestors>UID</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2165</uid>
+ </class_definitions>
+ <class_definitions id="DATA_VALUE">
+  <name>DATA_VALUE</name>
+  <ancestors>Any</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2166</uid>
+ </class_definitions>
+ <class_definitions id="DV_BOOLEAN">
+  <name>DV_BOOLEAN</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>Boolean</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2167</uid>
+ </class_definitions>
+ <class_definitions id="DV_IDENTIFIER">
+  <name>DV_IDENTIFIER</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="issuer">
+   <name>issuer</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="id">
+   <name>id</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="type">
+   <name>type</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="assigner">
+   <name>assigner</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2168</uid>
+ </class_definitions>
+ <class_definitions id="DV_STATE">
+  <name>DV_STATE</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="is_terminal">
+   <name>is_terminal</name>
+   <type>Boolean</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2169</uid>
+ </class_definitions>
+ <class_definitions id="TERM_MAPPING">
+  <name>TERM_MAPPING</name>
+  <properties id="defining_code">
+   <name>defining_code</name>
+   <type>CODE_PHRASE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2170</uid>
+ </class_definitions>
+ <class_definitions id="DV_TEXT">
+  <name>DV_TEXT</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="hyperlink">
+   <name>hyperlink</name>
+   <type>DV_URI</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="language">
+   <name>language</name>
+   <type>CODE_PHRASE</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="encoding">
+   <name>encoding</name>
+   <type>CODE_PHRASE</type>
+   <is_im_infrastructure>true</is_im_infrastructure>
+  </properties>
+  <properties id="formatting">
+   <name>formatting</name>
+   <type>String</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="mappings">
+   <name>mappings</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>TERM_MAPPING</type>
+    <container_type>Set</container_type>
+   </type_def>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2171</uid>
+ </class_definitions>
+ <class_definitions id="DV_CODED_TEXT">
+  <name>DV_CODED_TEXT</name>
+  <ancestors>DV_TEXT</ancestors>
+  <properties id="defining_code">
+   <name>defining_code</name>
+   <type>CODE_PHRASE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2172</uid>
+ </class_definitions>
+ <class_definitions id="CODE_PHRASE">
+  <name>CODE_PHRASE</name>
+  <properties id="terminology_id">
+   <name>terminology_id</name>
+   <type>TERMINOLOGY_ID</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="code_string">
+   <name>code_string</name>
+   <type>String</type>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2173</uid>
+ </class_definitions>
+ <class_definitions id="DV_PARAGRAPH">
+  <name>DV_PARAGRAPH</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="items">
+   <name>items</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>DV_TEXT</type>
+    <container_type>List</container_type>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2174</uid>
+ </class_definitions>
+ <class_definitions id="DV_INTERVAL">
+  <name>DV_INTERVAL</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+   <conforms_to_type>DV_ORDERED</conforms_to_type>
+  </generic_parameter_defs>
+  <ancestors>Interval</ancestors>
+  <ancestors>DATA_VALUE</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2175</uid>
+ </class_definitions>
+ <class_definitions id="REFERENCE_RANGE">
+  <name>REFERENCE_RANGE</name>
+  <generic_parameter_defs id="T">
+   <name>T</name>
+   <conforms_to_type>DV_ORDERED</conforms_to_type>
+  </generic_parameter_defs>
+  <ancestors>Any</ancestors>
+  <properties id="range">
+   <name>range</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>T</generic_parameters>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2176</uid>
+ </class_definitions>
+ <class_definitions id="DV_ORDERED">
+  <name>DV_ORDERED</name>
+  <ancestors>Ordered</ancestors>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="normal_status">
+   <name>normal_status</name>
+   <type>CODE_PHRASE</type>
+  </properties>
+  <properties id="normal_range">
+   <name>normal_range</name>
+   <type_def>
+    <root_type>DV_INTERVAL</root_type>
+    <generic_parameters>DV_ORDERED</generic_parameters>
+   </type_def>
+  </properties>
+  <properties id="other_reference_ranges">
+   <name>other_reference_ranges</name>
+   <type_def>
+    <root_type>REFERENCE_RANGE</root_type>
+    <generic_parameters>DV_ORDERED</generic_parameters>
+   </type_def>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2177</uid>
+ </class_definitions>
+ <class_definitions id="DV_QUANTIFIED">
+  <name>DV_QUANTIFIED</name>
+  <ancestors>DV_ORDERED</ancestors>
+  <properties id="magnitude_status">
+   <name>magnitude_status</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2178</uid>
+ </class_definitions>
+ <class_definitions id="DV_ORDINAL">
+  <name>DV_ORDINAL</name>
+  <ancestors>DV_ORDERED</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>Integer</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="symbol">
+   <name>symbol</name>
+   <type>DV_CODED_TEXT</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2179</uid>
+ </class_definitions>
+ <class_definitions id="DV_AMOUNT">
+  <name>DV_AMOUNT</name>
+  <ancestors>DV_QUANTIFIED</ancestors>
+  <properties id="accuracy">
+   <name>accuracy</name>
+   <type>Real</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="accuracy_is_percent">
+   <name>accuracy_is_percent</name>
+   <type>Boolean</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2180</uid>
+ </class_definitions>
+ <class_definitions id="DV_ABSOLUTE_QUANTITY">
+  <name>DV_ABSOLUTE_QUANTITY</name>
+  <ancestors>DV_QUANTIFIED</ancestors>
+  <properties id="accuracy">
+   <name>accuracy</name>
+   <type>DV_AMOUNT</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2181</uid>
+ </class_definitions>
+ <class_definitions id="DV_QUANTITY">
+  <name>DV_QUANTITY</name>
+  <ancestors>DV_AMOUNT</ancestors>
+  <properties id="magnitude">
+   <name>magnitude</name>
+   <type>Double</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="property">
+   <name>property</name>
+   <type>CODE_PHRASE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="units">
+   <name>units</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="precision">
+   <name>precision</name>
+   <type>Integer</type>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2182</uid>
+ </class_definitions>
+ <class_definitions id="DV_COUNT">
+  <name>DV_COUNT</name>
+  <ancestors>DV_AMOUNT</ancestors>
+  <properties id="magnitude">
+   <name>magnitude</name>
+   <type>Integer</type>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2183</uid>
+ </class_definitions>
+ <class_definitions id="DV_PROPORTION">
+  <name>DV_PROPORTION</name>
+  <ancestors>DV_AMOUNT</ancestors>
+  <properties id="numerator">
+   <name>numerator</name>
+   <type>Real</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="denominator">
+   <name>denominator</name>
+   <type>Real</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="type">
+   <name>type</name>
+   <type>PROPORTION_KIND</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="precision">
+   <name>precision</name>
+   <type>Integer</type>
+  </properties>
+  <properties id="is_integral">
+   <name>is_integral</name>
+   <type>Boolean</type>
+   <is_computed>true</is_computed>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2184</uid>
+ </class_definitions>
+ <class_definitions id="PROPORTION_KIND">
+  <name>PROPORTION_KIND</name>
+  <ancestors>Integer</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <item_names>pk_ratio</item_names>
+  <item_names>pk_unitary</item_names>
+  <item_names>pk_percent</item_names>
+  <item_names>pk_fraction</item_names>
+  <item_names>pk_integer_fraction</item_names>
+  <uid>2185</uid>
+ </class_definitions>
+ <class_definitions id="DV_TEMPORAL">
+  <name>DV_TEMPORAL</name>
+  <ancestors>DV_ABSOLUTE_QUANTITY</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2186</uid>
+ </class_definitions>
+ <class_definitions id="DV_DATE">
+  <name>DV_DATE</name>
+  <ancestors>DV_TEMPORAL</ancestors>
+  <ancestors>ISO8601_DATE</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2187</uid>
+ </class_definitions>
+ <class_definitions id="DV_TIME">
+  <name>DV_TIME</name>
+  <ancestors>DV_TEMPORAL</ancestors>
+  <ancestors>ISO8601_TIME</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2188</uid>
+ </class_definitions>
+ <class_definitions id="DV_DATE_TIME">
+  <name>DV_DATE_TIME</name>
+  <ancestors>DV_TEMPORAL</ancestors>
+  <ancestors>ISO8601_DATE_TIME</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2189</uid>
+ </class_definitions>
+ <class_definitions id="DV_DURATION">
+  <name>DV_DURATION</name>
+  <ancestors>DV_AMOUNT</ancestors>
+  <ancestors>ISO8601_DURATION</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2190</uid>
+ </class_definitions>
+ <class_definitions id="DV_ENCAPSULATED">
+  <name>DV_ENCAPSULATED</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="charset">
+   <name>charset</name>
+   <type>CODE_PHRASE</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <properties id="language">
+   <name>language</name>
+   <type>CODE_PHRASE</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2191</uid>
+ </class_definitions>
+ <class_definitions id="DV_MULTIMEDIA">
+  <name>DV_MULTIMEDIA</name>
+  <ancestors>DV_ENCAPSULATED</ancestors>
+  <properties id="alternate_text">
+   <name>alternate_text</name>
+   <type>String</type>
+  </properties>
+  <properties id="uri">
+   <name>uri</name>
+   <type>DV_URI</type>
+  </properties>
+  <properties id="data">
+   <name>data</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>Octet</type>
+    <container_type>Array</container_type>
+   </type_def>
+  </properties>
+  <properties id="media_type">
+   <name>media_type</name>
+   <type>CODE_PHRASE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <properties id="compression_algorithm">
+   <name>compression_algorithm</name>
+   <type>CODE_PHRASE</type>
+  </properties>
+  <properties id="integrity_check">
+   <name>integrity_check</name>
+   <cardinality>
+   </cardinality>
+   <type_def>
+    <type>Octet</type>
+    <container_type>Array</container_type>
+   </type_def>
+  </properties>
+  <properties id="integrity_check_algorithm">
+   <name>integrity_check_algorithm</name>
+   <type>CODE_PHRASE</type>
+  </properties>
+  <properties id="size">
+   <name>size</name>
+   <type>Integer</type>
+   <is_im_runtime>true</is_im_runtime>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2192</uid>
+ </class_definitions>
+ <class_definitions id="DV_PARSABLE">
+  <name>DV_PARSABLE</name>
+  <ancestors>DV_ENCAPSULATED</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+  </properties>
+  <properties id="formalism">
+   <name>formalism</name>
+   <type>String</type>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2193</uid>
+ </class_definitions>
+ <class_definitions id="DV_URI">
+  <name>DV_URI</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>String</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2194</uid>
+ </class_definitions>
+ <class_definitions id="DV_EHR_URI">
+  <name>DV_EHR_URI</name>
+  <ancestors>DV_URI</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2195</uid>
+ </class_definitions>
+ <class_definitions id="DV_TIME_SPECIFICATION">
+  <name>DV_TIME_SPECIFICATION</name>
+  <ancestors>DATA_VALUE</ancestors>
+  <properties id="value">
+   <name>value</name>
+   <type>DV_PARSABLE</type>
+   <is_mandatory>true</is_mandatory>
+  </properties>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <is_abstract>true</is_abstract>
+  <uid>2196</uid>
+ </class_definitions>
+ <class_definitions id="DV_PERIODIC_TIME_SPECIFICATION">
+  <name>DV_PERIODIC_TIME_SPECIFICATION</name>
+  <ancestors>DV_TIME_SPECIFICATION</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2197</uid>
+ </class_definitions>
+ <class_definitions id="DV_GENERAL_TIME_SPECIFICATION">
+  <name>DV_GENERAL_TIME_SPECIFICATION</name>
+  <ancestors>DV_TIME_SPECIFICATION</ancestors>
+  <source_schema_id>openehr_basic_types_1.0.2</source_schema_id>
+  <uid>2198</uid>
+ </class_definitions>
+ <model_name>DEMOGRAPHIC</model_name>
+ <passed>true</passed>
+ <missed_class_count>0</missed_class_count>
+</UNKNOWN_DOCUMENT_TYPE>
