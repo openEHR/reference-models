@@ -1,8 +1,32 @@
 {
 	"packages": {
-		"ORG.OPENEHR.PROC.TASK_PLANNING": {
-			"name": "org.openehr.proc.task_planning",
-			"classes": ["SYSTEM_CALL", "PARAMETER_MAPPING", "PARAMETER_DEF", "QUERY_CALL", "API_CALL", "TASK_LIFECYCLE", "TIME_SPECIFIER", "CLOCK_TIME", "CALENDAR_TIME", "CUSTOMARY_TIME", "TEMPORAL_RELATION", "RESUME_TYPE", "WORK_PLAN", "TASK_PLAN", "TASK_PARTICIPATION", "PLAN_ITEM", "TASK_GROUP", "TASK", "DISPATCHABLE_TASK", "PERFORMABLE_TASK", "PLAN_DATA_CONTEXT", "CONTEXT_VALUE", "CONTEXT_EXPRESSION", "CONTEXT_VARIABLE", "EVENT_VARIABLE", "STATE_VARIABLE", "CONTINUOUS_EVENT_VARIABLE", "TASK_REPEAT", "PLAN_CALENDAR", "PLAN_TIMELINE", "CALENDAR_ENTRY", "TASK_ACTION", "PERFORMABLE_ACTION", "DISPATCHABLE_ACTION", "DEFINED_ACTION", "SYSTEM_REQUEST", "EXTERNAL_REQUEST", "LINKED_PLAN", "HAND_OFF", "SUB_PLAN", "DATASET_SPEC", "EVENT_ACTION", "RESOURCE_PARTICIPATION", "CHOICE_GROUP", "CHOICE_BRANCH", "ADHOC_GROUP", "ADHOC_BRANCH", "OVERRIDE_TYPE", "CONDITION_GROUP", "CONDITION_BRANCH", "DECISION_GROUP", "DECISION_BRANCH", "EVENT_GROUP", "EVENT_BRANCH", "SUBJECT_PRECONDITION", "TASK_COSTING", "EXECUTION_TYPE", "TASK_WAIT", "TIMELINE_MOMENT", "MANUAL_NOTIFICATION", "SYSTEM_NOTIFICATION", "TASK_TRANSITION", "PLAN_EVENT", "TIMER_EVENT", "CALENDAR_EVENT", "DELAY_EVENT", "STATE_TRIGGER", "REMINDER", "TIMER_WAIT", "EVENT_WAIT", "RESUME_ACTION", "CALLBACK_WAIT", "CALLBACK_NOTIFICATION", "TASK_PLAN_EXECUTION_HISTORY"]
+		"ORG.OPENEHR.RM.EHR": {
+			"name": "org.openehr.rm.ehr",
+			"classes": ["EHR", "EHR_ACCESS", "EHR_STATUS", "ACCESS_CONTROL_SETTINGS"]
+		},
+		"ORG.OPENEHR.RM.COMPOSITION": {
+			"packages": {
+				"CONTENT": {
+					"packages": {
+						"NAVIGATION": {
+							"name": "navigation",
+							"classes": ["SECTION"]
+						},
+						"ENTRY": {
+							"name": "entry",
+							"classes": ["ENTRY", "CARE_ENTRY", "ADMIN_ENTRY", "OBSERVATION", "EVALUATION", "INSTRUCTION", "ACTION", "ACTIVITY", "ISM_TRANSITION", "INSTRUCTION_DETAILS"]
+						},
+						"INTEGRATION": {
+							"name": "integration",
+							"classes": ["GENERIC_ENTRY"]
+						}
+					},
+					"name": "content",
+					"classes": ["CONTENT_ITEM"]
+				}
+			},
+			"name": "org.openehr.rm.composition",
+			"classes": ["COMPOSITION", "EVENT_CONTEXT"]
 		}
 	},
 	"primitive_types": {
@@ -10,6 +34,7 @@
 			"name": "Any",
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 850
 		},
 		"Ordered": {
@@ -18,6 +43,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 851
 		},
 		"Numeric": {
@@ -26,6 +52,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 852
 		},
 		"Ordered_Numeric": {
@@ -34,66 +61,87 @@
 			"ancestors": ["Numeric", "Ordered"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 853
 		},
 		"Byte": {
 			"name": "Byte",
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 854
 		},
 		"Octet": {
 			"name": "Octet",
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 855
 		},
 		"Boolean": {
 			"name": "Boolean",
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 856
 		},
 		"Integer": {
 			"name": "Integer",
 			"ancestors": ["Ordered_Numeric"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 857
 		},
 		"Integer64": {
 			"name": "Integer64",
 			"ancestors": ["Ordered_Numeric"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 858
 		},
 		"Real": {
 			"name": "Real",
 			"ancestors": ["Ordered_Numeric"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 859
 		},
 		"Double": {
 			"name": "Double",
 			"ancestors": ["Ordered_Numeric"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 860
 		},
 		"Character": {
 			"name": "Character",
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 861
 		},
 		"String": {
 			"name": "String",
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 862
 		},
 		"Uri": {
 			"name": "Uri",
 			"ancestors": ["String"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 863
 		},
 		"List": {
@@ -105,6 +153,8 @@
 			},
 			"ancestors": ["Aggregate"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 864
 		},
 		"Array": {
@@ -116,6 +166,8 @@
 			},
 			"ancestors": ["Aggregate"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 865
 		},
 		"Set": {
@@ -127,6 +179,8 @@
 			},
 			"ancestors": ["Aggregate"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 866
 		},
 		"Interval": {
@@ -142,30 +196,56 @@
 			"properties": {
 				"lower": {
 					"name": "lower",
-					"type": "T"
+					"type": "T",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"upper": {
 					"name": "upper",
-					"type": "T"
+					"type": "T",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"lower_unbounded": {
 					"name": "lower_unbounded",
-					"type": "Boolean"
+					"type": "Boolean",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"upper_unbounded": {
 					"name": "upper_unbounded",
-					"type": "Boolean"
+					"type": "Boolean",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"lower_included": {
 					"name": "lower_included",
-					"type": "Boolean"
+					"type": "Boolean",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"upper_included": {
 					"name": "upper_included",
-					"type": "Boolean"
+					"type": "Boolean",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 867
 		},
 		"Hash": {
@@ -182,6 +262,8 @@
 			},
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 868
 		},
 		"Aggregate": {
@@ -194,6 +276,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 869
 		},
 		"IDate": {
@@ -202,6 +285,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 870
 		},
 		"ITime": {
@@ -210,6 +294,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 871
 		},
 		"IDate_time": {
@@ -218,6 +303,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 872
 		},
 		"IDuration": {
@@ -226,6 +312,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 873
 		},
 		"Date": {
@@ -235,10 +322,16 @@
 			"properties": {
 				"value": {
 					"name": "value",
-					"type": "Integer"
+					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 874
 		},
 		"Time": {
@@ -248,10 +341,16 @@
 			"properties": {
 				"value": {
 					"name": "value",
-					"type": "Integer"
+					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 875
 		},
 		"Date_time": {
@@ -261,10 +360,16 @@
 			"properties": {
 				"value": {
 					"name": "value",
-					"type": "Integer"
+					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 876
 		},
 		"Duration": {
@@ -274,10 +379,16 @@
 			"properties": {
 				"value": {
 					"name": "value",
-					"type": "Integer"
+					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 877
 		},
 		"ISO8601_TYPE": {
@@ -287,10 +398,16 @@
 			"properties": {
 				"value": {
 					"name": "value",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 878
 		},
 		"ISO8601_DATE": {
@@ -298,6 +415,8 @@
 			"name": "ISO8601_DATE",
 			"ancestors": ["IDate", "ISO8601_TYPE"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 879
 		},
 		"ISO8601_TIME": {
@@ -305,6 +424,8 @@
 			"name": "ISO8601_TIME",
 			"ancestors": ["ITime", "ISO8601_TYPE"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 880
 		},
 		"ISO8601_DATE_TIME": {
@@ -312,6 +433,8 @@
 			"name": "ISO8601_DATE_TIME",
 			"ancestors": ["IDate_time", "ISO8601_TYPE"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 881
 		},
 		"ISO8601_DURATION": {
@@ -319,6 +442,8 @@
 			"name": "ISO8601_DURATION",
 			"ancestors": ["IDuration", "ISO8601_TYPE"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 882
 		},
 		"Terminology_term": {
@@ -328,15 +453,23 @@
 				"text": {
 					"name": "text",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"concept": {
 					"name": "concept",
 					"type": "Terminology_code",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 883
 		},
 		"Terminology_code": {
@@ -346,1408 +479,93 @@
 				"terminology_id": {
 					"name": "terminology_id",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"terminology_version": {
 					"name": "terminology_version",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"code_string": {
 					"name": "code_string",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"uri": {
 					"name": "uri",
 					"type": "Uri",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 884
 		}
 	},
 	"class_definitions": {
-		"RESUME_TYPE": {
-			"name": "RESUME_TYPE",
-			"ancestors": ["Integer"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"item_names": ["resume_specified", "retry_current_group", "new_thread"],
-			"uid": 914
-		},
-		"TEMPORAL_RELATION": {
-			"name": "TEMPORAL_RELATION",
-			"ancestors": ["Integer"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"item_names": ["before", "with", "after"],
-			"uid": 915
-		},
-		"TASK_LIFECYCLE": {
-			"name": "TASK_LIFECYCLE",
-			"ancestors": ["Integer"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"item_names": ["planned", "available", "cancelled", "aborted", "abandoned", "underway", "suspended", "resumed", "completed"],
-			"uid": 916
-		},
-		"SYSTEM_CALL": {
-			"name": "SYSTEM_CALL",
-			"properties": {
-				"call_name": {
-					"name": "call_name",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"system_id": {
-					"name": "system_id",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"parameter_map": {
-					"name": "parameter_map",
-					"type_def": {
-						"type": "PARAMETER_MAPPING",
-						"container_type": "List"
-					}
-				},
-				"bound_parameters": {
-					"name": "bound_parameters",
-					"type_def": {
-						"type": "PARAMETER_DEF",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 917
-		},
-		"PARAMETER_DEF": {
-			"name": "PARAMETER_DEF",
-			"properties": {
-				"name": {
-					"name": "name",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"type": {
-					"name": "type",
-					"type": "EXPR_TYPE_DEF",
-					"is_mandatory": true
-				},
-				"value": {
-					"name": "value",
-					"type": "Any",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 918
-		},
-		"PARAMETER_MAPPING": {
-			"name": "PARAMETER_MAPPING",
-			"properties": {
-				"name": {
-					"name": "name",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"context_name": {
-					"name": "context_name",
-					"type": "String",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 919
-		},
-		"QUERY_CALL": {
-			"name": "QUERY_CALL",
-			"ancestors": ["SYSTEM_CALL"],
-			"properties": {
-				"query_id": {
-					"name": "query_id",
-					"type": "String"
-				},
-				"query_text": {
-					"name": "query_text",
-					"type": "String"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 920
-		},
-		"API_CALL": {
-			"name": "API_CALL",
-			"ancestors": ["SYSTEM_CALL"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 921
-		},
-		"PLAN_DATA_CONTEXT": {
-			"name": "PLAN_DATA_CONTEXT",
-			"properties": {
-				"expressions": {
-					"name": "expressions",
-					"type_def": {
-						"type": "CONTEXT_EXPRESSION",
-						"container_type": "List"
-					}
-				},
-				"variables": {
-					"name": "variables",
-					"type_def": {
-						"type": "CONTEXT_VARIABLE",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 922
-		},
-		"CONTEXT_VALUE": {
-			"name": "CONTEXT_VALUE",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "EXPR_TYPE_DEF"
-				}
-			},
-			"properties": {
-				"name": {
-					"name": "name",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"type": {
-					"name": "type",
-					"type": "T",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 923
-		},
-		"CONTEXT_VARIABLE": {
-			"name": "CONTEXT_VARIABLE",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "EXPR_TYPE_DEF"
-				}
-			},
-			"ancestors": ["CONTEXT_VALUE"],
-			"properties": {
-				"populating_request": {
-					"name": "populating_request",
-					"type": "SYSTEM_CALL"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 924
-		},
-		"CONTEXT_EXPRESSION": {
-			"name": "CONTEXT_EXPRESSION",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "EXPR_TYPE_DEF"
-				}
-			},
-			"ancestors": ["CONTEXT_VALUE"],
-			"properties": {
-				"expression": {
-					"name": "expression",
-					"type": "String",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 925
-		},
-		"STATE_VARIABLE": {
-			"name": "STATE_VARIABLE",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "EXPR_TYPE_DEF"
-				}
-			},
-			"ancestors": ["CONTEXT_VARIABLE"],
-			"properties": {
-				"required_currency": {
-					"name": "required_currency",
-					"type": "IDuration"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 926
-		},
-		"EVENT_VARIABLE": {
-			"name": "EVENT_VARIABLE",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "EXPR_TYPE_DEF"
-				}
-			},
-			"ancestors": ["CONTEXT_VARIABLE"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 927
-		},
-		"CONTINUOUS_EVENT_VARIABLE": {
-			"name": "CONTINUOUS_EVENT_VARIABLE",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "EXPR_TYPE_DEF"
-				}
-			},
-			"ancestors": ["EVENT_VARIABLE"],
-			"properties": {
-				"update_variation": {
-					"name": "update_variation",
-					"type": "Real"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 928
-		},
-		"WORK_PLAN": {
-			"name": "WORK_PLAN",
-			"ancestors": ["CONTENT_ITEM"],
-			"properties": {
-				"description": {
-					"name": "description",
-					"type": "DV_TEXT",
-					"is_mandatory": true
-				},
-				"care_plan": {
-					"name": "care_plan",
-					"type": "LOCATABLE_REF"
-				},
-				"care_pathway": {
-					"name": "care_pathway",
-					"type": "DV_IDENTIFIER"
-				},
-				"order_list": {
-					"name": "order_list",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "LOCATABLE_REF",
-						"container_type": "List"
-					}
-				},
-				"calendar": {
-					"name": "calendar",
-					"type": "PLAN_CALENDAR",
-					"is_mandatory": true
-				},
-				"plan_timeline": {
-					"name": "plan_timeline",
-					"type": "PLAN_TIMELINE",
-					"is_mandatory": true
-				},
-				"plans": {
-					"name": "plans",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "UID_BASED_ID",
-						"container_type": "List"
-					}
-				},
-				"event_wait_states": {
-					"name": "event_wait_states",
-					"type_def": {
-						"type": "EVENT_WAIT",
-						"container_type": "List"
-					}
-				},
-				"top_level_plans": {
-					"name": "top_level_plans",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "UID_BASED_ID",
-						"container_type": "List"
-					}
-				},
-				"context": {
-					"name": "context",
-					"type": "PLAN_DATA_CONTEXT"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 929
-		},
-		"TASK_PLAN": {
-			"name": "TASK_PLAN",
-			"ancestors": ["CONTENT_ITEM"],
-			"properties": {
-				"subject": {
-					"name": "subject",
-					"type": "PARTY_PROXY"
-				},
-				"description": {
-					"name": "description",
-					"type": "DV_TEXT",
-					"is_mandatory": true
-				},
-				"guideline": {
-					"name": "guideline",
-					"type": "DV_IDENTIFIER"
-				},
-				"best_practice_ref": {
-					"name": "best_practice_ref",
-					"type": "DV_URI"
-				},
-				"definition": {
-					"name": "definition",
-					"type": "TASK_GROUP",
-					"is_mandatory": true
-				},
-				"principal_performer": {
-					"name": "principal_performer",
-					"type": "TASK_PARTICIPATION"
-				},
-				"order_set_type": {
-					"name": "order_set_type",
-					"type": "DV_IDENTIFIER"
-				},
-				"order_set_id": {
-					"name": "order_set_id",
-					"type": "DV_IDENTIFIER"
-				},
-				"due_time": {
-					"name": "due_time",
-					"type": "IDuration"
-				},
-				"expiry_time": {
-					"name": "expiry_time",
-					"type": "IDuration"
-				},
-				"indications": {
-					"name": "indications",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "DV_TEXT",
-						"container_type": "List"
-					}
-				},
-				"execution_history": {
-					"name": "execution_history",
-					"type": "TASK_PLAN_EXECUTION_HISTORY",
-					"is_im_runtime": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 930
-		},
-		"PLAN_CALENDAR": {
-			"name": "PLAN_CALENDAR",
-			"properties": {
-				"entries": {
-					"name": "entries",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "CALENDAR_ENTRY",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 931
-		},
-		"CALENDAR_ENTRY": {
-			"name": "CALENDAR_ENTRY",
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 932
-		},
-		"PLAN_TIMELINE": {
-			"name": "PLAN_TIMELINE",
-			"properties": {
-				"planned_items": {
-					"name": "planned_items",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "PLAN_ITEM",
-						"container_type": "List"
-					}
-				},
-				"timers": {
-					"name": "timers",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "TIMER_WAIT",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 933
-		},
-		"TASK_PARTICIPATION": {
-			"name": "TASK_PARTICIPATION",
-			"properties": {
-				"function": {
-					"name": "function",
-					"type": "DV_TEXT"
-				},
-				"role": {
-					"name": "role",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "DV_TEXT",
-						"container_type": "List"
-					}
-				},
-				"mode": {
-					"name": "mode",
-					"type": "DV_CODED_TEXT"
-				},
-				"performer": {
-					"name": "performer",
-					"type": "PARTY_PROXY"
-				},
-				"optionality": {
-					"name": "optionality",
-					"type": "VALIDITY_KIND"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 934
-		},
-		"PLAN_ITEM": {
-			"name": "PLAN_ITEM",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"description": {
-					"name": "description",
-					"type": "DV_TEXT",
-					"is_mandatory": true
-				},
-				"repeat_spec": {
-					"name": "repeat_spec",
-					"type": "TASK_REPEAT"
-				},
-				"other_details": {
-					"name": "other_details",
-					"type": "ITEM_STRUCTURE"
-				},
-				"wait_spec": {
-					"name": "wait_spec",
-					"type": "TASK_WAIT"
-				},
-				"review_dataset": {
-					"name": "review_dataset",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "DATASET_SPEC",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 935
-		},
-		"TASK_REPEAT": {
-			"name": "TASK_REPEAT",
-			"properties": {
-				"repeats": {
-					"name": "repeats",
-					"type_def": {
-						"root_type": "Interval",
-						"generic_parameters": ["Integer"]
-					}
-				},
-				"terminate_condition": {
-					"name": "terminate_condition",
-					"type": "PLAN_EVENT"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 936
-		},
-		"TASK_GROUP": {
-			"name": "TASK_GROUP",
-			"ancestors": ["PLAN_ITEM"],
-			"properties": {
-				"execution_type": {
-					"name": "execution_type",
-					"type": "EXECUTION_TYPE"
-				},
-				"members": {
-					"name": "members",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "PLAN_ITEM",
-						"container_type": "List"
-					}
-				},
-				"training_level": {
-					"name": "training_level",
-					"type": "Integer"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 937
-		},
-		"EXECUTION_TYPE": {
-			"name": "EXECUTION_TYPE",
-			"ancestors": ["Integer"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"item_names": ["sequential", "parallel"],
-			"uid": 938
-		},
-		"TASK": {
-			"name": "TASK",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "TASK_ACTION"
-				}
-			},
-			"ancestors": ["PLAN_ITEM"],
-			"properties": {
-				"action": {
-					"name": "action",
-					"type": "T"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 939
-		},
-		"DISPATCHABLE_TASK": {
-			"name": "DISPATCHABLE_TASK",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "DISPATCHABLE_ACTION"
-				}
-			},
-			"ancestors": ["TASK"],
-			"properties": {
-				"wait": {
-					"name": "wait",
-					"type": "Boolean",
-					"is_mandatory": true
-				},
-				"callback": {
-					"name": "callback",
-					"type": "CALLBACK_WAIT"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 940
-		},
-		"PERFORMABLE_TASK": {
-			"name": "PERFORMABLE_TASK",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "PERFORMABLE_ACTION"
-				}
-			},
-			"ancestors": ["TASK"],
-			"properties": {
-				"capture_dataset": {
-					"name": "capture_dataset",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "DATASET_SPEC",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 941
-		},
-		"TASK_ACTION": {
-			"name": "TASK_ACTION",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"subject_preconditions": {
-					"name": "subject_preconditions",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "SUBJECT_PRECONDITION",
-						"container_type": "List"
-					}
-				},
-				"costing_data": {
-					"name": "costing_data",
-					"type": "TASK_COSTING"
-				},
-				"instruction_activity": {
-					"name": "instruction_activity",
-					"type": "LOCATABLE_REF"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 942
-		},
-		"DISPATCHABLE_ACTION": {
-			"name": "DISPATCHABLE_ACTION",
-			"ancestors": ["TASK_ACTION"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 943
-		},
-		"PERFORMABLE_ACTION": {
-			"name": "PERFORMABLE_ACTION",
-			"ancestors": ["TASK_ACTION"],
-			"properties": {
-				"other_participations": {
-					"name": "other_participation",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "TASK_PARTICIPATION",
-						"container_type": "List"
-					}
-				},
-				"resources": {
-					"name": "resources",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "RESOURCE_PARTICIPATION",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 944
-		},
-		"RESOURCE_PARTICIPATION": {
-			"name": "RESOURCE_PARTICIPATION",
-			"properties": {
-				"resource_type": {
-					"name": "resource_type",
-					"type": "DV_TEXT",
-					"is_mandatory": true
-				},
-				"external_ref": {
-					"name": "external_ref",
-					"type": "LOCATABLE_REF"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 945
-		},
-		"SUBJECT_PRECONDITION": {
-			"name": "SUBJECT_PRECONDITION",
-			"properties": {
-				"description": {
-					"name": "description",
-					"type": "DV_TEXT",
-					"is_mandatory": true
-				},
-				"expression": {
-					"name": "expression",
-					"type_def": {
-						"root_type": "CONTEXT_EXPRESSION",
-						"generic_parameters": ["TYPE_DEF_BOOLEAN"]
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 946
-		},
-		"EXTERNAL_REQUEST": {
-			"name": "EXTERNAL_REQUEST",
-			"ancestors": ["DISPATCHABLE_ACTION"],
-			"properties": {
-				"organisation_name": {
-					"name": "organisation_name",
-					"type": "PARTY_PROXY",
-					"is_mandatory": true
-				},
-				"request_id": {
-					"name": "request_id",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"other_details": {
-					"name": "other_details",
-					"type": "ITEM_STRUCTURE"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 947
-		},
-		"DEFINED_ACTION": {
-			"name": "DEFINED_ACTION",
-			"ancestors": ["PERFORMABLE_ACTION"],
-			"properties": {
-				"prototype": {
-					"name": "prototype",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "ENTRY",
-						"container_type": "List"
-					}
-				},
-				"optionality": {
-					"name": "optionality",
-					"type": "VALIDITY_KIND"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 948
-		},
-		"SYSTEM_REQUEST": {
-			"name": "SYSTEM_REQUEST",
-			"ancestors": ["DISPATCHABLE_ACTION"],
-			"properties": {
-				"system_call": {
-					"name": "system_call",
-					"type": "SYSTEM_CALL",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 949
-		},
-		"DATASET_SPEC": {
-			"name": "DATASET_SPEC",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"other_details": {
-					"name": "other_details",
-					"type": "ITEM_STRUCTURE"
-				},
-				"form_id": {
-					"name": "form_id",
-					"type": "String"
-				},
-				"template_id": {
-					"name": "template_id",
-					"type": "String"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 950
-		},
-		"LINKED_PLAN": {
-			"name": "LINKED_PLAN",
-			"properties": {
-				"target": {
-					"name": "target",
-					"type": "UID_BASED_ID",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 951
-		},
-		"HAND_OFF": {
-			"name": "HAND_OFF",
-			"ancestors": ["LINKED_PLAN", "DISPATCHABLE_ACTION"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 952
-		},
-		"SUB_PLAN": {
-			"name": "SUB_PLAN",
-			"ancestors": ["LINKED_PLAN", "PERFORMABLE_ACTION"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 953
-		},
-		"TASK_COSTING": {
-			"name": "TASK_COSTING",
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 954
-		},
-		"CHOICE_GROUP": {
-			"name": "CHOICE_GROUP",
-			"ancestors": ["TASK_GROUP"],
-			"properties": {
-				"override_type": {
-					"name": "override_type",
-					"type": "OVERRIDE_TYPE"
-				},
-				"members": {
-					"name": "members",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "CHOICE_BRANCH",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 955
-		},
-		"OVERRIDE_TYPE": {
-			"name": "OVERRIDE_TYPE",
-			"ancestors": ["Integer"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"item_names": ["allowed", "allowed_with_reason", "prohibited"],
-			"uid": 956
-		},
-		"CHOICE_BRANCH": {
-			"name": "CHOICE_BRANCH",
-			"ancestors": ["TASK_GROUP"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 957
-		},
-		"ADHOC_GROUP": {
-			"name": "ADHOC_GROUP",
-			"ancestors": ["CHOICE_GROUP"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 958
-		},
-		"ADHOC_BRANCH": {
-			"name": "ADHOC_BRANCH",
-			"ancestors": ["CHOICE_BRANCH"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 959
-		},
-		"CONDITION_GROUP": {
-			"name": "CONDITION_GROUP",
-			"ancestors": ["CHOICE_GROUP"],
-			"properties": {
-				"members": {
-					"name": "members",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "CONDITION_BRANCH",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 960
-		},
-		"CONDITION_BRANCH": {
-			"name": "CONDITION_BRANCH",
-			"ancestors": ["CHOICE_BRANCH"],
-			"properties": {
-				"test": {
-					"name": "test",
-					"type_def": {
-						"root_type": "CONTEXT_EXPRESSION",
-						"generic_parameters": ["TYPE_DEF_BOOLEAN"]
-					},
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 961
-		},
-		"DECISION_GROUP": {
-			"name": "DECISION_GROUP",
-			"ancestors": ["CHOICE_GROUP"],
-			"properties": {
-				"test": {
-					"name": "test",
-					"type_def": {
-						"root_type": "CONTEXT_EXPRESSION",
-						"generic_parameters": ["EXPR_TYPE_DEF"]
-					},
-					"is_mandatory": true
-				},
-				"members": {
-					"name": "members",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "DECISION_BRANCH",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 962
-		},
-		"DECISION_BRANCH": {
-			"name": "DECISION_BRANCH",
-			"ancestors": ["CHOICE_BRANCH"],
-			"properties": {
-				"value_constraint": {
-					"name": "value_constraint",
-					"type_def": {
-						"root_type": "CONTEXT_EXPRESSION",
-						"generic_parameters": ["TYPE_DEF_BOOLEAN"]
-					},
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 963
-		},
-		"EVENT_GROUP": {
-			"name": "EVENT_GROUP",
-			"ancestors": ["CHOICE_GROUP"],
-			"properties": {
-				"timeout": {
-					"name": "timeout",
-					"type": "TIMER_WAIT"
-				},
-				"members": {
-					"name": "members",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "EVENT_BRANCH",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 964
-		},
-		"EVENT_BRANCH": {
-			"name": "EVENT_BRANCH",
-			"ancestors": ["CHOICE_BRANCH"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 965
-		},
-		"TASK_WAIT": {
-			"name": "TASK_WAIT",
-			"properties": {
-				"wait_spec": {
-					"name": "wait_spec",
-					"type": "TEMPORAL_RELATION"
-				},
-				"timeout": {
-					"name": "timeout",
-					"type": "TIMER_WAIT"
-				},
-				"start_window": {
-					"name": "start_window",
-					"type": "REMINDER"
-				},
-				"events": {
-					"name": "events",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "PLAN_EVENT",
-						"container_type": "List"
-					}
-				},
-				"event_relation": {
-					"name": "event_relation",
-					"type": "TEMPORAL_RELATION"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 966
-		},
-		"PLAN_EVENT": {
-			"name": "PLAN_EVENT",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"other_details": {
-					"name": "other_details",
-					"type": "ITEM_STRUCTURE"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 967
-		},
-		"TIMELINE_MOMENT": {
-			"name": "TIMELINE_MOMENT",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"timeline_offset": {
-					"name": "timeline_offset",
-					"type": "IDuration"
-				},
-				"fixed_time": {
-					"name": "fixed_time",
-					"type": "TIME_SPECIFIER"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 968
-		},
-		"SYSTEM_NOTIFICATION": {
-			"name": "SYSTEM_NOTIFICATION",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"system_id": {
-					"name": "system_id",
-					"type": "String",
-					"is_mandatory": true
-				},
-				"notification_type": {
-					"name": "notification_type",
-					"type": "String"
-				},
-				"reference_id": {
-					"name": "reference_id",
-					"type": "String"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 969
-		},
-		"CALLBACK_NOTIFICATION": {
-			"name": "CALLBACK_NOTIFICATION",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"task_id": {
-					"name": "task_id",
-					"type": "UID_BASED_ID",
-					"is_mandatory": true
-				},
-				"request_id": {
-					"name": "request_id",
-					"type": "String"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 970
-		},
-		"MANUAL_NOTIFICATION": {
-			"name": "MANUAL_NOTIFICATION",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"description": {
-					"name": "description",
-					"type": "String",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 971
-		},
-		"TASK_TRANSITION": {
-			"name": "TASK_TRANSITION",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"task_id": {
-					"name": "task_id",
-					"type": "UID_BASED_ID",
-					"is_mandatory": true
-				},
-				"transitions": {
-					"name": "transitions",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "TASK_LIFECYCLE",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 972
-		},
-		"EVENT_WAIT": {
-			"name": "EVENT_WAIT",
-			"generic_parameter_defs": {
-				"T": {
-					"name": "T",
-					"conforms_to_type": "PLAN_EVENT"
-				}
-			},
-			"properties": {
-				"event": {
-					"name": "event",
-					"type": "T",
-					"is_mandatory": true
-				},
-				"timeout": {
-					"name": "timeout",
-					"type": "TIMER_WAIT"
-				},
-				"success_action": {
-					"name": "success_action",
-					"type": "EVENT_ACTION"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 973
-		},
-		"DELAY_EVENT": {
-			"name": "DELAY_EVENT",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"delay": {
-					"name": "delay",
-					"type": "IDuration",
-					"is_mandatory": true
-				},
-				"source": {
-					"name": "source",
-					"type": "UID_BASED_ID"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 974
-		},
-		"STATE_TRIGGER": {
-			"name": "STATE_TRIGGER",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"expression": {
-					"name": "expression",
-					"type_def": {
-						"root_type": "CONTEXT_EXPRESSION",
-						"generic_parameters": ["TYPE_DEF_BOOLEAN"]
-					},
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 975
-		},
-		"TIMER_EVENT": {
-			"name": "TIMER_EVENT",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"duration": {
-					"name": "duration",
-					"type": "IDuration",
-					"is_mandatory": true
-				},
-				"purpose": {
-					"name": "purpose",
-					"type": "String"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 976
-		},
-		"REMINDER": {
-			"name": "REMINDER",
-			"ancestors": ["TIMER_WAIT"],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 977
-		},
-		"TIMER_WAIT": {
-			"name": "TIMER_WAIT",
-			"ancestor_defs": [
-				{
-					"root_type": "EVENT_WAIT",
-					"generic_parameters": ["TIMER_EVENT"]
-				}
-			],
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 978
-		},
-		"CALLBACK_WAIT": {
-			"name": "CALLBACK_WAIT",
-			"ancestor_defs": [
-				{
-					"root_type": "EVENT_WAIT",
-					"generic_parameters": ["CALLBACK_NOTIFICATION"]
-				}
-			],
-			"properties": {
-				"fail_action": {
-					"name": "fail_action",
-					"type": "EVENT_ACTION"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 979
-		},
-		"EVENT_ACTION": {
-			"name": "EVENT_ACTION",
-			"properties": {
-				"system_call": {
-					"name": "system_call",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "SYSTEM_CALL",
-						"container_type": "List"
-					}
-				},
-				"resume_action": {
-					"name": "resume_action",
-					"type": "RESUME_ACTION"
-				},
-				"message": {
-					"name": "message",
-					"type": "DV_TEXT"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 980
-		},
-		"CALENDAR_EVENT": {
-			"name": "CALENDAR_EVENT",
-			"ancestors": ["PLAN_EVENT"],
-			"properties": {
-				"entry_id": {
-					"name": "entry_id",
-					"type": "UID_BASED_ID"
-				},
-				"time": {
-					"name": "time",
-					"type": "IDate_time",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 981
-		},
-		"RESUME_ACTION": {
-			"name": "RESUME_ACTION",
-			"properties": {
-				"resume_type": {
-					"name": "resume_type",
-					"type": "RESUME_TYPE",
-					"is_mandatory": true
-				},
-				"resume_location": {
-					"name": "resume_location",
-					"type": "UID_BASED_ID"
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 982
-		},
-		"TIME_SPECIFIER": {
-			"name": "TIME_SPECIFIER",
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"is_abstract": true,
-			"uid": 983
-		},
-		"CLOCK_TIME": {
-			"name": "CLOCK_TIME",
-			"ancestors": ["TIME_SPECIFIER"],
-			"properties": {
-				"time": {
-					"name": "time",
-					"type": "ITime",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 984
-		},
-		"CALENDAR_TIME": {
-			"name": "CALENDAR_TIME",
-			"ancestors": ["TIME_SPECIFIER"],
-			"properties": {
-				"time": {
-					"name": "time",
-					"type": "IDate_time",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 985
-		},
-		"CUSTOMARY_TIME": {
-			"name": "CUSTOMARY_TIME",
-			"ancestors": ["TIME_SPECIFIER"],
-			"properties": {
-				"time": {
-					"name": "time",
-					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
-				}
-			},
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 986
-		},
-		"TASK_PLAN_EXECUTION_HISTORY": {
-			"name": "TASK_PLAN_EXECUTION_HISTORY",
-			"source_schema_id": "openehr_proc_task_planning_1.0.0",
-			"uid": 987
-		},
 		"EHR": {
 			"name": "EHR",
 			"properties": {
 				"system_id": {
 					"name": "system_id",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"ehr_id": {
 					"name": "ehr_id",
 					"type": "HIER_OBJECT_ID",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"time_created": {
 					"name": "time_created",
 					"type": "DV_DATE_TIME",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"ehr_access": {
 					"name": "ehr_access",
 					"type": "OBJECT_REF",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"ehr_status": {
 					"name": "ehr_status",
 					"type": "OBJECT_REF",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"directory": {
 					"name": "directory",
-					"type": "OBJECT_REF"
+					"type": "OBJECT_REF",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"compositions": {
 					"name": "compositions",
@@ -1759,7 +577,10 @@
 						"type": "OBJECT_REF",
 						"container_type": "List"
 					},
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"contributions": {
 					"name": "contributions",
@@ -1771,15 +592,23 @@
 						"type": "OBJECT_REF",
 						"container_type": "List"
 					},
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"most_recent_composition": {
 					"name": "most_recent_composition",
 					"type": "COMPOSITION",
-					"is_computed": true
+					"is_mandatory": false,
+					"is_computed": true,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1033
 		},
 		"EHR_ACCESS": {
@@ -1789,10 +618,15 @@
 				"settings": {
 					"name": "settings",
 					"type": "ACCESS_CONTROL_SETTINGS",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1034
 		},
 		"ACCESS_CONTROL_SETTINGS": {
@@ -1800,6 +634,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1035
 		},
 		"EHR_STATUS": {
@@ -1809,24 +644,39 @@
 				"subject": {
 					"name": "subject",
 					"type": "PARTY_SELF",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"is_queryable": {
 					"name": "is_queryable",
 					"type": "Boolean",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"is_modifiable": {
 					"name": "is_modifiable",
 					"type": "Boolean",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"other_details": {
 					"name": "other_details",
-					"type": "ITEM_STRUCTURE"
+					"type": "ITEM_STRUCTURE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1036
 		},
 		"COMPOSITION": {
@@ -1836,26 +686,42 @@
 				"language": {
 					"name": "language",
 					"type": "CODE_PHRASE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"territory": {
 					"name": "territory",
 					"type": "CODE_PHRASE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"category": {
 					"name": "category",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"composer": {
 					"name": "composer",
 					"type": "PARTY_PROXY",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"context": {
 					"name": "context",
-					"type": "EVENT_CONTEXT"
+					"type": "EVENT_CONTEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"content": {
 					"name": "content",
@@ -1866,10 +732,16 @@
 					"type_def": {
 						"type": "CONTENT_ITEM",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1037
 		},
 		"EVENT_CONTEXT": {
@@ -1878,16 +750,27 @@
 			"properties": {
 				"health_care_facility": {
 					"name": "health_care_facility",
-					"type": "PARTY_IDENTIFIED"
+					"type": "PARTY_IDENTIFIED",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"start_time": {
 					"name": "start_time",
 					"type": "DV_DATE_TIME",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"end_time": {
 					"name": "end_time",
-					"type": "DV_DATE_TIME"
+					"type": "DV_DATE_TIME",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"participations": {
 					"name": "participations",
@@ -1898,23 +781,40 @@
 					"type_def": {
 						"type": "PARTICIPATION",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"location": {
 					"name": "location",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"setting": {
 					"name": "setting",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"other_context": {
 					"name": "other_context",
-					"type": "ITEM_STRUCTURE"
+					"type": "ITEM_STRUCTURE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1038
 		},
 		"CONTENT_ITEM": {
@@ -1922,6 +822,7 @@
 			"ancestors": ["LOCATABLE"],
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1039
 		},
 		"SECTION": {
@@ -1937,10 +838,16 @@
 					"type_def": {
 						"type": "CONTENT_ITEM",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1040
 		},
 		"ENTRY": {
@@ -1951,22 +858,33 @@
 					"name": "language",
 					"type": "CODE_PHRASE",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"encoding": {
 					"name": "encoding",
 					"type": "CODE_PHRASE",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"subject": {
 					"name": "subject",
 					"type": "PARTY_PROXY",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"provider": {
 					"name": "provider",
-					"type": "PARTY_PROXY"
+					"type": "PARTY_PROXY",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"other_participations": {
 					"name": "other_participations",
@@ -1977,16 +895,24 @@
 					"type_def": {
 						"type": "PARTICIPATION",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"workflow_id": {
 					"name": "workflow_id",
 					"type": "OBJECT_REF",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1041
 		},
 		"ADMIN_ENTRY": {
@@ -1996,10 +922,15 @@
 				"data": {
 					"name": "data",
 					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1042
 		},
 		"CARE_ENTRY": {
@@ -2009,16 +940,24 @@
 			"properties": {
 				"protocol": {
 					"name": "protocol",
-					"type": "ITEM_STRUCTURE"
+					"type": "ITEM_STRUCTURE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"guideline_id": {
 					"name": "guideline_id",
 					"type": "OBJECT_REF",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1043
 		},
 		"OBSERVATION": {
@@ -2033,17 +972,26 @@
 						"root_type": "HISTORY",
 						"generic_parameters": ["ITEM_STRUCTURE"]
 					},
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"state": {
 					"name": "state",
 					"type_def": {
 						"root_type": "HISTORY",
 						"generic_parameters": ["ITEM_STRUCTURE"]
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1044
 		},
 		"EVALUATION": {
@@ -2053,10 +1001,15 @@
 				"data": {
 					"name": "data",
 					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1045
 		},
 		"INSTRUCTION": {
@@ -2066,15 +1019,25 @@
 				"narrative": {
 					"name": "narrative",
 					"type": "DV_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"expiry_time": {
 					"name": "expiry_time",
-					"type": "DV_DATE_TIME"
+					"type": "DV_DATE_TIME",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"wf_definition": {
 					"name": "wf_definition",
 					"type": "DV_PARSABLE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"activities": {
@@ -2086,10 +1049,16 @@
 					"type_def": {
 						"type": "ACTIVITY",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1046
 		},
 		"ACTIVITY": {
@@ -2099,20 +1068,31 @@
 				"description": {
 					"name": "description",
 					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"timing": {
 					"name": "timing",
 					"type": "DV_PARSABLE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"action_archetype_id": {
 					"name": "action_archetype_id",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1047
 		},
 		"ACTION": {
@@ -2123,24 +1103,38 @@
 					"name": "time",
 					"type": "DV_DATE_TIME",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"description": {
 					"name": "description",
 					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"ism_transition": {
 					"name": "ism_transition",
 					"type": "ISM_TRANSITION",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"instruction_details": {
 					"name": "instruction_details",
-					"type": "INSTRUCTION_DETAILS"
+					"type": "INSTRUCTION_DETAILS",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1048
 		},
 		"INSTRUCTION_DETAILS": {
@@ -2151,21 +1145,30 @@
 					"name": "instruction_id",
 					"type": "LOCATABLE_REF",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"wf_details": {
 					"name": "wf_details",
 					"type": "ITEM_STRUCTURE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"activity_id": {
 					"name": "activity_id",
 					"type": "String",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1049
 		},
 		"ISM_TRANSITION": {
@@ -2175,18 +1178,31 @@
 				"current_state": {
 					"name": "current_state",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"transition": {
 					"name": "transition",
-					"type": "DV_CODED_TEXT"
+					"type": "DV_CODED_TEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"careflow_step": {
 					"name": "careflow_step",
-					"type": "DV_CODED_TEXT"
+					"type": "DV_CODED_TEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1050
 		},
 		"GENERIC_ENTRY": {
@@ -2195,10 +1211,16 @@
 			"properties": {
 				"data": {
 					"name": "data",
-					"type": "ITEM_TREE"
+					"type": "ITEM_TREE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_ehr_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1051
 		},
 		"DATA_STRUCTURE": {
@@ -2206,6 +1228,7 @@
 			"ancestors": ["LOCATABLE"],
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1074
 		},
 		"ITEM_STRUCTURE": {
@@ -2213,6 +1236,7 @@
 			"ancestors": ["DATA_STRUCTURE"],
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1075
 		},
 		"ITEM_SINGLE": {
@@ -2222,10 +1246,15 @@
 				"item": {
 					"name": "item",
 					"type": "ELEMENT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1076
 		},
 		"ITEM_LIST": {
@@ -2241,10 +1270,16 @@
 					"type_def": {
 						"type": "ELEMENT",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1077
 		},
 		"ITEM_TABLE": {
@@ -2260,10 +1295,16 @@
 					"type_def": {
 						"type": "CLUSTER",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1078
 		},
 		"ITEM_TREE": {
@@ -2279,10 +1320,16 @@
 					"type_def": {
 						"type": "ITEM",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1079
 		},
 		"ITEM": {
@@ -2290,6 +1337,7 @@
 			"ancestors": ["LOCATABLE"],
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1080
 		},
 		"CLUSTER": {
@@ -2306,10 +1354,15 @@
 						"type": "ITEM",
 						"container_type": "List"
 					},
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1081
 		},
 		"ELEMENT": {
@@ -2318,14 +1371,24 @@
 			"properties": {
 				"null_flavour": {
 					"name": "null_flavour",
-					"type": "DV_CODED_TEXT"
+					"type": "DV_CODED_TEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"value": {
 					"name": "value",
-					"type": "DATA_VALUE"
+					"type": "DATA_VALUE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1082
 		},
 		"HISTORY": {
@@ -2342,19 +1405,33 @@
 					"name": "origin",
 					"type": "DV_DATE_TIME",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"period": {
 					"name": "period",
-					"type": "DV_DURATION"
+					"type": "DV_DURATION",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"duration": {
 					"name": "duration",
-					"type": "DV_DURATION"
+					"type": "DV_DURATION",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"summary": {
 					"name": "summary",
-					"type": "ITEM_STRUCTURE"
+					"type": "ITEM_STRUCTURE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"events": {
 					"name": "events",
@@ -2365,10 +1442,16 @@
 					"type_def": {
 						"type": "EVENT",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1083
 		},
 		"EVENT": {
@@ -2385,25 +1468,38 @@
 					"name": "time",
 					"type": "DV_DATE_TIME",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"state": {
 					"name": "state",
-					"type": "ITEM_STRUCTURE"
+					"type": "ITEM_STRUCTURE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"data": {
 					"name": "data",
 					"type": "T",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"offset": {
 					"name": "offset",
 					"type": "DV_DURATION",
-					"is_computed": true
+					"is_mandatory": false,
+					"is_computed": true,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1084
 		},
 		"POINT_EVENT": {
@@ -2415,6 +1511,8 @@
 			},
 			"ancestors": ["EVENT"],
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1085
 		},
 		"INTERVAL_EVENT": {
@@ -2429,20 +1527,31 @@
 				"width": {
 					"name": "width",
 					"type": "DV_DURATION",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"sample_count": {
 					"name": "sample_count",
 					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"math_function": {
 					"name": "math_function",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1086
 		},
 		"REVISION_HISTORY": {
@@ -2458,10 +1567,16 @@
 					"type_def": {
 						"type": "REVISION_HISTORY_ITEM",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1087
 		},
 		"REVISION_HISTORY_ITEM": {
@@ -2471,7 +1586,10 @@
 				"version_id": {
 					"name": "version_id",
 					"type": "OBJECT_VERSION_ID",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"audits": {
 					"name": "audits",
@@ -2483,10 +1601,15 @@
 						"type": "AUDIT_DETAILS",
 						"container_type": "List"
 					},
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1088
 		},
 		"AUDIT_DETAILS": {
@@ -2496,29 +1619,47 @@
 				"system_id": {
 					"name": "system_id",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"time_committed": {
 					"name": "time_committed",
 					"type": "DV_DATE_TIME",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"change_type": {
 					"name": "change_type",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"description": {
 					"name": "description",
-					"type": "DV_TEXT"
+					"type": "DV_TEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"committer": {
 					"name": "committer",
 					"type": "PARTY_PROXY",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1089
 		},
 		"ATTESTATION": {
@@ -2527,11 +1668,19 @@
 			"properties": {
 				"attested_view": {
 					"name": "attested_view",
-					"type": "DV_MULTIMEDIA"
+					"type": "DV_MULTIMEDIA",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"proof": {
 					"name": "proof",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"items": {
 					"name": "items",
@@ -2542,19 +1691,32 @@
 					"type_def": {
 						"type": "DV_EHR_URI",
 						"container_type": "Set"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"reason": {
 					"name": "reason",
-					"type": "DV_TEXT"
+					"type": "DV_TEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"is_pending": {
 					"name": "is_pending",
 					"type": "Boolean",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1090
 		},
 		"PARTICIPATION": {
@@ -2564,7 +1726,10 @@
 				"function": {
 					"name": "function",
 					"type": "DV_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"time": {
 					"name": "time",
@@ -2572,19 +1737,31 @@
 						"root_type": "DV_INTERVAL",
 						"generic_parameters": ["DV_DATE_TIME"]
 					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"mode": {
 					"name": "mode",
-					"type": "DV_CODED_TEXT"
+					"type": "DV_CODED_TEXT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"performer": {
 					"name": "performer",
 					"type": "PARTY_PROXY",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1091
 		},
 		"PARTY_PROXY": {
@@ -2594,11 +1771,15 @@
 				"external_ref": {
 					"name": "external_ref",
 					"type": "PARTY_REF",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1092
 		},
 		"PARTY_IDENTIFIED": {
@@ -2607,7 +1788,11 @@
 			"properties": {
 				"name": {
 					"name": "name",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"identifiers": {
 					"name": "identifiers",
@@ -2619,10 +1804,15 @@
 						"type": "DV_IDENTIFIER",
 						"container_type": "List"
 					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1093
 		},
 		"PARTY_RELATED": {
@@ -2632,16 +1822,23 @@
 				"relationship": {
 					"name": "relationship",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1094
 		},
 		"PARTY_SELF": {
 			"name": "PARTY_SELF",
 			"ancestors": ["PARTY_PROXY"],
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1095
 		},
 		"PATHABLE": {
@@ -2649,6 +1846,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1096
 		},
 		"LOCATABLE": {
@@ -2658,27 +1856,41 @@
 				"uid": {
 					"name": "uid",
 					"type": "UID_BASED_ID",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"archetype_node_id": {
 					"name": "archetype_node_id",
 					"type": "String",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"name": {
 					"name": "name",
 					"type": "DV_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"archetype_details": {
 					"name": "archetype_details",
 					"type": "ARCHETYPED",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"feeder_audit": {
 					"name": "feeder_audit",
 					"type": "FEEDER_AUDIT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"links": {
@@ -2690,11 +1902,16 @@
 					"type_def": {
 						"type": "LINK",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1097
 		},
 		"LINK": {
@@ -2704,20 +1921,31 @@
 				"meaning": {
 					"name": "meaning",
 					"type": "DV_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"type": {
 					"name": "type",
 					"type": "DV_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"target": {
 					"name": "target",
 					"type": "DV_EHR_URI",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1098
 		},
 		"ARCHETYPED": {
@@ -2728,21 +1956,30 @@
 					"name": "archetype_id",
 					"type": "ARCHETYPE_ID",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"template_id": {
 					"name": "template_id",
 					"type": "TEMPLATE_ID",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"rm_version": {
 					"name": "rm_version",
 					"type": "String",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1099
 		},
 		"FEEDER_AUDIT": {
@@ -2759,6 +1996,9 @@
 						"type": "DV_IDENTIFIER",
 						"container_type": "List"
 					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"feeder_system_item_ids": {
@@ -2771,26 +2011,39 @@
 						"type": "DV_IDENTIFIER",
 						"container_type": "List"
 					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"original_content": {
 					"name": "original_content",
 					"type": "DV_ENCAPSULATED",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"originating_system_audit": {
 					"name": "originating_system_audit",
 					"type": "FEEDER_AUDIT_DETAILS",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"feeder_system_audit": {
 					"name": "feeder_system_audit",
 					"type": "FEEDER_AUDIT_DETAILS",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1100
 		},
 		"FEEDER_AUDIT_DETAILS": {
@@ -2801,35 +2054,54 @@
 					"name": "system_id",
 					"type": "String",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"location": {
 					"name": "location",
 					"type": "PARTY_IDENTIFIED",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"provider": {
 					"name": "provider",
 					"type": "PARTY_IDENTIFIED",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"subject": {
 					"name": "subject",
 					"type": "PARTY_PROXY",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"time": {
 					"name": "time",
 					"type": "DV_DATE_TIME",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"version_id": {
 					"name": "version_id",
 					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1101
 		},
 		"FOLDER": {
@@ -2845,7 +2117,11 @@
 					"type_def": {
 						"type": "FOLDER",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"items": {
 					"name": "items",
@@ -2856,10 +2132,16 @@
 					"type_def": {
 						"type": "OBJECT_REF",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1102
 		},
 		"CONTRIBUTION": {
@@ -2870,13 +2152,17 @@
 					"name": "uid",
 					"type": "HIER_OBJECT_ID",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"audit": {
 					"name": "audit",
 					"type": "AUDIT_DETAILS",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"versions": {
 					"name": "versions",
@@ -2889,10 +2175,14 @@
 						"container_type": "Set"
 					},
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1103
 		},
 		"VERSIONED_OBJECT": {
@@ -2908,21 +2198,30 @@
 					"name": "uid",
 					"type": "HIER_OBJECT_ID",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"owner_id": {
 					"name": "owner_id",
 					"type": "OBJECT_REF",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"time_created": {
 					"name": "time_created",
 					"type": "DV_DATE_TIME",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1104
 		},
 		"VERSION": {
@@ -2938,21 +2237,30 @@
 					"name": "contribution",
 					"type": "OBJECT_REF",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"commit_audit": {
 					"name": "commit_audit",
 					"type": "AUDIT_DETAILS",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"signature": {
 					"name": "signature",
 					"type": "String",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1105
 		},
 		"ORIGINAL_VERSION": {
@@ -2968,12 +2276,17 @@
 					"name": "uid",
 					"type": "OBJECT_VERSION_ID",
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"preceding_version_uid": {
 					"name": "preceding_version_uid",
 					"type": "OBJECT_VERSION_ID",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"other_input_version_uids": {
 					"name": "other_input_version_uids",
@@ -2985,7 +2298,10 @@
 						"type": "OBJECT_VERSION_ID",
 						"container_type": "Set"
 					},
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"attestations": {
 					"name": "attestations",
@@ -2996,20 +2312,32 @@
 					"type_def": {
 						"type": "ATTESTATION",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"lifecycle_state": {
 					"name": "lifecycle_state",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"data": {
 					"name": "data",
 					"type": "T",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1106
 		},
 		"IMPORTED_VERSION": {
@@ -3028,10 +2356,14 @@
 						"generic_parameters": ["T"]
 					},
 					"is_mandatory": true,
-					"is_im_infrastructure": true
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_structures_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1107
 		},
 		"DATA_VALUE": {
@@ -3039,6 +2371,7 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 988
 		},
 		"DV_BOOLEAN": {
@@ -3048,10 +2381,15 @@
 				"value": {
 					"name": "value",
 					"type": "Boolean",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 989
 		},
 		"DV_IDENTIFIER": {
@@ -3060,24 +2398,40 @@
 			"properties": {
 				"issuer": {
 					"name": "issuer",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"id": {
 					"name": "id",
 					"type": "String",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"type": {
 					"name": "type",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"assigner": {
 					"name": "assigner",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 990
 		},
 		"DV_STATE": {
@@ -3087,15 +2441,23 @@
 				"value": {
 					"name": "value",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"is_terminal": {
 					"name": "is_terminal",
 					"type": "Boolean",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 991
 		},
 		"TERM_MAPPING": {
@@ -3104,10 +2466,15 @@
 				"defining_code": {
 					"name": "defining_code",
 					"type": "CODE_PHRASE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 992
 		},
 		"DV_TEXT": {
@@ -3117,26 +2484,41 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"hyperlink": {
 					"name": "hyperlink",
 					"type": "DV_URI",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"language": {
 					"name": "language",
 					"type": "CODE_PHRASE",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"encoding": {
 					"name": "encoding",
 					"type": "CODE_PHRASE",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				},
 				"formatting": {
 					"name": "formatting",
 					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"mappings": {
@@ -3149,10 +2531,15 @@
 						"type": "TERM_MAPPING",
 						"container_type": "Set"
 					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 993
 		},
 		"DV_CODED_TEXT": {
@@ -3162,10 +2549,15 @@
 				"defining_code": {
 					"name": "defining_code",
 					"type": "CODE_PHRASE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 994
 		},
 		"CODE_PHRASE": {
@@ -3174,14 +2566,23 @@
 				"terminology_id": {
 					"name": "terminology_id",
 					"type": "TERMINOLOGY_ID",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"code_string": {
 					"name": "code_string",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 995
 		},
 		"DV_PARAGRAPH": {
@@ -3197,10 +2598,16 @@
 					"type_def": {
 						"type": "DV_TEXT",
 						"container_type": "List"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 996
 		},
 		"DV_INTERVAL": {
@@ -3213,6 +2620,8 @@
 			},
 			"ancestors": ["Interval", "DATA_VALUE"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 997
 		},
 		"REFERENCE_RANGE": {
@@ -3230,10 +2639,16 @@
 					"type_def": {
 						"root_type": "DV_INTERVAL",
 						"generic_parameters": ["T"]
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 998
 		},
 		"DV_ORDERED": {
@@ -3242,25 +2657,38 @@
 			"properties": {
 				"normal_status": {
 					"name": "normal_status",
-					"type": "CODE_PHRASE"
+					"type": "CODE_PHRASE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"normal_range": {
 					"name": "normal_range",
 					"type_def": {
 						"root_type": "DV_INTERVAL",
 						"generic_parameters": ["DV_ORDERED"]
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"other_reference_ranges": {
 					"name": "other_reference_ranges",
 					"type_def": {
 						"root_type": "REFERENCE_RANGE",
 						"generic_parameters": ["DV_ORDERED"]
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 999
 		},
 		"DV_QUANTIFIED": {
@@ -3271,11 +2699,14 @@
 					"name": "magnitude_status",
 					"type": "String",
 					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1000
 		},
 		"DV_ORDINAL": {
@@ -3285,15 +2716,23 @@
 				"value": {
 					"name": "value",
 					"type": "Integer",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"symbol": {
 					"name": "symbol",
 					"type": "DV_CODED_TEXT",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1001
 		},
 		"DV_AMOUNT": {
@@ -3303,16 +2742,23 @@
 				"accuracy": {
 					"name": "accuracy",
 					"type": "Real",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"accuracy_is_percent": {
 					"name": "accuracy_is_percent",
 					"type": "Boolean",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1002
 		},
 		"DV_ABSOLUTE_QUANTITY": {
@@ -3322,11 +2768,15 @@
 				"accuracy": {
 					"name": "accuracy",
 					"type": "DV_AMOUNT",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1003
 		},
 		"DV_QUANTITY": {
@@ -3336,24 +2786,39 @@
 				"magnitude": {
 					"name": "magnitude",
 					"type": "Double",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"property": {
 					"name": "property",
 					"type": "CODE_PHRASE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"units": {
 					"name": "units",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"precision": {
 					"name": "precision",
-					"type": "Integer"
+					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1004
 		},
 		"DV_COUNT": {
@@ -3362,10 +2827,16 @@
 			"properties": {
 				"magnitude": {
 					"name": "magnitude",
-					"type": "Integer64"
+					"type": "Integer64",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1005
 		},
 		"DV_PROPORTION": {
@@ -3375,29 +2846,47 @@
 				"numerator": {
 					"name": "numerator",
 					"type": "Real",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"denominator": {
 					"name": "denominator",
 					"type": "Real",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"type": {
 					"name": "type",
 					"type": "PROPORTION_KIND",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"precision": {
 					"name": "precision",
-					"type": "Integer"
+					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"is_integral": {
 					"name": "is_integral",
 					"type": "Boolean",
-					"is_computed": true
+					"is_mandatory": false,
+					"is_computed": true,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1006
 		},
 		"PROPORTION_KIND": {
@@ -3405,6 +2894,8 @@
 			"ancestors": ["Integer"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"item_names": ["pk_ratio", "pk_unitary", "pk_percent", "pk_fraction", "pk_integer_fraction"],
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1007
 		},
 		"DV_TEMPORAL": {
@@ -3412,6 +2903,7 @@
 			"ancestors": ["DV_ABSOLUTE_QUANTITY"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1008
 		},
 		"DV_DATE": {
@@ -3421,10 +2913,15 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1009
 		},
 		"DV_TIME": {
@@ -3434,10 +2931,15 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1010
 		},
 		"DV_DATE_TIME": {
@@ -3447,10 +2949,15 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1011
 		},
 		"DV_DURATION": {
@@ -3460,10 +2967,15 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1012
 		},
 		"DV_ENCAPSULATED": {
@@ -3473,16 +2985,23 @@
 				"charset": {
 					"name": "charset",
 					"type": "CODE_PHRASE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				},
 				"language": {
 					"name": "language",
 					"type": "CODE_PHRASE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1013
 		},
 		"DV_MULTIMEDIA": {
@@ -3491,11 +3010,19 @@
 			"properties": {
 				"alternate_text": {
 					"name": "alternate_text",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"uri": {
 					"name": "uri",
-					"type": "DV_URI"
+					"type": "DV_URI",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"data": {
 					"name": "data",
@@ -3506,16 +3033,27 @@
 					"type_def": {
 						"type": "Octet",
 						"container_type": "Array"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"media_type": {
 					"name": "media_type",
 					"type": "CODE_PHRASE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"compression_algorithm": {
 					"name": "compression_algorithm",
-					"type": "CODE_PHRASE"
+					"type": "CODE_PHRASE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"integrity_check": {
 					"name": "integrity_check",
@@ -3526,19 +3064,32 @@
 					"type_def": {
 						"type": "Octet",
 						"container_type": "Array"
-					}
+					},
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"integrity_check_algorithm": {
 					"name": "integrity_check_algorithm",
-					"type": "CODE_PHRASE"
+					"type": "CODE_PHRASE",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"size": {
 					"name": "size",
 					"type": "Integer",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
 					"is_im_runtime": true
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1014
 		},
 		"DV_PARSABLE": {
@@ -3547,14 +3098,24 @@
 			"properties": {
 				"value": {
 					"name": "value",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"formalism": {
 					"name": "formalism",
-					"type": "String"
+					"type": "String",
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1015
 		},
 		"DV_URI": {
@@ -3564,16 +3125,23 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1016
 		},
 		"DV_EHR_URI": {
 			"name": "DV_EHR_URI",
 			"ancestors": ["DV_URI"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1017
 		},
 		"DV_TIME_SPECIFICATION": {
@@ -3583,23 +3151,31 @@
 				"value": {
 					"name": "value",
 					"type": "DV_PARSABLE",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 1018
 		},
 		"DV_PERIODIC_TIME_SPECIFICATION": {
 			"name": "DV_PERIODIC_TIME_SPECIFICATION",
 			"ancestors": ["DV_TIME_SPECIFICATION"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1019
 		},
 		"DV_GENERAL_TIME_SPECIFICATION": {
 			"name": "DV_GENERAL_TIME_SPECIFICATION",
 			"ancestors": ["DV_TIME_SPECIFICATION"],
 			"source_schema_id": "openehr_rm_data_types_1.0.4",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 1020
 		},
 		"OBJECT_REF": {
@@ -3609,20 +3185,31 @@
 				"id": {
 					"name": "id",
 					"type": "OBJECT_ID",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"namespace": {
 					"name": "namespace",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"type": {
 					"name": "type",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 885
 		},
 		"LOCATABLE_REF": {
@@ -3632,16 +3219,23 @@
 				"path": {
 					"name": "path",
 					"type": "String",
-					"is_im_infrastructure": true
+					"is_mandatory": false,
+					"is_computed": false,
+					"is_im_infrastructure": true,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 886
 		},
 		"PARTY_REF": {
 			"name": "PARTY_REF",
 			"ancestors": ["OBJECT_REF"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 887
 		},
 		"OBJECT_ID": {
@@ -3651,17 +3245,23 @@
 				"value": {
 					"name": "value",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 888
 		},
 		"TERMINOLOGY_ID": {
 			"name": "TERMINOLOGY_ID",
 			"ancestors": ["OBJECT_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 889
 		},
 		"UID_BASED_ID": {
@@ -3669,48 +3269,63 @@
 			"ancestors": ["OBJECT_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 890
 		},
 		"GENERIC_ID": {
 			"name": "GENERIC_ID",
 			"ancestors": ["OBJECT_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 891
 		},
 		"ARCHETYPE_ID": {
 			"name": "ARCHETYPE_ID",
 			"ancestors": ["OBJECT_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 892
 		},
 		"ARCHETYPE_HRID": {
 			"name": "ARCHETYPE_HRID",
 			"ancestors": ["OBJECT_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 893
 		},
 		"TEMPLATE_ID": {
 			"name": "TEMPLATE_ID",
 			"ancestors": ["OBJECT_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 894
 		},
 		"OBJECT_VERSION_ID": {
 			"name": "OBJECT_VERSION_ID",
 			"ancestors": ["UID_BASED_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 895
 		},
 		"HIER_OBJECT_ID": {
 			"name": "HIER_OBJECT_ID",
 			"ancestors": ["UID_BASED_ID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 896
 		},
 		"VERSION_TREE_ID": {
 			"name": "VERSION_TREE_ID",
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 897
 		},
 		"UID": {
@@ -3718,24 +3333,31 @@
 			"ancestors": ["Any"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 898
 		},
 		"INTERNET_ID": {
 			"name": "INTERNET_ID",
 			"ancestors": ["UID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 899
 		},
 		"UUID": {
 			"name": "UUID",
 			"ancestors": ["UID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 900
 		},
 		"ISO_OID": {
 			"name": "ISO_OID",
 			"ancestors": ["UID"],
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 901
 		},
 		"VALIDITY_KIND": {
@@ -3743,6 +3365,8 @@
 			"ancestors": ["Integer"],
 			"source_schema_id": "openehr_base_1.1.0",
 			"item_names": ["mandatory", "optional", "prohibited"],
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 902
 		},
 		"EXPR_TYPE_DEF": {
@@ -3752,16 +3376,23 @@
 				"type_name": {
 					"name": "type_name",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				},
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Any",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
 			"is_abstract": true,
+			"is_override": false,
 			"uid": 903
 		},
 		"TYPE_DEF_BOOLEAN": {
@@ -3771,10 +3402,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Boolean",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 904
 		},
 		"TYPE_DEF_INTEGER": {
@@ -3784,10 +3420,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Integer",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 905
 		},
 		"TYPE_DEF_REAL": {
@@ -3797,10 +3438,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Real",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 906
 		},
 		"TYPE_DEF_DATE": {
@@ -3810,10 +3456,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Date",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 907
 		},
 		"TYPE_DEF_DATE_TIME": {
@@ -3823,10 +3474,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Date_time",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 908
 		},
 		"TYPE_DEF_TIME": {
@@ -3836,10 +3492,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Time",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 909
 		},
 		"TYPE_DEF_DURATION": {
@@ -3849,10 +3510,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Duration",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 910
 		},
 		"TYPE_DEF_STRING": {
@@ -3862,10 +3528,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "String",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 911
 		},
 		"TYPE_DEF_URI": {
@@ -3875,10 +3546,15 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Uri",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 912
 		},
 		"TYPE_DEF_TERMINOLOGY_CODE": {
@@ -3888,295 +3564,30 @@
 				"type_anchor": {
 					"name": "type_anchor",
 					"type": "Terminology_code",
-					"is_mandatory": true
+					"is_mandatory": true,
+					"is_computed": false,
+					"is_im_infrastructure": false,
+					"is_im_runtime": false
 				}
 			},
 			"source_schema_id": "openehr_base_1.1.0",
+			"is_abstract": false,
+			"is_override": false,
 			"uid": 913
-		},
-		"PARTY": {
-			"name": "PARTY",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"details": {
-					"name": "details",
-					"type": "ITEM_STRUCTURE"
-				},
-				"identities": {
-					"name": "identities",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "PARTY_IDENTITY",
-						"container_type": "Set"
-					}
-				},
-				"contacts": {
-					"name": "contacts",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "CONTACT",
-						"container_type": "Set"
-					}
-				},
-				"relationships": {
-					"name": "relationships",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "PARTY_RELATIONSHIP",
-						"container_type": "Set"
-					}
-				},
-				"reverse_relationships": {
-					"name": "reverse_relationships",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "LOCATABLE_REF",
-						"container_type": "Set"
-					},
-					"is_im_runtime": true
-				},
-				"type": {
-					"name": "type",
-					"type": "DV_TEXT",
-					"is_computed": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"is_abstract": true,
-			"uid": 1021
-		},
-		"PARTY_IDENTITY": {
-			"name": "PARTY_IDENTITY",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"details": {
-					"name": "details",
-					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
-				},
-				"purpose": {
-					"name": "purpose",
-					"type": "DV_TEXT",
-					"is_computed": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1022
-		},
-		"CONTACT": {
-			"name": "CONTACT",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"time_validity": {
-					"name": "time_validity",
-					"type_def": {
-						"root_type": "DV_INTERVAL",
-						"generic_parameters": ["DV_DATE"]
-					},
-					"is_im_runtime": true
-				},
-				"addresses": {
-					"name": "addresses",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "ADDRESS",
-						"container_type": "List"
-					}
-				},
-				"purpose": {
-					"name": "purpose",
-					"type": "DV_TEXT",
-					"is_computed": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1023
-		},
-		"ADDRESS": {
-			"name": "ADDRESS",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"details": {
-					"name": "details",
-					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
-				},
-				"type": {
-					"name": "type",
-					"type": "DV_TEXT",
-					"is_computed": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1024
-		},
-		"ACTOR": {
-			"name": "ACTOR",
-			"ancestors": ["PARTY"],
-			"properties": {
-				"roles": {
-					"name": "roles",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "PARTY_REF",
-						"container_type": "Set"
-					}
-				},
-				"languages": {
-					"name": "languages",
-					"cardinality": {
-						"lower": 1,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "DV_TEXT",
-						"container_type": "List"
-					}
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"is_abstract": true,
-			"uid": 1025
-		},
-		"PERSON": {
-			"name": "PERSON",
-			"ancestors": ["ACTOR"],
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1026
-		},
-		"ORGANISATION": {
-			"name": "ORGANISATION",
-			"ancestors": ["ACTOR"],
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1027
-		},
-		"GROUP": {
-			"name": "GROUP",
-			"ancestors": ["ACTOR"],
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1028
-		},
-		"AGENT": {
-			"name": "AGENT",
-			"ancestors": ["ACTOR"],
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1029
-		},
-		"ROLE": {
-			"name": "ROLE",
-			"ancestors": ["PARTY"],
-			"properties": {
-				"performer": {
-					"name": "performer",
-					"type": "PARTY_REF",
-					"is_mandatory": true
-				},
-				"capabilities": {
-					"name": "capabilities",
-					"cardinality": {
-						"lower": 0,
-						"upper_unbounded": true
-					},
-					"type_def": {
-						"type": "CAPABILITY",
-						"container_type": "List"
-					}
-				},
-				"time_validity": {
-					"name": "time_validity",
-					"type_def": {
-						"root_type": "DV_INTERVAL",
-						"generic_parameters": ["DV_DATE"]
-					},
-					"is_im_runtime": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1030
-		},
-		"CAPABILITY": {
-			"name": "CAPABILITY",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"credentials": {
-					"name": "credentials",
-					"type": "ITEM_STRUCTURE",
-					"is_mandatory": true
-				},
-				"time_validity": {
-					"name": "time_validity",
-					"type_def": {
-						"root_type": "DV_INTERVAL",
-						"generic_parameters": ["DV_DATE"]
-					},
-					"is_im_runtime": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1031
-		},
-		"PARTY_RELATIONSHIP": {
-			"name": "PARTY_RELATIONSHIP",
-			"ancestors": ["LOCATABLE"],
-			"properties": {
-				"source": {
-					"name": "source",
-					"type": "PARTY_REF"
-				},
-				"target": {
-					"name": "target",
-					"type": "PARTY_REF"
-				},
-				"details": {
-					"name": "details",
-					"type": "ITEM_STRUCTURE"
-				},
-				"time_validity": {
-					"name": "time_validity",
-					"type_def": {
-						"root_type": "DV_INTERVAL",
-						"generic_parameters": ["DV_DATE"]
-					},
-					"is_im_runtime": true
-				}
-			},
-			"source_schema_id": "openehr_rm_demographic_1.0.4",
-			"uid": 1032
 		}
 	},
 	"rm_publisher": "openehr",
-	"rm_release": "1.0.0",
-	"schema_name": "proc_task_planning",
-	"schema_revision": "1.1.0.1",
-	"schema_lifecycle_state": "development",
+	"rm_release": "1.0.4",
+	"schema_name": "rm_ehr",
+	"schema_revision": "1.0.4.1",
+	"schema_lifecycle_state": "stable",
 	"schema_author": "Thomas Beale <thomas.beale@openehr.org>",
-	"schema_description": "openEHR Release 1.1.0 Task Management schema",
+	"schema_description": "openEHR Release 1.0.4 EHR schema",
 	"bmm_version": "2.3",
-	"model_name": "TASK_PLANNING",
+	"model_name": "EHR",
 	"includes": [
 		{
-			"id": "openehr_rm_ehr_1.0.4"
-		},
-		{
-			"id": "openehr_rm_demographic_1.0.4"
+			"id": "openehr_rm_structures_1.0.4"
 		}
 	],
 	"passed": true,

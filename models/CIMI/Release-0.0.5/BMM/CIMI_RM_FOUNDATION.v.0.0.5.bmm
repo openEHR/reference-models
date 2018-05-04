@@ -1,0 +1,1077 @@
+-- Basic Metamodel Syntax Version
+bmm_version = <"2.3">
+
+-- ----------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+-- ----------------------------------
+rm_publisher = <"CIMI">
+schema_name = <"RM_FOUNDATION">
+rm_release = <"0.0.5">
+
+-- ----------------------------------
+-- schema documentation
+-- ----------------------------------
+schema_revision = <"Mon Apr 09 21:11:16 PDT 2018">
+schema_lifecycle_state = <"Informative">
+schema_description = <"CIMI_RM_FOUNDATION.v0.0.5.mdzip - Schema generated from UML">
+
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+includes = <
+	["1"] = <
+		id = <"cimi_rm_core_0.0.5">
+	>
+>
+
+------------------------------------------------------
+-- packages - software structure
+------------------------------------------------------
+packages = <
+	["CIMI_Foundation_RM"] = <
+		name = <"CIMI_Foundation_RM">
+		packages = <
+			["Common"] = <
+				name = <"Common">
+				classes = <"Address", "GenericAddress", "ElectronicContact", "Name", "PersonName", "UniqueDeviceIdentifier", "Occupation", "Qualification", "Residency", "LanguageCapability", "BirthData", "Citizenship", "DeathData", "GenericIdentifier", "Identifier", "Accreditation">
+			>
+			["Composition"] = <
+				name = <"Composition">
+				classes = <"Content", "Entry", "Composition", "Section">
+			>
+			["Entity"] = <
+				name = <"Entity">
+				classes = <"Entity", "Person", "Organization", "Device", "DetailedPerson", "Location", "GeographicalLocation">
+			>
+			["Party"] = <
+				name = <"Party">
+				classes = <"Role", "Party", "PartyAssociation", "Participation">
+			>
+		>
+	>
+>
+class_definitions = <
+	["Address"] = <
+		documentation = <"Base class for addresses to be specialized based on regional and realm-specific needs.">
+		name = <"Address">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Concept indicating purpose of this address such as whether the address is a home address or a work address.">
+				name = <"use">
+				type = <"Concept">
+			>
+			["preferenceIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Concept indicating whether this address is preferred.">
+				name = <"preferenceIndicator">
+				type = <"Concept">
+			>
+			["noFixedAddressIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Concept indicating whether a person has no fixed address.">
+				name = <"noFixedAddressIndicator">
+				type = <"Concept">
+			>
+			["addressAsText"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Unstructured address when a structured address is not obtainable or for systems that cannot process structured addresses.">
+				name = <"addressAsText">
+				type = <"PlainText">
+			>
+		>
+	>
+	["GenericAddress"] = <
+		documentation = <"A generic and not fully structured address expressed using postal conventions (as opposed to GPS or other location definition formats).">
+		name = <"GenericAddress">
+		ancestors = <"Address",...>
+		properties = <
+			["line"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"This component contains the house number, apartment number, street name, street direction, P.O. Box number, delivery hints, and similar address information.">
+				name = <"line">
+				type_def = <
+					container_type = <"List">
+					type = <"PlainText">
+				>
+				cardinality = <|>=0|>
+			>
+			["city"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The name of the city, town, village or other community or delivery center.">
+				name = <"city">
+				type = <"CodedText">
+			>
+			["district"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The name of the administrative area (county).">
+				name = <"district">
+				type = <"CodedText">
+			>
+			["state"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (i.e. US 2 letter state codes).">
+				name = <"state">
+				type = <"CodedText">
+			>
+			["postalCode"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A postal code designating a region defined by the postal service.">
+				name = <"postalCode">
+				type = <"CodedText">
+			>
+			["country"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Country - a nation as commonly understood or generally accepted.">
+				name = <"country">
+				type = <"CodedText">
+			>
+			["periodOfUse"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"Time period when address was&#47;is in use.">
+				name = <"periodOfUse">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+		>
+	>
+	["ElectronicContact"] = <
+		documentation = <"Data structure representing an electronic contact such as an email address or a phone number.">
+		name = <"ElectronicContact">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["protocol"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Telecommunications form for contact point - what communications system is required to make use of the contact (e.g., phone, fax, email, pager, url, sms, other).">
+				name = <"protocol">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The electronic contact address.">
+				name = <"value">
+				type = <"PlainText">
+				is_mandatory = <True>
+			>
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Identifies the purpose for the contact point.">
+				name = <"use">
+				type = <"Concept">
+			>
+			["rank"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values.">
+				name = <"rank">
+				type = <"IntegerType">
+			>
+			["periodOfUse"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"Time period when the contact point was&#47;is in use">
+				name = <"periodOfUse">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+			["preferredTime"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The period of day during which the contact should be used.">
+				name = <"preferredTime">
+				type = <"Time">
+			>
+			["preferenceIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Concept indicating whether the contact information is the preferred means of communication.">
+				name = <"preferenceIndicator">
+				type = <"Concept">
+			>
+		>
+	>
+	["Name"] = <
+		documentation = <"Abstract supertype for the name of an entity.">
+		name = <"Name">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["nameAsText"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The name as plain unstructured or semi-structured text.">
+				name = <"nameAsText">
+				type = <"PlainText">
+			>
+			["use"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"Context of use">
+				name = <"use">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+			["periodOfUse"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"Time period when name was&#47;is in use">
+				name = <"periodOfUse">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+		>
+	>
+	["PersonName"] = <
+		documentation = <"Common human name format.">
+		name = <"PersonName">
+		ancestors = <"Name",...>
+		properties = <
+			["preferredFlag"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Code indicating the preference associated with the use of this name.">
+				name = <"preferredFlag">
+				type = <"Concept">
+			>
+			["title"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's title - e.g., Dr, Mr, etc... - as text and optionally coded.">
+				name = <"title">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+			["givenName"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's given name - e.g., John">
+				name = <"givenName">
+				type_def = <
+					container_type = <"List">
+					type = <"PlainText">
+				>
+				cardinality = <|>=0|>
+			>
+			["middleName"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's middle name.">
+				name = <"middleName">
+				type_def = <
+					container_type = <"List">
+					type = <"PlainText">
+				>
+				cardinality = <|>=0|>
+			>
+			["familyName"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's surname (family name).">
+				name = <"familyName">
+				type_def = <
+					container_type = <"List">
+					type = <"PlainText">
+				>
+				cardinality = <|>=0|>
+			>
+			["suffix"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The suffix for the name as text and optionally coded.">
+				name = <"suffix">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["UniqueDeviceIdentifier"] = <
+		documentation = <"Unique device identifier (UDI) assigned to device label or package.">
+		name = <"UniqueDeviceIdentifier">
+		ancestors = <"Identifier",...>
+		properties = <
+			["deviceIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The device identifier (DI) is a mandatory, fixed portion of a UDI that identifies the labeler and the specific version or model of a device.">
+				name = <"deviceIdentifier">
+				type = <"PlainText">
+				is_mandatory = <True>
+			>
+			["udiLabelName"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Name of device as used in labeling or catalog.">
+				name = <"udiLabelName">
+				type = <"PlainText">
+			>
+			["jurisdiction"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The identity of the authoritative source for UDI generation within a jurisdiction. All UDIs are globally unique within a single namespace. with the appropriate repository uri as the system. For example, UDIs of devices managed in the U.S. by the FDA, the value is http:&#47;&#47;hl7.org&#47;fhir&#47;NamingSystem&#47;fda-udi.">
+				name = <"jurisdiction">
+				type = <"UriType">
+			>
+			["carrierHrf"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The full UDI carrier as the human readable form (HRF) representation of the barcode string as printed on the packaging of the device.">
+				name = <"carrierHrf">
+				type = <"PlainText">
+			>
+			["carrierAidc"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The full UDI carrier of the Automatic Identification and Data Capture (AIDC) technology representation of the barcode string as printed on the packaging of the device - E.g a barcode or RFID. Because of limitations on character sets in XML and the need to round-trip JSON data through XML, AIDC Formats SHALL be base64 encoded.">
+				name = <"carrierAidc">
+				type = <"ParsableContent">
+				is_mandatory = <True>
+			>
+			["issuer"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Organization that is charged with issuing UDIs for devices. For example, the US FDA issuers include : 1) GS1: http:&#47;&#47;hl7.org&#47;fhir&#47;NamingSystem&#47;gs1-di, 2) HIBCC: http:&#47;&#47;hl7.org&#47;fhir&#47;NamingSystem&#47;hibcc-dI, 3) ICCBBA for blood containers: http:&#47;&#47;hl7.org&#47;fhir&#47;NamingSystem&#47;iccbba-blood-di, 4) ICCBA for other devices: http:&#47;&#47;hl7.org&#47;fhir&#47;NamingSystem&#47;iccbba-other-di.">
+				name = <"issuer">
+				type = <"UriType">
+			>
+			["entryType"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A coded entry to indicate how the data was entered.">
+				name = <"entryType">
+				type = <"Concept">
+			>
+		>
+	>
+	["Occupation"] = <
+		documentation = <"Describes the kind of job a person has held.">
+		name = <"Occupation">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"An occupation. Likely to be realm-specific.">
+				name = <"code">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The job category, such as retail, banking, construction, or healthcare ontologist. ">
+				name = <"category">
+				type = <"Concept">
+			>
+			["durationInOccupation"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Duration of time performing this occupation such as 3 years, 16 months.">
+				name = <"durationInOccupation">
+				type = <"Duration">
+			>
+			["periodInOccupation"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"Period of time in occupation.">
+				name = <"periodInOccupation">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+		>
+	>
+	["Qualification"] = <
+		documentation = <"Education, training or special skills.">
+		name = <"Qualification">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Concept representing the type of qualification">
+				name = <"code">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["level"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The level of the qualification">
+				name = <"level">
+				type = <"Concept">
+			>
+			["issuingOrganization"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The organization responsible for issuing the qualification.">
+				name = <"issuingOrganization">
+				type = <"Organization">
+			>
+			["issuingEntityUri"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The issuing country where the qualification is valid.">
+				name = <"issuingEntityUri">
+				type = <"UriType">
+				is_mandatory = <True>
+			>
+			["dateIssued"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The date the qualification was issued.">
+				name = <"dateIssued">
+				type = <"Date">
+			>
+			["role"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The roles where the qualification applies - e.g. registered nurse, physician">
+				name = <"role">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["Residency"] = <
+		documentation = <"Type supporting the capture of residency information.">
+		name = <"Residency">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["region"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The country or state of residence.">
+				name = <"region">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["dateRange"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"Period when residency was in effect.">
+				name = <"dateRange">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+		>
+	>
+	["LanguageCapability"] = <
+		documentation = <"Type representing proficiency in a language.">
+		name = <"LanguageCapability">
+		ancestors = <"Locatable",...>
+		properties = <
+			["languageCode"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"ISO code representing the language name. ">
+				name = <"languageCode">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["mode"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The channel of communication evaluated; e.g., spoken, written, heard.">
+				name = <"mode">
+				type = <"Concept">
+			>
+			["proficiency"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Degree of fluency in the language.">
+				name = <"proficiency">
+				type = <"Concept">
+			>
+			["translatorRequired"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Code indicating need for translator.">
+				name = <"translatorRequired">
+				type = <"Concept">
+			>
+			["preferenceIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Code indicating whether the language is preferred for communication.">
+				name = <"preferenceIndicator">
+				type = <"Concept">
+			>
+		>
+	>
+	["BirthData"] = <
+		documentation = <"Type supporting the capture of birth-related information.">
+		name = <"BirthData">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["birthDatetime"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"When the birth occurred.">
+				name = <"birthDatetime">
+				type = <"TemporalValue">
+				is_mandatory = <True>
+			>
+			["birthAddress"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Address where birth occurred.">
+				name = <"birthAddress">
+				type = <"Address">
+			>
+			["multipleBirthIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Indicates whether the birth event was a multiple birth event.">
+				name = <"multipleBirthIndicator">
+				type = <"Concept">
+			>
+			["birthPlurality"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The number of babies resulting from a single pregnancy">
+				name = <"birthPlurality">
+				type = <"IntegerType">
+			>
+			["birthOrder"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Integer indicating the sequence number of this birth.">
+				name = <"birthOrder">
+				type = <"IntegerType">
+			>
+			["birthCertificateNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The birth certificate number associated with this birth.">
+				name = <"birthCertificateNumber">
+				type = <"PlainText">
+			>
+		>
+	>
+	["Citizenship"] = <
+		documentation = <"Type supporting the capture of citizenship information. ">
+		name = <"Citizenship">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["country"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Code representing the country of citizenship.">
+				name = <"country">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["dateRange"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"The period when the citizenship was held.">
+				name = <"dateRange">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+		>
+	>
+	["DeathData"] = <
+		documentation = <"Information of about a death event.">
+		name = <"DeathData">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["deceasedIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Code indicating whether the patient is deceased.">
+				name = <"deceasedIndicator">
+				type = <"Concept">
+			>
+			["deathDatetime"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The time of death to the level of granularity known.">
+				name = <"deathDatetime">
+				type = <"TemporalValue">
+			>
+			["ageAtDeath"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The age of the person at death">
+				name = <"ageAtDeath">
+				type = <"Duration">
+			>
+			["recordedBy"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Identifier for the entity that provided information about the deceased status of the person.">
+				name = <"recordedBy">
+				type = <"Identifier">
+			>
+			["deathAddress"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Address where the patient expired.">
+				name = <"deathAddress">
+				type = <"Address">
+			>
+			["deathCertificateNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The death certificate number.">
+				name = <"deathCertificateNumber">
+				type = <"PlainText">
+			>
+		>
+	>
+	["GenericIdentifier"] = <
+		documentation = <"Type for representing identifiers of real-world entities. Typical identifiers include drivers licence number, social security number, veterans affairs number, prescription id, order id, and so on.">
+		name = <"GenericIdentifier">
+		ancestors = <"Identifier",...>
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The purpose of this identifier. Use is considered a modifying attribute because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary.">
+				name = <"use">
+				type = <"Concept">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Optional identifier type, such as prescription, or Social Security Number. One day a controlled vocabulary might be possible for this.">
+				name = <"type">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["issuingOrganization"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Organization that assigned the id to the item being identified.">
+				name = <"issuingOrganization">
+				type = <"Organization">
+			>
+			["issuingEntityUri"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"URI of the issuing entity when the issuing entity is not an organization.">
+				name = <"issuingEntityUri">
+				type = <"UriType">
+			>
+			["namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The namespace in which the id is unique.">
+				name = <"namespace">
+				type = <"UriType">
+			>
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The identifier value. Often structured, according to the definition of the issuing authority's rules.">
+				name = <"id">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
+	>
+	["Identifier"] = <
+		documentation = <"Base class representing an identifier scheme.">
+		name = <"Identifier">
+		ancestors = <"NonIndependentArchetypable",...>
+	>
+	["Accreditation"] = <
+		documentation = <"Type supporting the capture of accreditation information.">
+		name = <"Accreditation">
+		ancestors = <"NonIndependentArchetypable",...>
+		properties = <
+			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"An identifier for the accreditation.">
+				name = <"identifier">
+				type = <"Identifier">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The type of accreditation - e.g., degree, board certified, license.">
+				name = <"type">
+				type = <"Concept">
+			>
+			["validityPeriod"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"The period of validity for the accreditation.">
+				name = <"validityPeriod">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+			["accreditationOrganization"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The organization that supplies the accreditation.">
+				name = <"accreditationOrganization">
+				type = <"Organization">
+			>
+		>
+	>
+	["Content"] = <
+		documentation = <"Abstract ancestor of all concrete content types. A unit of content that makes up a composition - e.g., a clinical statement in a patient record, a simple or composite action is a knowledge document, a catalog entry in a catalog.">
+		name = <"Content">
+		ancestors = <"IndependentArchetypable",...>
+	>
+	["Entry"] = <
+		documentation = <"An ENTRY is the minimal unit of logical information or knowledge documented within a composition such as a clinical statement in a patient record, a knowledge entry in a knowledge artifact, a product in a product catalog, etc...
+
+">
+		name = <"Entry">
+		ancestors = <"Content",...>
+	>
+	["Composition"] = <
+		documentation = <"A composition represents a document such as a patient record, a knowledge artifact, or a catalog definition.">
+		name = <"Composition">
+		ancestors = <"IndependentArchetypable",...>
+		properties = <
+			["content"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The content that makes up a composition.">
+				name = <"content">
+				type_def = <
+					container_type = <"List">
+					type = <"Content">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["Section"] = <
+		documentation = <"Represents a heading in a heading structure, or section tree . Can also be used to represent a collection of entries without metadata.">
+		name = <"Section">
+		ancestors = <"Content",...>
+		properties = <
+			["content"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The content that makes up a section in a composition.">
+				name = <"content">
+				type_def = <
+					container_type = <"List">
+					type = <"Content">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["Entity"] = <
+		documentation = <"Root class for entities such as people, organizations, and devices that have a separately identifiable existence.">
+		name = <"Entity">
+		ancestors = <"Party",...>
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"An identifier for an entity such as a person's social security number or a device UDI.">
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A human-readable description of the entity.">
+				name = <"description">
+				type = <"Text">
+			>
+			["image"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"One or more images of this entity such as a profile image or a product image for a catalog.">
+				name = <"image">
+				type_def = <
+					container_type = <"List">
+					type = <"Multimedia">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["Person"] = <
+		documentation = <"Base person class.">
+		name = <"Person">
+		ancestors = <"Entity",...>
+		properties = <
+			["personName"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The person's name.">
+				name = <"personName">
+				type = <"PersonName">
+			>
+			["address"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's address.">
+				name = <"address">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+				cardinality = <|>=0|>
+			>
+			["electronicContact"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"Contact information for the person.
+">
+				name = <"electronicContact">
+				type_def = <
+					container_type = <"List">
+					type = <"ElectronicContact">
+				>
+				cardinality = <|>=0|>
+			>
+			["administrativeGender"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The administrative gender of the person.
+">
+				name = <"administrativeGender">
+				type = <"Concept">
+			>
+			["maritalStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The person's marital status.">
+				name = <"maritalStatus">
+				type = <"Concept">
+			>
+			["birth"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Information about the birth of the person.">
+				name = <"birth">
+				type = <"BirthData">
+			>
+			["death"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Information about the death of the person.">
+				name = <"death">
+				type = <"DeathData">
+			>
+		>
+	>
+	["Organization"] = <
+		documentation = <"A description of a social or legal structure formed by human beings. ">
+		name = <"Organization">
+		ancestors = <"Entity",...>
+		properties = <
+			["organizationName"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The name of the organization.">
+				name = <"organizationName">
+				type = <"Name">
+			>
+			["address"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The address of the organization">
+				name = <"address">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+				cardinality = <|>=0|>
+			>
+			["electronicContact"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The electronic contact information for this organization.">
+				name = <"electronicContact">
+				type_def = <
+					container_type = <"List">
+					type = <"ElectronicContact">
+				>
+				cardinality = <|>=0|>
+			>
+			["departmentOrUnit"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The department or unit in question.">
+				name = <"departmentOrUnit">
+				type = <"Text">
+			>
+			["industry"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The industry code associated with this organization.">
+				name = <"industry">
+				type = <"Concept">
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The status of the organization.">
+				name = <"status">
+				type = <"Concept">
+			>
+			["validityPeriod"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"The date range associated with the existence or relevance of the organization in the given context.">
+				name = <"validityPeriod">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+		>
+	>
+	["Device"] = <
+		documentation = <"This resource identifies an instance or a type of a manufactured item that is used in the provision of healthcare without being substantially changed through that activity. The device may be a medical or non-medical device. Medical devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment used for diagnostic, treatment, and research for healthcare and public health. Non-medical devices may include items such as a machine, cellphone, computer, application, etc.">
+		name = <"Device">
+		ancestors = <"Entity",...>
+		properties = <
+			["key"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Concept representing the type of device.">
+				name = <"key">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["lotNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Lot number assigned by the manufacturer.">
+				name = <"lotNumber">
+				type = <"PlainText">
+			>
+			["manufacturer"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A name of the manufacturer.">
+				name = <"manufacturer">
+				type = <"Organization">
+			>
+			["manufactureDate"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The date and time when the device was manufactured.">
+				name = <"manufactureDate">
+				type = <"DateTime">
+			>
+			["expirationDate"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The date and time beyond which this device is no longer valid or should not be used (if applicable).">
+				name = <"expirationDate">
+				type = <"DateTime">
+			>
+			["model"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The &quot;model&quot; is an identifier assigned by the manufacturer to identify the product by its type. This number is shared by the all devices sold as the same type.">
+				name = <"model">
+				type = <"PlainText">
+			>
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The device software or firmware version label.">
+				name = <"version">
+				type = <"PlainText">
+			>
+			["url"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A network address on which the device may be contacted directly.">
+				name = <"url">
+				type = <"UriType">
+			>
+		>
+	>
+	["DetailedPerson"] = <
+		documentation = <"Refinement of the Person class with additional attributes.">
+		name = <"DetailedPerson">
+		ancestors = <"Person",...>
+		properties = <
+			["race"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"A subjective association of a person with a named category of humans sharing common history, traits, place of origin, or other inherited background. (US only) The race code associated with this person.">
+				name = <"race">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+			["ethnicity"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"Identification with or belonging to a social group that has a common national or cultural tradition. (US only) An indicator of Hispanic or Latino origin.">
+				name = <"ethnicity">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+			["citizenship"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's citizenship.">
+				name = <"citizenship">
+				type_def = <
+					container_type = <"List">
+					type = <"Citizenship">
+				>
+				cardinality = <|>=0|>
+			>
+			["residency"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The person's country of residence.">
+				name = <"residency">
+				type_def = <
+					container_type = <"List">
+					type = <"Residency">
+				>
+				cardinality = <|>=0|>
+			>
+			["religion"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The religion of the person">
+				name = <"religion">
+				type = <"Concept">
+			>
+			["educationLevel"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The education level of the person.">
+				name = <"educationLevel">
+				type = <"Concept">
+			>
+			["qualification"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The qualifications of the person.">
+				name = <"qualification">
+				type_def = <
+					container_type = <"List">
+					type = <"Qualification">
+				>
+				cardinality = <|>=0|>
+			>
+			["disability"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"A physical or mental impairment that substantially limits one or more major life activity, for example, caring for oneself, performing manual tasks, seeing, hearing, eating, sleeping, walking, etc. ">
+				name = <"disability">
+				type_def = <
+					container_type = <"List">
+					type = <"Concept">
+				>
+				cardinality = <|>=0|>
+			>
+			["occupation"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"Person's occupation">
+				name = <"occupation">
+				type_def = <
+					container_type = <"List">
+					type = <"Occupation">
+				>
+				cardinality = <|>=0|>
+			>
+			["language"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The language(s) spoken by the individual.">
+				name = <"language">
+				type_def = <
+					container_type = <"List">
+					type = <"LanguageCapability">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+	["Location"] = <
+		documentation = <"A description of a location in terms of who to contact at the location, and activities that may take place at the location. The subclasses of Location, GeographicalLocation and HealthCareFacilityLocation, define the actual location of the Location.">
+		name = <"Location">
+		ancestors = <"Entity",...>
+		properties = <
+			["locationName"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Names associated with this location. E.g., 10 West Bed 2">
+				name = <"locationName">
+				type = <"Name">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Indicates the type of location.">
+				name = <"type">
+				type = <"Concept">
+			>
+			["condition"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A description of the condition of the location.">
+				name = <"condition">
+				type = <"Concept">
+			>
+			["electronicContact"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"Contact information associated with this location - for instance, contact information to reserve the location.">
+				name = <"electronicContact">
+				type_def = <
+					container_type = <"List">
+					type = <"ElectronicContact">
+				>
+				cardinality = <|>=0|>
+			>
+			["validityPeriod"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"The interval of time when this location is relevant or available.">
+				name = <"validityPeriod">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"TemporalValue",...>
+				>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A code representing the status of the location.">
+				name = <"status">
+				type = <"Concept">
+			>
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"Indicates the purpose of this location.">
+				name = <"purpose">
+				type = <"Concept">
+			>
+		>
+	>
+	["GeographicalLocation"] = <
+		documentation = <"A position, site, point in space, or polygon, designated either by altitude, latitude, and longitude or a postal address, and may be navigated to via directions.">
+		name = <"GeographicalLocation">
+		ancestors = <"Location",...>
+		properties = <
+			["gpsLocation"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"The location's geospatial coordinates such as latitude and longitude.">
+				name = <"gpsLocation">
+				type_def = <
+					container_type = <"List">
+					type = <"GpsLocation">
+				>
+				cardinality = <|>=0|>
+			>
+			["address"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The postal address associated with this location.">
+				name = <"address">
+				type = <"Address">
+			>
+			["directions"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"How to navigate to the location. May be context-sensitive.">
+				name = <"directions">
+				type = <"PlainText">
+			>
+		>
+	>
+	["Role"] = <
+		documentation = <"Capacity in which an actor is involved in an activity. For instance, 'attending physician'.
+
+Note that attributes of the actor (an entity) that remain constant regardless of the role the actor plays should be part of the entity and not the role. For instance, a person may be a practitioner and a patient. In both cases their date of birth will be the same and thus such information should not be part of the role.">
+		name = <"Role">
+		ancestors = <"Party",...>
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				documentation = <"An identifier for the role such as a patient identifier within the scope of an institution. ">
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The type of role taken on by an entity participating in an activity.">
+				name = <"type">
+				type = <"Concept">
+				is_mandatory = <True>
+			>
+			["actor"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The entity performing the role. ">
+				name = <"actor">
+				type = <"Entity">
+			>
+		>
+	>
+	["Party"] = <
+		documentation = <"A party may be either an entity such as a specific person or organization or a role played by an entity such as patient or care provider.">
+		name = <"Party">
+		ancestors = <"IndependentArchetypable",...>
+	>
+	["PartyAssociation"] = <
+		documentation = <"A directed association to a party (i.e., a role or an entity). The PartyAssociation pattern can be used to represent a participation in an activity or a relationship that exists between two parties.">
+		name = <"PartyAssociation">
+		ancestors = <"NonIndependentArchetypable",...>
+		generic_parameter_defs = <
+			["P"] = <
+				name = <"P">
+				conforms_to_type = <"Party">
+			>
+		>
+		properties = <
+			["validityPeriod"] = (P_BMM_GENERIC_PROPERTY) <
+				documentation = <"The period of time when the relationship holds or held.">
+				name = <"validityPeriod">
+				type_def = <
+					root_type = <"IntervalValue">
+					generic_parameters = <"Date",...>
+				>
+			>
+			["target"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				documentation = <"That target of the relationship. For instance, in a participation, the performer of a clinical action such as Dr. Smith.
+
+Note that the target is optional when it is understood based on the party association type (e.g., a 'self' relationship for the subject of information).">
+				name = <"target">
+				type = <"P">
+			>
+		>
+	>
+	["Participation"] = <
+		documentation = <"Association between a party (entity or a role) in an activity.">
+		name = <"Participation">
+		properties = <
+			["participant"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The party participating in the activity.">
+				name = <"participant">
+				type = <"Party">
+			>
+			["onBehalfOf"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The party this agent is representing in the context of this specific participation.">
+				name = <"onBehalfOf">
+				type = <"Party">
+			>
+		>
+	>
+>
+

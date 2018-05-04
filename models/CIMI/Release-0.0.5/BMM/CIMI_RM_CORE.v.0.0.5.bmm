@@ -7,14 +7,14 @@ bmm_version = <"2.3">
 -- ----------------------------------
 rm_publisher = <"CIMI">
 schema_name = <"RM_CORE">
-rm_release = <"0.0.4">
+rm_release = <"0.0.5">
 
 -- ----------------------------------
 -- schema documentation
 -- ----------------------------------
-schema_revision = <"Thu Dec 14 17:20:59 PST 2017">
+schema_revision = <"Mon Apr 09 21:11:16 PDT 2018">
 schema_lifecycle_state = <"Informative">
-schema_description = <"CIMI_RM_CORE.v0.0.4.mdzip - Schema generated from UML">
+schema_description = <"CIMI_RM_CORE.v0.0.5.mdzip - Schema generated from UML">
 
 packages = <
 	["CIMI_Reference_Model"] = <
@@ -22,15 +22,15 @@ packages = <
 		packages = <
 			["Core"] = <
 				name = <"Core">
-				classes = <"Archetyped", "Locatable">
+				classes = <"Archetyped", "Locatable", "IndependentArchetypable", "NonIndependentArchetypable">
 			>
 			["DataTypes"] = <
 				name = <"DataTypes">
-				classes = <"NumericalValue", "CodedText", "IntegerType", "DataType", "Date", "TemporalValue", "Duration", "EmbeddedContent", "IntervalValue", "Multimedia", "OrdinalConcept", "ParsableContent", "PlainText", "OrderedValue", "Quantity", "TermMapping", "Text", "Time", "UriType", "Instant", "PositiveInteger", "UnsignedInteger", "Ratio", "Concept", "CodeSystem", "GpsLocation", "DateTime", "Decimal">
+				classes = <"NumericalValue", "CodedText", "IntegerType", "DataType", "Date", "TemporalValue", "Duration", "EmbeddedContent", "IntervalValue", "Multimedia", "OrdinalConcept", "ParsableContent", "PlainText", "OrderedValue", "Quantity", "TermMapping", "Text", "Time", "UriType", "Instant", "PositiveInteger", "UnsignedInteger", "Ratio", "Concept", "GpsLocation", "DateTime", "Decimal">
 			>
 			["PrimitiveTypes"] = <
 				name = <"PrimitiveTypes">
-				classes = <"Any", "Array", "List", "Boolean", "Byte", "Character", "Integer", "Real", "String", "Uri", "TerminologyCode">
+				classes = <"Any", "Array", "List", "Boolean", "Byte", "Character", "Integer", "Real", "String", "URI", "TerminologyCode">
 			>
 		>
 	>
@@ -79,6 +79,16 @@ An instance of the class ARCHETYPED contains the relevant archetype identificati
 			>
 		>
 	>
+	["IndependentArchetypable"] = <
+		documentation = <"Archetypable type that has an independent existence meaning that its existence is not dependent on the containing type.">
+		name = <"IndependentArchetypable">
+		ancestors = <"Locatable",...>
+	>
+	["NonIndependentArchetypable"] = <
+		documentation = <"Archetypable type that has a non-independent existence - that is, whose existence is determined by its containing type.">
+		name = <"NonIndependentArchetypable">
+		ancestors = <"Locatable",...>
+	>
 	["NumericalValue"] = <
 		documentation = <"Abstract class defining quantified amounts. ">
 		name = <"NumericalValue">
@@ -126,8 +136,9 @@ An instance of the class ARCHETYPED contains the relevant archetype identificati
 		>
 	>
 	["DataType"] = <
-		documentation = <"Serves as a common ancestor of all CIMI simple and complex data types.">
+		documentation = <"Serves as a common ancestor of all CIMI types which represent the core granularity of the model.">
 		name = <"DataType">
+		ancestors = <"NonIndependentArchetypable",...>
 	>
 	["Date"] = <
 		documentation = <"Represents one day in time, as measured on the Gregorian calendar, used for recording time when the exact time is unknown or excessive precision is undesired, such as birth dates. Date uses the semantics defined by ISO 8601.">
@@ -406,44 +417,29 @@ Note that although the term &quot;ordinal&quot; in mathematics means natural num
 		>
 	>
 	["Concept"] = <
-		documentation = <"The representation of a conceptual idea represented by an ontology or controlled vocabulary. ">
+		documentation = <"A reference to a concept in a terminology or an ontology.">
 		name = <"Concept">
-		ancestors = <"DataType">
-		properties = <			
+		ancestors = <"DataType",...>
+		properties = <
 			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The concept reference that represents the target concept in the chosen terminology system.">
 				name = <"code">
 				type = <"TerminologyCode">
 				is_mandatory = <True>
 			>
-			["display"] = (P_BMM_SINGLE_PROPERTY) <
+			["isExpression"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"A flag indicating if the value in the code field is a parsable expression comprised of codes and operators, rather than a single code. If omitted, the system can assume the code is not an expression.">
+				name = <"isExpression">
+				type = <"Boolean">
+			>
+			["display"] = (P_BMM_CONTAINER_PROPERTY) <
 				documentation = <"The preferred language-specific textual rendition of the code attribute, preferably as specified by the code system.">
 				name = <"display">
-				type = <"String">
-			>
-		>
-	>
-	
-	["CodeSystem"] = <
-		documentation = <"A formal terminology system.">
-		name = <"CodeSystem">
-		ancestors = <"DataType",...>
-		properties = <
-			["name"] = (P_BMM_SINGLE_PROPERTY) <
-				documentation = <"The human-readable designation of the code system, for example, LOINC or SNOMED-CT.">
-				name = <"name">
-				type = <"String">
-				is_mandatory = <True>
-			>
-			["version"] = (P_BMM_SINGLE_PROPERTY) <
-				documentation = <"The version of the vocabulary being used, if applicable.">
-				name = <"version">
-				type = <"String">
-				is_mandatory = <True>
-			>
-			["uri"] = (P_BMM_SINGLE_PROPERTY) <
-				documentation = <"The URI formally identifying the code system in a version-independent manner.  ">
-				name = <"uri">
-				type = <"UriType">
+				type_def = <
+					container_type = <"List">
+					type = <"PlainText">
+				>
+				cardinality = <|>=0|>
 			>
 		>
 	>
@@ -496,6 +492,7 @@ Note that although the term &quot;ordinal&quot; in mathematics means natural num
 	["Array"] = <
 		documentation = <"A collection of ordered items that may be are indexed by number.">
 		name = <"Array">
+		ancestors = <"Any",...>
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -506,6 +503,7 @@ Note that although the term &quot;ordinal&quot; in mathematics means natural num
 	["List"] = <
 		documentation = <"An ordered collection of items with non-unique membership.">
 		name = <"List">
+		ancestors = <"Any",...>
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -537,36 +535,38 @@ Note that although the term &quot;ordinal&quot; in mathematics means natural num
 		documentation = <"represents unicode-enabled strings">
 		name = <"String">
 	>
-	["Uri"] = <
+	["URI"] = <
 		documentation = <"A URI">
-		name = <"Uri">
+		name = <"URI">
 	>
 	["TerminologyCode"] = <
+		documentation = <"The representation of a conceptual idea represented by an ontology or controlled vocabulary. ">
 		name = <"TerminologyCode">
-		ancestors = <"Any">
+		ancestors = <"Any",...>
 		properties = <
 			["terminologyId"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"An identifier for the terminology system that forms the name space for the code string. E.g., SNOMED CT, LOINC, etc...">
 				name = <"terminologyId">
 				type = <"String">
 				is_mandatory = <True>
 			>
 			["terminologyVersion"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The version of the terminology system.">
 				name = <"terminologyVersion">
 				type = <"String">
 			>
 			["codeString"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The unique concept identifier in the terminology system name space.">
 				name = <"codeString">
 				type = <"String">
 				is_mandatory = <True>
 			>
 			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				documentation = <"The unique resource identifier for this concept reference.">
 				name = <"uri">
-				type = <"Uri">
-				is_mandatory = <True>
+				type = <"UriType">
 			>
 		>
 	>
-
-
 >
 

@@ -12,20 +12,20 @@
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
 ------------------------------------------------------
-bmm_version = <"2.1">
+bmm_version = <"2.3">
 
 ------------------------------------------------------
 -- schema identification
 -- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
 ------------------------------------------------------
 rm_publisher = <"openehr">
-schema_name = <"rm_ehr">
 rm_release = <"1.0.4">
 model_name = <"EHR">
 
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
+schema_name = <"rm_ehr">
 schema_revision = <"1.0.4.1">
 schema_lifecycle_state = <"stable">
 schema_description = <"openEHR Release 1.0.4 EHR schema">

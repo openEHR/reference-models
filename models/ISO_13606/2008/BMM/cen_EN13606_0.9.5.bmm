@@ -23,8 +23,8 @@ bmm_version = <"2.3">
 ------------------------------------------------------
 rm_publisher = <"CEN">
 schema_name = <"EN13606">
-rm_release = <"0.95">
-model_namespace = <"EN13606">
+rm_release = <"0.9.5">
+model_name = <"EN13606">
 
 ------------------------------------------------------
 -- schema documentation
@@ -40,7 +40,7 @@ schema_contributors = <"thomas.beale@openehr.org", ...>
 ------------------------------------------------------
 includes = <
 	["1"] = <
-		id = <"cen_ts14796_0.90">
+		id = <"cen_ts14796_0.9.0">
 	>
 >
 
