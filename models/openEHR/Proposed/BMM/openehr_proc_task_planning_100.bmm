@@ -63,9 +63,10 @@ packages = <
 					"DISPATCHABLE_TASK", "PERFORMABLE_TASK",
 
 					"PLAN_DATA_CONTEXT", "CONTEXT_VALUE", "CONTEXT_EXPRESSION", "CONTEXT_VARIABLE",
-					"EVENT_VARIABLE", "STATE_VARIABLE", "CONTINUOUS_EVENT_VARIABLE", "TASK_REPEAT",
+					"BOOLEAN_CONTEXT_EXPRESSION", "CONTEXT_CONSTANT", "EXTERNAL_VARIABLE", "LOCAL_VARIABLE",
+					"EVENT_VARIABLE", "STATE_VARIABLE", "CONTINUOUS_EVENT_VARIABLE",
 
-					"PLAN_CALENDAR", "PLAN_TIMELINE", "CALENDAR_ENTRY",
+					"PLAN_CALENDAR", "PLAN_TIMELINE", "CALENDAR_ENTRY", "TASK_REPEAT",
 
 					"TASK_ACTION", "PERFORMABLE_ACTION", "DISPATCHABLE_ACTION", 
 					"DEFINED_ACTION", "SYSTEM_REQUEST", "EXTERNAL_REQUEST", "LINKED_PLAN", "HAND_OFF", "SUB_PLAN", 
@@ -229,6 +230,13 @@ class_definitions = <
 					type = <"CONTEXT_VARIABLE">
 				>
 			>
+			["constants"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"constants">
+				type_def = <
+					container_type = <"List">
+					type = <"CONTEXT_CONSTANT">
+				>
+			>
 		>
 	>
 
@@ -265,12 +273,6 @@ class_definitions = <
 				conforms_to_type = <"EXPR_TYPE_DEF">
 			>
 		>
-		properties = <
-			["populating_request"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"populating_request">
-				type = <"SYSTEM_CALL">
-			>
-		>
 	>
 
 	["CONTEXT_EXPRESSION"] = <
@@ -291,9 +293,19 @@ class_definitions = <
 		>
 	>
 
+	["BOOLEAN_CONTEXT_EXPRESSION"] = <
+		name = <"BOOLEAN_CONTEXT_EXPRESSION">
+		ancestor_defs = <
+			["CONTEXT_EXPRESSION<TIMER_EVENT>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"CONTEXT_EXPRESSION">
+				generic_parameters = <"TYPE_DEF_BOOLEAN">
+			>
+		>
+	>
+
 	["STATE_VARIABLE"] = <
 		name = <"STATE_VARIABLE">
-		ancestors = <"CONTEXT_VARIABLE">
+		ancestors = <"EXTERNAL_VARIABLE">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -308,8 +320,36 @@ class_definitions = <
 		>
 	>
 
+	["EXTERNAL_VARIABLE"] = <
+		name = <"EXTERNAL_VARIABLE">
+		ancestors = <"CONTEXT_VARIABLE">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"EXPR_TYPE_DEF">
+			>
+		>
+		properties = <
+			["populating_request"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"populating_request">
+				type = <"SYSTEM_CALL">
+			>
+		>
+	>
+
 	["EVENT_VARIABLE"] = <
 		name = <"EVENT_VARIABLE">
+		ancestors = <"EXTERNAL_VARIABLE">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"EXPR_TYPE_DEF">
+			>
+		>
+	>
+
+	["LOCAL_VARIABLE"] = <
+		name = <"LOCAL_VARIABLE">
 		ancestors = <"CONTEXT_VARIABLE">
 		generic_parameter_defs = <
 			["T"] = <
@@ -332,6 +372,17 @@ class_definitions = <
 			["update_variation"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"update_variation">
 				type = <"Real">
+			>
+		>
+	>
+
+	["CONTEXT_CONSTANT"] = <
+		name = <"CONTEXT_CONSTANT">
+		ancestors = <"CONTEXT_VALUE">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"EXPR_TYPE_DEF">
 			>
 		>
 	>
