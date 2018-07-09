@@ -825,8 +825,8 @@ class_definitions = <
 		name = <"EXTERNAL_REQUEST">
 		ancestors = <"DISPATCHABLE_ACTION">
 		properties = <
-			["organisation_name"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"organisation_name">
+			["organisation"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"organisation">
 				type = <"PARTY_PROXY">
 				is_mandatory = <True>
 			>
