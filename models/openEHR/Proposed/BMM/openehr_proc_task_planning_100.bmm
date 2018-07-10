@@ -448,6 +448,14 @@ class_definitions = <
 				>
 				cardinality = <|>=1|>
 			>
+			["indications"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"indications">
+				type_def = <
+					container_type = <"List">
+					type = <"DV_TEXT">
+				>
+				cardinality = <|>=0|>
+			>
 			["context"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"context">
 				type = <"PLAN_DATA_CONTEXT">
