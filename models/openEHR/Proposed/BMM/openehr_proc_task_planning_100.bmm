@@ -323,6 +323,7 @@ class_definitions = <
 	["EXTERNAL_VARIABLE"] = <
 		name = <"EXTERNAL_VARIABLE">
 		ancestors = <"CONTEXT_VARIABLE">
+		is_abstract = <True>
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
