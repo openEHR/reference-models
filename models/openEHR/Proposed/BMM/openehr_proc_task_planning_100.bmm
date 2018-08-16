@@ -1,4 +1,4 @@
--- 
+﻿-- 
 -- 	component:   openEHR Reference Model (RM)
 -- 	description: openEHR Reference Model schema. This file format is based on the BMM specification
 --  				http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html
@@ -315,7 +315,7 @@ class_definitions = <
 		properties = <
 			["required_currency"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"required_currency">
-				type = <"IDuration">
+				type = <"Iso8601_duration">
 			>
 		>
 	>
@@ -421,8 +421,8 @@ class_definitions = <
 				type = <"PLAN_CALENDAR">
 				is_mandatory = <True>
 			>
-			["plan_timeline"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"plan_timeline">
+			["timeline"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeline">
 				type = <"PLAN_TIMELINE">
 				is_mandatory = <True>
 			>
@@ -504,11 +504,11 @@ class_definitions = <
 			>
 			["due_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"due_time">
-				type = <"IDuration">
+				type = <"Iso8601_duration">
 			>
 			["expiry_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"expiry_time">
-				type = <"IDuration">
+				type = <"Iso8601_duration">
 			>
 			["indications"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"indications">
@@ -779,7 +779,7 @@ class_definitions = <
 		is_abstract = <True>
 		properties = <
 			["other_participations"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"other_participation">
+				name = <"other_participations">
 				type_def = <
 					container_type = <"List">
 					type = <"TASK_PARTICIPATION">
@@ -807,7 +807,7 @@ class_definitions = <
 			>
 			["external_ref"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"external_ref">
-				type = <"LOCATABLE_REF">
+				type = <"OBJECT_REF">
 			>
 		>
 	>
@@ -817,13 +817,13 @@ class_definitions = <
 		properties = <
 			["description"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"description">
-				type = <"DV_TEXT">
+				type = <"string">
 				is_mandatory = <True>
 			>
 			["expression"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"expression">
 				type_def = <
-					root_type = <"CONTEXT_EXPRESSION">
+					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
 					generic_parameters = <"TYPE_DEF_BOOLEAN">
 				>
 			>
@@ -933,6 +933,7 @@ class_definitions = <
 	
 	["CHOICE_GROUP"] = <
 		name = <"CHOICE_GROUP">
+		is_abstract = <True>
 		ancestors = <"TASK_GROUP">
 		properties = <
 			["override_type"] = (P_BMM_SINGLE_PROPERTY) <
@@ -959,6 +960,7 @@ class_definitions = <
 	["CHOICE_BRANCH"] = <
 		name = <"CHOICE_BRANCH">
 		ancestors = <"TASK_GROUP">
+		is_abstract = <True>
 	>
 
 	["ADHOC_GROUP"] = <
@@ -993,7 +995,7 @@ class_definitions = <
 			["test"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"test">
 				type_def = <
-					root_type = <"CONTEXT_EXPRESSION">
+					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
 					generic_parameters = <"TYPE_DEF_BOOLEAN">
 				>
 				is_mandatory = <True>
@@ -1031,7 +1033,7 @@ class_definitions = <
 			["value_constraint"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"value_constraint">
 				type_def = <
-					root_type = <"CONTEXT_EXPRESSION">
+					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
 					generic_parameters = <"TYPE_DEF_BOOLEAN">
 				>
 				is_mandatory = <True>
@@ -1070,10 +1072,11 @@ class_definitions = <
 	["TASK_WAIT"] = <
 		name = <"TASK_WAIT">
 		properties = <
-			["wait_spec"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"wait_spec">
-				type = <"TEMPORAL_RELATION">
-			>
+-- Not present in spec - removed
+--			["wait_spec"] = (P_BMM_SINGLE_PROPERTY) <
+--				name = <"wait_spec">
+--				type = <"TEMPORAL_RELATION">
+--			>
 			["timeout"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"timeout">
 				type = <"TIMER_WAIT">
@@ -1115,7 +1118,7 @@ class_definitions = <
 		properties = <
 			["timeline_offset"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"timeline_offset">
-				type = <"IDuration">
+				type = <"Iso8601_duration">
 			>
 			["fixed_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"fixed_time">
@@ -1223,7 +1226,7 @@ class_definitions = <
 		properties = <
 			["delay"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"delay">
-				type = <"IDuration">
+				type = <"Iso8601_duration">
 				is_mandatory = <True>
 			>
 			["source"] = (P_BMM_SINGLE_PROPERTY) <
@@ -1240,7 +1243,7 @@ class_definitions = <
 			["expression"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"expression">
 				type_def = <
-					root_type = <"CONTEXT_EXPRESSION">
+					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
 					generic_parameters = <"TYPE_DEF_BOOLEAN">
 				>
 				is_mandatory = <True>
@@ -1254,7 +1257,7 @@ class_definitions = <
 		properties = <
 			["duration"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration">
-				type = <"IDuration">
+				type = <"Iso8601_duration">
 				is_mandatory = <True>
 			>
 			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
@@ -1327,7 +1330,7 @@ class_definitions = <
 			>
 			["time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time">
-				type = <"IDate_time">
+				type = <"Iso8601_date_time">
 				is_mandatory = <True>
 			>
 		>
@@ -1364,7 +1367,7 @@ class_definitions = <
 		properties = <
 			["time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time">
-				type = <"ITime">
+				type = <"Iso8601_time">
 				is_mandatory = <True>
 			>
 		>
@@ -1376,7 +1379,7 @@ class_definitions = <
 		properties = <
 			["time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time">
-				type = <"IDate_time">
+				type = <"Iso8601_date_time">
 				is_mandatory = <True>
 			>
 		>
@@ -1403,4 +1406,3 @@ class_definitions = <
 	>
 
 >
-
