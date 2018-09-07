@@ -367,6 +367,7 @@ class_definitions = <
 			["code_string"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"code_string">
 				type = <"String">
+				is_mandatory = <True>
 			>
 		>
 	>
