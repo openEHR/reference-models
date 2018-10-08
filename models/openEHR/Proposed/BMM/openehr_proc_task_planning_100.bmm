@@ -445,7 +445,7 @@ class_definitions = <
 				name = <"top_level_plans">
 				type_def = <
 					container_type = <"List">
-					type = <"UID_BASED_ID">
+					type = <"TASK_PLAN">
 				>
 				cardinality = <|>=1|>
 			>
@@ -904,7 +904,7 @@ class_definitions = <
 		properties = <
 			["target"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"target">
-				type = <"UID_BASED_ID">
+				type = <"TASK_PLAN">
 				is_mandatory = <True>
 			>
 		>
