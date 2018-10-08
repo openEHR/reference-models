@@ -328,306 +328,306 @@ class_definitions = <
 
 			["date_attr1"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr1">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr2"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr2">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr3"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr3">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr4"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr4">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr5"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr5">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr6"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr6">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr7"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr7">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr8"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr8">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr9"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr9">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr10"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr10">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr11"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr11">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 			["date_attr12"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_attr12">
-				type = <"ISO8601_DATE">
+				type = <"Iso8601_date">
 			>
 
 			["time_attr1"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr1">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr2"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr2">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr3"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr3">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr4"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr4">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr5"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr5">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr6"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr6">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr7"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr7">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr8"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr8">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr9"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr9">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr10"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr10">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr11"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr11">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr12"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr12">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 			["time_attr13"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time_attr13">
-				type = <"ISO8601_TIME">
+				type = <"Iso8601_time">
 			>
 
 			["date_time_attr1"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr1">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr2"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr2">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr3"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr3">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr4"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr4">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr5"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr5">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr6"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr6">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr7"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr7">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr8"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr8">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr9"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr9">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr10"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr10">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr11"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr11">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr12"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr12">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr13"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr13">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 			["date_time_attr14"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"date_time_attr14">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 			>
 
 			["duration_attr1"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr1">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr2"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr2">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr3"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr3">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr4"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr4">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr5"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr5">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr6"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr6">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr7"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr7">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr8"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr8">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr9"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr9">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr10"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr10">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr11"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr11">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr12"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr12">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr13"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr13">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr14"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr14">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr15"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr15">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr16"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr16">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr17"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr17">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr18"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr18">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr19"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr19">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr20"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr20">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr21"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr21">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr22"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr22">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr23"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr23">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr24"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr24">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr25"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr25">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr26"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr26">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr27"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr27">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr28"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr28">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr29"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr29">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr30"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr30">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr31"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr31">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr32"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr32">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr33"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr33">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr34"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr34">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr35"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr35">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 			["duration_attr36"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"duration_attr36">
-				type = <"ISO8601_DURATION">
+				type = <"Iso8601_duration">
 			>
 
 			["any_attr_1"] = (P_BMM_SINGLE_PROPERTY) <

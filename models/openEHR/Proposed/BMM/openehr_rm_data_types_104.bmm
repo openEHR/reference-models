@@ -463,7 +463,7 @@ class_definitions = <
 
 	["DV_DATE"] = <
 		name = <"DV_DATE">
-		ancestors = <"DV_TEMPORAL", "ISO8601_DATE">
+		ancestors = <"DV_TEMPORAL", "Iso8601_date">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -475,7 +475,7 @@ class_definitions = <
 
 	["DV_TIME"] = <
 		name = <"DV_TIME">
-		ancestors = <"DV_TEMPORAL", "ISO8601_TIME">
+		ancestors = <"DV_TEMPORAL", "Iso8601_time">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -487,7 +487,7 @@ class_definitions = <
 
 	["DV_DATE_TIME"] = <
 		name = <"DV_DATE_TIME">
-		ancestors = <"DV_TEMPORAL", "ISO8601_DATE_TIME">
+		ancestors = <"DV_TEMPORAL", "Iso8601_date_time">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -499,7 +499,7 @@ class_definitions = <
 
 	["DV_DURATION"] = <
 		name = <"DV_DURATION">
-		ancestors = <"DV_AMOUNT", "ISO8601_DURATION">
+		ancestors = <"DV_AMOUNT", "Iso8601_duration">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">

@@ -61,7 +61,7 @@ packages = <
 			["iso8601_time"] = <
 				name = <"iso8601_time">
 				classes = <
-					"ISO8601_TYPE", "ISO8601_DATE", "ISO8601_TIME", "ISO8601_DATE_TIME", "ISO8601_DURATION"
+					"Iso8601_type", "Iso8601_date", "Iso8601_time", "Iso8601_date_time", "Iso8601_duration"
 				>
 			>
 		>
@@ -335,8 +335,8 @@ primitive_types = <
 		>
 	>
 
-	["ISO8601_TYPE"] = <
-		name = <"ISO8601_TYPE">
+	["Iso8601_type"] = <
+		name = <"Iso8601_type">
 		documentation = <"Parent of ISO8601 types.">
 		ancestors = <"Any">
 		properties = <
@@ -347,28 +347,28 @@ primitive_types = <
 		>
 	>
 
-	["ISO8601_DATE"] = <
-		name = <"ISO8601_DATE">
+	["Iso8601_date"] = <
+		name = <"Iso8601_date">
 		documentation = <"Date type based on IS8601 representation.">
-		ancestors = <"IDate", "ISO8601_TYPE">
+		ancestors = <"IDate", "Iso8601_type">
 	>
 
-	["ISO8601_TIME"] = <
-		name = <"ISO8601_TIME">
+	["Iso8601_time"] = <
+		name = <"Iso8601_time">
 		documentation = <"Time type based on IS8601 representation.">
-		ancestors = <"ITime", "ISO8601_TYPE">
+		ancestors = <"ITime", "Iso8601_type">
 	>
 
-	["ISO8601_DATE_TIME"] = <
-		name = <"ISO8601_DATE_TIME">
+	["Iso8601_date_time"] = <
+		name = <"Iso8601_date_time">
 		documentation = <"Date Time type based on IS8601 representation.">
-		ancestors = <"IDate_time", "ISO8601_TYPE">
+		ancestors = <"IDate_time", "Iso8601_type">
 	>
 
-	["ISO8601_DURATION"] = <
-		name = <"ISO8601_DURATION">
+	["Iso8601_duration"] = <
+		name = <"Iso8601_duration">
 		documentation = <"Duration type based on IS8601 representation.">
-		ancestors = <"IDuration", "ISO8601_TYPE">
+		ancestors = <"IDuration", "Iso8601_type">
 	>
 
 	["Terminology_term"] = <

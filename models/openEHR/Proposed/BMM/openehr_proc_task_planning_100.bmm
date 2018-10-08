@@ -817,15 +817,12 @@ class_definitions = <
 		properties = <
 			["description"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"description">
-				type = <"string">
+				type = <"String">
 				is_mandatory = <True>
 			>
-			["expression"] = (P_BMM_GENERIC_PROPERTY) <
+			["expression"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"expression">
-				type_def = <
-					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
-					generic_parameters = <"TYPE_DEF_BOOLEAN">
-				>
+				type = <"BOOLEAN_CONTEXT_EXPRESSION">
 			>
 		>
 	>
@@ -992,12 +989,9 @@ class_definitions = <
 		name = <"CONDITION_BRANCH">
 		ancestors = <"CHOICE_BRANCH">
 		properties = <
-			["test"] = (P_BMM_GENERIC_PROPERTY) <
+			["test"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"test">
-				type_def = <
-					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
-					generic_parameters = <"TYPE_DEF_BOOLEAN">
-				>
+				type = <"BOOLEAN_CONTEXT_EXPRESSION">
 				is_mandatory = <True>
 			>
 		>
@@ -1030,12 +1024,9 @@ class_definitions = <
 		name = <"DECISION_BRANCH">
 		ancestors = <"CHOICE_BRANCH">
 		properties = <
-			["value_constraint"] = (P_BMM_GENERIC_PROPERTY) <
+			["value_constraint"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value_constraint">
-				type_def = <
-					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
-					generic_parameters = <"TYPE_DEF_BOOLEAN">
-				>
+				type = <"BOOLEAN_CONTEXT_EXPRESSION">
 				is_mandatory = <True>
 			>
 		>
@@ -1240,12 +1231,9 @@ class_definitions = <
 		name = <"STATE_TRIGGER">
 		ancestors = <"PLAN_EVENT">
 		properties = <
-			["expression"] = (P_BMM_GENERIC_PROPERTY) <
+			["expression"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"expression">
-				type_def = <
-					root_type = <"BOOLEAN_CONTEXT_EXPRESSION">
-					generic_parameters = <"TYPE_DEF_BOOLEAN">
-				>
+				type = <"BOOLEAN_CONTEXT_EXPRESSION">
 				is_mandatory = <True>
 			>
 		>

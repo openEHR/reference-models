@@ -409,7 +409,7 @@ class_definitions = <
 			>
 			["creation_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"creation_time">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 				is_im_runtime = <True>
 			>
 			["authoriser"] = (P_BMM_SINGLE_PROPERTY) <
@@ -418,7 +418,7 @@ class_definitions = <
 			>
 			["authorisation_time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"authorisation_time">
-				type = <"ISO8601_DATE_TIME">
+				type = <"Iso8601_date_time">
 				is_im_runtime = <True>
 			>
 			["item_status"] = (P_BMM_SINGLE_PROPERTY) <
