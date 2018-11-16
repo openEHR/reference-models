@@ -299,7 +299,6 @@ class_definitions = <
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
-				conforms_to_type = <"ITEM_STRUCTURE">
 			>
 		>
 	>
@@ -310,7 +309,6 @@ class_definitions = <
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
-				conforms_to_type = <"ITEM_STRUCTURE">
 			>
 		>
 		properties = <
