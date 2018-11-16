@@ -51,13 +51,26 @@ includes = <
 packages = <
 	["org.openehr.rm.ehr_extract"] = <
 		name = <"org.openehr.rm.ehr_extract">
-		classes = <"EXTRACT", "EXTRACT_SPEC", "EXTRACT_ITEM", "GENERIC_CONTENT_ITEM", "OPENEHR_CONTENT_ITEM", "EXTRACT_REQUEST", 
-			"EXTRACT_UPDATE_SPEC", "EXTRACT_ACTION_REQUEST",
-			"EXTRACT_CONTENT_ITEM", "EXTRACT_FOLDER", "EXTRACT_VERSION_SPEC", "EXTRACT_CHAPTER", "EXTRACT_ENTITY_CHAPTER", 
-			"X_VERSIONED_PARTY", "X_VERSIONED_EHR_ACCESS", "X_VERSIONED_EHR_STATUS", "X_VERSIONED_COMPOSITION", "X_VERSIONED_FOLDER",
-			"EXTRACT_MANIFEST", "EXTRACT_ENTITY_MANIFEST", "EXTRACT_PARTICIPATION", "X_VERSIONED_OBJECT"
-		>
 		packages = <
+			["common"] = <
+				name = <"common">
+				classes = <"EXTRACT", "EXTRACT_SPEC", "EXTRACT_ITEM", "EXTRACT_REQUEST", 
+					"EXTRACT_UPDATE_SPEC", "EXTRACT_ACTION_REQUEST",
+					"EXTRACT_CONTENT_ITEM", "EXTRACT_FOLDER", "EXTRACT_VERSION_SPEC", "EXTRACT_CHAPTER", "EXTRACT_ENTITY_CHAPTER", 
+					"EXTRACT_MANIFEST", "EXTRACT_ENTITY_MANIFEST", "EXTRACT_PARTICIPATION"
+				>
+			>
+			["openehr_extract"] = <
+				name = <"openehr_extract">
+				classes = <
+					"OPENEHR_CONTENT_ITEM", "X_VERSIONED_OBJECT",
+					"X_VERSIONED_PARTY", "X_VERSIONED_EHR_ACCESS", "X_VERSIONED_EHR_STATUS", "X_VERSIONED_COMPOSITION", "X_VERSIONED_FOLDER"
+				>
+			>
+			["generic_extract"] = <
+				name = <"generic_extract">
+				classes = <"GENERIC_CONTENT_ITEM">
+			>
 			["sync_extract"] = <
 				name = <"sync_extract">
 				classes = <"SYNC_EXTRACT", "SYNC_EXTRACT_REQUEST", "SYNC_EXTRACT_SPEC", "X_CONTRIBUTION"> 
@@ -720,7 +733,7 @@ class_definitions = <
 				is_mandatory = <True>
 			>
 			["sender_reference"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"sender">
+				name = <"sender_reference">
 				type = <"String">
 				is_mandatory = <True>
 			>

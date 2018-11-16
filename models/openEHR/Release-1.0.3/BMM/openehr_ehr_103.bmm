@@ -132,10 +132,6 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
-			["directory"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"directory">
-				type = <"OBJECT_REF">
-			>
 			--
 			-- add this function to create a reachability link from EHR to COMPOSITION, which allows
 			-- correct inference that openEHR-EHR-XXX archetypes can be archetypes of COMPOSITION as 

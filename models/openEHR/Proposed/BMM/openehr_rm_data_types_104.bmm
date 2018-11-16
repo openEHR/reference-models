@@ -162,8 +162,17 @@ class_definitions = <
 	["TERM_MAPPING"] = <
 		name = <"TERM_MAPPING">
 		properties = <
-			["defining_code"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"defining_code">
+			["match"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"match">
+				type = <"Character">
+				is_mandatory = <True>
+			>
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"purpose">
+				type = <"DV_CODED_TEXT">
+			>
+			["target"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"target">
 				type = <"CODE_PHRASE">
 				is_mandatory = <True>
 			>
@@ -202,10 +211,10 @@ class_definitions = <
 			["mappings"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"mappings">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"TERM_MAPPING">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 				is_im_runtime = <True>
 			>
 		>
@@ -249,7 +258,8 @@ class_definitions = <
 					container_type = <"List">
 					type = <"DV_TEXT">
 				>
-				cardinality = <|>=0|>
+				is_mandatory = <True>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -285,6 +295,12 @@ class_definitions = <
 					root_type = <"DV_INTERVAL">
 					generic_parameters = <"T">
 				>
+				is_mandatory = <True>
+			>
+			["meaning"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"meaning">
+				type = <"DV_TEXT">
+				is_mandatory = <True>
 			>
 		>
 	>
@@ -305,11 +321,15 @@ class_definitions = <
 					generic_parameters = <"DV_ORDERED">
 				>
 			>
-			["other_reference_ranges"] = (P_BMM_GENERIC_PROPERTY) <
+			["other_reference_ranges"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"other_reference_ranges">
 				type_def = <
-					root_type = <"REFERENCE_RANGE">
-					generic_parameters = <"DV_ORDERED">
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"REFERENCE_RANGE">
+						generic_parameters = <"DV_ORDERED">
+					>
+					cardinality = <|>=1|>
 				>
 			>
 		>
@@ -323,8 +343,11 @@ class_definitions = <
 			["magnitude_status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude_status">
 				type = <"String">
-				is_mandatory = <True>
 				is_im_runtime = <True>
+			>
+			["accuracy"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"accuracy">
+				type = <"Any">
 			>
 		>
 	>
@@ -383,7 +406,7 @@ class_definitions = <
 		properties = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
-				type = <"Double">
+				type = <"Real">
 				is_mandatory = <True>
 			>
 			["property"] = (P_BMM_SINGLE_PROPERTY) <
@@ -400,6 +423,23 @@ class_definitions = <
 				name = <"precision">
 				type = <"Integer">
 			>
+			["normal_range"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"normal_range">
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"DV_QUANTITY">
+				>
+			>
+			["other_reference_ranges"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_reference_ranges">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"REFERENCE_RANGE">
+						generic_parameters = <"DV_QUANTITY">
+					>
+				>
+			>
 		>
 	>
 
@@ -410,6 +450,23 @@ class_definitions = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
 				type = <"Integer64">
+			>
+			["normal_range"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"normal_range">
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"DV_COUNT">
+				>
+			>
+			["other_reference_ranges"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_reference_ranges">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"REFERENCE_RANGE">
+						generic_parameters = <"DV_COUNT">
+					>
+				>
 			>
 		>
 	>
@@ -442,6 +499,24 @@ class_definitions = <
 				type = <"Boolean">
 				is_computed = <True>
 			>
+			["normal_range"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"normal_range">
+				type_def = <
+					root_type = <"DV_INTERVAL">
+					generic_parameters = <"DV_PROPORTION">
+				>
+			>
+			["other_reference_ranges"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_reference_ranges">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"REFERENCE_RANGE">
+						generic_parameters = <"DV_PROPORTION">
+					>
+					cardinality = <|>=1|>
+				>
+			>
 		>
 	>
 
@@ -459,6 +534,12 @@ class_definitions = <
 		name = <"DV_TEMPORAL">
 		is_abstract = <True>
 		ancestors = <"DV_ABSOLUTE_QUANTITY", ...>
+		properties = <
+			["accuracy"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"accuracy">
+				type = <"DV_DURATION">
+			>
+		>
 	>
 
 	["DV_DATE"] = <
@@ -572,6 +653,10 @@ class_definitions = <
 				name = <"integrity_check_algorithm">
 				type = <"CODE_PHRASE">
 			>
+			["thumbnail"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"thumbnail">
+				type = <"DV_MULTIMEDIA">
+			>
 			["size"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"size">
 				type = <"Integer">
@@ -587,10 +672,12 @@ class_definitions = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
 				type = <"String">
+				is_mandatory = <True>
 			>
 			["formalism"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"formalism">
 				type = <"String">
+				is_mandatory = <True>
 			>
 		>
 	>

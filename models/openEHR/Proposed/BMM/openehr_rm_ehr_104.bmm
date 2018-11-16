@@ -89,7 +89,7 @@ class_definitions = <
 		properties = <
 			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_id">
-				type = <"String">
+				type = <"HIER_OBJECT_ID">
 				is_mandatory = <True>
 			>
 			["ehr_id"] = (P_BMM_SINGLE_PROPERTY) <
@@ -123,7 +123,6 @@ class_definitions = <
 					type = <"OBJECT_REF">
 				>
 				cardinality = <|>=0|>
-				is_mandatory = <True>
 			>
 			["contributions"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"contributions">
@@ -154,7 +153,6 @@ class_definitions = <
 			["settings"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"settings">
 				type = <"ACCESS_CONTROL_SETTINGS">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -229,7 +227,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"CONTENT_ITEM">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -257,7 +255,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"PARTICIPATION">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["location"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"location">
@@ -299,7 +297,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"CONTENT_ITEM">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -440,7 +438,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"ACTIVITY">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -462,7 +460,6 @@ class_definitions = <
 			["action_archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"action_archetype_id">
 				type = <"String">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -534,6 +531,14 @@ class_definitions = <
 			["careflow_step"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"careflow_step">
 				type = <"DV_CODED_TEXT">
+			>
+			["reason"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reason">
+				type_def = <
+					container_type = <"List">
+					type = <"DV_TEXT">
+				>
+				cardinality = <|>=0|>
 			>
 		>
 	>

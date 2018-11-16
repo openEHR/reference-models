@@ -75,10 +75,15 @@ packages = <
 			>
 			["identification"] = <
 				name = <"identification">
-				classes = <"OBJECT_REF", "OBJECT_ID", "UID", "LOCATABLE_REF", "PARTY_REF", "OBJECT_ID", "TERMINOLOGY_ID", 
+				classes = <"OBJECT_REF", "OBJECT_ID", "UID", "LOCATABLE_REF", "PARTY_REF", "ACCESS_GROUP_REF",
+					"OBJECT_ID", "TERMINOLOGY_ID", 
 					"UID_BASED_ID", "GENERIC_ID", "ARCHETYPE_ID", "ARCHETYPE_HRID", "TEMPLATE_ID", "OBJECT_VERSION_ID", 
 					"HIER_OBJECT_ID", "VERSION_TREE_ID", "INTERNET_ID", "UUID", "ISO_OID"
 				>
+			>
+			["resource"] = <
+				name = <"resource">
+				classes = <"AUTHORED_RESOURCE", "TRANSLATION_DETAILS", "RESOURCE_DESCRIPTION", "RESOURCE_DESCRIPTION_ITEM"> 
 			>
 		>
 	>
@@ -464,6 +469,11 @@ class_definitions = <
 		ancestors = <"OBJECT_REF">
 	>
 
+	["ACCESS_GROUP_REF"] = <
+		name = <"ACCESS_GROUP_REF">
+		ancestors = <"OBJECT_REF">
+	>
+
 	["OBJECT_ID"] = <
 		name = <"OBJECT_ID">
 		is_abstract = <True>
@@ -491,6 +501,13 @@ class_definitions = <
 	["GENERIC_ID"] = <
 		name = <"GENERIC_ID">
 		ancestors = <"OBJECT_ID">
+		properties = <
+			["scheme"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"scheme">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
 	>
 	
 	["ARCHETYPE_ID"] = <
@@ -521,12 +538,26 @@ class_definitions = <
 	["VERSION_TREE_ID"] = <
 		name = <"VERSION_TREE_ID">
 		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
 	>
 	
 	["UID"] = <
 		name = <"UID">
 		is_abstract = <True>
 		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+				is_mandatory = <True>
+			>
+		>
 	>
 	
 	["INTERNET_ID"] = <
@@ -552,6 +583,179 @@ class_definitions = <
 		name = <"VALIDITY_KIND">
 		ancestors = <"Integer">
 		item_names = <"mandatory", "optional", "prohibited">
+	>
+
+	--
+	--------------------- base.rsource ------------------
+	--
+
+	["AUTHORED_RESOURCE"] = <
+		name = <"AUTHORED_RESOURCE">
+		ancestors = <"Any", ...>
+		is_abstract = <True>
+		properties = <
+			["original_language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_language">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["is_controlled"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_controlled">
+				type = <"Boolean">
+			>
+			["translations"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"translations">
+				type_def = <
+					container_type = <"List">
+					type = <"TRANSLATION_DETAILS">
+				>
+				cardinality = <|>=1|>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"RESOURCE_DESCRIPTION">
+			>
+		>
+	>
+
+	["TRANSLATION_DETAILS"] = <
+		name = <"TRANSLATION_DETAILS">
+		ancestors = <"Any", ...>
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["author"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"author">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+			["accreditaton"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"accreditaton">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+		>
+	>
+
+	["RESOURCE_DESCRIPTION"] = <
+		name = <"RESOURCE_DESCRIPTION">
+		ancestors = <"Any", ...>
+		properties = <
+			["original_author"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"original_author">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+			["other_contributors"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_contributors">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lifecycle_state">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["resource_package_uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"resource_package_uri">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["parent_resource"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"parent_resource">
+				type = <"AUTHORED_RESOURCE">
+				is_mandatory = <True>
+			>
+			["details"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"details">
+				type_def = <
+					container_type = <"List">
+					type = <"RESOURCE_DESCRIPTION_ITEM">
+				>
+				is_mandatory = <True>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["RESOURCE_DESCRIPTION_ITEM"] = <
+		name = <"RESOURCE_DESCRIPTION_ITEM">
+		ancestors = <"Any", ...>
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"purpose">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["keywords"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"keywords">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"String">
+			>
+			["misuse"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"misuse">
+				type = <"String">
+			>
+			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"copyright">
+				type = <"String">
+			>
+			["original_resource_uri"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"original_resource_uri">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Hash">
+						generic_parameters = <"String", "String">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+		>
 	>
 
 	--

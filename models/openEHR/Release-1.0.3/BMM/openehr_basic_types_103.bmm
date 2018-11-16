@@ -144,11 +144,6 @@ class_definitions = <
 		ancestors = <"OBJECT_REF", ...>
 	>
 
-	["PARTY_REF"] = <
-		name = <"PARTY_REF">
-		ancestors = <"OBJECT_REF", ...>
-	>
-
 	["OBJECT_ID"] = <
 		name = <"OBJECT_ID">
 		is_abstract = <True>

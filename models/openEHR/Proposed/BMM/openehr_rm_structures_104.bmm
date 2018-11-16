@@ -81,7 +81,7 @@ packages = <
 			>
 			["directory"] = <
 				name = <"directory">
-				classes = <"FOLDER", ...> 
+				classes = <"FOLDER"> 
 			>
 		>
 	>
@@ -250,7 +250,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"EVENT">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -412,7 +412,7 @@ class_definitions = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"DV_EHR_URI">
 				>
 				cardinality = <|>=0|>
@@ -420,6 +420,7 @@ class_definitions = <
 			["reason"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"reason">
 				type = <"DV_TEXT">
+				is_mandatory = <True>
 			>
 			["is_pending"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"is_pending">
@@ -485,7 +486,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"DV_IDENTIFIER">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 				is_im_runtime = <True>
 			>
 		>
@@ -555,7 +556,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"LINK">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -699,7 +700,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"FOLDER">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -735,7 +736,7 @@ class_definitions = <
 			["versions"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"versions">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"OBJECT_REF">
 				>
 				cardinality = <|>=0|>
@@ -763,6 +764,7 @@ class_definitions = <
 			["owner_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"owner_id">
 				type = <"OBJECT_REF">
+				is_mandatory = <True>
 				is_im_infrastructure = <True>
 			>
 			["time_created"] = (P_BMM_SINGLE_PROPERTY) <
@@ -777,6 +779,7 @@ class_definitions = <
 	["VERSION"] = <
 		name = <"VERSION">
 		ancestors = <"Any">
+		is_abstract = <True>
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -826,10 +829,10 @@ class_definitions = <
 			["other_input_version_uids"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"other_input_version_uids">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"OBJECT_VERSION_ID">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 				is_im_infrastructure = <True>
 			>
 			["attestations"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -838,7 +841,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"ATTESTATION">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"lifecycle_state">
@@ -848,7 +851,6 @@ class_definitions = <
 			["data"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
 				name = <"data">
 				type = <"T">
-				is_mandatory = <True>
 			>
 		>
 	>
