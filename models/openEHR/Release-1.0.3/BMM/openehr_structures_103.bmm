@@ -81,7 +81,11 @@ packages = <
 			>
 			["directory"] = <
 				name = <"directory">
-				classes = <"FOLDER", ...> 
+				classes = <"FOLDER"> 
+			>
+			["resource"] = <
+				name = <"resource">
+				classes = <"AUTHORED_RESOURCE", "TRANSLATION_DETAILS", "RESOURCE_DESCRIPTION", "RESOURCE_DESCRIPTION_ITEM"> 
 			>
 		>
 	>
@@ -250,7 +254,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"EVENT">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -295,6 +299,7 @@ class_definitions = <
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
+				conforms_to_type = <"ITEM_STRUCTURE">
 			>
 		>
 	>
@@ -305,6 +310,7 @@ class_definitions = <
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
+				conforms_to_type = <"ITEM_STRUCTURE">
 			>
 		>
 		properties = <
@@ -412,7 +418,7 @@ class_definitions = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"DV_EHR_URI">
 				>
 				cardinality = <|>=0|>
@@ -420,6 +426,7 @@ class_definitions = <
 			["reason"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"reason">
 				type = <"DV_TEXT">
+				is_mandatory = <True>
 			>
 			["is_pending"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"is_pending">
@@ -485,7 +492,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"DV_IDENTIFIER">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 				is_im_runtime = <True>
 			>
 		>
@@ -555,7 +562,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"LINK">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -699,7 +706,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"FOLDER">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -735,7 +742,7 @@ class_definitions = <
 			["versions"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"versions">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"OBJECT_REF">
 				>
 				cardinality = <|>=0|>
@@ -763,6 +770,7 @@ class_definitions = <
 			["owner_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"owner_id">
 				type = <"OBJECT_REF">
+				is_mandatory = <True>
 				is_im_infrastructure = <True>
 			>
 			["time_created"] = (P_BMM_SINGLE_PROPERTY) <
@@ -782,6 +790,7 @@ class_definitions = <
 				name = <"T">
 			>
 		>
+		is_abstract = <True>
 		properties = <
 			["contribution"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"contribution">
@@ -826,10 +835,10 @@ class_definitions = <
 			["other_input_version_uids"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"other_input_version_uids">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"OBJECT_VERSION_ID">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 				is_im_infrastructure = <True>
 			>
 			["attestations"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -838,7 +847,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"ATTESTATION">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"lifecycle_state">
@@ -848,7 +857,6 @@ class_definitions = <
 			["data"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
 				name = <"data">
 				type = <"T">
-				is_mandatory = <True>
 			>
 		>
 	>
@@ -874,5 +882,177 @@ class_definitions = <
 		>
 	>
 
+	["AUTHORED_RESOURCE"] = <
+		name = <"AUTHORED_RESOURCE">
+		ancestors = <"Any", ...>
+		is_abstract = <True>
+		properties = <
+			["original_language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"original_language">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["is_controlled"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"is_controlled">
+				type = <"Boolean">
+			>
+			["translations"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"translations">
+				type_def = <
+					container_type = <"List">
+					type = <"TRANSLATION_DETAILS">
+				>
+				cardinality = <|>=1|>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"RESOURCE_DESCRIPTION">
+			>
+			["revision_history"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"revision_history">
+				type = <"REVISION_HISTORY">
+			>
+		>
+	>
+
+	["TRANSLATION_DETAILS"] = <
+		name = <"TRANSLATION_DETAILS">
+		ancestors = <"Any", ...>
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["author"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"author">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+			["accreditaton"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"accreditaton">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+		>
+	>
+
+	["RESOURCE_DESCRIPTION"] = <
+		name = <"RESOURCE_DESCRIPTION">
+		ancestors = <"Any", ...>
+		properties = <
+			["original_author"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"original_author">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+			["other_contributors"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"other_contributors">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["lifecycle_state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lifecycle_state">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["resource_package_uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"resource_package_uri">
+				type = <"String">
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+			>
+			["parent_resource"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"parent_resource">
+				type = <"AUTHORED_RESOURCE">
+				is_mandatory = <True>
+			>
+			["details"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"details">
+				type_def = <
+					container_type = <"List">
+					type = <"RESOURCE_DESCRIPTION_ITEM">
+				>
+				is_mandatory = <True>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["RESOURCE_DESCRIPTION_ITEM"] = <
+		name = <"RESOURCE_DESCRIPTION_ITEM">
+		ancestors = <"Any", ...>
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type = <"CODE_PHRASE">
+				is_mandatory = <True>
+			>
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"purpose">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["keywords"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"keywords">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type = <"String">
+			>
+			["misuse"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"misuse">
+				type = <"String">
+			>
+			["copyright"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"copyright">
+				type = <"String">
+			>
+			["original_resource_uri"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"original_resource_uri">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Hash">
+						generic_parameters = <"String", "String">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["other_details"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other_details">
+				type_def = <
+					root_type = <"Hash">
+					generic_parameters = <"String", "String">
+				>
+				is_mandatory = <True>
+			>
+		>
+	>
 >
 
