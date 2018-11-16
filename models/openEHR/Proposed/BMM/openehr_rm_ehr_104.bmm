@@ -3,10 +3,10 @@
 -- 	description: openEHR Reference Model schema. This file format is based on the BMM specification
 --  				http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
 -- 	support:     https://openehr.atlassian.net/projects/SPECPR
--- 	copyright:   Copyright (c) 2016 openEHR Foundation
--- 	license:     CC-BY-ND <https://creativecommons.org/licenses/by-nd/3.0/>
+-- 	copyright:   Copyright (c) 2016 openEHR Foundation <https://www.openEHR.org>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------

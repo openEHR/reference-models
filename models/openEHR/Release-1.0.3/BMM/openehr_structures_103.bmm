@@ -1,16 +1,20 @@
 -- 
--- 	component:   openEHR Reference Model (RM)
--- 	description: openEHR Reference Model schema. This file format is based on the BMM specification
---  				http://www.openehr.org/releases/BASE/latest/docs/bmm/bmm.html
+-- 	component:   openEHR BMM Implementation Technology Specification
+-- 	description: openEHR RM component formal expression. This file is an ODIN serialisation of
+--               the BMM object meta-model classes found at 
+--               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     https://openehr.atlassian.net/projects/SPECPR
--- 	copyright:   Copyright (c) 2016 openEHR Foundation
--- 	license:     CC-BY-ND <https://creativecommons.org/licenses/by-nd/3.0/>
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
+-- 	support:     https://openehr.atlassian.net/issues/?filter=11117
+-- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
+-- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
+-- Current BMM version can be found as the top version in the specification:
+--     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
+--
 ------------------------------------------------------
 bmm_version = <"2.3">
 

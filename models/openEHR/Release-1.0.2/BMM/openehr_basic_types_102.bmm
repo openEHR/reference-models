@@ -1,19 +1,19 @@
 -- 
--- 	component:   openEHR Archetype Project
--- 	description: openEHR Reference Model formal expression. This file is a DADL serialisation of
+-- 	component:   openEHR BMM Implementation Technology Specification
+-- 	description: openEHR Reference Model formal expression. This file is an ODIN serialisation of
 --               the BMM object meta-model classes found at 
---               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+--               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     Ocean Informatics <support@OceanInformatics.com>
--- 	copyright:   Copyright (c) 2009- openEHR Foundation
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
+-- 	support:     https://openehr.atlassian.net/issues/?filter=11117
+-- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+-- Current BMM version can be found as the top version in the specification:
+--     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
 --
 ------------------------------------------------------
 bmm_version = <"2.1">
@@ -29,7 +29,7 @@ rm_release = <"1.0.2">
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"$LastChangedRevision: 26 $">
+schema_revision = <"1.0.2.1">
 schema_lifecycle_state = <"stable">
 schema_description = <"openEHR Release 1.0.2 reference model Support types and Data types"> 
 
@@ -105,7 +105,7 @@ class_definitions = <
 
 	["OBJECT_REF"] = <
 		name = <"OBJECT_REF">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"id">
@@ -127,7 +127,7 @@ class_definitions = <
 
 	["LOCATABLE_REF"] = <
 		name = <"LOCATABLE_REF">
-		ancestors = <"OBJECT_REF", ...>
+		ancestors = <"OBJECT_REF">
 		properties = <
 			["path"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"path">
@@ -139,13 +139,13 @@ class_definitions = <
 
 	["PARTY_REF"] = <
 		name = <"PARTY_REF">
-		ancestors = <"OBJECT_REF", ...>
+		ancestors = <"OBJECT_REF">
 	>
 
 	["OBJECT_ID"] = <
 		name = <"OBJECT_ID">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -157,64 +157,64 @@ class_definitions = <
 
 	["TERMINOLOGY_ID"] = <
 		name = <"TERMINOLOGY_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["UID_BASED_ID"] = <
 		name = <"UID_BASED_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 		is_abstract = <True>
 	>
 	
 	["GENERIC_ID"] = <
 		name = <"GENERIC_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["ARCHETYPE_ID"] = <
 		name = <"ARCHETYPE_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["TEMPLATE_ID"] = <
 		name = <"TEMPLATE_ID">
-		ancestors = <"OBJECT_ID", ...>
+		ancestors = <"OBJECT_ID">
 	>
 	
 	["OBJECT_VERSION_ID"] = <
 		name = <"OBJECT_VERSION_ID">
-		ancestors = <"UID_BASED_ID", ...>
+		ancestors = <"UID_BASED_ID">
 	>
 	
 	["HIER_OBJECT_ID"] = <
 		name = <"HIER_OBJECT_ID">
-		ancestors = <"UID_BASED_ID", ...>
+		ancestors = <"UID_BASED_ID">
 	>
 	
 	["VERSION_TREE_ID"] = <
 		name = <"VERSION_TREE_ID">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	
 	["UID"] = <
 		name = <"UID">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	
 	["INTERNET_ID"] = <
 		name = <"INTERNET_ID">
-		ancestors = <"UID", ...>
+		ancestors = <"UID">
 	>
 	
 	["UUID"] = <
 		name = <"UUID">
-		ancestors = <"UID", ...>
+		ancestors = <"UID">
 	>
 	
 	["ISO_OID"] = <
 		name = <"ISO_OID">
-		ancestors = <"UID", ...>
+		ancestors = <"UID">
 	>
 	
 	------------------------------------------------------------
@@ -227,13 +227,13 @@ class_definitions = <
 
 	["DATA_VALUE"] = <
 		name = <"DATA_VALUE">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		is_abstract = <True>
 	>
 
 	["DV_BOOLEAN"] = <
 		name = <"DV_BOOLEAN">
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -245,7 +245,7 @@ class_definitions = <
 
 	["DV_IDENTIFIER"] = <
 		name = <"DV_IDENTIFIER">
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["issuer"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"issuer">
@@ -273,7 +273,7 @@ class_definitions = <
 
 	["DV_STATE"] = <
 		name = <"DV_STATE">
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -305,7 +305,7 @@ class_definitions = <
 
 	["DV_TEXT"] = <
 		name = <"DV_TEXT">
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -346,7 +346,7 @@ class_definitions = <
 
 	["DV_CODED_TEXT"] = <
 		name = <"DV_CODED_TEXT">
-		ancestors = <"DV_TEXT", ...>
+		ancestors = <"DV_TEXT">
 		properties = <
 			["defining_code"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"defining_code">
@@ -374,7 +374,7 @@ class_definitions = <
 
 	["DV_PARAGRAPH"] = <
 		name = <"DV_PARAGRAPH">
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -404,7 +404,7 @@ class_definitions = <
 
 	["REFERENCE_RANGE"] = <
 		name = <"REFERENCE_RANGE">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -451,7 +451,7 @@ class_definitions = <
 	["DV_QUANTIFIED"] = <
 		name = <"DV_QUANTIFIED">
 		is_abstract = <True>
-		ancestors = <"DV_ORDERED", ...>
+		ancestors = <"DV_ORDERED">
 		properties = <
 			["magnitude_status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude_status">
@@ -464,7 +464,7 @@ class_definitions = <
 
 	["DV_ORDINAL"] = <
 		name = <"DV_ORDINAL">
-		ancestors = <"DV_ORDERED", ...>
+		ancestors = <"DV_ORDERED">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -482,7 +482,7 @@ class_definitions = <
 	["DV_AMOUNT"] = <
 		name = <"DV_AMOUNT">
 		is_abstract = <True>
-		ancestors = <"DV_QUANTIFIED", ...>
+		ancestors = <"DV_QUANTIFIED">
 		properties = <
 			["accuracy"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"accuracy">
@@ -500,7 +500,7 @@ class_definitions = <
 	["DV_ABSOLUTE_QUANTITY"] = <
 		name = <"DV_ABSOLUTE_QUANTITY">
 		is_abstract = <True>
-		ancestors = <"DV_QUANTIFIED", ...>
+		ancestors = <"DV_QUANTIFIED">
 		properties = <
 			["accuracy"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"accuracy">
@@ -512,7 +512,7 @@ class_definitions = <
 
 	["DV_QUANTITY"] = <
 		name = <"DV_QUANTITY">
-		ancestors = <"DV_AMOUNT", ...>
+		ancestors = <"DV_AMOUNT">
 		properties = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
@@ -538,7 +538,7 @@ class_definitions = <
 
 	["DV_COUNT"] = <
 		name = <"DV_COUNT">
-		ancestors = <"DV_AMOUNT", ...>
+		ancestors = <"DV_AMOUNT">
 		properties = <
 			["magnitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"magnitude">
@@ -549,7 +549,7 @@ class_definitions = <
 
 	["DV_PROPORTION"] = <
 		name = <"DV_PROPORTION">
-		ancestors = <"DV_AMOUNT", ...>
+		ancestors = <"DV_AMOUNT">
 		properties = <
 			["numerator"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"numerator">
@@ -580,7 +580,7 @@ class_definitions = <
 
 	["PROPORTION_KIND"] = (P_BMM_ENUMERATION_INTEGER) <
 		name = <"PROPORTION_KIND">
-		ancestors = <"Integer", ...>
+		ancestors = <"Integer">
 		item_names = <"pk_ratio", "pk_unitary", "pk_percent", "pk_fraction", "pk_integer_fraction">
 	>
 
@@ -591,7 +591,7 @@ class_definitions = <
 	["DV_TEMPORAL"] = <
 		name = <"DV_TEMPORAL">
 		is_abstract = <True>
-		ancestors = <"DV_ABSOLUTE_QUANTITY", ...>
+		ancestors = <"DV_ABSOLUTE_QUANTITY">
 	>
 
 	["DV_DATE"] = <
@@ -649,7 +649,7 @@ class_definitions = <
 	["DV_ENCAPSULATED"] = <
 		name = <"DV_ENCAPSULATED">
 		is_abstract = <True>
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["charset"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"charset">
@@ -666,7 +666,7 @@ class_definitions = <
 
 	["DV_MULTIMEDIA"] = <
 		name = <"DV_MULTIMEDIA">
-		ancestors = <"DV_ENCAPSULATED", ...>
+		ancestors = <"DV_ENCAPSULATED">
 		properties = <
 			["alternate_text"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"alternate_text">
@@ -715,7 +715,7 @@ class_definitions = <
 
 	["DV_PARSABLE"] = <
 		name = <"DV_PARSABLE">
-		ancestors = <"DV_ENCAPSULATED", ...>
+		ancestors = <"DV_ENCAPSULATED">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -734,7 +734,7 @@ class_definitions = <
 
 	["DV_URI"] = <
 		name = <"DV_URI">
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -746,7 +746,7 @@ class_definitions = <
 
 	["DV_EHR_URI"] = <
 		name = <"DV_EHR_URI">
-		ancestors = <"DV_URI", ...>
+		ancestors = <"DV_URI">
 	>
 
 	--
@@ -756,7 +756,7 @@ class_definitions = <
 	["DV_TIME_SPECIFICATION"] = <
 		name = <"DV_TIME_SPECIFICATION">
 		is_abstract = <True>
-		ancestors = <"DATA_VALUE", ...>
+		ancestors = <"DATA_VALUE">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -768,12 +768,12 @@ class_definitions = <
 
 	["DV_PERIODIC_TIME_SPECIFICATION"] = <
 		name = <"DV_PERIODIC_TIME_SPECIFICATION">
-		ancestors = <"DV_TIME_SPECIFICATION", ...>
+		ancestors = <"DV_TIME_SPECIFICATION">
 	>
 
 	["DV_GENERAL_TIME_SPECIFICATION"] = <
 		name = <"DV_GENERAL_TIME_SPECIFICATION">
-		ancestors = <"DV_TIME_SPECIFICATION", ...>
+		ancestors = <"DV_TIME_SPECIFICATION">
 	>
 
 

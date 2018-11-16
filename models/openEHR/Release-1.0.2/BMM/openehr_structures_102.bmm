@@ -1,22 +1,22 @@
 -- 
--- 	component:   openEHR Archetype Project
--- 	description: openEHR Reference Model formal expression. This file is a DADL serialisation of
+-- 	component:   openEHR BMM Implementation Technology Specification
+-- 	description: openEHR Reference Model formal expression. This file is an ODIN serialisation of
 --               the BMM object meta-model classes found at 
---               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+--               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     Ocean Informatics <support@OceanInformatics.com>
--- 	copyright:   Copyright (c) 2009- openEHR Foundation
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
+-- 	support:     https://openehr.atlassian.net/issues/?filter=11117
+-- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+-- Current BMM version can be found as the top version in the specification:
+--     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 ------------------------------------------------------
 -- schema identification
@@ -54,7 +54,7 @@ archetype_parent_class = <"LOCATABLE">
 packages = <
 	["org.openehr.rm.data_structures"] = <
 		name = <"org.openehr.rm.data_structures">
-		classes = <"DATA_STRUCTURE", ...> 
+		classes = <"DATA_STRUCTURE"> 
 		packages = <
 			["item_structure"] = <
 				name = <"item_structure">
@@ -89,7 +89,7 @@ packages = <
 			>
 			["directory"] = <
 				name = <"directory">
-				classes = <"FOLDER", ...> 
+				classes = <"FOLDER"> 
 			>
 		>
 	>
@@ -109,7 +109,7 @@ class_definitions = <
 	["DATA_STRUCTURE"] = <
 		name = <"DATA_STRUCTURE">
 		is_abstract = <True>
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 	>
 
 	------------------------------------------------------------
@@ -119,12 +119,12 @@ class_definitions = <
 	["ITEM_STRUCTURE"] = <
 		name = <"ITEM_STRUCTURE">
 		is_abstract = <True>
-		ancestors = <"DATA_STRUCTURE", ...>
+		ancestors = <"DATA_STRUCTURE">
 	>
 
 	["ITEM_SINGLE"] = <
 		name = <"ITEM_SINGLE">
-		ancestors = <"ITEM_STRUCTURE", ...>
+		ancestors = <"ITEM_STRUCTURE">
 		properties = <
 			["item"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"item">
@@ -136,7 +136,7 @@ class_definitions = <
 
 	["ITEM_LIST"] = <
 		name = <"ITEM_LIST">
-		ancestors = <"ITEM_STRUCTURE", ...>
+		ancestors = <"ITEM_STRUCTURE">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -151,7 +151,7 @@ class_definitions = <
 
 	["ITEM_TABLE"] = <
 		name = <"ITEM_TABLE">
-		ancestors = <"ITEM_STRUCTURE", ...>
+		ancestors = <"ITEM_STRUCTURE">
 		properties = <
 			["rows"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"rows">
@@ -166,7 +166,7 @@ class_definitions = <
 
 	["ITEM_TREE"] = <
 		name = <"ITEM_TREE">
-		ancestors = <"ITEM_STRUCTURE", ...>
+		ancestors = <"ITEM_STRUCTURE">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -185,13 +185,13 @@ class_definitions = <
 
 	["ITEM"] = <
 		name = <"ITEM">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		is_abstract = <True>
 	>
 
 	["CLUSTER"] = <
 		name = <"CLUSTER">
-		ancestors = <"ITEM", ...>
+		ancestors = <"ITEM">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -207,7 +207,7 @@ class_definitions = <
 
 	["ELEMENT"] = <
 		name = <"ELEMENT">
-		ancestors = <"ITEM", ...>
+		ancestors = <"ITEM">
 		properties = <
 			["null_flavour"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"null_flavour">
@@ -226,7 +226,7 @@ class_definitions = <
 
 	["HISTORY"] = <
 		name = <"HISTORY">
-		ancestors = <"DATA_STRUCTURE", ...>
+		ancestors = <"DATA_STRUCTURE">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -265,7 +265,7 @@ class_definitions = <
 
 	["EVENT"] = <
 		name = <"EVENT">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		is_abstract = <True>
 		generic_parameter_defs = <
 			["T"] = <
@@ -299,7 +299,7 @@ class_definitions = <
 
 	["POINT_EVENT"] = <
 		name = <"POINT_EVENT">
-		ancestors = <"EVENT", ...>
+		ancestors = <"EVENT">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -309,7 +309,7 @@ class_definitions = <
 
 	["INTERVAL_EVENT"] = <
 		name = <"INTERVAL_EVENT">
-		ancestors = <"EVENT", ...>
+		ancestors = <"EVENT">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -340,7 +340,7 @@ class_definitions = <
 
 	["REVISION_HISTORY"] = <
 		name = <"REVISION_HISTORY">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -355,7 +355,7 @@ class_definitions = <
 
 	["REVISION_HISTORY_ITEM"] = <
 		name = <"REVISION_HISTORY_ITEM">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["version_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"version_id">
@@ -376,7 +376,7 @@ class_definitions = <
 
 	["AUDIT_DETAILS"] = <
 		name = <"AUDIT_DETAILS">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_id">
@@ -407,7 +407,7 @@ class_definitions = <
 
 	["ATTESTATION"] = <
 		name = <"ATTESTATION">
-		ancestors = <"AUDIT_DETAILS", ...>
+		ancestors = <"AUDIT_DETAILS">
 		properties = <
 			["attested_view"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"attested_view">
@@ -439,7 +439,7 @@ class_definitions = <
 
 	["PARTICIPATION"] = <
 		name = <"PARTICIPATION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["function"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"function">
@@ -470,7 +470,7 @@ class_definitions = <
 	["PARTY_PROXY"] = <
 		name = <"PARTY_PROXY">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["external_ref"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"external_ref">
@@ -482,7 +482,7 @@ class_definitions = <
 
 	["PARTY_IDENTIFIED"] = <
 		name = <"PARTY_IDENTIFIED">
-		ancestors = <"PARTY_PROXY", ...>
+		ancestors = <"PARTY_PROXY">
 		properties = <
 			["name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"name">
@@ -502,7 +502,7 @@ class_definitions = <
 
 	["PARTY_RELATED"] = <
 		name = <"PARTY_RELATED">
-		ancestors = <"PARTY_IDENTIFIED", ...>
+		ancestors = <"PARTY_IDENTIFIED">
 		properties = <
 			["relationship"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"relationship">
@@ -514,7 +514,7 @@ class_definitions = <
 
 	["PARTY_SELF"] = <
 		name = <"PARTY_SELF">
-		ancestors = <"PARTY_PROXY", ...>
+		ancestors = <"PARTY_PROXY">
 	>
 
 	------------------------------------------------------------
@@ -524,13 +524,13 @@ class_definitions = <
 	["PATHABLE"] = <
 		name = <"PATHABLE">
 		is_abstract = <True>
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 
 	["LOCATABLE"] = <
 		name = <"LOCATABLE">
 		is_abstract = <True>
-		ancestors = <"PATHABLE", ...>
+		ancestors = <"PATHABLE">
 		properties = <
 			["uid"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uid">
@@ -571,7 +571,7 @@ class_definitions = <
 
 	["LINK"] = <
 		name = <"LINK">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["meaning"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"meaning">
@@ -593,7 +593,7 @@ class_definitions = <
 
 	["ARCHETYPED"] = <
 		name = <"ARCHETYPED">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["archetype_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"archetype_id">
@@ -617,7 +617,7 @@ class_definitions = <
 
 	["FEEDER_AUDIT"] = <
 		name = <"FEEDER_AUDIT">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["originating_system_ids"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"originating_system_ids">
@@ -658,7 +658,7 @@ class_definitions = <
 
 	["FEEDER_AUDIT_DETAILS"] = <
 		name = <"FEEDER_AUDIT_DETAILS">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["system_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system_id">
@@ -700,7 +700,7 @@ class_definitions = <
 
 	["FOLDER"] = <
 		name = <"FOLDER">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["folders"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"folders">
@@ -727,7 +727,7 @@ class_definitions = <
 
 	["CONTRIBUTION"] = <
 		name = <"CONTRIBUTION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		properties = <
 			["uid"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uid">
@@ -756,7 +756,7 @@ class_definitions = <
 
 	["VERSIONED_OBJECT"] = <
 		name = <"VERSIONED_OBJECT">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -785,7 +785,7 @@ class_definitions = <
 
 	["VERSION"] = <
 		name = <"VERSION">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -814,7 +814,7 @@ class_definitions = <
 
 	["ORIGINAL_VERSION"] = <
 		name = <"ORIGINAL_VERSION">
-		ancestors = <"VERSION", ...>
+		ancestors = <"VERSION">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -864,7 +864,7 @@ class_definitions = <
 
 	["IMPORTED_VERSION"] = <
 		name = <"IMPORTED_VERSION">
-		ancestors = <"VERSION", ...>
+		ancestors = <"VERSION">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">

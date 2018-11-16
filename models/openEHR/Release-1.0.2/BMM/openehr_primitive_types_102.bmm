@@ -1,23 +1,22 @@
 -- 
--- 	component:   openEHR Archetype Project
--- 	description: openEHR Reference Model Support package formal expression. 
--- 				 This file is a DADL serialisation of the BMM object meta-model classes found at 
---               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+-- 	component:   openEHR BMM Implementation Technology Specification
+-- 	description: openEHR Reference Model formal expression. This file is an ODIN serialisation of
+--               the BMM object meta-model classes found at 
+--               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     Ocean Informatics <support@OceanInformatics.com>
--- 	copyright:   Copyright (c) 2010- openEHR Foundation
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
+-- 	support:     https://openehr.atlassian.net/issues/?filter=11117
+-- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
-
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+-- Current BMM version can be found as the top version in the specification:
+--     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 ------------------------------------------------------
 -- schema identification
@@ -57,13 +56,13 @@ primitive_types = <
 		name = <"Ordered">
 		is_abstract = <True>
 		documentation = <"Ancestor of types with total order relation defined, i.e. '<' and '='.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Numeric"] = <
 		name = <"Numeric">
 		is_abstract = <True>
 		documentation = <"Ancestor of numeric types.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Ordered_Numeric"] = <
 		name = <"Ordered_Numeric">
@@ -73,39 +72,39 @@ primitive_types = <
 	>
 	["Byte"] = <
 		name = <"Byte">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Octet"] = <
 		name = <"Octet">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Boolean"] = <
 		name = <"Boolean">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["Integer"] = <
 		name = <"Integer">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Real"] = <
 		name = <"Real">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Double"] = <
 		name = <"Double">
-		ancestors = <"Ordered_Numeric", ...>
+		ancestors = <"Ordered_Numeric">
 	>
 	["Character"] = <
 		name = <"Character">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["String"] = <
 		name = <"String">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 	["List"] = <
 		name = <"List">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -114,7 +113,7 @@ primitive_types = <
 	>
 	["Array"] = <
 		name = <"Array">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -123,7 +122,7 @@ primitive_types = <
 	>
 	["Set"] = <
 		name = <"Set">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -133,7 +132,7 @@ primitive_types = <
 	["Interval"] = <
 		name = <"Interval">
 		documentation = <"Type defining an interval of any ordered type.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -170,7 +169,7 @@ primitive_types = <
 	["Hash"] = <
 		name = <"Hash">
 		documentation = <"Type defining Hash table / hash map structure, whose type parameters V and K represent a value type and an Ordered key type respectively.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["V"] = <
 				name = <"V">
@@ -184,7 +183,7 @@ primitive_types = <
 
 	["Aggregate"] = <
 		name = <"Aggregate">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		generic_parameter_defs = <
 			["T"] = <
 				name = <"T">
@@ -195,25 +194,25 @@ primitive_types = <
 	["ISO8601_DATE"] = <
 		name = <"ISO8601_DATE">
 		documentation = <"Date type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 
 	["ISO8601_TIME"] = <
 		name = <"ISO8601_TIME">
 		documentation = <"Time type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 
 	["ISO8601_DATE_TIME"] = <
 		name = <"ISO8601_DATE_TIME">
 		documentation = <"Date Time type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 
 	["ISO8601_DURATION"] = <
 		name = <"ISO8601_DURATION">
 		documentation = <"Duration type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 	>
 
 >

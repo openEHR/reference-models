@@ -1,22 +1,22 @@
 -- 
--- 	component:   openEHR Archetype Project
--- 	description: openEHR Reference Model demographic package formal expression. This file is a DADL serialisation of
+-- 	component:   openEHR BMM Implementation Technology Specification
+-- 	description: openEHR Reference Model formal expression. This file is an ODIN serialisation of
 --               the BMM object meta-model classes found at 
---               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+--               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     Ocean Informatics <support@OceanInformatics.com>
--- 	copyright:   Copyright (c) 2009- openEHR Foundation
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
+-- 	support:     https://openehr.atlassian.net/issues/?filter=11117
+-- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+-- Current BMM version can be found as the top version in the specification:
+--     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 ------------------------------------------------------
 -- schema identification
@@ -30,7 +30,7 @@ model_name = <"DEMOGRAPHIC">
 ------------------------------------------------------
 -- schema documentation
 ------------------------------------------------------
-schema_revision = <"$LastChangedRevision: 26 $">
+schema_revision = <"1.0.2.1">
 schema_lifecycle_state = <"stable">
 schema_description = <"openEHR Release 1.0.demographic model schema"> 
 
@@ -46,7 +46,7 @@ includes = <
 ------------------------------------------------------
 -- archetyping
 ------------------------------------------------------
-archetype_rm_closure_packages = <"org.openehr.rm.demographic", ...>
+archetype_rm_closure_packages = <"org.openehr.rm.demographic">
 
 
 ------------------------------------------------------
@@ -68,7 +68,7 @@ class_definitions = <
 	["PARTY"] = <
 		name = <"PARTY">
 		is_abstract = <True>
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"details">
@@ -117,7 +117,7 @@ class_definitions = <
     
 	["PARTY_IDENTITY"] = <
 		name = <"PARTY_IDENTITY">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"details">
@@ -134,7 +134,7 @@ class_definitions = <
 	
 	["CONTACT"] = <
 		name = <"CONTACT">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["time_validity"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"time_validity">
@@ -162,7 +162,7 @@ class_definitions = <
 	
 	["ADDRESS"] = <
 		name = <"ADDRESS">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"details">
@@ -180,7 +180,7 @@ class_definitions = <
 	["ACTOR"] = <
 		name = <"ACTOR">
 		is_abstract = <True>
-		ancestors = <"PARTY", ...>
+		ancestors = <"PARTY">
 		properties = <
 			["roles"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"roles">
@@ -203,27 +203,27 @@ class_definitions = <
 
 	["PERSON"] = <
 		name = <"PERSON">
-		ancestors = <"ACTOR", ...>
+		ancestors = <"ACTOR">
 	>
 
 	["ORGANISATION"] = <
 		name = <"ORGANISATION">
-		ancestors = <"ACTOR", ...>
+		ancestors = <"ACTOR">
 	>
 
 	["GROUP"] = <
 		name = <"GROUP">
-		ancestors = <"ACTOR", ...>
+		ancestors = <"ACTOR">
 	>
 
 	["AGENT"] = <
 		name = <"AGENT">
-		ancestors = <"ACTOR", ...>
+		ancestors = <"ACTOR">
 	>
 
 	["ROLE"] = <
 		name = <"ROLE">
-		ancestors = <"PARTY", ...>
+		ancestors = <"PARTY">
 		properties = <
 			["performer"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"performer">
@@ -251,7 +251,7 @@ class_definitions = <
 
 	["CAPABILITY"] = <
 		name = <"CAPABILITY">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["credentials"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"credentials">
@@ -271,7 +271,7 @@ class_definitions = <
 
 	["PARTY_RELATIONSHIP"] = <
 		name = <"PARTY_RELATIONSHIP">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["source"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"source">

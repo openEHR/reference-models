@@ -1,22 +1,22 @@
 -- 
--- 	component:   openEHR Archetype Project
--- 	description: openEHR Reference Model ehr package formal expression. This file is a DADL serialisation of
+-- 	component:   openEHR BMM Implementation Technology Specification
+-- 	description: openEHR Reference Model formal expression. This file is an ODIN serialisation of
 --               the BMM object meta-model classes found at 
---               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+--               https://www.openehr.org/releases/LANG/latest/p_bmm.html
 -- 	keywords:    reference model, meta-model, archetypes
--- 	author:      Thomas Beale
--- 	support:     Ocean Informatics <support@OceanInformatics.com>
--- 	copyright:   Copyright (c) 2009- openEHR Foundation
+-- 	author:      Thomas Beale <thomas.beale@openEHR.org>
+-- 	support:     https://openehr.atlassian.net/issues/?filter=11117
+-- 	copyright:   Copyright (c) 2009- openEHR Foundation <https://www.openEHR.org>
 -- 	license:     Apache 2.0 <http://www.apache.org/licenses/LICENSE-2.0.html>
 -- 
 
 ------------------------------------------------------
 -- BMM version on which these schemas are based.
--- Current BMM version can be found as value of 'Bmm_internal_version' in 
---     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+-- Current BMM version can be found as the top version in the specification:
+--     https://www.openehr.org/releases/LANG/latest/bmm_persistence.html#_amendment_record
 --
 ------------------------------------------------------
-bmm_version = <"2.0">
+bmm_version = <"2.1">
 
 ------------------------------------------------------
 -- schema identification
@@ -65,11 +65,11 @@ packages = <
 		packages = <
 			["content"] = <
 				name = <"content">
-				classes = <"CONTENT_ITEM", ...>
+				classes = <"CONTENT_ITEM">
 				packages = <
 					["navigation"] = <
 						name = <"navigation">
-						classes = <"SECTION", ...> 
+						classes = <"SECTION"> 
 					>
 					["entry"] = <
 						name = <"entry">
@@ -159,7 +159,7 @@ class_definitions = <
 
 	["EHR_ACCESS"] = <
 		name = <"EHR_ACCESS">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["settings"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"settings">
@@ -171,13 +171,13 @@ class_definitions = <
 
 	["ACCESS_CONTROL_SETTINGS"] = <
 		name = <"ACCESS_CONTROL_SETTINGS">
-		ancestors = <"Any", ...>
+		ancestors = <"Any">
 		is_abstract = <True>
 	>
 
 	["EHR_STATUS"] = <
 		name = <"EHR_STATUS">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["subject"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"subject">
@@ -207,7 +207,7 @@ class_definitions = <
 
 	["COMPOSITION"] = <
 		name = <"COMPOSITION">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["language"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"language">
@@ -246,7 +246,7 @@ class_definitions = <
 
 	["EVENT_CONTEXT"] = <
 		name = <"EVENT_CONTEXT">
-		ancestors = <"PATHABLE", ...>
+		ancestors = <"PATHABLE">
 		properties = <
 			["health_care_facility"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"health_care_facility">
@@ -291,7 +291,7 @@ class_definitions = <
 
 	["CONTENT_ITEM"] = <
 		name = <"CONTENT_ITEM">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		is_abstract = <True>
 	>
 
@@ -301,7 +301,7 @@ class_definitions = <
 
 	["SECTION"] = <
 		name = <"SECTION">
-		ancestors = <"CONTENT_ITEM", ...>
+		ancestors = <"CONTENT_ITEM">
 		properties = <
 			["items"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"items">
@@ -321,7 +321,7 @@ class_definitions = <
 	["ENTRY"] = <
 		name = <"ENTRY">
 		is_abstract = <True>
-		ancestors = <"CONTENT_ITEM", ...>
+		ancestors = <"CONTENT_ITEM">
 		properties = <
 			["language"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"language">
@@ -362,7 +362,7 @@ class_definitions = <
 
 	["ADMIN_ENTRY"] = <
 		name = <"ADMIN_ENTRY">
-		ancestors = <"ENTRY", ...>
+		ancestors = <"ENTRY">
 		properties = <
 			["data"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"data">
@@ -376,7 +376,7 @@ class_definitions = <
 		name = <"CARE_ENTRY">
 		is_abstract = <True>
 		documentation = <"Abstract ENTRY subtype corresponding to any type of ENTRY in the clinical care cycle.">
-		ancestors = <"ENTRY", ...>
+		ancestors = <"ENTRY">
 		properties = <
 			["protocol"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"protocol">
@@ -393,7 +393,7 @@ class_definitions = <
 	["OBSERVATION"] = <
 		name = <"OBSERVATION">
 		documentation = <"ENTRY subtype used to represent observation information in time, as either a single or multiple samples.">
-		ancestors = <"CARE_ENTRY", ...>
+		ancestors = <"CARE_ENTRY">
 		properties = <
 			["data"] = (P_BMM_GENERIC_PROPERTY) <
 				name = <"data">
@@ -416,7 +416,7 @@ class_definitions = <
 
 	["EVALUATION"] = <
 		name = <"EVALUATION">
-		ancestors = <"CARE_ENTRY", ...>
+		ancestors = <"CARE_ENTRY">
 		properties = <
 			["data"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"data">
@@ -428,7 +428,7 @@ class_definitions = <
 
 	["INSTRUCTION"] = <
 		name = <"INSTRUCTION">
-		ancestors = <"CARE_ENTRY", ...>
+		ancestors = <"CARE_ENTRY">
 		properties = <
 			["narrative"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"narrative">
@@ -457,7 +457,7 @@ class_definitions = <
 
 	["ACTIVITY"] = <
 		name = <"ACTIVITY">
-		ancestors = <"LOCATABLE", ...>
+		ancestors = <"LOCATABLE">
 		properties = <
 			["description"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"description">
@@ -479,7 +479,7 @@ class_definitions = <
 
 	["ACTION"] = <
 		name = <"ACTION">
-		ancestors = <"CARE_ENTRY", ...>
+		ancestors = <"CARE_ENTRY">
 		properties = <
 			["time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time">
@@ -506,7 +506,7 @@ class_definitions = <
 
 	["INSTRUCTION_DETAILS"] = <
 		name = <"INSTRUCTION_DETAILS">
-		ancestors = <"PATHABLE", ...>
+		ancestors = <"PATHABLE">
 		properties = <
 			["instruction_id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"instruction_id">
@@ -530,7 +530,7 @@ class_definitions = <
 
 	["ISM_TRANSITION"] = <
 		name = <"ISM_TRANSITION">
-		ancestors = <"PATHABLE", ...>
+		ancestors = <"PATHABLE">
 		properties = <
 			["current_state"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"current_state">
@@ -550,7 +550,7 @@ class_definitions = <
 
 	["GENERIC_ENTRY"] = <
 		name = <"GENERIC_ENTRY">
-		ancestors = <"CONTENT_ITEM", ...>
+		ancestors = <"CONTENT_ITEM">
 		properties = <
 			["data"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"data">
