@@ -63,7 +63,7 @@ class_definitions = <
 		properties = <
 			["uid"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"uid">
-				type = <"HIER_OBJECT_ID">
+				type = <"UID_BASED_ID">
 				is_mandatory = <True>
 				is_im_infrastructure = <True>
 			>

@@ -104,8 +104,8 @@ class_definitions = <
 				type = <"OBJECT_ID">
 				is_mandatory = <True>
 			>
-			["id_namespace"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"id_namespace">
+			["namespace"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"namespace">
 				type = <"String">
 				is_mandatory = <True>
 			>
