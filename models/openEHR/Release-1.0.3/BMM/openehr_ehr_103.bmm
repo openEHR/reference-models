@@ -230,7 +230,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"CONTENT_ITEM">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -258,7 +258,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"PARTICIPATION">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["location"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"location">
@@ -300,7 +300,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"CONTENT_ITEM">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -441,7 +441,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"ACTIVITY">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>

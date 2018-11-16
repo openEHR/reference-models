@@ -372,7 +372,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"TERM_MAPPING">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 				is_im_runtime = <True>
 			>
 		>
@@ -417,7 +417,7 @@ class_definitions = <
 					type = <"DV_TEXT">
 				>
 				is_mandatory = <True>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 		>
 	>
@@ -487,6 +487,7 @@ class_definitions = <
 						root_type = <"REFERENCE_RANGE">
 						generic_parameters = <"DV_ORDERED">
 					>
+					cardinality = <|>=1|>
 				>
 			>
 		>
@@ -671,6 +672,7 @@ class_definitions = <
 						root_type = <"REFERENCE_RANGE">
 						generic_parameters = <"DV_PROPORTION">
 					>
+					cardinality = <|>=1|>
 				>
 			>
 		>
