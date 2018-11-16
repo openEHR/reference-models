@@ -61,6 +61,12 @@ class_definitions = <
 		is_abstract = <True>
 		ancestors = <"LOCATABLE", ...>
 		properties = <
+			["uid"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uid">
+				type = <"HIER_OBJECT_ID">
+				is_mandatory = <True>
+				is_im_infrastructure = <True>
+			>
 			["details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"details">
 				type = <"ITEM_STRUCTURE">
@@ -68,9 +74,10 @@ class_definitions = <
 			["identities"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"identities">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"PARTY_IDENTITY">
 				>
+				is_mandatory = <True>
 				cardinality = <|>=1|>
 			>
 			["contacts"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -79,7 +86,7 @@ class_definitions = <
 					container_type = <"Set">
 					type = <"CONTACT">
 				>
-				cardinality = <|>=0|>
+				cardinality = <|>=1|>
 			>
 			["relationships"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"relationships">
@@ -92,7 +99,7 @@ class_definitions = <
 			["reverse_relationships"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"reverse_relationships">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"LOCATABLE_REF">
 				>
 				cardinality = <|>=0|>
@@ -176,9 +183,10 @@ class_definitions = <
 			["roles"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"roles">
 				type_def = <
-					container_type = <"Set">
+					container_type = <"List">
 					type = <"PARTY_REF">
 				>
+				is_mandatory = <True>
 				cardinality = <|>=1|>
 			>
 			["languages"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -187,6 +195,7 @@ class_definitions = <
 					container_type = <"List">
 					type = <"DV_TEXT">
 				>
+				is_mandatory = <True>
 				cardinality = <|>=1|>
 			>
 		>
@@ -267,10 +276,12 @@ class_definitions = <
 			["source"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"source">
 				type = <"PARTY_REF">
+				is_mandatory = <True>
 			>
 			["target"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"target">
 				type = <"PARTY_REF">
+				is_mandatory = <True>
 			>
 			["details"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"details">

@@ -36,7 +36,7 @@ schema_author = <"Thomas Beale <thomas.beale@openehr.org>">
 packages = <
 	["org.openehr.rm.support.assumed_types"] = <
 		name = <"org.openehr.rm.support.assumed_types">
-		classes = <"Any", "Ordered", "Numeric", "Ordered_Numeric", "Octet", "Byte", "Boolean", "Integer", "Integer64", "Real", "Double", "Character", "String", "List", "Array", "Set", "Interval", "Hash", "Aggregate", "ISO8601_DATE", "ISO8601_TIME", "ISO8601_DATE_TIME", "ISO8601_DURATION">
+		classes = <"Any", "Ordered", "Numeric", "Ordered_Numeric", "Octet", "Byte", "Boolean", "Integer", "Integer64", "Real", "Double", "Character", "String", "List", "Array", "Set", "Interval", "Hash", "ISO8601_TYPE", "ISO8601_DATE", "ISO8601_TIME", "ISO8601_DATE_TIME", "ISO8601_DURATION">
 	>
 >
 
@@ -73,7 +73,7 @@ primitive_types = <
 	>
 	["Octet"] = <
 		name = <"Octet">
-		ancestors = <"Any", ...>
+		ancestors = <"Ordered", ...>
 	>
 	["Boolean"] = <
 		name = <"Boolean">
@@ -97,11 +97,11 @@ primitive_types = <
 	>
 	["Character"] = <
 		name = <"Character">
-		ancestors = <"Any", ...>
+		ancestors = <"Ordered", ...>
 	>
 	["String"] = <
 		name = <"String">
-		ancestors = <"Any", ...>
+		ancestors = <"Ordered", ...>
 	>
 	["List"] = <
 		name = <"List">
@@ -152,18 +152,22 @@ primitive_types = <
 			["lower_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"lower_unbounded">
 				type = <"Boolean">
+				is_mandatory = <True>
 			>
 			["upper_unbounded"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"upper_unbounded">
 				type = <"Boolean">
+				is_mandatory = <True>
 			>
 			["lower_included"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"lower_included">
 				type = <"Boolean">
+				is_mandatory = <True>
 			>
 			["upper_included"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"upper_included">
 				type = <"Boolean">
+				is_mandatory = <True>
 			>
 		>
 	>
@@ -181,39 +185,34 @@ primitive_types = <
 			>
 		>
 	>
-
-	["Aggregate"] = <
-		name = <"Aggregate">
-		ancestors = <"Any", ...>
-		generic_parameter_defs = <
-			["T"] = <
-				name = <"T">
-			>
-		>
+	
+	["ISO8601_TYPE"] = <
+		name = <"ISO8601_TYPE">
+		ancestors = <"Ordered", ...>
 	>
 
 	["ISO8601_DATE"] = <
 		name = <"ISO8601_DATE">
 		documentation = <"Date type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"ISO8601_TYPE", ...>
 	>
 
 	["ISO8601_TIME"] = <
 		name = <"ISO8601_TIME">
 		documentation = <"Time type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"ISO8601_TYPE", ...>
 	>
 
 	["ISO8601_DATE_TIME"] = <
 		name = <"ISO8601_DATE_TIME">
 		documentation = <"Date Time type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"ISO8601_TYPE", ...>
 	>
 
 	["ISO8601_DURATION"] = <
 		name = <"ISO8601_DURATION">
 		documentation = <"Duration type based on IS8601 representation.">
-		ancestors = <"Any", ...>
+		ancestors = <"ISO8601_TYPE", ...>
 	>
 
 >
