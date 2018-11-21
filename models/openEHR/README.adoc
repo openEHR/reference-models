@@ -1,0 +1,4 @@
+
+The openEHR BMMs have moved to the specifications-ITS-BMM repo on Github:
+https://github.com/openEHR/specifications-ITS-BMM
+
