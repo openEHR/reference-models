@@ -1,0 +1,4815 @@
+-- 
+-- 	component:   openEHR Archetype Project
+-- 	description: FHIR Resources expressed as an Basic Meta-Model (BMM) file
+--               the BMM object meta-model classes found at https://github.com/wolandscat/EOMF/tree/master/library/bmm
+--               http://www.openehr.org/svn/ref_impl_eiffel/BRANCHES/specialisation/libraries/common_libs/src/basic_meta_model
+-- 	keywords:    reference model, meta-model, archetypes
+-- 	author:      Thomas Beale
+-- 	support:     Ocean Informatics <support@OceanInformatics.com>
+-- 	copyright:   Copyright (c) 2014 openEHR Foundation
+-- 	license:     Apache 2.0
+-- 
+
+
+------------------------------------------------------
+-- BMM version on which these schemas are based.
+-- Current BMM version can be found as value of 'Bmm_internal_version' in 
+--     https://github.com/openEHR/adl-tools/blob/master/libraries/common_libs/src/basic_meta_model/bmm_definitions.e
+--
+------------------------------------------------------
+bmm_version = <"2.3">
+
+------------------------------------------------------
+-- schema identification
+-- (schema_id computed as <rm_publisher>_<schema_name>_<rm_release>)
+------------------------------------------------------
+rm_publisher = <"hl7">
+schema_name = <"fhir_dstu4">
+rm_release = <"4.0.0">
+model_name = <"FHIR">
+
+------------------------------------------------------
+-- schema documentation
+------------------------------------------------------
+schema_revision = <"0.9.0">
+schema_lifecycle_state = <"dstu4">
+schema_description = <"HL7 FHIR resources - DSTU4"> 
+
+------------------------------------------------------
+-- inclusions
+------------------------------------------------------
+-- includes = <
+-- ["1"] = <
+-- id = <"hl7_fhir_foundation_4.0.0">
+-- >
+-- >
+
+------------------------------------------------------
+-- packages
+------------------------------------------------------
+packages = <
+	["org.hl7.fhir"] = <
+		name = <"org.hl7.fhir">
+		packages = <
+			["data_types"] = <
+				name = <"data_types">
+				packages = <
+					["primitive"] = <
+						name = <"primitive">
+						classes = <"Any", "Boolean", 
+						    "Base64Binary", "Integer", "PositiveInt", "UnsignedInt", "Decimal", 
+						    "String", "Code", "Id", "Markdown", 
+							"List", "Array", "Set", "Interval", "Ordered", "Aggregate", 
+							"Date", "DateTime", "Instant", "Time",
+							"Uri", "Url", "Oid", "Uuid", "Xhtml"
+						>
+					>
+					["complex"] = <
+						name = <"complex">
+						classes = <"Ratio", "Period", "Range", "Attachment", "Identifier", "Annotation",
+						    "HumanName", "Address", "ContactPoint", "SampledData", 
+							"SimpleQuantity", "Quantity", "Money", "Count", "Duration", "Distance", "Age", 
+							"CodeableConcept", "Coding", "Timing", "Repeat"
+						>
+					>
+					["other"] = <
+						name = <"other">
+						classes = <
+							"Narrative", "Extension", "Reference", "Resource", "DomainResource", "Meta",
+							"Element", "Canonical"
+						>
+					>
+				>
+			>
+			["resources"] = <
+				name = <"resources">
+				packages = <
+					["administrative"] = <
+						name = <"administrative">
+						classes = <
+							"Party", "RealPerson", "Role",
+							"Patient", "RelatedPerson", "Person", "Group", "Practitioner", "Qualification", "PractitionerRole",
+							"AvailableTime", "NotAvailable", "Characteristic", "Member", 
+							"Organization", "Location", "HealthcareService", "Schedule", "Slot", 
+							"EpisodeOfCare", "Encounter", "ServiceRequest", "CareTeam", 
+							"Appointment", "AppointmentResponse", "Account", "Flag", 
+							"Device", "DeviceDefinition", "DeviceMetric", "Substance", 
+							"Contact", "Link", "Communication", "Eligibility",
+							"HoursOfOperation", "Position", "Endpoint",
+							"StatusHistory", "Diagnosis", "Condition", "Stage", "Evidence", 
+							"Hospitalization", "Participant", "ClassHistory",
+							"Coverage", "Guarantor",
+							"Property", "Specialization", "Version", "UdiCarrier", "UdiDeviceIdentifier", "DeviceName", "Calibration",
+							"Instance", "Ingredient", "Specimen", "Collection", "Processing", "Container", 
+							"Capability", "Material", "Provenance",
+							"ProdCharacteristic", "ProductShelfLife"
+						>
+					>
+				>
+			>
+		>
+	>
+>
+
+------------------------------------------------------
+-- primitive types
+------------------------------------------------------
+
+primitive_types = <
+	["Any"] = <
+		name = <"Any">
+	>
+	["Ordered"] = <
+		name = <"Ordered">
+		is_abstract = <True>
+		ancestors = <"Any">
+	>
+	["Element"] = <
+		name = <"Element">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"id">
+				type = <"String">
+			>
+			["extension"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"extension">
+				type_def = <
+					container_type = <"List">
+					type = <"Any">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Boolean"] = <
+		name = <"Boolean">
+		ancestors = <"Element">
+	>
+	["Integer"] = <
+		name = <"Integer">
+		ancestors = <"Element">
+	>
+	["PositiveInt"] = <
+		name = <"PositiveInt">
+		ancestors = <"Integer">
+	>
+	["UnsignedInt"] = <
+		name = <"UnsignedInt">
+		ancestors = <"Integer">
+	>
+	["Decimal"] = <
+		name = <"Decimal">
+		ancestors = <"Element">
+	>
+	["Base64Binary"] = <
+		name = <"Base64Binary">
+		ancestors = <"Element">
+	>
+
+	["String"] = <
+		name = <"String">
+		ancestors = <"Element">
+	>
+	["Id"] = <
+		name = <"Id">
+		ancestors = <"String">
+	>
+	["Code"] = <
+		name = <"Code">
+		ancestors = <"String">
+	>
+	["Markdown"] = <
+		name = <"Markdown">
+		ancestors = <"String">
+	>
+
+	["Uri"] = <
+		name = <"Uri">
+		ancestors = <"Element">
+	>
+	["Oid"] = <
+		name = <"Oid">
+		ancestors = <"Uri">
+	>
+	["Uuid"] = <
+		name = <"Uuid">
+		ancestors = <"Uri">
+	>
+	["Canonical"] = <
+		name = <"Canonical">
+		ancestors = <"Uri">
+	>
+	["Url"] = <
+		name = <"Url">
+		ancestors = <"Uri">
+	>
+	["Xhtml"] = <
+		name = <"Xhtml">
+		ancestors = <"Element">
+	>
+
+	["Instant"] = <
+		name = <"Instant">
+		ancestors = <"Element">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"DateTime">
+			>
+		>
+	>
+	["Date"] = <
+		name = <"Date">
+		documentation = <"Date type based on IS8601 representation.">
+		ancestors = <"Element">
+	>
+
+	["Time"] = <
+		name = <"Time">
+		documentation = <"Time type based on IS8601 representation.">
+		ancestors = <"Element">
+	>
+
+	["DateTime"] = <
+		name = <"DateTime">
+		documentation = <"Date Time type based on IS8601 representation.">
+		ancestors = <"Element">
+	>
+
+	--
+	-- ----------- Aggregate types -------------
+	--
+	["List"] = <
+		name = <"List">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+	["Array"] = <
+		name = <"Array">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+	["Set"] = <
+		name = <"Set">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+	["Interval"] = <
+		name = <"Interval">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Ordered">
+			>
+		>
+		properties = <
+			["lower"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"lower">
+				type = <"T">
+			>
+			["upper"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"upper">
+				type = <"T">
+			>
+			["lowerUnbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lowerUnbounded">
+				type = <"Boolean">
+			>
+			["upperUnbounded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upperUnbounded">
+				type = <"Boolean">
+			>
+			["lowerIncluded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lowerIncluded">
+				type = <"Boolean">
+			>
+			["upperIncluded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upperIncluded">
+				type = <"Boolean">
+			>
+		>
+	>
+	["Aggregate"] = <
+		name = <"Aggregate">
+		ancestors = <"Any">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+			>
+		>
+	>
+>
+
+class_definitions = <
+
+	--
+	---------------- Data types: Complex types -------------------
+	--
+
+	["Reference"] = <
+		name = <"Reference">
+		ancestors = <"Element">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Element">
+			>
+		>
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"type">
+				type = <"T">
+			>
+			["reference"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"reference">
+				type = <"String">
+			>
+			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"identifier">
+				type = <"Identifier">
+			>
+			["display"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"display">
+				type = <"String">
+			>
+		>
+	>
+
+	["SimpleQuantity"] = <
+		name = <"SimpleQuantity">
+		ancestors = <"Element">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Decimal">
+			>
+			["unit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"unit">
+				type = <"String">
+			>
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Uri">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"Code">
+			>
+		>
+	>
+
+	["Quantity"] = <
+		name = <"Quantity">
+		ancestors = <"SimpleQuantity">
+		properties = <
+			["comparator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comparator">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::QuantityComparator">
+				>
+			>
+		>
+	>
+
+	["Age"] = <
+		name = <"Age">
+		ancestors = <"Quantity">
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type_ref = <
+					type = <"Uri">
+					value_constraint = <"::UCUM">
+				>
+			>
+		>
+	>
+
+	["Distance"] = <
+		name = <"Distance">
+		ancestors = <"Quantity">
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type_ref = <
+					type = <"Uri">
+					value_constraint = <"::UCUM">
+				>
+			>
+		>
+	>
+
+	["Duration"] = <
+		name = <"Duration">
+		ancestors = <"Quantity">
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type_ref = <
+					type = <"Uri">
+					value_constraint = <"::UCUM">
+				>
+			>
+		>
+	>
+
+	["Count"] = <
+		name = <"Count">
+		ancestors = <"Quantity">
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type_ref = <
+					type = <"Uri">
+					value_constraint = <"::UCUM">
+				>
+			>
+		>
+	>
+
+	["Money"] = <
+		name = <"Money">
+		ancestors = <"Element">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Decimal">
+			>
+			["currency"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"currency">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::Currencies">
+				>
+			>
+		>
+	>
+
+	["Ratio"] = <
+		name = <"Ratio">
+		ancestors = <"Element">
+		properties = <
+			["numerator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"numerator">
+				type = <"Quantity">
+			>
+			["denominator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"denominator">
+				type = <"Quantity">
+			>
+		>
+	>
+
+	["Range"] = <
+		name = <"Range">
+		ancestors = <"Element">
+		properties = <
+			["low"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"low">
+				type = <"SimpleQuantity">
+			>
+			["high"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"high">
+				type = <"SimpleQuantity">
+			>
+		>
+	>
+
+	["Period"] = <
+		name = <"Period">
+		ancestors = <"Element">
+		properties = <
+			["start"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start">
+				type = <"DateTime">
+			>
+			["end"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end">
+				type = <"DateTime">
+			>
+		>
+	>
+
+	["SampledData"] = <
+		name = <"SampledData">
+		ancestors = <"Element">
+		properties = <
+			["origin"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"origin">
+				type = <"SimpleQuantity">
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
+			["factor"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"factor">
+				type = <"Decimal">
+			>
+			["lowerLimit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lowerLimit">
+				type = <"Decimal">
+			>
+			["upperLimit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"upperLimit">
+				type = <"Decimal">
+			>
+			["dimensions"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"dimensions">
+				type = <"PositiveInt">
+			>
+			["data"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"data">
+				type = <"String">
+			>
+		>
+	>
+
+	["Identifier"] = <
+		name = <"Identifier">
+		ancestors = <"Element">
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::IdentifierUse">
+				>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::IdentifierType">
+				>
+			>
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Uri">
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+            ["assigner"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"assigner">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+		>
+	>
+
+	["HumanName"] = <
+		name = <"HumanName">
+		ancestors = <"Element">
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::NameUse">
+				>
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+			["family"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"family">
+				type = <"String">
+			>
+			["given"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"given">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["prefix"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"prefix">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["suffix"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"suffix">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	["Address"] = <
+		name = <"Address">
+		ancestors = <"Element">
+		properties = <
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::AddressUse">
+				>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::AddressType">
+				>
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+			["line"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"line">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["city"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"city">
+				type = <"String">
+			>
+			["state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"state">
+				type = <"String">
+			>
+			["postalCode"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"postalCode">
+				type = <"String">
+			>
+			["country"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"country">
+				type = <"String">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	["Attachment"] = <
+		name = <"Attachment">
+		ancestors = <"Element", ...>
+		properties = <
+			["contentType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"contentType">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::MimeTypes">
+				>
+				is_mandatory = <True>
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::CommonLanguages">
+				>
+			>
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+			>
+			["data"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"data">
+				type = <"Base64Binary">
+			>
+			["hash"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"hash">
+				type = <"Base64Binary">
+			>
+			["size"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"size">
+				type = <"Integer">
+			>
+			["title"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"title">
+				type = <"String">
+			>
+			["creation"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"creation">
+				type = <"DateTime">
+			>
+		>
+	>
+
+	["CodeableConcept"] = <
+		name = <"CodeableConcept">
+		ancestors = <"Element">
+		properties = <
+			["coding"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"coding">
+				type_def = <
+					container_type = <"List">
+					type = <"Coding">
+				>
+				cardinality = <|>=0|>
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+		>
+	>
+
+	["Coding"] = <
+		name = <"Coding">
+		ancestors = <"Element">
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type = <"Uri">
+			>
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version">
+				type = <"String">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"Code">
+			>
+			["display"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"display">
+				type = <"String">
+			>
+			["userSelected"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"userSelected">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Timing"] = <
+		name = <"Timing">
+		ancestors = <"Element">
+		properties = <
+			["event"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"event">
+				type_def = <
+					container_type = <"List">
+					type = <"DateTime">
+				>
+				cardinality = <|>=0|>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::TimingAbbreviation">
+				>
+			>
+			["repeat"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"repeat">
+				type = <"Repeat">
+			>
+		>
+	>
+
+	["Repeat"] = <
+		name = <"Repeat">
+		ancestors = <"Any">
+		properties = <
+			["bounds"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"bounds">
+				type = <"Duration">
+			>
+			["count"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"count">
+				type = <"PositiveInt">
+			>
+			["countMax"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"countMax">
+				type = <"PositiveInt">
+			>
+			["duration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"duration">
+				type = <"Decimal">
+			>
+			["durationMax"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"durationMax">
+				type = <"Decimal">
+			>
+			["durationUnit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"durationUnit">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::UnitsOfTime">
+				>
+			>
+			["frequency"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"frequency">
+				type = <"PositiveInt">
+			>
+			["frequencyMax"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"frequencyMax">
+				type = <"PositiveInt">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Decimal">
+			>
+			["periodMax"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"periodMax">
+				type = <"Decimal">
+			>
+			["periodUnit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"periodUnit">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::UnitsOfTime">
+				>
+			>
+			["timeOfDay"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeOfDay">
+				type = <"Time">
+			>
+			["dayOfWeek"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"dayOfWeek">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DaysOfWeek">
+				>
+			>
+			["when"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"when">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::EventTiming">
+				>
+			>
+			["offset"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"offset">
+				type = <"UnsignedInt">
+			>
+		>
+	>
+
+	["ContactPoint"] = <
+		name = <"ContactPoint">
+		ancestors = <"Element">
+		properties = <
+			["system"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"system">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::ContactPointSystem">
+				>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+			>
+			["use"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"use">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::ContactPointUse">
+				>
+			>
+			["rank"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"rank">
+				type = <"PositiveInt">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	--
+	---------------- Data types: Other types -------------------
+	--
+
+	["Narrative"] = <
+		name = <"Narrative">
+		ancestors = <"Element">
+		properties = <
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::NarrativeStatus">
+				>
+				is_mandatory = <True>
+			>
+			["div"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"div">
+				type = <"Xhtml">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Extension"] = <
+		name = <"Extension">
+		ancestors = <"Element">
+		properties = <
+			["uri"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"uri">
+				type = <"Uri">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"value">
+				type_def = <
+					container_type = <"List">
+					type = <"Any">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Annotation"] = <
+		name = <"Annotation">
+		ancestors = <"Element">
+		properties = <
+			["authorString"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"authorString">
+				type = <"String">
+			>
+            ["authorReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"authorReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time">
+				type = <"DateTime">
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"Markdown">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Resource"] = <
+		name = <"Resource">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["id"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"id">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["meta"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"meta">
+				type = <"Meta">
+			>
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::CommonLanguages">
+				>
+			>
+			["implicitRules"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"implicitRules">
+				type = <"Uri">
+			>
+		>
+	>
+
+	["DomainResource"] = <
+		name = <"DomainResource">
+		is_abstract = <True>
+		ancestors = <"Any">
+		properties = <
+			["contained"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contained">
+				type_def = <
+					container_type = <"List">
+					type = <"Resource">
+				>
+				cardinality = <|>=0|>
+			>
+			["extension"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"extension">
+				type_def = <
+					container_type = <"List">
+					type = <"Extension">
+				>
+				cardinality = <|>=0|>
+			>
+			["modifierExtension"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"modifierExtension">
+				type_def = <
+					container_type = <"List">
+					type = <"Extension">
+				>
+				cardinality = <|>=0|>
+			>
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"Narrative">
+			>
+		>
+	>
+
+	["Meta"] = <
+		name = <"Meta">
+		ancestors = <"Element">
+		properties = <
+			["versionId"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"versionId">
+				type = <"Id">
+			>
+			["lastUpdated"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lastUpdated">
+				type = <"Instant">
+			>
+			["source"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"source">
+				type = <"Uri">
+			>
+			["security"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"security">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"Coding">
+						value_constraint = <"fhir::AllSecurityLabels">
+					>
+				>
+			>
+			["tag"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"tag">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"Coding">
+						value_constraint = <"fhir::CommonTags">
+					>
+				>
+			>
+			["profile"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"profile">
+				type = <"String">
+			>
+		>
+	>
+
+    -- 
+	---------- Administrative ----------
+	--
+
+	["Party"] = <
+		name = <"Party">
+		ancestors = <"DomainResource">
+		is_abstract = <True>
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"telecom">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["active"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"active">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Organization"] = <
+		name = <"Organization">
+		ancestors = <"Party">
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::OrganizationType">
+				>
+				is_mandatory = <True>
+			>
+			["alias"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"alias">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["address"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"address">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+				cardinality = <|>=0|>
+			>
+            ["partOf"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"partOf">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["endpoint"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"endpoint">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Endpoint">
+                >
+			>
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"Contact">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Role"] = <
+		name = <"Role">
+		ancestors = <"Party">
+		is_abstract = <True>
+		properties = <
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	["RealPerson"] = <
+		name = <"RealPerson">
+		ancestors = <"Party">
+		is_abstract = <True>
+		properties = <
+			["name"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"name">
+				type_def = <
+					container_type = <"List">
+					type = <"HumanName">
+				>
+				cardinality = <|>=0|>
+			>
+			["gender"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"gender">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::AdministrativeGender">
+				>
+			>
+			["birthDate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"birthDate">
+				type = <"Date">
+			>
+			["address"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"address">
+				type_def = <
+					container_type = <"List">
+					type = <"Address">
+				>
+				cardinality = <|>=0|>
+			>
+			["photo"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"photo">
+				type = <"Attachment">
+			>
+			["link"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"link">
+				type_def = <
+					container_type = <"List">
+					type = <"Link">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Person"] = <
+		name = <"Person">
+		ancestors = <"RealPerson">
+		properties = <
+            ["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"managingOrganization">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["communication"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"communication">
+				type_def = <
+					container_type = <"List">
+					type = <"Communication">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["RelatedPerson"] = <
+		name = <"RelatedPerson">
+		ancestors = <"RealPerson">
+		properties = <
+            ["patient"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"patient">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Patient">
+                >
+            >
+			["relationship"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"relationship">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::PatientRelationshipType">
+				>
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+		>
+	>
+
+	["Patient"] = <
+		name = <"Patient">
+		ancestors = <"Person">
+		properties = <
+			["deceasedBoolean"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"deceasedBoolean">
+				type = <"Boolean">
+			>
+			["deceasedDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"deceasedDateTime">
+				type = <"DateTime">
+			>
+			["maritalStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"maritalStatus">
+				type = <"CodeableConcept">
+			>
+			["multipleBirthBoolean"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"multipleBirthBoolean">
+				type = <"Boolean">
+			>
+			["multipleBirthInteger"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"multipleBirthInteger">
+				type = <"Integer">
+			>
+		>
+	>
+
+	["Contact"] = <
+		name = <"Contact">
+		ancestors = <"Any">
+		properties = <
+			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"purpose">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ContactEntityType">
+				>
+			>
+			["name"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"name">
+				type_def = <
+					container_type = <"List">
+					type = <"HumanName">
+				>
+				cardinality = <|>=0|>
+			>
+			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"telecom">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["address"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"address">
+				type = <"Address">
+			>
+		>
+	>
+
+	["Communication"] = <
+		name = <"Communication">
+		ancestors = <"Any">
+		properties = <
+			["language"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"language">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::CommonLanguages">
+				>
+				is_mandatory = <True>
+			>
+			["preferred"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"preferred">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Link"] = <
+		name = <"Link">
+		ancestors = <"Any">
+		properties = <
+			["other"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"other">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Person">
+                >
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::LinkType">
+				>
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Group"] = <
+		name = <"Group">
+		ancestors = <"Party">
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::GroupType">
+				>
+				is_mandatory = <True>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"CodeableConcept">
+			>
+			["actual"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"actual">
+				type = <"Boolean">
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"UnsignedInt">
+			>
+            ["managingEntity"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"managingEntity">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["characteristic"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"characteristic">
+				type_def = <
+					container_type = <"List">
+					type = <"Characteristic">
+				>
+				cardinality = <|>=0|>
+			>
+			["member"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"member">
+				type_def = <
+					container_type = <"List">
+					type = <"Member">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Characteristic"] = <
+		name = <"Characteristic">
+		ancestors = <"Any">
+		properties = <
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"Any">
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["exclude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"exclude">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Member"] = <
+		name = <"Member">
+		ancestors = <"Any">
+		properties = <
+            ["entity"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"entity">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"DomainResource">
+                >
+            >
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["inactive"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"inactive">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Practitioner"] = <
+		name = <"Practitioner">
+		ancestors = <"Person">
+		properties = <
+			["qualification"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"qualification">
+				type_def = <
+					container_type = <"List">
+					type = <"Qualification">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Qualification"] = <
+		name = <"Qualification">
+		ancestors = <"Any">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0360.2.7">
+				>
+				is_mandatory = <True>
+			>
+			["issuer"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"issuer">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+			>
+		>
+	>
+
+	["PractitionerRole"] = <
+		name = <"PractitionerRole">
+		ancestors = <"Role">
+		properties = <
+			["practitioner"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"practitioner">
+				type = <"Practitioner">
+			>
+			["organization"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"organization">
+				type = <"Organization">
+			>
+			["code"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"code">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PractitionerRole">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["specialty"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialty">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PracticeSettingCodeValueSet">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["location"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"location">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Location">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["healthcareService"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"healthcareService">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"HealthcareService">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["availabilityExceptions"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"availabilityExceptions">
+				type = <"String">
+			>
+			["endpoint"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"endpoint">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Endpoint">
+                >
+			>
+			["availableTime"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"availableTime">
+				type_def = <
+					container_type = <"List">
+					type = <"AvailableTime">
+				>
+				cardinality = <|>=0|>
+			>
+			["notAvailable"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"notAvailable">
+				type_def = <
+					container_type = <"List">
+					type = <"NotAvailable">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["AvailableTime"] = <
+		name = <"AvailableTime">
+		ancestors = <"Any">
+		properties = <
+			["availableStartTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"availableStartTime">
+				type = <"Time">
+			>
+			["availableEndTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"availableEndTime">
+				type = <"Time">
+			>
+			["daysOfWeek"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"daysOfWeek">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"Code">
+						value_constraint = <"fhir::DaysOfWeek">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["allDay"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"allDay">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["NotAvailable"] = <
+		name = <"NotAvailable">
+		ancestors = <"Any">
+		properties = <
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+				is_mandatory = <True>
+			>
+			["during"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"during">
+				type = <"Period">
+			>
+		>
+	>
+
+	["Location"] = <
+		name = <"Location">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::LocationStatus">
+				>
+			>
+			["operationStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"operationStatus">
+				type_ref = <
+					type = <"Coding">
+					value_constraint = <"v2::0116">
+				>
+				is_mandatory = <True>
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["alias"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"alias">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+			["mode"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"mode">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::LocationMode">
+				>
+			>
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"v3::ServiceDeliveryLocationRole">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"telecom">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["address"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"address">
+				type = <"Address">
+			>
+			["physicalType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"physicalType">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::LocationType">
+				>
+			>
+            ["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"managingOrganization">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+            ["partOf"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"partOf">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Location">
+                >
+            >
+			["availabilityExceptions"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"availabilityExceptions">
+				type = <"String">
+			>
+			["endpoint"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"endpoint">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Endpoint">
+                >
+			>
+			["position"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"position">
+				type = <"Position">
+			>
+			["hoursOfOperation"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"hoursOfOperation">
+				type_def = <
+					container_type = <"List">
+					type = <"HoursOfOperation">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Position"] = <
+		name = <"Position">
+		ancestors = <"Any">
+		properties = <
+			["latitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"latitude">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
+			["longitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"longitude">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
+			["altitude"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"altitude">
+				type = <"Decimal">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["HoursOfOperation"] = <
+		name = <"HoursOfOperation">
+		ancestors = <"Any">
+		properties = <
+			["openingTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"openingTime">
+				type = <"Time">
+			>
+			["closingTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"closingTime">
+				type = <"Time">
+			>
+			["daysOfWeek"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"daysOfWeek">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"Code">
+						value_constraint = <"fhir::DaysOfWeek">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["allDay"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"allDay">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["HealthcareService"] = <
+		name = <"HealthcareService">
+		ancestors = <"Party">
+		properties = <
+			["providedBy"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"providedBy">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+			>
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ServiceCategory">
+				>
+			>
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["specialty"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialty">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PracticeSettingCodeValueSet">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["location"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"location">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Location">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"String">
+			>
+			["extraDetails"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"extraDetails">
+				type = <"Markdown">
+			>
+			["photo"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"photo">
+				type = <"Attachment">
+			>
+			["coverageArea"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"coverageArea">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Location">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["serviceProvisionCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceProvisionCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceProvisionConditions">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["program"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"program">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::Program">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["characteristic"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"characteristic">
+				type_def = <
+					container_type = <"List">
+					type = <"Characteristic">
+				>
+				cardinality = <|>=0|>
+			>
+			["communication"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"communication">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::CommonLanguages">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["referralMethod"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"referralMethod">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ReferralMethod">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["appointmentRequired"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"appointmentRequired">
+				type = <"Boolean">
+			>
+			["availabilityExceptions"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"availabilityExceptions">
+				type = <"String">
+			>
+			["endpoint"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"endpoint">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Endpoint">
+                >
+			>
+			["availableTime"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"availableTime">
+				type_def = <
+					container_type = <"List">
+					type = <"AvailableTime">
+				>
+				cardinality = <|>=0|>
+			>
+			["notAvailable"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"notAvailable">
+				type_def = <
+					container_type = <"List">
+					type = <"NotAvailable">
+				>
+				cardinality = <|>=0|>
+			>
+			["eligibility"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"eligibility">
+				type_def = <
+					container_type = <"List">
+					type = <"Eligibility">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Eligibility"] = <
+		name = <"Eligibility">
+		ancestors = <"Any">
+		properties = <
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"Markdown">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type = <"CodeableConcept">
+			>
+		>
+	>
+
+	["Endpoint"] = <
+		name = <"Endpoint">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::EndpointStatus">
+				>
+				is_mandatory = <True>
+			>
+			["connectionType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"connectionType">
+				type_ref = <
+					type = <"Coding">
+					value_constraint = <"fhir::EndpointConnectionType">
+				>
+				is_mandatory = <True>
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+            ["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"managingOrganization">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["payloadType"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"payloadType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::EndpointPayloadType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["payloadMimeType"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"payloadMimeType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::MimeTypes">
+					>
+				>
+			>
+			["address"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"address">
+				type = <"Address">
+			>
+			["header"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"header">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Schedule"] = <
+		name = <"Schedule">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["active"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"active">
+				type = <"Boolean">
+			>
+			["serviceCategory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceCategory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceCategory">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["serviceType"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceType">
+					>
+				>
+			>
+			["specialty"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialty">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PracticeSettingCodeValueSet">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["actor"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"actor">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"DomainResource">
+                >
+            >
+			["planningHorizon"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"planningHorizon">
+				type = <"Period">
+			>
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"String">
+			>
+		>
+	>
+
+	["Slot"] = <
+		name = <"Slot">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["serviceCategory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceCategory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceCategory">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["serviceType"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceType">
+					>
+				>
+			>
+			["specialty"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialty">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PracticeSettingCodeValueSet">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["appointmentType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"appointmentType">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0276">
+				>
+				is_mandatory = <True>
+			>
+            ["schedule"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"schedule">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Schedule">
+                >
+				is_mandatory = <True>
+            >
+			["start"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start">
+				type = <"Instant">
+			>
+			["end"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end">
+				type = <"Instant">
+			>
+			["overbooked"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"overbooked">
+				type = <"Boolean">
+			>
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"String">
+			>
+		>
+	>
+
+	["EpisodeOfCare"] = <
+		name = <"EpisodeOfCare">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::EpisodeOfCareStatus">
+				>
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::EpisodeOfCareType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["patient"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"patient">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Patient">
+                >
+				is_mandatory = <True>
+            >
+            ["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"managingOrganization">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["referralRequest"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"referralRequest">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"ServiceRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["careManager"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"careManager">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Practitioner">
+                >
+            >
+			["team"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"team">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"CareTeam">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["account"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"account">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Account">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["diagnosis"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"diagnosis">
+				type_def = <
+					container_type = <"List">
+					type = <"Diagnosis">
+				>
+				cardinality = <|>=0|>
+			>
+			["statusHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"statusHistory">
+				type_def = <
+					container_type = <"List">
+					type = <"StatusHistory">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Diagnosis"] = <
+		name = <"Diagnosis">
+		ancestors = <"Any">
+		properties = <
+            ["condition"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"condition">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Condition">
+                >
+				is_mandatory = <True>
+            >
+			["role"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"role">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::DiagnosisRole">
+				>
+			>
+			["rank"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"rank">
+				type = <"PositiveInt">
+			>
+		>
+	>
+
+	["StatusHistory"] = <
+		name = <"StatusHistory">
+		ancestors = <"Any">
+		properties = <
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::EpisodeOfCareStatus">
+				>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["ClassHistory"] = <
+		name = <"ClassHistory">
+		ancestors = <"Any">
+		properties = <
+			["class"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"class">
+				type_ref = <
+					type = <"Coding">
+					value_constraint = <"v3::ActEncounterCode">
+				>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Encounter"] = <
+		name = <"Encounter">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::EncounterStatus">
+				>
+				is_mandatory = <True>
+			>
+			["class"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"class">
+				type_ref = <
+					type = <"Coding">
+					value_constraint = <"v3::ActEncounterCode">
+				>
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::EncounterType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["serviceType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"serviceType">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ServiceType">
+				>
+			>
+			["priority"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"priority">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v3::ActPriority">
+				>
+			>
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Patient">
+                >
+				is_mandatory = <True>
+            >
+			["episodeOfCare"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"episodeOfCare">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"EpisodeOfCare">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["basedOn"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"basedOn">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"ServiceRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["appointment"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"appointment">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Appointment">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["length"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"length">
+				type = <"Duration">
+			>
+			["reasonReference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonReference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Resource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["account"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"account">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Account">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["diagnosis"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"diagnosis">
+				type_def = <
+					container_type = <"List">
+					type = <"Diagnosis">
+				>
+				cardinality = <|>=0|>
+			>
+			["statusHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"statusHistory">
+				type_def = <
+					container_type = <"List">
+					type = <"StatusHistory">
+				>
+				cardinality = <|>=0|>
+			>
+			["classHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"classHistory">
+				type_def = <
+					container_type = <"List">
+					type = <"ClassHistory">
+				>
+				cardinality = <|>=0|>
+			>
+			["hospitalization"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"hospitalization">
+				type = <"Hospitalization">
+			>
+			["location"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"location">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Location">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["serviceProvider"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"serviceProvider">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+            ["partOf"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"partOf">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["participant"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"participant">
+				type_def = <
+					container_type = <"List">
+					type = <"Participant">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Hospitalization"] = <
+		name = <"Hospitalization">
+		ancestors = <"DomainResource">
+		properties = <
+			["preAdmissionIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"preAdmissionIdentifier">
+				type = <"Identifier">
+			>
+            ["origin"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"origin">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["admitSource"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"admitSource">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::AdmitSource">
+				>
+			>
+			["reAdmission"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"reAdmission">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0092">
+				>
+			>
+			["dietPreference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"dietPreference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::Diet">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["specialCourtesy"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialCourtesy">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::SpecialCourtesy">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["destination"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"destination">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Location">
+                >
+				is_mandatory = <True>
+            >
+			["dischargeDisposition"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"dischargeDisposition">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::DischargeDisposition">
+				>
+			>
+		>
+	>
+
+	["Participant"] = <
+		name = <"Participant">
+		ancestors = <"Any">
+		properties = <
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ParticipantType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+            ["individual"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"individual">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Practitioner">
+                >
+				is_mandatory = <True>
+            >
+		>
+	>
+
+	["Appointment"] = <
+		name = <"Appointment">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::AppointmentStatus">
+				>
+				is_mandatory = <True>
+			>
+			["cancelationReason"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"cancelationReason">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::AppointmentCancellationReason">
+				>
+			>
+			["serviceCategory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceCategory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceCategory">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["serviceType"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"serviceType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceType">
+					>
+				>
+			>
+			["specialty"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialty">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PracticeSettingCodeValueSet">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["appointmentType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"appointmentType">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0276">
+				>
+			>
+			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::EncounterReasonCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonReference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonReference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Resource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["priority"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"priority">
+				type = <"UnsignedInt">
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+			["supportingInformation"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"supportingInformation">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["start"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start">
+				type = <"Instant">
+			>
+			["end"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end">
+				type = <"Instant">
+			>
+			["minutesDuration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"minutesDuration">
+				type = <"PositiveInt">
+			>
+			["created"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"created">
+				type = <"DateTime">
+			>
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"String">
+			>
+			["slot"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"slot">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Slot">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["patientInstruction"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"patientInstruction">
+				type = <"String">
+			>
+			["basedOn"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"basedOn">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"ServiceRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["requestPeriod"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"requestPeriod">
+				type_def = <
+					container_type = <"List">
+					type = <"Period">
+				>
+				cardinality = <|>=0|>
+			>
+			["participant"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"participant">
+				type_def = <
+					container_type = <"List">
+					type = <"Participant">
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["AppointmentResponse"] = <
+		name = <"AppointmentResponse">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+            ["appointment"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"appointment">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Appointment">
+                >
+            >
+			["start"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"start">
+				type = <"Instant">
+			>
+			["end"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"end">
+				type = <"Instant">
+			>
+			["participantType"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"participantType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ParticipantType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["actor"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"actor">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"DomainResource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["comment"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"comment">
+				type = <"String">
+			>
+		>
+	>
+
+	["ServiceRequest"] = <
+		name = <"ServiceRequest">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["instantiates"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"instantiates">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["instantiatesCanonical"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"instantiatesCanonical">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["basedOn"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"basedOn">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"ServiceRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["replaces"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"replaces">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"ServiceRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["requisition"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"requisition">
+				type = <"Identifier">
+			>
+
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::RequestStatus">
+				>
+				is_mandatory = <True>
+			>
+			["intent"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"intent">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::RequestIntent">
+				>
+				is_mandatory = <True>
+			>
+			["category"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"category">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceRequestCategoryCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["priority"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"priority">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::RequestPriority">
+				>
+			>
+			["doNotPerform"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"doNotPerform">
+				type = <"Boolean">
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::ProcedureCodes">
+				>
+			>
+			["orderDetail"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"orderDetail">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceRequestOrderDetailsCode">
+					>
+				>
+			>
+			["quantityQuantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantityQuantity">
+				type = <"Quantity">
+			>
+			["quantityRatio"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantityRatio">
+				type = <"Ratio">
+			>
+			["quantityRange"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantityRange">
+				type = <"Range">
+			>
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Resource">
+                >
+				is_mandatory = <True>
+            >
+            ["encounter"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"encounter">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["occurrenceDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurrenceDateTime">
+				type = <"DateTime">
+			>
+			["occurrencePeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurrencePeriod">
+				type = <"Period">
+			>
+			["occurrenceTiming"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurrenceTiming">
+				type = <"Timing">
+			>
+			["asNeededBoolean"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"asNeededBoolean">
+				type = <"Boolean">
+			>
+			["asNeededCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"asNeededCodeableConcept">
+				type = <"CodeableConcept">
+			>
+			["authoredOn"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"authoredOn">
+				type = <"DateTime">
+			>
+            ["requester"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"requester">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["performerType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"performerType">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ParticipantRoles">
+				>
+			>
+            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"performer">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["locationCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"locationCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"v3::ServiceDeliveryLocationRole">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ProcedureReasonCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonReference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonReference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Resource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["insurance"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"insurance">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Resource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["supportingInfo"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"supportingInfo">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["specimen"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specimen">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Specimen">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["relevantHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"relevantHistory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Provenance">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["bodySite"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"bodySite">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"snomedct::BodyStructures">
+					>
+				>
+			>
+		>
+	>
+
+	["Provenance"] = <
+		name = <"Provenance">
+		ancestors = <"DomainResource">
+		properties = <
+			["target"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"target">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=1|>
+			>
+		>
+	>
+
+	["Account"] = <
+		name = <"Account">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::AccountStatus">
+				>
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::AccountTypes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["subject"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"subject">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Party">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["servicePeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"servicePeriod">
+				type = <"Period">
+			>
+            ["owner"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"owner">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+            ["partOf"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"partOf">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Account">
+                >
+            >
+			["coverage"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"coverage">
+				type_def = <
+					container_type = <"List">
+					type = <"Coverage">
+				>
+				cardinality = <|>=0|>
+			>
+			["guarantor"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"guarantor">
+				type_def = <
+					container_type = <"List">
+					type = <"Guarantor">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Coverage"] = <
+		name = <"Coverage">
+		ancestors = <"Any">
+		properties = <
+            ["coverage"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"coverage">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Coverage">
+                >
+				is_mandatory = <True>
+            >
+			["priority"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"priority">
+				type = <"PositiveInt">
+			>
+		>
+	>
+
+	["Guarantor"] = <
+		name = <"Guarantor">
+		ancestors = <"Any">
+		properties = <
+            ["party"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"party">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+				is_mandatory = <True>
+			>
+			["onHold"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"onHold">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Flag"] = <
+		name = <"Flag">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::FlagStatus">
+				>
+				is_mandatory = <True>
+			>
+			["category"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"category">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::FlagCategory">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::FlagCode">
+				>
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Resource">
+                >
+				is_mandatory = <True>
+            >
+            ["encounter"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"encounter">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+            ["author"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"author">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Resource">
+                >
+            >
+		>
+	>
+
+	["Device"] = <
+		name = <"Device">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+            ["definition"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"definition">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"DeviceDefinition">
+                >
+            >
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::FHIRDeviceStatus">
+				>
+			>
+			["statusReason"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"statusReason">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::FHIRDeviceStatusReason">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["distinctIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"distinctIdentifier">
+				type = <"String">
+			>
+			["manufacturer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"manufacturer">
+				type = <"String">
+			>
+			["manufactureDate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"manufactureDate">
+				type = <"DateTime">
+			>
+			["expirationDate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"expirationDate">
+				type = <"DateTime">
+			>
+			["lotNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"lotNumber">
+				type = <"String">
+			>
+			["serialNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"serialNumber">
+				type = <"String">
+			>
+			["modelNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"modelNumber">
+				type = <"String">
+			>
+			["partNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"partNumber">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::DeviceType">
+				>
+			>
+			["owner"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"owner">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["patient"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"patient">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Patient">
+				>
+			>
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["location"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"location">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Location">
+				>
+			>
+			["url"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"url">
+				type = <"Uri">
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["safety"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"safety">
+				type_def = <
+					container_type = <"List">
+					type = <"CodeableConcept">
+				>
+				cardinality = <|>=0|>
+			>
+			["parent"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"parent">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Device">
+				>
+			>
+			["deviceName"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"deviceName">
+				type_def = <
+					container_type = <"List">
+					type = <"DeviceName">
+				>
+				cardinality = <|>=0|>
+			>
+			["udiCarrier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"udiCarrier">
+				type_def = <
+					container_type = <"List">
+					type = <"UdiCarrier">
+				>
+				cardinality = <|>=0|>
+			>
+			["version"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"version">
+				type_def = <
+					container_type = <"List">
+					type = <"Version">
+				>
+				cardinality = <|>=0|>
+			>
+			["specialization"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialization">
+				type_def = <
+					container_type = <"List">
+					type = <"Specialization">
+				>
+				cardinality = <|>=0|>
+			>
+			["property"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"property">
+				type_def = <
+					container_type = <"List">
+					type = <"Property">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["DeviceDefinition"] = <
+		name = <"DeviceDefinition">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["manufacturerString"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"manufacturerString">
+				type = <"String">
+			>
+			["manufacturerReference"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"manufacturerReference">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["modelNumber"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"modelNumber">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::FHIRDeviceType">
+				>
+			>
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version">
+				type = <"String">
+			>
+			["safety"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"safety">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::DeviceSafety">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["shelfLifeStorage"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"shelfLifeStorage">
+				type_def = <
+					container_type = <"List">
+					type = <"ProductShelfLife">
+				>
+				cardinality = <|>=0|>
+			>
+			["physicalCharacteristics"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"physicalCharacteristics">
+				type = <"ProdCharacteristic">
+			>
+			["languageCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"languageCode">
+				type_def = <
+					container_type = <"List">
+					type = <"CodeableConcept">
+				>
+				cardinality = <|>=0|>
+			>
+			["owner"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"owner">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Organization">
+				>
+			>
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["url"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"url">
+				type = <"Uri">
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["parentDevice"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"parentDevice">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"DeviceDefinition">
+				>
+			>
+			["deviceName"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"deviceName">
+				type_def = <
+					container_type = <"List">
+					type = <"DeviceName">
+				>
+				cardinality = <|>=0|>
+			>
+			["udiDeviceIdentifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"udiDeviceIdentifier">
+				type_def = <
+					container_type = <"List">
+					type = <"UdiDeviceIdentifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["capability"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"capability">
+				type_def = <
+					container_type = <"List">
+					type = <"Capability">
+				>
+				cardinality = <|>=0|>
+			>
+			["specialization"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialization">
+				type_def = <
+					container_type = <"List">
+					type = <"Specialization">
+				>
+				cardinality = <|>=0|>
+			>
+			["property"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"property">
+				type_def = <
+					container_type = <"List">
+					type = <"Property">
+				>
+				cardinality = <|>=0|>
+			>
+			["material"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"material">
+				type_def = <
+					container_type = <"List">
+					type = <"Material">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["DeviceName"] = <
+		name = <"DeviceName">
+		ancestors = <"Any">
+		properties = <
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DeviceNameType">
+				>
+			>
+		>
+	>
+
+	["UdiCarrier"] = <
+		name = <"UdiCarrier">
+		ancestors = <"Any">
+		properties = <
+			["deviceIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"deviceIdentifier">
+				type = <"String">
+			>
+			["issuer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"issuer">
+				type = <"Uri">
+			>
+			["jurisdiction"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"jurisdiction">
+				type = <"Uri">
+			>
+			["carrierAIDC"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"carrierAIDC">
+				type = <"Base64Binary">
+			>
+			["carrierHRF"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"carrierHRF">
+				type = <"String">
+			>
+			["entryType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"entryType">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::UDIEntryType">
+				>
+			>
+		>
+	>
+
+	["UdiDeviceIdentifier"] = <
+		name = <"UdiDeviceIdentifier">
+		ancestors = <"Any">
+		properties = <
+			["deviceIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"deviceIdentifier">
+				type = <"String">
+			>
+			["issuer"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"issuer">
+				type = <"Uri">
+			>
+			["jurisdiction"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"jurisdiction">
+				type = <"Uri">
+			>
+		>
+	>
+
+	["Version"] = <
+		name = <"Version">
+		ancestors = <"Any">
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"String">
+			>
+			["component"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"component">
+				type = <"Identifier">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+			>
+		>
+	>
+
+	["Specialization"] = <
+		name = <"Specialization">
+		ancestors = <"Any">
+		properties = <
+			["version"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"version">
+				type = <"String">
+			>
+			["systemType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"systemType">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+	["Property"] = <
+		name = <"Property">
+		ancestors = <"Any">
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["valueQuantity"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"valueQuantity">
+				type_def = <
+					container_type = <"List">
+					type = <"Quantity">
+				>
+				cardinality = <|>=0|>
+			>
+			["valueCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"valueCode">
+				type_def = <
+					container_type = <"List">
+					type = <"CodeableConcept">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["ProductShelfLife"] = <
+		name = <"ProductShelfLife">
+		ancestors = <"Any">
+		properties = <
+			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"identifier">
+				type = <"Identifier">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Quantity">
+				is_mandatory = <True>
+			>
+			["specialPrecautionsForStorage"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"specialPrecautionsForStorage">
+				type_def = <
+					container_type = <"List">
+					type = <"CodeableConcept">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["ProdCharacteristic"] = <
+		name = <"ProdCharacteristic">
+		ancestors = <"Any">
+		properties = <
+			["height"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"height">
+				type = <"Quantity">
+			>
+			["width"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"width">
+				type = <"Quantity">
+			>
+			["depth"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"depth">
+				type = <"Quantity">
+			>
+			["weight"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"weight">
+				type = <"Quantity">
+			>
+			["nominalVolume"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"nominalVolume">
+				type = <"Quantity">
+			>
+			["externalDiameter"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"externalDiameter">
+				type = <"Quantity">
+			>
+			["color"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"color">
+				type = <"String">
+			>
+			["imprint"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"imprint">
+				type_def = <
+					container_type = <"List">
+					type = <"String">
+				>
+				cardinality = <|>=0|>
+			>
+			["image"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"image">
+				type_def = <
+					container_type = <"List">
+					type = <"Attachment">
+				>
+				cardinality = <|>=0|>
+			>
+			["scoring"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"scoring">
+				type = <"CodeableConcept">
+			>
+		>
+	>
+
+	["Capability"] = <
+		name = <"Capability">
+		ancestors = <"Any">
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["description"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"description">
+				type_def = <
+					container_type = <"List">
+					type = <"CodeableConcept">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Material"] = <
+		name = <"Material">
+		ancestors = <"Any">
+		properties = <
+			["substance"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"substance">
+				type = <"CodeableConcept">
+				is_mandatory = <True>
+			>
+			["alternate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"alternate">
+				type = <"Boolean">
+			>
+			["allergenicIndicator"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"allergenicIndicator">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["DeviceMetric"] = <
+		name = <"DeviceMetric">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::DeviceMetricAndComponentTypes">
+				>
+				is_mandatory = <True>
+			>
+			["unit"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"unit">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::DeviceMetricAndComponentTypes">
+				>
+			>
+            ["source"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"source">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Device">
+                >
+            >
+            ["parent"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"parent">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Device">
+                >
+            >
+			["operationalStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"operationalStatus">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DeviceMetricOperationalStatus">
+				>
+			>
+			["color"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"color">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DeviceMetricColor">
+				>
+			>
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DeviceMetricCategory">
+				>
+				is_mandatory = <True>
+			>
+			["measurementPeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"measurementPeriod">
+				type = <"Timing">
+			>
+			["calibration"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"calibration">
+				type_def = <
+					container_type = <"List">
+					type = <"Calibration">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Calibration"] = <
+		name = <"Calibration">
+		ancestors = <"Any">
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DeviceMetricCalibrationType">
+				>
+			>
+			["state"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"state">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::DeviceMetricCalibrationState">
+				>
+			>
+			["time"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"time">
+				type = <"Instant">
+			>
+		>
+	>
+
+	["Substance"] = <
+		name = <"Substance">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::FHIRSubstanceStatus">
+				>
+			>
+			["category"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"category">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::SubstanceCategoryCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::SubstanceCode">
+				>
+				is_mandatory = <True>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+			["ingredient"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"ingredient">
+				type_def = <
+					container_type = <"List">
+					type = <"Ingredient">
+				>
+				cardinality = <|>=0|>
+			>
+			["instance"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"instance">
+				type_def = <
+					container_type = <"List">
+					type = <"Instance">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Instance"] = <
+		name = <"Instance">
+		ancestors = <"Any">
+		properties = <
+			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"identifier">
+				type = <"Identifier">
+			>
+			["expiry"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"expiry">
+				type = <"DateTime">
+			>
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"Quantity">
+			>
+		>
+	>
+
+	["Ingredient"] = <
+		name = <"Ingredient">
+		ancestors = <"Any">
+		properties = <
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"Ratio">
+			>
+			["substanceCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"substanceCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::SubstanceCode">
+				>
+			>
+            ["substanceReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"substanceReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Substance">
+                >
+            >
+		>
+	>
+
+	["CareTeam"] = <
+		name = <"CareTeam">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::CareTeamStatus">
+				>
+			>
+			["category"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"category">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::CareTeamCategory">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["name"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"name">
+				type = <"String">
+			>
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+            ["encounter"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"encounter">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"snomedct::ClinicalFindings">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonReference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonReference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Condition">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"managingOrganization">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"telecom">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Condition"] = <
+		name = <"Condition">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["clinicalStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"clinicalStatus">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ConditionClinicalStatusCodes">
+				>
+			>
+			["verificationStatus"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"verificationStatus">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ConditionVerificationStatus">
+				>
+			>
+			["category"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"category">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ConditionCategoryCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["severity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"severity">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ConditionDiagnosisSeverity">
+				>
+				is_mandatory = <True>
+			>
+			["code"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"code">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ConditionProblemDiagnosisCode">
+				>
+				is_mandatory = <True>
+			>
+			["bodySite"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"bodySite">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"snomedct::BodyStructures">
+					>
+				>
+			>
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+            ["encounter"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"encounter">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["onsetDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"onsetDateTime">
+				type = <"DateTime">
+			>
+			["onsetAge"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"onsetAge">
+				type = <"Age">
+			>
+			["onsetPeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"onsetPeriod">
+				type = <"Period">
+			>
+			["onsetRange"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"onsetRange">
+				type = <"Range">
+			>
+			["onsetString"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"onsetString">
+				type = <"String">
+			>
+			["abatementDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"abatementDateTime">
+				type = <"DateTime">
+			>
+			["abatementAge"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"abatementAge">
+				type = <"Age">
+			>
+			["abatementPeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"abatementPeriod">
+				type = <"Period">
+			>
+			["abatementRange"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"abatementRange">
+				type = <"Range">
+			>
+			["abatementString"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"abatementString">
+				type = <"String">
+			>
+			["recordedDate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"recordedDate">
+				type = <"Date">
+			>
+            ["recorder"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"recorder">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+            ["asserter"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"asserter">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["stage"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"stage">
+				type_def = <
+					container_type = <"List">
+					type = <"Stage">
+				>
+				cardinality = <|>=0|>
+			>
+			["evidence"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"evidence">
+				type_def = <
+					container_type = <"List">
+					type = <"Evidence">
+				>
+				cardinality = <|>=0|>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Stage"] = <
+		name = <"Stage">
+		ancestors = <"Any">
+		properties = <
+			["summary"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"summary">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ConditionStage">
+				>
+			>
+			["assessment"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"assessment">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Resource">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ConditionStageType">
+				>
+			>
+		>
+	>
+
+	["Evidence"] = <
+		name = <"Evidence">
+		ancestors = <"Any">
+		properties = <
+			["code"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"code">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ManifestationAndSymptomCodes">
+					>
+				>
+			>
+			["detail"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"detail">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Specimen"] = <
+		name = <"Specimen">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["accessionIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"accessionIdentifier">
+				type = <"Identifier">
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type_ref = <
+					type = <"Code">
+					value_constraint = <"fhir::SpecimenStatus">
+				>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0487">
+				>
+			>
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Resource">
+                >
+				is_mandatory = <True>
+            >
+			["receivedTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"receivedTime">
+				type = <"DateTime">
+			>
+			["parent"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"parent">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Specimen">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["request"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"request">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"ServiceRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["condition"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"condition">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0493">
+				>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["collection"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"collection">
+				type_def = <
+					container_type = <"List">
+					type = <"Collection">
+				>
+				cardinality = <|>=0|>
+			>
+			["container"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"container">
+				type_def = <
+					container_type = <"List">
+					type = <"Container">
+				>
+				cardinality = <|>=0|>
+			>
+			["processing"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"processing">
+				type_def = <
+					container_type = <"List">
+					type = <"Processing">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["Collection"] = <
+		name = <"Collection">
+		ancestors = <"Any">
+		properties = <
+            ["collector"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"collector">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+			["collectedDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"collectedDateTime">
+				type = <"DateTime">
+			>
+			["collectedPeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"collectedPeriod">
+				type = <"Period">
+			>
+			["duration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"duration">
+				type = <"Duration">
+			>
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"SimpleQuantity">
+			>
+			["method"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"method">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::SpecimenCollectionMethod">
+				>
+			>
+			["bodySite"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"bodySite">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::BodyStructures">
+				>
+			>
+			["fastingStatusDuration"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"fastingStatusDuration">
+				type = <"Duration">
+			>
+			["fastingStatusCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"fastingStatusCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0916">
+				>
+			>
+		>
+	>
+
+	["Container"] = <
+		name = <"Container">
+		ancestors = <"Any">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::SpecimenContainer">
+				>
+			>
+			["capacity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"capacity">
+				type = <"SimpleQuantity">
+			>
+			["specimenQuantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"specimenQuantity">
+				type = <"SimpleQuantity">
+			>
+			["additiveCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"additiveCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v2::0371">
+				>
+			>
+            ["additiveReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"additiveReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Substance">
+                >
+            >
+		>
+	>
+
+	["Processing"] = <
+		name = <"Processing">
+		ancestors = <"Any">
+		properties = <
+			["description"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"description">
+				type = <"String">
+			>
+			["procedure"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"procedure">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::SpecimenProcessProcedure">
+				>
+			>
+			["additive"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"request">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Substance">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["timeDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timeDateTime">
+				type = <"DateTime">
+			>
+			["timePeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"timePeriod">
+				type = <"Period">
+			>
+		>
+	>
+
+>
