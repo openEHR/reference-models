@@ -51,60 +51,82 @@ packages = <
 	["org.hl7.fhir"] = <
 		name = <"org.hl7.fhir">
 		packages = <
-			["data_types"] = <
-				name = <"data_types">
+			["foundation"] = <
+				name = <"foundation">
+				classes = <
+					"Element", "Resource", "DomainResource"
+				>
 				packages = <
-					["primitive"] = <
-						name = <"primitive">
-						classes = <"Any", "Boolean", 
-						    "Base64Binary", "Integer", "PositiveInt", "UnsignedInt", "Decimal", 
-						    "String", "Code", "Id", "Markdown", 
-							"List", "Array", "Set", "Interval", "Ordered", "Aggregate", 
-							"Date", "DateTime", "Instant", "Time",
-							"Uri", "Url", "Oid", "Uuid", "Xhtml"
-						>
-					>
-					["complex"] = <
-						name = <"complex">
-						classes = <"Ratio", "Period", "Range", "Attachment", "Identifier", "Annotation",
-						    "HumanName", "Address", "ContactPoint", "SampledData", 
-							"SimpleQuantity", "Quantity", "Money", "Count", "Duration", "Distance", "Age", 
-							"CodeableConcept", "Coding", "Timing", "Repeat"
-						>
-					>
-					["other"] = <
-						name = <"other">
-						classes = <
-							"Narrative", "Extension", "Reference", "Resource", "DomainResource", "Meta",
-							"Element", "Canonical"
+					["data_types"] = <
+						name = <"data_types">
+						packages = <
+							["primitive"] = <
+								name = <"primitive">
+								classes = <"Any", "Boolean", 
+									"Base64Binary", "Integer", "PositiveInt", "UnsignedInt", "Decimal", 
+									"String", "Code", "Id", "Markdown", 
+									"List", "Array", "Set", "Interval", "Ordered", "Aggregate", 
+									"Date", "DateTime", "Instant", "Time",
+									"Uri", "Url", "Oid", "Uuid"
+								>
+							>
+							["general_purpose"] = <
+								name = <"general_purpose">
+								classes = <"Ratio", "Period", "Range", "Attachment", "Identifier", "Annotation",
+									"HumanName", "Address", "ContactPoint", "SampledData", 
+									"SimpleQuantity", "Quantity", "Money", "Count", "Duration", "Distance", "Age", 
+									"CodeableConcept", "Coding", "Timing", "Repeat"
+								>
+							>
+							["special_purpose"] = <
+								name = <"special_purpose">
+								classes = <
+									"Narrative", "Extension", "Reference", "Meta",
+									"Canonical", "Xhtml"
+								>
+							>
 						>
 					>
 				>
 			>
-			["resources"] = <
-				name = <"resources">
-				packages = <
-					["administrative"] = <
-						name = <"administrative">
-						classes = <
-							"Party", "RealPerson", "Role",
-							"Patient", "RelatedPerson", "Person", "Group", "Practitioner", "Qualification", "PractitionerRole",
-							"AvailableTime", "NotAvailable", "Characteristic", "Member", 
-							"Organization", "Location", "HealthcareService", "Schedule", "Slot", 
-							"EpisodeOfCare", "Encounter", "ServiceRequest", "CareTeam", 
-							"Appointment", "AppointmentResponse", "Account", "Flag", 
-							"Device", "DeviceDefinition", "DeviceMetric", "Substance", 
-							"Contact", "Link", "Communication", "Eligibility",
-							"HoursOfOperation", "Position", "Endpoint",
-							"StatusHistory", "Diagnosis", "Condition", "Stage", "Evidence", 
-							"Hospitalization", "Participant", "ClassHistory",
-							"Coverage", "Guarantor",
-							"Property", "Specialization", "Version", "UdiCarrier", "UdiDeviceIdentifier", "DeviceName", "Calibration",
-							"Instance", "Ingredient", "Specimen", "Collection", "Processing", "Container", 
-							"Capability", "Material", "Provenance",
-							"ProdCharacteristic", "ProductShelfLife"
-						>
-					>
+			["administration"] = <
+				name = <"administration">
+				classes = <
+					"Party", "RealPerson", "Role",
+					"Patient", "RelatedPerson", "Person", "Group", "Practitioner", "Qualification", "PractitionerRole",
+					"AvailableTime", "NotAvailable", "Characteristic", "Member", 
+					"Organization", "Location", "HealthcareService", 
+					"EpisodeOfCare", "Encounter", "Flag", 
+					"Device", "DeviceDefinition", "DeviceMetric", "Substance", 
+					"Contact", "Link", "Communication", "Eligibility",
+					"HoursOfOperation", "Position", "Endpoint",
+					"StatusHistory", "Diagnosis", 
+					"Hospitalization", "Participant", "ClassHistory",
+					"Coverage", "Guarantor",
+					"Property", "Specialization", "Version", "UdiCarrier", "UdiDeviceIdentifier", "DeviceName", "Calibration",
+					"Instance", "Ingredient", 
+					"Capability", "Material", "Provenance",
+					"ProdCharacteristic", "ProductShelfLife"
+				>
+			>
+			["workflow"] = <
+				name = <"workflow">
+				classes = <
+					"Appointment", "AppointmentResponse", "Account", 
+					"Schedule", "Slot"
+				>
+			>
+			["clinical"] = <
+				name = <"clinical">
+				classes = <
+					"Condition", "Stage", "Evidence", "CareTeam"
+				>
+			>
+			["diagnostics"] = <
+				name = <"diagnostics">
+				classes = <
+					"ServiceRequest", 
+					"Specimen", "Collection", "Processing", "Container"
 				>
 			>
 		>
