@@ -54,7 +54,7 @@ packages = <
 			["foundation"] = <
 				name = <"foundation">
 				classes = <
-					"Element", "Resource", "DomainResource"
+					"Element", "BackboneElement", "Resource", "DomainResource"
 				>
 				packages = <
 					["data_types"] = <
@@ -72,16 +72,17 @@ packages = <
 							>
 							["general_purpose"] = <
 								name = <"general_purpose">
-								classes = <"Ratio", "Period", "Range", "Attachment", "Identifier", "Annotation",
-									"HumanName", "Address", "ContactPoint", "SampledData", 
-									"SimpleQuantity", "Quantity", "Money", "Count", "Duration", "Distance", "Age", 
-									"CodeableConcept", "Coding", "Timing", "Repeat"
+								classes = <"Ratio", "Period", "Range", "Attachment", "Identifier", "IdentifierUse", "Annotation",
+									"HumanName", "NameUse", "Address", "AddressUse", "AddressType", 
+									"ContactPoint", "ContactPointUse", "ContactPointSystem", "SampledData", 
+									"SimpleQuantity", "Quantity", "QuantityComparator", "Money", "Count", "Duration", "Distance", "Age", 
+									"CodeableConcept", "Coding", "Timing", "Repeat", "UnitsOfTime"
 								>
 							>
 							["special_purpose"] = <
 								name = <"special_purpose">
 								classes = <
-									"Narrative", "Extension", "Reference", "Meta",
+									"Narrative", "NarrativeStatus", "Extension", "Reference", "Meta",
 									"Canonical", "Xhtml"
 								>
 							>
@@ -92,18 +93,21 @@ packages = <
 			["administration"] = <
 				name = <"administration">
 				classes = <
-					"Party", "RealPerson", "Role",
-					"Patient", "RelatedPerson", "Person", "Group", "Practitioner", "Qualification", "PractitionerRole",
+					"Entity", "Party", "RealPerson", "Role",
+					"Patient", "AdministrativeGender", "RelatedPerson", "Person", "Group", "GroupType", 
+					"Practitioner", "Qualification", "PractitionerRole",
 					"AvailableTime", "NotAvailable", "Characteristic", "Member", 
-					"Organization", "Location", "HealthcareService", 
+					"Organization", "Location", "LocationStatus", "HealthcareService", 
 					"EpisodeOfCare", "Encounter", "Flag", 
-					"Device", "DeviceDefinition", "DeviceMetric", "Substance", 
-					"Contact", "Link", "Communication", "Eligibility",
-					"HoursOfOperation", "Position", "Endpoint",
+					"Device", "DeviceDefinition", "DeviceMetric", "Substance", "FHIRSubstanceStatus", 
+					"DeviceMetricOperationalStatus", "DeviceMetricOperationalStatus", "DeviceMetricColor", "DeviceMetricCategory",
+					"Contact", "Link", "IdentityAssuranceLevel", "Communication", "Eligibility",
+					"HoursOfOperation", "Position", "Endpoint", "EndpointStatus", 
 					"StatusHistory", "Diagnosis", 
 					"Hospitalization", "Participant", "ClassHistory",
 					"Coverage", "Guarantor",
 					"Property", "Specialization", "Version", "UdiCarrier", "UdiDeviceIdentifier", "DeviceName", "Calibration",
+					"DeviceMetricCalibrationType", "DeviceMetricCalibrationState",
 					"Instance", "Ingredient", 
 					"Capability", "Material", "Provenance",
 					"ProdCharacteristic", "ProductShelfLife"
@@ -119,14 +123,14 @@ packages = <
 			["clinical"] = <
 				name = <"clinical">
 				classes = <
-					"Condition", "Stage", "Evidence", "CareTeam"
+					"Condition", "Stage", "Evidence", "CareTeam", "CareTeamStatus"
 				>
 			>
 			["diagnostics"] = <
 				name = <"diagnostics">
 				classes = <
 					"ServiceRequest", 
-					"Specimen", "Collection", "Processing", "Container"
+					"Specimen", "SpecimenStatus", "Collection", "Processing", "Container"
 				>
 			>
 		>
@@ -159,7 +163,23 @@ primitive_types = <
 				name = <"extension">
 				type_def = <
 					container_type = <"List">
-					type = <"Any">
+					type = <"Extension">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["BackboneElement"] = <
+		name = <"BackboneElement">
+		is_abstract = <True>
+		ancestors = <"Element">
+		properties = <
+			["modifierExtension"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"modifierExtension">
+				type_def = <
+					container_type = <"List">
+					type = <"Extension">
 				>
 				cardinality = <|>=0|>
 			>
@@ -402,13 +422,16 @@ class_definitions = <
 		properties = <
 			["comparator"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"comparator">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::QuantityComparator">
-				>
+				type = <"QuantityComparator">
 			>
 		>
 	>
+
+    ["QuantityComparator"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"QuantityComparator">
+        ancestors = <"Code">
+        item_names = <"<", "<=", ">=", ">">
+    >
 
 	["Age"] = <
 		name = <"Age">
@@ -418,7 +441,7 @@ class_definitions = <
 				name = <"system">
 				type_ref = <
 					type = <"Uri">
-					value_constraint = <"::UCUM">
+					value_constraint = <"hl7::ucum">
 				>
 			>
 		>
@@ -432,7 +455,7 @@ class_definitions = <
 				name = <"system">
 				type_ref = <
 					type = <"Uri">
-					value_constraint = <"::UCUM">
+					value_constraint = <"hl7::ucum">
 				>
 			>
 		>
@@ -446,7 +469,7 @@ class_definitions = <
 				name = <"system">
 				type_ref = <
 					type = <"Uri">
-					value_constraint = <"::UCUM">
+					value_constraint = <"hl7::ucum">
 				>
 			>
 		>
@@ -460,7 +483,7 @@ class_definitions = <
 				name = <"system">
 				type_ref = <
 					type = <"Uri">
-					value_constraint = <"::UCUM">
+					value_constraint = <"hl7::ucum">
 				>
 			>
 		>
@@ -572,10 +595,7 @@ class_definitions = <
 		properties = <
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::IdentifierUse">
-				>
+				type = <"IdentifierUse">
 			>
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
@@ -606,16 +626,19 @@ class_definitions = <
 		>
 	>
 
+    ["IdentifierUse"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"IdentifierUse">
+        ancestors = <"Code">
+        item_names = <"usual", "official", "temp", "secondary", "old">
+    >
+
 	["HumanName"] = <
 		name = <"HumanName">
 		ancestors = <"Element">
 		properties = <
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::NameUse">
-				>
+				type = <"NameUse">
 			>
 			["text"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"text">
@@ -656,23 +679,23 @@ class_definitions = <
 		>
 	>
 
+    ["NameUse"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"NameUse">
+        ancestors = <"Code">
+        item_names = <"usual", "official", "temp", "nickname", "anonymous", "old", "maiden">
+    >
+
 	["Address"] = <
 		name = <"Address">
 		ancestors = <"Element">
 		properties = <
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::AddressUse">
-				>
+				type = <"AddressUse">
 			>
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::AddressType">
-				>
+				type = <"AddressType">
 			>
 			["text"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"text">
@@ -708,6 +731,18 @@ class_definitions = <
 			>
 		>
 	>
+
+    ["AddressUse"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"AddressUse">
+        ancestors = <"Code">
+        item_names = <"home", "work", "temp", "old", "billing">
+    >
+
+    ["AddressType"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"AddressType">
+        ancestors = <"Code">
+        item_names = <"postal", "physical", "both">
+    >
 
 	["Attachment"] = <
 		name = <"Attachment">
@@ -803,7 +838,7 @@ class_definitions = <
 
 	["Timing"] = <
 		name = <"Timing">
-		ancestors = <"Element">
+		ancestors = <"BackboneElement">
 		properties = <
 			["event"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"event">
@@ -816,7 +851,7 @@ class_definitions = <
 			["code"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"code">
 				type_ref = <
-					type = <"Code">
+					type = <"CodeableConcept">
 					value_constraint = <"fhir::TimingAbbreviation">
 				>
 			>
@@ -853,10 +888,7 @@ class_definitions = <
 			>
 			["durationUnit"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"durationUnit">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::UnitsOfTime">
-				>
+				type = <"UnitsOfTime">
 			>
 			["frequency"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"frequency">
@@ -876,10 +908,7 @@ class_definitions = <
 			>
 			["periodUnit"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"periodUnit">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::UnitsOfTime">
-				>
+				type = <"UnitsOfTime">
 			>
 			["timeOfDay"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"timeOfDay">
@@ -906,16 +935,19 @@ class_definitions = <
 		>
 	>
 
+    ["UnitsOfTime"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"UnitsOfTime">
+        ancestors = <"Code">
+        item_names = <"s", "min", "h", "d", "wk", "mo", "a">
+    >
+
 	["ContactPoint"] = <
 		name = <"ContactPoint">
 		ancestors = <"Element">
 		properties = <
 			["system"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::ContactPointSystem">
-				>
+				type = <"ContactPointSystem">
 			>
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -923,10 +955,7 @@ class_definitions = <
 			>
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::ContactPointUse">
-				>
+				type = <"ContactPointUse">
 			>
 			["rank"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"rank">
@@ -939,6 +968,18 @@ class_definitions = <
 		>
 	>
 
+    ["ContactPointUse"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"ContactPointUse">
+        ancestors = <"Code">
+        item_names = <"home", "work", "temp", "old", "mobile">
+    >
+
+    ["ContactPointSystem"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"ContactPointSystem">
+        ancestors = <"Code">
+        item_names = <"phone", "fax", "email", "pager", "url", "sms", "other">
+    >
+
 	--
 	---------------- Data types: Other types -------------------
 	--
@@ -949,10 +990,7 @@ class_definitions = <
 		properties = <
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::NarrativeStatus">
-				>
+				type = <"NarrativeStatus">
 				is_mandatory = <True>
 			>
 			["div"] = (P_BMM_SINGLE_PROPERTY) <
@@ -962,6 +1000,12 @@ class_definitions = <
 			>
 		>
 	>
+
+    ["NarrativeStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"NarrativeStatus">
+        ancestors = <"Code">
+        item_names = <"generated", "extensions", "additional", "empty">
+    >
 
 	["Extension"] = <
 		name = <"Extension">
@@ -1015,13 +1059,9 @@ class_definitions = <
 		is_abstract = <True>
 		ancestors = <"Any">
 		properties = <
-			["id"] = (P_BMM_CONTAINER_PROPERTY) <
+			["id"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"id">
-				type_def = <
-					container_type = <"List">
-					type = <"Identifier">
-				>
-				cardinality = <|>=0|>
+				type = <"Id">
 			>
 			["meta"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"meta">
@@ -1044,7 +1084,7 @@ class_definitions = <
 	["DomainResource"] = <
 		name = <"DomainResource">
 		is_abstract = <True>
-		ancestors = <"Any">
+		ancestors = <"Resource">
 		properties = <
 			["contained"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"contained">
@@ -1124,8 +1164,8 @@ class_definitions = <
 	---------- Administrative ----------
 	--
 
-	["Party"] = <
-		name = <"Party">
+	["Entity"] = <
+		name = <"Entity">
 		ancestors = <"DomainResource">
 		is_abstract = <True>
 		properties = <
@@ -1137,6 +1177,18 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
+			["active"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"active">
+				type = <"Boolean">
+			>
+		>
+	>
+
+	["Party"] = <
+		name = <"Party">
+		ancestors = <"Entity">
+		is_abstract = <True>
+		properties = <
 			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"telecom">
 				type_def = <
@@ -1144,10 +1196,6 @@ class_definitions = <
 					type = <"ContactPoint">
 				>
 				cardinality = <|>=0|>
-			>
-			["active"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"active">
-				type = <"Boolean">
 			>
 		>
 	>
@@ -1160,13 +1208,16 @@ class_definitions = <
 				name = <"name">
 				type = <"String">
 			>
-			["type"] = (P_BMM_SINGLE_PROPERTY) <
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"type">
-				type_ref = <
-					type = <"CodeableConcept">
-					value_constraint = <"fhir::OrganizationType">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::OrganizationType">
+					>
 				>
-				is_mandatory = <True>
+				cardinality = <|>=0|>
 			>
 			["alias"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"alias">
@@ -1236,14 +1287,7 @@ class_definitions = <
 			>
 			["gender"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"gender">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::AdministrativeGender">
-				>
-			>
-			["birthDate"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"birthDate">
-				type = <"Date">
+				type = <"AdministrativeGender">
 			>
 			["address"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"address">
@@ -1257,21 +1301,23 @@ class_definitions = <
 				name = <"photo">
 				type = <"Attachment">
 			>
-			["link"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"link">
-				type_def = <
-					container_type = <"List">
-					type = <"Link">
-				>
-				cardinality = <|>=0|>
-			>
 		>
 	>
+
+    ["AdministrativeGender"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"AdministrativeGender">
+        ancestors = <"Code">
+        item_names = <"male", "female", "other", "unknown">
+    >
 
 	["Person"] = <
 		name = <"Person">
 		ancestors = <"RealPerson">
 		properties = <
+			["birthDate"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"birthDate">
+				type = <"Date">
+			>
             ["managingOrganization"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"managingOrganization">
                 type_def = <
@@ -1284,6 +1330,14 @@ class_definitions = <
 				type_def = <
 					container_type = <"List">
 					type = <"Communication">
+				>
+				cardinality = <|>=0|>
+			>
+			["link"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"link">
+				type_def = <
+					container_type = <"List">
+					type = <"Link">
 				>
 				cardinality = <|>=0|>
 			>
@@ -1300,14 +1354,18 @@ class_definitions = <
                     root_type = <"Reference">
                     generic_parameters = <"Patient">
                 >
-            >
-			["relationship"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"relationship">
-				type_ref = <
-					type = <"CodeableConcept">
-					value_constraint = <"fhir::PatientRelationshipType">
-				>
 				is_mandatory = <True>
+            >
+			["relationship"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"relationship">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::PatientRelationshipType">
+					>
+				>
+				cardinality = <|>=0|>
 			>
 			["period"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"period">
@@ -1340,12 +1398,27 @@ class_definitions = <
 				name = <"multipleBirthInteger">
 				type = <"Integer">
 			>
+            ["generalPractitioner"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"generalPractitioner">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
+			["contact"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"contact">
+				type_def = <
+					container_type = <"List">
+					type = <"ContactPoint">
+				>
+				cardinality = <|>=0|>
+			>
 		>
 	>
 
 	["Contact"] = <
 		name = <"Contact">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["purpose"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"purpose">
@@ -1379,7 +1452,7 @@ class_definitions = <
 
 	["Communication"] = <
 		name = <"Communication">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["language"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"language">
@@ -1398,37 +1471,37 @@ class_definitions = <
 
 	["Link"] = <
 		name = <"Link">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
-			["other"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"other">
+			["target"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"target">
                 type_def = <
                     root_type = <"Reference">
                     generic_parameters = <"Person">
                 >
 				is_mandatory = <True>
 			>
-			["type"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"type">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::LinkType">
-				>
+			["assurance"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"assurance">
+				type = <"IdentityAssuranceLevel">
 				is_mandatory = <True>
 			>
 		>
 	>
 
+    ["IdentityAssuranceLevel"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"IdentityAssuranceLevel">
+        ancestors = <"Code">
+        item_names = <"level1", "level2", "level3", "level4">
+    >
+
 	["Group"] = <
 		name = <"Group">
-		ancestors = <"Party">
+		ancestors = <"Entity">
 		properties = <
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::GroupType">
-				>
+				type = <"GroupType">
 				is_mandatory = <True>
 			>
 			["code"] = (P_BMM_SINGLE_PROPERTY) <
@@ -1438,6 +1511,7 @@ class_definitions = <
 			["actual"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"actual">
 				type = <"Boolean">
+				is_mandatory = <True>
 			>
 			["name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"name">
@@ -1473,9 +1547,15 @@ class_definitions = <
 		>
 	>
 
+    ["GroupType"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"GroupType">
+        ancestors = <"Code">
+        item_names = <"person", "animal", "practitioner", "device", "medication", "substance">
+    >
+
 	["Characteristic"] = <
 		name = <"Characteristic">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["code"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"code">
@@ -1500,7 +1580,7 @@ class_definitions = <
 
 	["Member"] = <
 		name = <"Member">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
             ["entity"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"entity">
@@ -1537,7 +1617,7 @@ class_definitions = <
 
 	["Qualification"] = <
 		name = <"Qualification">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"identifier">
@@ -1573,14 +1653,20 @@ class_definitions = <
 		name = <"PractitionerRole">
 		ancestors = <"Role">
 		properties = <
-			["practitioner"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"practitioner">
-				type = <"Practitioner">
-			>
-			["organization"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"organization">
-				type = <"Organization">
-			>
+            ["practitioner"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"practitioner">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Practitioner">
+                >
+            >
+            ["organization"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"organization">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Organization">
+                >
+            >
 			["code"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"code">
 				type_def = <
@@ -1657,7 +1743,7 @@ class_definitions = <
 
 	["AvailableTime"] = <
 		name = <"AvailableTime">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["availableStartTime"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"availableStartTime">
@@ -1687,7 +1773,7 @@ class_definitions = <
 
 	["NotAvailable"] = <
 		name = <"NotAvailable">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["description"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"description">
@@ -1715,10 +1801,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::LocationStatus">
-				>
+				type = <"LocationStatus">
 			>
 			["operationStatus"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"operationStatus">
@@ -1821,9 +1904,15 @@ class_definitions = <
 		>
 	>
 
+    ["LocationStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"LocationStatus">
+        ancestors = <"Code">
+        item_names = <"active", "suspended", "inactive">
+    >
+
 	["Position"] = <
 		name = <"Position">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["latitude"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"latitude">
@@ -1845,7 +1934,7 @@ class_definitions = <
 
 	["HoursOfOperation"] = <
 		name = <"HoursOfOperation">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["openingTime"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"openingTime">
@@ -1884,12 +1973,16 @@ class_definitions = <
                     generic_parameters = <"Organization">
                 >
 			>
-			["category"] = (P_BMM_SINGLE_PROPERTY) <
+			["category"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"category">
-				type_ref = <
-					type = <"CodeableConcept">
-					value_constraint = <"fhir::ServiceCategory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceCategory">
+					>
 				>
+				cardinality = <|>=0|>
 			>
 			["type"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"type">
@@ -1977,7 +2070,7 @@ class_definitions = <
 				name = <"characteristic">
 				type_def = <
 					container_type = <"List">
-					type = <"Characteristic">
+					type = <"CodeableConcept">
 				>
 				cardinality = <|>=0|>
 			>
@@ -2047,7 +2140,7 @@ class_definitions = <
 
 	["Eligibility"] = <
 		name = <"Eligibility">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["comment"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"comment">
@@ -2074,10 +2167,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::EndpointStatus">
-				>
+				type = <"EndpointStatus">
 				is_mandatory = <True>
 			>
 			["connectionType"] = (P_BMM_SINGLE_PROPERTY) <
@@ -2146,6 +2236,12 @@ class_definitions = <
 			>
 		>
 	>
+
+    ["EndpointStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"EndpointStatus">
+        ancestors = <"Code">
+        item_names = <"active", "suspended", "error", "off", "entered-in-error", "test">
+    >
 
 	["Schedule"] = <
 		name = <"Schedule">
@@ -2403,7 +2499,7 @@ class_definitions = <
 
 	["Diagnosis"] = <
 		name = <"Diagnosis">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
             ["condition"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"condition">
@@ -2429,7 +2525,7 @@ class_definitions = <
 
 	["StatusHistory"] = <
 		name = <"StatusHistory">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
@@ -2448,7 +2544,7 @@ class_definitions = <
 
 	["ClassHistory"] = <
 		name = <"ClassHistory">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["class"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"class">
@@ -2655,7 +2751,7 @@ class_definitions = <
 
 	["Hospitalization"] = <
 		name = <"Hospitalization">
-		ancestors = <"DomainResource">
+		ancestors = <"BackboneElement">
 		properties = <
 			["preAdmissionIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"preAdmissionIdentifier">
@@ -2724,7 +2820,7 @@ class_definitions = <
 
 	["Participant"] = <
 		name = <"Participant">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["type"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"type">
@@ -3359,7 +3455,7 @@ class_definitions = <
 
 	["Coverage"] = <
 		name = <"Coverage">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
             ["coverage"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"coverage">
@@ -3378,7 +3474,7 @@ class_definitions = <
 
 	["Guarantor"] = <
 		name = <"Guarantor">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
             ["party"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"party">
@@ -3799,11 +3895,12 @@ class_definitions = <
 
 	["DeviceName"] = <
 		name = <"DeviceName">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["name"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"name">
 				type = <"String">
+				is_mandatory = <True>
 			>
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
@@ -3811,13 +3908,14 @@ class_definitions = <
 					type = <"Code">
 					value_constraint = <"fhir::DeviceNameType">
 				>
+				is_mandatory = <True>
 			>
 		>
 	>
 
 	["UdiCarrier"] = <
 		name = <"UdiCarrier">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["deviceIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"deviceIdentifier">
@@ -3870,11 +3968,12 @@ class_definitions = <
 
 	["Version"] = <
 		name = <"Version">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
 				type = <"String">
+				is_mandatory = <True>
 			>
 			["component"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"component">
@@ -3889,7 +3988,7 @@ class_definitions = <
 
 	["Specialization"] = <
 		name = <"Specialization">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["version"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"version">
@@ -3905,7 +4004,7 @@ class_definitions = <
 
 	["Property"] = <
 		name = <"Property">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
@@ -4017,7 +4116,7 @@ class_definitions = <
 
 	["Capability"] = <
 		name = <"Capability">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
@@ -4037,7 +4136,7 @@ class_definitions = <
 
 	["Material"] = <
 		name = <"Material">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["substance"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"substance">
@@ -4098,24 +4197,15 @@ class_definitions = <
             >
 			["operationalStatus"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"operationalStatus">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::DeviceMetricOperationalStatus">
-				>
+				type = <"DeviceMetricOperationalStatus">
 			>
 			["color"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"color">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::DeviceMetricColor">
-				>
+				type = <"DeviceMetricColor">
 			>
 			["category"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"category">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::DeviceMetricCategory">
-				>
+				type = <"DeviceMetricCategory">
 				is_mandatory = <True>
 			>
 			["measurementPeriod"] = (P_BMM_SINGLE_PROPERTY) <
@@ -4133,23 +4223,35 @@ class_definitions = <
 		>
 	>
 
+    ["DeviceMetricOperationalStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"DeviceMetricOperationalStatus">
+        ancestors = <"Code">
+        item_names = <"on", "off", "standby", "entered_in_error">
+    >
+
+    ["DeviceMetricColor"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"DeviceMetricColor">
+        ancestors = <"Code">
+        item_names = <"black", "red", "green", "yellow", "blue", "magenta", "cyan", "white">
+    >
+
+    ["DeviceMetricCategory"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"DeviceMetricCategory">
+        ancestors = <"Code">
+        item_names = <"measurement", "setting", "calculation", "unspecified">
+    >
+
 	["Calibration"] = <
 		name = <"Calibration">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::DeviceMetricCalibrationType">
-				>
+				type = <"DeviceMetricCalibrationType">
 			>
 			["state"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"state">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::DeviceMetricCalibrationState">
-				>
+				type = <"DeviceMetricCalibrationState">
 			>
 			["time"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"time">
@@ -4157,6 +4259,18 @@ class_definitions = <
 			>
 		>
 	>
+
+    ["DeviceMetricCalibrationType"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"DeviceMetricCalibrationType">
+        ancestors = <"Code">
+        item_names = <"unspecified", "offset", "gain", "two-point">
+    >
+
+    ["DeviceMetricCalibrationState"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"DeviceMetricCalibrationState">
+        ancestors = <"Code">
+        item_names = <"not-calibrated", "calibration-required", "calibrated", "unspecified">
+    >
 
 	["Substance"] = <
 		name = <"Substance">
@@ -4172,10 +4286,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::FHIRSubstanceStatus">
-				>
+				type = <"FHIRSubstanceStatus">
 			>
 			["category"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"category">
@@ -4219,9 +4330,15 @@ class_definitions = <
 		>
 	>
 
+    ["FHIRSubstanceStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"FHIRSubstanceStatus">
+        ancestors = <"Code">
+        item_names = <"active", "inactive", "entered-in-error">
+    >
+
 	["Instance"] = <
 		name = <"Instance">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["identifier"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"identifier">
@@ -4240,7 +4357,7 @@ class_definitions = <
 
 	["Ingredient"] = <
 		name = <"Ingredient">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"quantity">
@@ -4277,10 +4394,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::CareTeamStatus">
-				>
+				type = <"CareTeamStatus">
 			>
 			["category"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"category">
@@ -4363,6 +4477,12 @@ class_definitions = <
 			>
 		>
 	>
+
+    ["CareTeamStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"CareTeamStatus">
+        ancestors = <"Code">
+        item_names = <"proposed", "active", "suspended", "inactive", "entered-in-error">
+    >
 
 	["Condition"] = <
 		name = <"Condition">
@@ -4529,7 +4649,7 @@ class_definitions = <
 
 	["Stage"] = <
 		name = <"Stage">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["summary"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"summary">
@@ -4561,7 +4681,7 @@ class_definitions = <
 
 	["Evidence"] = <
 		name = <"Evidence">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["code"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"code">
@@ -4605,10 +4725,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::SpecimenStatus">
-				>
+				type = <"SpecimenStatus">
 			>
 			["type"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"type">
@@ -4693,9 +4810,15 @@ class_definitions = <
 		>
 	>
 
+    ["SpecimenStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"SpecimenStatus">
+        ancestors = <"Code">
+        item_names = <"available", "unavailable", "unsatisfactory", "entered-in-error">
+    >
+
 	["Collection"] = <
 		name = <"Collection">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
             ["collector"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"collector">
@@ -4751,7 +4874,7 @@ class_definitions = <
 
 	["Container"] = <
 		name = <"Container">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"identifier">
@@ -4799,7 +4922,7 @@ class_definitions = <
 
 	["Processing"] = <
 		name = <"Processing">
-		ancestors = <"Any">
+		ancestors = <"BackboneElement">
 		properties = <
 			["description"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"description">
