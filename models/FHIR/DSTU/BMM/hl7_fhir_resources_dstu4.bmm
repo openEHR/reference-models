@@ -76,7 +76,8 @@ packages = <
 									"HumanName", "NameUse", "Address", "AddressUse", "AddressType", 
 									"ContactPoint", "ContactPointUse", "ContactPointSystem", "SampledData", 
 									"SimpleQuantity", "Quantity", "QuantityComparator", "Money", "Count", "Duration", "Distance", "Age", 
-									"CodeableConcept", "Coding", "Timing", "Repeat", "UnitsOfTime"
+									"CodeableConcept", "Coding", "Timing", "Repeat", "UnitsOfTime",
+									"Signature"
 								>
 							>
 							["special_purpose"] = <
@@ -98,25 +99,26 @@ packages = <
 					"Practitioner", "Qualification", "PractitionerRole",
 					"AvailableTime", "NotAvailable", "Characteristic", "Member", 
 					"Organization", "Location", "LocationStatus", "HealthcareService", 
-					"EpisodeOfCare", "EpisodeOfCareStatus", "Encounter", "Flag", 
+					"EpisodeOfCare", "EpisodeOfCareStatus", "Encounter", "EncounterStatus", "EncounterStatusHistory", "Flag", 
 					"Device", "DeviceDefinition", "DeviceMetric", "Substance", "FHIRSubstanceStatus", 
 					"DeviceMetricOperationalStatus", "DeviceMetricOperationalStatus", "DeviceMetricColor", "DeviceMetricCategory",
 					"Contact", "Link", "IdentityAssuranceLevel", "Communication", "Eligibility",
 					"HoursOfOperation", "Position", "Endpoint", "EndpointStatus", 
-					"StatusHistory", "Diagnosis", 
+					"EpisodeOfCareStatusHistory", "Diagnosis", 
 					"Hospitalization", "Participant", "ClassHistory",
 					"Coverage", "Guarantor",
 					"Property", "Specialization", "Version", "UdiCarrier", "UdiDeviceIdentifier", "DeviceName", "Calibration",
 					"DeviceMetricCalibrationType", "DeviceMetricCalibrationState",
 					"SubstanceInstance", "Ingredient", 
-					"Capability", "Material", "Provenance",
+					"Capability", "Material", "Provenance", "ProvenanceEntity", "ProvenanceEntityRole", 
+					"ProvenanceAgent", "ProvenanceEntityRole",
 					"ProdCharacteristic", "ProductShelfLife"
 				>
 			>
 			["workflow"] = <
 				name = <"workflow">
 				classes = <
-					"Appointment", "AppointmentResponse", "Account", 
+					"Appointment", "AppointmentStatus", "AppointmentResponse", "Account", 
 					"Schedule", "Slot"
 				>
 			>
@@ -134,7 +136,7 @@ packages = <
 			["diagnostics"] = <
 				name = <"diagnostics">
 				classes = <
-					"ServiceRequest", 
+					"ServiceRequest", "RequestStatus", "RequestIntent",
 					"Specimen", "SpecimenStatus", "Collection", "Processing", "Container"
 				>
 			>
@@ -2501,7 +2503,7 @@ class_definitions = <
 				name = <"statusHistory">
 				type_def = <
 					container_type = <"List">
-					type = <"StatusHistory">
+					type = <"EpisodeOfCareStatusHistory">
 				>
 				cardinality = <|>=0|>
 			>
@@ -2540,8 +2542,8 @@ class_definitions = <
 		>
 	>
 
-	["StatusHistory"] = <
-		name = <"StatusHistory">
+	["EpisodeOfCareStatusHistory"] = <
+		name = <"EpisodeOfCareStatusHistory">
 		ancestors = <"BackboneElement">
 		properties = <
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
@@ -2589,10 +2591,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::EncounterStatus">
-				>
+				type = <"EncounterStatus">
 				is_mandatory = <True>
 			>
 			["class"] = (P_BMM_SINGLE_PROPERTY) <
@@ -2711,7 +2710,7 @@ class_definitions = <
 				name = <"statusHistory">
 				type_def = <
 					container_type = <"List">
-					type = <"StatusHistory">
+					type = <"EncounterStatusHistory">
 				>
 				cardinality = <|>=0|>
 			>
@@ -2762,6 +2761,28 @@ class_definitions = <
 			>
 		>
 	>
+
+	["EncounterStatusHistory"] = <
+		name = <"EncounterStatusHistory">
+		ancestors = <"BackboneElement">
+		properties = <
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"EncounterStatus">
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+				is_mandatory = <True>
+			>
+		>
+	>
+
+    ["EncounterStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"EncounterStatus">
+        ancestors = <"Code">
+        item_names = <"planned", "arrived", "triaged", "in-progress", "onleave", "finished", "cancelled">
+    >
 
 	["Hospitalization"] = <
 		name = <"Hospitalization">
@@ -2876,10 +2897,7 @@ class_definitions = <
 			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::AppointmentStatus">
-				>
+				type = <"AppointmentStatus">
 				is_mandatory = <True>
 			>
 			["cancelationReason"] = (P_BMM_SINGLE_PROPERTY) <
@@ -3034,6 +3052,12 @@ class_definitions = <
 		>
 	>
 
+    ["AppointmentStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"AppointmentStatus">
+        ancestors = <"Code">
+        item_names = <"proposed", "pending", "booked", "arrived", "fulfilled", "cancelled", "noshow", "entered-in-error", "checked-in", "waitlist">
+    >
+
 	["AppointmentResponse"] = <
 		name = <"AppointmentResponse">
 		ancestors = <"DomainResource">
@@ -3147,18 +3171,12 @@ class_definitions = <
 
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::RequestStatus">
-				>
+				type = <"RequestStatus">
 				is_mandatory = <True>
 			>
 			["intent"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"intent">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::RequestIntent">
-				>
+				type = <"RequestIntent">
 				is_mandatory = <True>
 			>
 			["category"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -3174,10 +3192,7 @@ class_definitions = <
 			>
 			["priority"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"priority">
-				type_ref = <
-					type = <"Code">
-					value_constraint = <"fhir::RequestPriority">
-				>
+				type = <"RequestPriority">
 			>
 			["doNotPerform"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"doNotPerform">
@@ -3190,33 +3205,11 @@ class_definitions = <
 					value_constraint = <"snomedct::ProcedureCodes">
 				>
 			>
-			["orderDetail"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"orderDetail">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_SIMPLE_TYPE) <
-						type = <"CodeableConcept">
-						value_constraint = <"fhir::ServiceRequestOrderDetailsCode">
-					>
-				>
-			>
-			["quantityQuantity"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"quantityQuantity">
-				type = <"Quantity">
-			>
-			["quantityRatio"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"quantityRatio">
-				type = <"Ratio">
-			>
-			["quantityRange"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"quantityRange">
-				type = <"Range">
-			>
             ["subject"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"subject">
                 type_def = <
                     root_type = <"Reference">
-                    generic_parameters = <"Resource">
+                    generic_parameters = <"Party">
                 >
 				is_mandatory = <True>
             >
@@ -3227,32 +3220,15 @@ class_definitions = <
                     generic_parameters = <"Encounter">
                 >
             >
-			["occurrenceDateTime"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"occurrenceDateTime">
-				type = <"DateTime">
-			>
-			["occurrencePeriod"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"occurrencePeriod">
-				type = <"Period">
-			>
-			["occurrenceTiming"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"occurrenceTiming">
-				type = <"Timing">
-			>
-			["asNeededBoolean"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"asNeededBoolean">
-				type = <"Boolean">
-			>
-			["asNeededCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"asNeededCodeableConcept">
-				type = <"CodeableConcept">
-			>
-			["authoredOn"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"authoredOn">
-				type = <"DateTime">
-			>
             ["requester"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"requester">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"performer">
                 type_def = <
                     root_type = <"Reference">
                     generic_parameters = <"Party">
@@ -3265,23 +3241,20 @@ class_definitions = <
 					value_constraint = <"fhir::ParticipantRoles">
 				>
 			>
-            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"performer">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Party">
-                >
-            >
-			["locationCode"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"locationCode">
+			["supportingInfo"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"supportingInfo">
 				type_def = <
 					container_type = <"List">
-					type_def = (P_BMM_SIMPLE_TYPE) <
-						type = <"CodeableConcept">
-						value_constraint = <"v3::ServiceDeliveryLocationRole">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
 					>
 				>
 				cardinality = <|>=0|>
+			>
+			["authoredOn"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"authoredOn">
+				type = <"DateTime">
 			>
 			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"reasonCode">
@@ -3305,6 +3278,59 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
+			["orderDetail"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"orderDetail">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ServiceRequestOrderDetailsCode">
+					>
+				>
+			>
+			["quantityQuantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantityQuantity">
+				type = <"Quantity">
+			>
+			["quantityRatio"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantityRatio">
+				type = <"Ratio">
+			>
+			["quantityRange"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantityRange">
+				type = <"Range">
+			>
+			["occurrenceDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurrenceDateTime">
+				type = <"DateTime">
+			>
+			["occurrencePeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurrencePeriod">
+				type = <"Period">
+			>
+			["occurrenceTiming"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurrenceTiming">
+				type = <"Timing">
+			>
+			["asNeededBoolean"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"asNeededBoolean">
+				type = <"Boolean">
+			>
+			["asNeededCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"asNeededCodeableConcept">
+				type = <"CodeableConcept">
+			>
+			["locationCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"locationCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"v3::ServiceDeliveryLocationRole">
+					>
+				>
+				cardinality = <|>=0|>
+			>
 			["insurance"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"insurance">
 				type_def = <
@@ -3312,17 +3338,6 @@ class_definitions = <
 					type_def = (P_BMM_GENERIC_TYPE) <
 						root_type = <"Reference">
 						generic_parameters = <"Resource">
-					>
-				>
-				cardinality = <|>=0|>
-			>
-			["supportingInfo"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"supportingInfo">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Reference">
-						generic_parameters = <"Any">
 					>
 				>
 				cardinality = <|>=0|>
@@ -3362,6 +3377,18 @@ class_definitions = <
 		>
 	>
 
+    ["RequestStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"RequestStatus">
+        ancestors = <"Code">
+        item_names = <"draft", "active", "suspended", "completed", "entered-in-error", "cancelled">
+    >
+
+    ["RequestIntent"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"RequestIntent">
+        ancestors = <"Code">
+        item_names = <"proposal", "plan", "order">
+    >
+
 	["Provenance"] = <
 		name = <"Provenance">
 		ancestors = <"DomainResource">
@@ -3376,6 +3403,190 @@ class_definitions = <
 					>
 				>
 				cardinality = <|>=1|>
+			>
+			["occurredDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurredDateTime">
+				type = <"DateTime">
+			>
+			["occurredPeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"occurredPeriod">
+				type = <"Period">
+			>
+			["recorded"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"recorded">
+				type = <"Instant">
+			>
+			["policy"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"policy">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["location"] = (P_BMM_GENERIC_PROPERTY) <
+				name = <"location">
+				type_def = <
+					root_type = <"Reference">
+					generic_parameters = <"Location">
+				>
+			>
+			["reason"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reason">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"v3::SetPurposeOfUse">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["activity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"activity">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ProvenanceActivityType">
+				>
+			>
+			["agent"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"agent">
+				type_def = <
+					container_type = <"List">
+					type = <"ProvenanceAgent">
+				>
+				cardinality = <|>=1|>
+			>
+			["entity"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"entity">
+				type_def = <
+					container_type = <"List">
+					type = <"ProvenanceEntity">
+				>
+				cardinality = <|>=0|>
+			>
+			["signature"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"signature">
+				type_def = <
+					container_type = <"List">
+					type = <"Signature">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["ProvenanceAgent"] = <
+		name = <"ProvenanceAgent">
+		ancestors = <"BackboneElement">
+		properties = <
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ProvenanceParticipantType">
+				>
+			>
+			["role"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"role">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::SecurityRoleType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+            ["who"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"who">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+            ["onBehalfOf"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"onBehalfOf">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+		>
+	>
+
+	["ProvenanceEntity"] = <
+		name = <"ProvenanceEntity">
+		ancestors = <"BackboneElement">
+		properties = <
+			["role"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"role">
+				type = <"ProvenanceEntityRole">
+			>
+            ["what"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"what">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Any">
+                >
+				is_mandatory = <True>
+            >
+			["agent"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"agent">
+				type_def = <
+					container_type = <"List">
+					type = <"ProvenanceAgent">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+    ["ProvenanceEntityRole"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"ProvenanceEntityRole">
+        ancestors = <"Code">
+        item_names = <"derivation", "revision", "quotation", "source", "removal">
+    >
+
+	["Signature"] = <
+		name = <"Signature">
+		ancestors = <"Element">
+		properties = <
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"Coding">
+						value_constraint = <"fhir::SignatureTypeCodes">
+					>
+				>
+				cardinality = <|>=1|>
+			>
+			["when"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"when">
+				type = <"Instant">
+				is_mandatory = <True>
+			>
+            ["who"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"who">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+            ["onBehalfOf"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"onBehalfOf">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["targetFormat"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"targetFormat">
+				type = <"Code">
 			>
 		>
 	>
@@ -6470,6 +6681,10 @@ class_definitions = <
 				name = <"strength">
 				type = <"Ratio">
 			>
+			["itemCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"itemCodeableConcept">
+				type = <"CodeableConcept">
+			>
             ["itemReference"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"itemReference">
                 type_def = <
@@ -6477,10 +6692,6 @@ class_definitions = <
                     generic_parameters = <"Substance">
                 >
             >
-			["itemCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"itemCodeableConcept">
-				type = <"CodeableConcept">
-			>
 			["isActive"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"isActive">
 				type = <"Boolean">
@@ -6515,6 +6726,33 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
+			["instantiatesCanonical"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"instantiatesCanonical">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["instantiatesUri"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"instantiatesUri">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["basedOn"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"basedOn">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"CarePlan">
+					>
+				>
+				cardinality = <|>=0|>
+			>
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
 				type = <"MedicationRequestStatus">
@@ -6544,28 +6782,6 @@ class_definitions = <
 				name = <"doNotPerform">
 				type = <"Boolean">
 			>
-			["reportedBoolean"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"reportedBoolean">
-				type = <"Boolean">
-			>
-            ["reportedReference"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"reportedReference">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Party">
-                >
-            >
-			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"medicationCodeableConcept">
-				type = <"CodeableConcept">
-			>
-            ["medicationReference"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"medicationReference">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Medication">
-                >
-            >
             ["subject"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"subject">
                 type_def = <
@@ -6581,49 +6797,10 @@ class_definitions = <
                     generic_parameters = <"Encounter">
                 >
             >
-			["supportingInformation"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"supportingInformation">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Reference">
-						generic_parameters = <"Any">
-					>
-				>
-				cardinality = <|>=0|>
-			>
 			["authoredOn"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"authoredOn">
 				type = <"DateTime">
 			>
-            ["requester"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"requester">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Party">
-                >
-            >
-			["performerType"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"performerType">
-				type_ref = <
-					type = <"CodeableConcept">
-					value_constraint = <"fhir::ParticipantRoles">
-				>
-			>
-            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"performer">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Party">
-                >
-            >
-            ["recorder"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"recorder">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Party">
-                >
-            >
 			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"reasonCode">
 				type_def = <
@@ -6646,33 +6823,67 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
-			["instantiatesCanonical"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"instantiatesCanonical">
-				type_def = <
-					container_type = <"List">
-					type = <"Uri">
+            ["requester"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"requester">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"performer">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["performerType"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"performerType">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::ParticipantRoles">
 				>
-				cardinality = <|>=0|>
 			>
-			["instantiatesUri"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"instantiatesUri">
-				type_def = <
-					container_type = <"List">
-					type = <"Uri">
-				>
-				cardinality = <|>=0|>
-			>
-			["basedOn"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"basedOn">
+			["supportingInformation"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"supportingInformation">
 				type_def = <
 					container_type = <"List">
 					type_def = (P_BMM_GENERIC_TYPE) <
 						root_type = <"Reference">
-						generic_parameters = <"CarePlan">
+						generic_parameters = <"Any">
 					>
 				>
 				cardinality = <|>=0|>
 			>
+			["reportedBoolean"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"reportedBoolean">
+				type = <"Boolean">
+			>
+            ["reportedReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"reportedReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"medicationCodeableConcept">
+				type = <"CodeableConcept">
+			>
+            ["medicationReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"medicationReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Medication">
+                >
+            >
+            ["recorder"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"recorder">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
 			["groupIdentifier"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"groupIdentifier">
 				type = <"Identifier">
