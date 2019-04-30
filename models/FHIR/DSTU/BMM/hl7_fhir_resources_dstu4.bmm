@@ -144,8 +144,11 @@ packages = <
 				name = <"medication">
 				classes = <
 					"Medication", "MedicationStatus", "MedicationIngredient", "Batch",
+					"MedicationStatement", "MedicationStatementStatus", 
+					"MedicationAdministration", "MedicationAdministrationStatus", "MedicationAdministrationDosage", 
 					"MedicationRequest", "MedicationRequestIntent", "MedicationRequestStatus", "RequestPriority",
-					"Dosage", "DispenseRequest", "Substitution", "InitialFill", "DoseAndRate",
+					"MedicationDispense", "MedicationDispenseStatus", "MedicationDispenseSubstitution",
+					"Dosage", "DispenseRequest", "MedicationRequestSubstitution", "InitialFill", "DoseAndRate",
 					"DetectedIssue", "DetectedIssueSeverity", "Mitigation"
 				>
 			>
@@ -4834,7 +4837,7 @@ class_definitions = <
 				>
 			>
 			["additive"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"request">
+				name = <"additive">
 				type_def = <
 					container_type = <"List">
 					type_def = (P_BMM_GENERIC_TYPE) <
@@ -6758,16 +6761,12 @@ class_definitions = <
 				type = <"MedicationRequestStatus">
 				is_mandatory = <True>
 			>
-			["statusReason"] = (P_BMM_CONTAINER_PROPERTY) <
+			["statusReason"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"statusReason">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_SIMPLE_TYPE) <
-						type = <"CodeableConcept">
-						value_constraint = <"fhir::MedicationRequestStatusReason">
-					>
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationRequestStatusReason">
 				>
-				cardinality = <|>=0|>
 			>
 			["intent"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"intent">
@@ -6928,7 +6927,7 @@ class_definitions = <
 			>
 			["substitution"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"substitution">
-				type = <"Substitution">
+				type = <"MedicationRequestSubstitution">
 			>
             ["priorPrescription"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"priorPrescription">
@@ -6979,6 +6978,642 @@ class_definitions = <
         ancestors = <"Code">
         item_names = <"routine", "urgent", "asap", "stat">
     >
+
+	["MedicationDispense"] = <
+		name = <"MedicationDispense">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["partOf"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"partOf">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Procedure">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"MedicationDispenseStatus">
+				is_mandatory = <True>
+			>
+			["statusReasonCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"statusReasonCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationRequestStatusReason">
+				>
+			>
+            ["statusReasonReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"statusReasonReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"DetectedIssue">
+                >
+            >
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationDispenseCategory">
+				>
+			>
+			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"medicationCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::MedicationCodes">
+				>
+			>
+            ["medicationReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"medicationReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Medication">
+                >
+            >
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+            ["context"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"context">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["supportingInformation"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"supportingInformation">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["performer"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"performer">
+				type_def = <
+					container_type = <"List">
+					type = <"Performer">
+				>
+				cardinality = <|>=0|>
+			>
+            ["location"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"location">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Location">
+                >
+            >
+            ["authorizingPrescription"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"authorizingPrescription">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"MedicationRequest">
+                >
+            >
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v3::ActPharmacySupplyType">
+				>
+			>
+			["quantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"quantity">
+				type = <"SimpleQuantity">
+			>
+			["daysSupply"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"daysSupply">
+				type = <"SimpleQuantity">
+			>
+			["whenPrepared"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"whenPrepared">
+				type = <"DateTime">
+			>
+			["whenHandedOver"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"whenHandedOver">
+				type = <"DateTime">
+			>
+            ["destination"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"destination">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Location">
+                >
+            >
+			["receiver"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"receiver">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Party">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["dosageInstruction"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"dosageInstruction">
+				type_def = <
+					container_type = <"List">
+					type = <"Dosage">
+				>
+				cardinality = <|>=0|>
+			>
+			["substitution"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"substitution">
+				type = <"MedicationDispenseSubstitution">
+			>
+			["detectedIssue"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"detectedIssue">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"DetectedIssue">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["eventHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"eventHistory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Provenance">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+    ["MedicationDispenseStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"MedicationDispenseStatus">
+        ancestors = <"Code">
+        item_names = <"preparation", "in-progress", "on-hold", "cancelled", "completed", "entered-in-error", "stopped", "unknown">
+    >
+
+	["MedicationDispenseSubstitution"] = <
+		name = <"MedicationDispenseSubstitution">
+		ancestors = <"BackboneElement">
+		properties = <
+			["wasSubstituted"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"wasSubstituted">
+				type = <"Boolean">
+				is_mandatory = <True>
+			>
+			["type"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"type">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"v3::ActSubstanceAdminSubstitutionCode">
+				>
+			>
+			["reason"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reason">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"v3::SubstanceAdminSubstitutionReason">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["responsibleParty"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"responsibleParty">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Party">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["MedicationStatement"] = <
+		name = <"MedicationStatement">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["basedOn"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"basedOn">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"MedicationRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["partOf"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"partOf">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"MedicationAdministration">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"MedicationStatementStatus">
+				is_mandatory = <True>
+			>
+			["statusReason"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"statusReason">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::DrugTherapyStatus">
+				>
+			>
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationStatus">
+				>
+			>
+			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"medicationCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::MedicationCodes">
+				>
+			>
+            ["medicationReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"medicationReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Medication">
+                >
+            >
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+            ["context"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"context">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["effectiveDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"effectiveDateTime">
+				type = <"DateTime">
+			>
+			["effectivePeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"effectivePeriod">
+				type = <"Period">
+			>
+			["dateAsserted"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"dateAsserted">
+				type = <"DateTime">
+			>
+            ["informationSource"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"informationSource">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+            >
+			["derivedFrom"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"derivedFrom">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonReference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonReference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Condition">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ProcedureReasonCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["dosage"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"dosage">
+				type_def = <
+					container_type = <"List">
+					type = <"Dosage">
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+    ["MedicationStatementStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"MedicationStatementStatus">
+        ancestors = <"Code">
+        item_names = <"active", "not-taken", "on-hold", "intended", "completed", "entered-in-error", "stopped", "unknown">
+    >
+
+	["MedicationAdministration"] = <
+		name = <"MedicationAdministration">
+		ancestors = <"DomainResource">
+		properties = <
+			["identifier"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"identifier">
+				type_def = <
+					container_type = <"List">
+					type = <"Identifier">
+				>
+				cardinality = <|>=0|>
+			>
+			["instantiates"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"instantiates">
+				type_def = <
+					container_type = <"List">
+					type = <"Uri">
+				>
+				cardinality = <|>=0|>
+			>
+			["partOf"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"partOf">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"MedicationAdministration">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"MedicationAdministrationStatus">
+				is_mandatory = <True>
+			>
+			["statusReason"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"statusReason">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"snomedct::ReasonMedicationNotGiven">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationAdministrationCategory">
+				>
+			>
+			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"medicationCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::MedicationCodes">
+				>
+			>
+            ["medicationReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"medicationReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Medication">
+                >
+            >
+            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"subject">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Party">
+                >
+				is_mandatory = <True>
+            >
+            ["context"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"context">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"Encounter">
+                >
+            >
+			["supportingInformation"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"supportingInformation">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Any">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["effectiveDateTime"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"effectiveDateTime">
+				type = <"DateTime">
+			>
+			["effectivePeriod"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"effectivePeriod">
+				type = <"Period">
+			>
+			["performer"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"performer">
+				type_def = <
+					container_type = <"List">
+					type = <"Performer">
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonCode">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::ProcedureReasonCodes">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["reasonReference"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"reasonReference">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Condition">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["request"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"request">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"MedicationRequest">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["device"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"device">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Device">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["dosage"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"dosage">
+				type_def = <
+					container_type = <"List">
+					type = <"MedicationAdministrationDosage">
+				>
+				cardinality = <|>=0|>
+			>
+			["eventHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"eventHistory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Provenance">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+    ["MedicationAdministrationStatus"] = (P_BMM_ENUMERATION_STRING) <
+        name = <"MedicationAdministrationStatus">
+        ancestors = <"Code">
+        item_names = <"not-done", "in-progress", "on-hold", "completed", "entered-in-error", "stopped", "unknown">
+    >
+
+	["MedicationAdministrationDosage"] = <
+		name = <"MedicationAdministrationDosage">
+		ancestors = <"BackboneElement">
+		properties = <
+			["text"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"text">
+				type = <"String">
+			>
+			["site"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"site">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::AnatomicalStructureForAdministrationSite">
+				>
+			>
+			["route"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"route">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::RouteCodes">
+				>
+			>
+			["method"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"method">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"snomedct::AdministrationMethodCodes">
+				>
+			>
+			["dose"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"dose">
+				type = <"SimpleQuantity">
+			>
+			["rateRatio"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"rateRatio">
+				type = <"Ratio">
+			>
+			["rateQuantity"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"rateQuantity">
+				type = <"SimpleQuantity">
+			>
+		>
+	>
 
 	["Dosage"] = <
 		name = <"Dosage">
@@ -7116,8 +7751,8 @@ class_definitions = <
 		>
 	>
 
-	["Substitution"] = <
-		name = <"Substitution">
+	["MedicationRequestSubstitution"] = <
+		name = <"MedicationRequestSubstitution">
 		ancestors = <"BackboneElement">
 		properties = <
 			["allowedBoolean"] = (P_BMM_SINGLE_PROPERTY) <
