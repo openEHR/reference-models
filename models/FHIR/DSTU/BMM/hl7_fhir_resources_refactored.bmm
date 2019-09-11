@@ -54,7 +54,7 @@ packages = <
 			["foundation"] = <
 				name = <"foundation">
 				classes = <
-					"Element", "BackboneElement", "Resource", "DomainResource", "Entity"
+					"Element", "BackboneElement", "Resource", "DomainResource", "Entity", "DataValue", "PrimitiveDataValue"
 				>
 				packages = <
 					["data_types"] = <
@@ -62,9 +62,12 @@ packages = <
 						packages = <
 							["primitive"] = <
 								name = <"primitive">
-								classes = <"Any", "Boolean", 
-									"Base64Binary", "Integer", "PositiveInt", "UnsignedInt", "Decimal", 
+								classes = <"Any", 
+									"Boolean", "Base64Binary", "Integer", "PositiveInt", "UnsignedInt", "Decimal", 
+									"BooleanDataValue", "Base64BinaryDataValue", "IntegerDataValue", "PositiveIntDataValue", "UnsignedIntDataValue", "DecimalDataValue", 
 									"String", "Code", "Id", "Markdown", 
+									"StringDataValue", "CodeDataValue", "IdDataValue", "MarkdownDataValue", 
+
 									"List", "Array", "Set", "Interval", "Ordered", "Aggregate", 
 									"Date", "DateTime", "Instant", "Time",
 									"Uri", "Url", "Oid", "Uuid"
@@ -94,8 +97,8 @@ packages = <
 			["administration"] = <
 				name = <"administration">
 				classes = <
-					"Party", "Actor", "Person", "Role", "PersonRole", "OrganizationRole", 
-					"PartyRelationship", "GroupMember", "PersonPatient", 
+					"Party", "Actor", "Person", "Role", "Team", "PersonRole", "OrganizationRole", 
+					"PartyRelationship", "GroupMember", "TeamMember", "PersonPatient", "CareTeam", "CareTeamStatus",
 					"Practitioner", "Patient", "AdministrativeGender", "RelatedPerson", "Group", "GroupSpec", "GroupType", 
 					"Qualification", "Employment",
 					"AvailableTime", "NotAvailable", "Characteristic",
@@ -128,7 +131,7 @@ packages = <
 			["clinical"] = <
 				name = <"clinical">
 				classes = <
-					"Condition", "Stage", "Evidence", "CareTeam", "CareTeamStatus",
+					"Condition", "Stage", "Evidence", 
 					"AllergyIntolerance", "Reaction", "Procedure", "EventStatus", "Performer", "FocalDevice",
 					"AllergyIntoleranceSeverity", "AllergyIntoleranceType", "AllergyIntoleranceCategory", "AllergyIntoleranceCriticality",
 					"DiagnosticReport", "DiagnosticReportStatus", "Media", 
@@ -147,6 +150,7 @@ packages = <
 				classes = <
 					"Medication", "MedicationStatus", "MedicationIngredient", "Batch",
 					"MedicationStatement", "MedicationStatementStatus", 
+					"MedicationEvent", 
 					"MedicationAdministration", "MedicationAdministrationStatus", "MedicationAdministrationDosage", 
 					"MedicationDispense", "MedicationDispenseStatus", "MedicationDispenseSubstitution",
 					"Dosage", "DispenseRequest", "MedicationRequestSubstitution", "InitialFill", "DoseAndRate",
@@ -170,6 +174,7 @@ primitive_types = <
 		is_abstract = <True>
 		ancestors = <"Any">
 	>
+
 	["Element"] = <
 		name = <"Element">
 		is_abstract = <True>
@@ -206,47 +211,172 @@ primitive_types = <
 		>
 	>
 
+	["DataValue"] = <
+		name = <"DataValue">
+		is_abstract = <True>
+		ancestors = <"Element">
+	>
+
+	["PrimitiveDataValue"] = <
+		name = <"PrimitiveDataValue">
+		ancestors = <"DataValue">
+		generic_parameter_defs = <
+			["T"] = <
+				name = <"T">
+				conforms_to_type = <"Element">
+			>
+		>
+		properties = <
+			["value"] = (P_BMM_SINGLE_PROPERTY_OPEN) <
+				name = <"value">
+				type = <"T">
+			>
+		>
+	>
+
 	["Boolean"] = <
 		name = <"Boolean">
 		ancestors = <"Element">
 	>
+	["BooleanDataValue"] = <
+		name = <"BooleanDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Boolean>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Boolean">
+			>
+		>
+	>
+
 	["Integer"] = <
 		name = <"Integer">
 		ancestors = <"Element">
 	>
+	["IntegerDataValue"] = <
+		name = <"IntegerDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Integer>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Integer">
+			>
+		>
+	>
+
 	["PositiveInt"] = <
 		name = <"PositiveInt">
 		ancestors = <"Integer">
 	>
+	["PositiveIntDataValue"] = <
+		name = <"PositiveIntDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<PositiveInt>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"PositiveInt">
+			>
+		>
+	>
+
 	["UnsignedInt"] = <
 		name = <"UnsignedInt">
 		ancestors = <"Integer">
 	>
+	["UnsignedIntDataValue"] = <
+		name = <"UnsignedIntDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<UnsignedInt>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"UnsignedInt">
+			>
+		>
+	>
+
 	["Decimal"] = <
 		name = <"Decimal">
 		ancestors = <"Element">
 	>
+	["DecimalDataValue"] = <
+		name = <"DecimalDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Decimal>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Decimal">
+			>
+		>
+	>
+
+
 	["Base64Binary"] = <
 		name = <"Base64Binary">
 		ancestors = <"Element">
 	>
+	["Base64BinaryDataValue"] = <
+		name = <"Base64BinaryDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Base64Binary>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Base64Binary">
+			>
+		>
+	>
+
 
 	["String"] = <
 		name = <"String">
 		ancestors = <"Element">
 	>
+	["StringDataValue"] = <
+		name = <"StringDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<String>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"String">
+			>
+		>
+	>
+
 	["Id"] = <
 		name = <"Id">
 		ancestors = <"String">
 	>
+	["IdDataValue"] = <
+		name = <"IdDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Id>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Id">
+			>
+		>
+	>
+
+
 	["Code"] = <
 		name = <"Code">
 		ancestors = <"String">
 	>
+	["CodeDataValue"] = <
+		name = <"CodeDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Code>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Code">
+			>
+		>
+	>
+
 	["Markdown"] = <
 		name = <"Markdown">
 		ancestors = <"String">
 	>
+	["MarkdownDataValue"] = <
+		name = <"MarkdownDataValue">
+		ancestor_defs = <
+			["PrimitiveDataValue<Markdown>"] = (P_BMM_GENERIC_TYPE) <
+				root_type = <"PrimitiveDataValue">
+				generic_parameters = <"Markdown">
+			>
+		>
+	>
+
 
 	["Uri"] = <
 		name = <"Uri">
@@ -415,7 +545,7 @@ class_definitions = <
 
 	["SimpleQuantity"] = <
 		name = <"SimpleQuantity">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -511,7 +641,7 @@ class_definitions = <
 
 	["Money"] = <
 		name = <"Money">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["value"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"value">
@@ -529,7 +659,7 @@ class_definitions = <
 
 	["Ratio"] = <
 		name = <"Ratio">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["numerator"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"numerator">
@@ -544,7 +674,7 @@ class_definitions = <
 
 	["Range"] = <
 		name = <"Range">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["low"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"low">
@@ -559,7 +689,7 @@ class_definitions = <
 
 	["Period"] = <
 		name = <"Period">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["start"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"start">
@@ -574,7 +704,7 @@ class_definitions = <
 
 	["SampledData"] = <
 		name = <"SampledData">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["origin"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"origin">
@@ -611,7 +741,7 @@ class_definitions = <
 
 	["Identifier"] = <
 		name = <"Identifier">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
@@ -654,7 +784,7 @@ class_definitions = <
 
 	["Name"] = <
 		name = <"Name">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
@@ -714,7 +844,7 @@ class_definitions = <
 
 	["Address"] = <
 		name = <"Address">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["use"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"use">
@@ -773,7 +903,7 @@ class_definitions = <
 
 	["Attachment"] = <
 		name = <"Attachment">
-		ancestors = <"Element", ...>
+		ancestors = <"DataValue">
 		properties = <
 			["contentType"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"contentType">
@@ -819,7 +949,7 @@ class_definitions = <
 
 	["CodeableConcept"] = <
 		name = <"CodeableConcept">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["coding"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"coding">
@@ -838,7 +968,7 @@ class_definitions = <
 
 	["Coding"] = <
 		name = <"Coding">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["system"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system">
@@ -970,7 +1100,7 @@ class_definitions = <
 
 	["ContactPoint"] = <
 		name = <"ContactPoint">
-		ancestors = <"Element">
+		ancestors = <"DataValue">
 		properties = <
 			["system"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"system">
@@ -1327,6 +1457,28 @@ class_definitions = <
 		>
 	>
 
+	["TeamMember"] = <
+		name = <"TeamMember">
+		ancestors = <"PartyRelationship">
+		properties = <
+			["type"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"type">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::TeamMemberType">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["coverage"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"coverage">
+				type = <"Period">
+			>
+		>
+	>
+
 	["Actor"] = <
 		name = <"Actor">
 		ancestors = <"Party">
@@ -1415,14 +1567,6 @@ class_definitions = <
 		ancestors = <"Party">
 		is_abstract = <True>
 		properties = <
-			["performer"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"performer">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Actor">
-                >
-				is_mandatory = <True>
-			>
 			["period"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"period">
 				type = <"Period">
@@ -1441,18 +1585,48 @@ class_definitions = <
 		>
 	>
 
+	["Team"] = <
+		name = <"Team">
+		ancestors = <"Party">
+		properties = <
+			["relationships"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"relationships">
+				type_def = <
+					container_type = <"List">
+					type = <"TeamMember">
+				>
+				cardinality = <|>=1|>
+			>
+			["period"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"period">
+				type = <"Period">
+			>
+			["capabilities"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"capabilities">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_SIMPLE_TYPE) <
+						type = <"CodeableConcept">
+						value_constraint = <"fhir::TeamCapabilities">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
 	["PersonRole"] = <
 		name = <"PersonRole">
 		ancestors = <"Role">
 		properties = <
-			["performer"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"performer">
+            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"performer">
                 type_def = <
                     root_type = <"Reference">
                     generic_parameters = <"Person">
                 >
 				is_mandatory = <True>
-			>
+            >
 		>
 	>
 
@@ -1460,14 +1634,14 @@ class_definitions = <
 		name = <"OrganizationRole">
 		ancestors = <"Role">
 		properties = <
-			["performer"] = (P_BMM_GENERIC_PROPERTY) <
-				name = <"performer">
+            ["performer"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"performer">
                 type_def = <
                     root_type = <"Reference">
                     generic_parameters = <"Organization">
                 >
 				is_mandatory = <True>
-			>
+            >
 		>
 	>
 
@@ -4827,7 +5001,7 @@ class_definitions = <
 
 	["CareTeam"] = <
 		name = <"CareTeam">
-		ancestors = <"Entity">
+		ancestors = <"Team">
 		properties = <
 			["status"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"status">
@@ -4863,10 +5037,6 @@ class_definitions = <
                     generic_parameters = <"Encounter">
                 >
             >
-			["period"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"period">
-				type = <"Period">
-			>
 			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"reasonCode">
 				type_def = <
@@ -4886,14 +5056,6 @@ class_definitions = <
 						root_type = <"Reference">
 						generic_parameters = <"Condition">
 					>
-				>
-				cardinality = <|>=0|>
-			>
-			["telecom"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"telecom">
-				type_def = <
-					container_type = <"List">
-					type = <"ContactPoint">
 				>
 				cardinality = <|>=0|>
 			>
@@ -6305,49 +6467,9 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
-			["valueQuantity"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueQuantity">
-				type = <"Quantity">
-			>
-			["valueCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueCodeableConcept">
-				type = <"CodeableConcept">
-			>
-			["valueString"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueString">
-				type = <"String">
-			>
-			["valueBoolean"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueBoolean">
-				type = <"Boolean">
-			>
-			["valueInteger"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueInteger">
-				type = <"Integer">
-			>
-			["valueRange"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueRange">
-				type = <"Range">
-			>
-			["valueRatio"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueRatio">
-				type = <"Ratio">
-			>
-			["valueSampledData"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueSampledData">
-				type = <"SampledData">
-			>
-			["valueTime"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueTime">
-				type = <"Time">
-			>
-			["valueDateTime"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valueDateTime">
-				type = <"DateTime">
-			>
-			["valuePeriod"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"valuePeriod">
-				type = <"Period">
+			["value"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"value">
+				type = <"DataValue">
 			>
 			["dataAbsentReason"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"dataAbsentReason">
@@ -6945,45 +7067,15 @@ class_definitions = <
         item_names = <"routine", "urgent", "asap", "stat">
     >
 
-	["MedicationDispense"] = <
-		name = <"MedicationDispense">
+	["MedicationEvent"] = <
+		name = <"MedicationEvent">
 		ancestors = <"Entity">
 		properties = <
-			["partOf"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"partOf">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Reference">
-						generic_parameters = <"Procedure">
-					>
-				>
-				cardinality = <|>=0|>
-			>
-			["status"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"status">
-				type = <"MedicationDispenseStatus">
-				is_mandatory = <True>
-			>
-			["statusReasonCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"statusReasonCodeableConcept">
-				type_ref = <
-					type = <"CodeableConcept">
-					value_constraint = <"fhir::MedicationRequestStatusReason">
-				>
-			>
-            ["statusReasonReference"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"statusReasonReference">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"DetectedIssue">
-                >
-            >
 			["category"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"category">
 				type_ref = <
 					type = <"CodeableConcept">
-					value_constraint = <"fhir::MedicationDispenseCategory">
+					value_constraint = <"fhir::MedicationEventCategory">
 				>
 			>
 			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
@@ -7032,6 +7124,69 @@ class_definitions = <
 					type = <"Performer">
 				>
 				cardinality = <|>=0|>
+			>
+			["note"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"note">
+				type_def = <
+					container_type = <"List">
+					type = <"Annotation">
+				>
+				cardinality = <|>=0|>
+			>
+			["eventHistory"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"eventHistory">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Provenance">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+		>
+	>
+
+	["MedicationDispense"] = <
+		name = <"MedicationDispense">
+		ancestors = <"MedicationEvent">
+		properties = <
+			["partOf"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"partOf">
+				type_def = <
+					container_type = <"List">
+					type_def = (P_BMM_GENERIC_TYPE) <
+						root_type = <"Reference">
+						generic_parameters = <"Procedure">
+					>
+				>
+				cardinality = <|>=0|>
+			>
+			["status"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"status">
+				type = <"MedicationDispenseStatus">
+				is_mandatory = <True>
+			>
+			["statusReasonCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"statusReasonCodeableConcept">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationRequestStatusReason">
+				>
+			>
+            ["statusReasonReference"] = (P_BMM_GENERIC_PROPERTY) <
+                name = <"statusReasonReference">
+                type_def = <
+                    root_type = <"Reference">
+                    generic_parameters = <"DetectedIssue">
+                >
+            >
+			["category"] = (P_BMM_SINGLE_PROPERTY) <
+				name = <"category">
+				type_ref = <
+					type = <"CodeableConcept">
+					value_constraint = <"fhir::MedicationDispenseCategory">
+				>
 			>
             ["location"] = (P_BMM_GENERIC_PROPERTY) <
                 name = <"location">
@@ -7088,14 +7243,6 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
-			["note"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"note">
-				type_def = <
-					container_type = <"List">
-					type = <"Annotation">
-				>
-				cardinality = <|>=0|>
-			>
 			["dosageInstruction"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"dosageInstruction">
 				type_def = <
@@ -7115,17 +7262,6 @@ class_definitions = <
 					type_def = (P_BMM_GENERIC_TYPE) <
 						root_type = <"Reference">
 						generic_parameters = <"DetectedIssue">
-					>
-				>
-				cardinality = <|>=0|>
-			>
-			["eventHistory"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"eventHistory">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Reference">
-						generic_parameters = <"Provenance">
 					>
 				>
 				cardinality = <|>=0|>
@@ -7333,7 +7469,7 @@ class_definitions = <
 
 	["MedicationAdministration"] = <
 		name = <"MedicationAdministration">
-		ancestors = <"Entity">
+		ancestors = <"MedicationEvent">
 		properties = <
 			["instantiates"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"instantiates">
@@ -7377,46 +7513,6 @@ class_definitions = <
 					value_constraint = <"fhir::MedicationAdministrationCategory">
 				>
 			>
-			["medicationCodeableConcept"] = (P_BMM_SINGLE_PROPERTY) <
-				name = <"medicationCodeableConcept">
-				type_ref = <
-					type = <"CodeableConcept">
-					value_constraint = <"snomedct::MedicationCodes">
-				>
-			>
-            ["medicationReference"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"medicationReference">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Medication">
-                >
-            >
-            ["subject"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"subject">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Party">
-                >
-				is_mandatory = <True>
-            >
-            ["context"] = (P_BMM_GENERIC_PROPERTY) <
-                name = <"context">
-                type_def = <
-                    root_type = <"Reference">
-                    generic_parameters = <"Encounter">
-                >
-            >
-			["supportingInformation"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"supportingInformation">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Reference">
-						generic_parameters = <"Any">
-					>
-				>
-				cardinality = <|>=0|>
-			>
 			["effectiveDateTime"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"effectiveDateTime">
 				type = <"DateTime">
@@ -7424,14 +7520,6 @@ class_definitions = <
 			["effectivePeriod"] = (P_BMM_SINGLE_PROPERTY) <
 				name = <"effectivePeriod">
 				type = <"Period">
-			>
-			["performer"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"performer">
-				type_def = <
-					container_type = <"List">
-					type = <"Performer">
-				>
-				cardinality = <|>=0|>
 			>
 			["reasonCode"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"reasonCode">
@@ -7477,30 +7565,11 @@ class_definitions = <
 				>
 				cardinality = <|>=0|>
 			>
-			["note"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"note">
-				type_def = <
-					container_type = <"List">
-					type = <"Annotation">
-				>
-				cardinality = <|>=0|>
-			>
 			["dosage"] = (P_BMM_CONTAINER_PROPERTY) <
 				name = <"dosage">
 				type_def = <
 					container_type = <"List">
 					type = <"MedicationAdministrationDosage">
-				>
-				cardinality = <|>=0|>
-			>
-			["eventHistory"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"eventHistory">
-				type_def = <
-					container_type = <"List">
-					type_def = (P_BMM_GENERIC_TYPE) <
-						root_type = <"Reference">
-						generic_parameters = <"Provenance">
-					>
 				>
 				cardinality = <|>=0|>
 			>
