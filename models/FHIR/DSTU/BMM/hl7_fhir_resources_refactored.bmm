@@ -98,7 +98,7 @@ packages = <
 				name = <"administration">
 				classes = <
 					"Party", "Actor", "Person", "Role", "Team", "PersonRole", "OrganizationRole", 
-					"PartyRelationship", "GroupMember", "TeamMember", "PersonPatient", "CareTeam", "CareTeamStatus",
+					"PartyRelationship", "GroupMember", "TeamMember", "PersonalRelationship", "CareTeam", "CareTeamStatus",
 					"Practitioner", "Patient", "AdministrativeGender", "RelatedPerson", "Group", "GroupSpec", "GroupType", 
 					"Qualification", "Employment",
 					"AvailableTime", "NotAvailable", "Characteristic",
@@ -1410,8 +1410,8 @@ class_definitions = <
 		>
 	>
 
-	["PersonPatient"] = <
-		name = <"PersonPatient">
+	["PersonalRelationship"] = <
+		name = <"PersonalRelationship">
 		ancestors = <"PartyRelationship">
 		properties = <
 			["type"] = (P_BMM_CONTAINER_PROPERTY) <
@@ -1420,7 +1420,7 @@ class_definitions = <
 					container_type = <"List">
 					type_def = (P_BMM_SIMPLE_TYPE) <
 						type = <"CodeableConcept">
-						value_constraint = <"fhir::PatientRelationshipType">
+						value_constraint = <"fhir::PersonRelationshipType">
 					>
 				>
 				cardinality = <|>=0|>
@@ -1431,7 +1431,7 @@ class_definitions = <
 					container_type = <"List">
 					type_def = (P_BMM_GENERIC_TYPE) <
 						root_type = <"Reference">
-						generic_parameters = <"Patient">
+						generic_parameters = <"Person">
 					>
 				>
 				cardinality = <|>=0|>
@@ -1671,6 +1671,21 @@ class_definitions = <
 		>
 	>
 
+	["RelatedPerson"] = <
+		name = <"RelatedPerson">
+		ancestors = <"PersonRole">
+		properties = <
+			["relationships"] = (P_BMM_CONTAINER_PROPERTY) <
+				name = <"relationships">
+				type_def = <
+					container_type = <"List">
+					type = <"PersonalRelationship">
+				>
+				cardinality = <|1|>
+			>
+		>
+	>
+
 	["Person"] = <
 		name = <"Person">
 		ancestors = <"Actor">
@@ -1727,21 +1742,6 @@ class_definitions = <
         ancestors = <"Code">
         item_names = <"male", "female", "other", "unknown">
     >
-
-	["RelatedPerson"] = <
-		name = <"RelatedPerson">
-		ancestors = <"Person">
-		properties = <
-			["relationships"] = (P_BMM_CONTAINER_PROPERTY) <
-				name = <"relationships">
-				type_def = <
-					container_type = <"List">
-					type = <"PersonPatient">
-				>
-				cardinality = <|1|>
-			>
-		>
-	>
 
 	["Patient"] = <
 		name = <"Patient">
